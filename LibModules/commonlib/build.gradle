@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext._android.compileSdkVersion as Integer
+    buildToolsVersion rootProject.ext._android.buildToolsVersion as String
+
+    defaultConfig {
+        println("${project.name}:defaultConfig")
+        minSdkVersion rootProject.ext._android.minSdkVersion as Integer
+        targetSdkVersion rootProject.ext._android.targetSdkVersion as Integer
+        versionCode rootProject.ext._android.versionCode as Integer
+        versionName rootProject.ext._android.versionName as String
+    }
+
+    buildTypes {
+        println("${project.name}:buildTypes")
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    println("${project.name}:dependencies")
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile rootProject.ext.support.design
+    compile rootProject.ext.support.recyclerview
+    compile rootProject.ext.support.appcompat
+
+    compile rootProject.ext.ext_tools.rxjava
+    compile rootProject.ext.ext_tools.rxandroid
+    compile rootProject.ext.ext_tools.logger
+
+    /*butternife*/
+    implementation rootProject.ext.ext_tools.butterknife
+    annotationProcessor rootProject.ext.ext_tools.butterknife_compiler
+
+    implementation rootProject.ext.ext_tools.utilcode
+}

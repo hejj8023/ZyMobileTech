@@ -1,0 +1,106 @@
+private void loadLibModules() {
+    println "loadLibModules"
+
+    def file = new File("LibModules/")
+    include ':LibModules'
+    project(":LibModules").projectDir = file
+    include ':LibModules:commonlib'
+    include ':LibModules:CommonAlgorithmLib'
+}
+
+private void loadAppModules() {
+    println "loadAppModules"
+
+    def file = new File("AppModules/")
+    include ':AppModules'
+    project(":AppModules").projectDir = file
+    include ':AppModules:ChatSocketClient'
+    include ':AppModules:ChatSocketServer'
+    include ':AppModules:mcamera'
+    include ':AppModules:mftpclient'
+    include ':AppModules:mftpserver'
+    include ':AppModules:MSocketClient'
+    include ':AppModules:MSocketServer'
+    include ':AppModules:NetworkDebugger'
+    include ':AppModules:SpeechAssistant'
+    include ':AppModules:TodayStepCounter'
+    include ':AppModules:vvlive'
+}
+
+private void loadComponentLenarnModules() {
+    println "loadComponentLenarnModules"
+
+    def file = new File("ComponentLenarnModules/")
+    include ':ComponentLenarnModules'
+    project(":ComponentLenarnModules").projectDir = file
+}
+
+private void loadDatasturectureModules() {
+    println "loadDatasturectureModules"
+
+    def file = new File("DatasturectureModules/")
+    include ':DatasturectureModules'
+    project(":DatasturectureModules").projectDir = file
+}
+
+private void loadDesignpatternModules() {
+    println "loadDesignpatternModules"
+
+    def file = new File("DesignpatternModules/")
+    include ':DesignpatternModules'
+    project(":DesignpatternModules").projectDir = file
+
+    include ':DesignpatternModules:DPClient'
+    include ':DesignpatternModules:DPForAndroid'
+    include ':DesignpatternModules:DPForava'
+}
+
+private void loadViewModules() {
+    println "loadViewModules"
+
+    def file = new File("ViewModules/")
+    include ':ViewModules'
+    project(":ViewModules").projectDir = file
+}
+
+private void loadJeeModules() {
+    println "loadJeeModules"
+
+    def file = new File("JeeModules/")
+    include ':JeeModules'
+    project(":JeeModules").projectDir = file
+
+    include ':JeeModules:Jee4Thread'
+    include ':JeeModules:Jee4Socket'
+}
+
+private void loadInteriewModules() {
+    println "loadInteriewModules"
+
+    def file = new File("InteriewModules/")
+    include ':InteriewModules'
+    project(":InteriewModules").projectDir = file
+}
+
+private void loadAlgorithmsModules() {
+    println "loadInteriewModules"
+
+    def file = new File("AlgorithmsModules/")
+    include ':AlgorithmsModules'
+    project(":AlgorithmsModules").projectDir = file
+    include ':AlgorithmsModules:AlgorithmJavaHm'
+    include ':AlgorithmsModules:CommonlyUsedAlgorithm'
+    include ':AlgorithmsModules:DS2A4JavaSamples'
+}
+
+ext {
+    loadLibs = this.&loadLibModules
+    loadAppModule = this.&loadAppModules
+    loadComponentLenarnModule = this.&loadComponentLenarnModules
+    loadDatasturectureModule = this.&loadDatasturectureModules
+    loadDesignpatternModule = this.&loadDesignpatternModules
+    loadViewModule = this.&loadViewModules
+    loadJeeModule = this.&loadJeeModules
+    loadInteriewModule = this.&loadInteriewModules
+    loadAlgorithmsModule = this.&loadAlgorithmsModules
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_speech"
+        android:title="语音识别服务测试" />
+
+    <item
+        android:id="@+id/menu_tts"
+        android:title="语音合成服务测试" />
+
+</menu>
