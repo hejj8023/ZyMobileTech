@@ -64,7 +64,7 @@ public class Camera2Activity extends BaseActivity {
 
     private ImageReader imageReader;
     private int height = 0, width = 0;
-    private Size previewSize;
+    private Camera.Size previewSize;
 
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
 
@@ -121,6 +121,7 @@ public class Camera2Activity extends BaseActivity {
     private TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
 
         //可用
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
             Camera2Activity.this.width = width;
@@ -135,6 +136,7 @@ public class Camera2Activity extends BaseActivity {
         }
 
         //释放
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
             stopCamera();

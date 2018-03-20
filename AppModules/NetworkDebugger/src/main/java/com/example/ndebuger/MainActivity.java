@@ -49,6 +49,8 @@ public class MainActivity extends BaseActivity {
     ScrollView svRec;
     @BindView(R.id.sv_send_msgs)
     ScrollView svSend;
+    @BindView(R.id.sv_conn_list)
+    ScrollView svConnList;
     @BindView(R.id.tv_rec_msgs)
     TextView tvRec;
     @BindView(R.id.tv_send_msgs)
@@ -108,21 +110,18 @@ public class MainActivity extends BaseActivity {
 
         tvServerIpInfo.setText(NetworkUtils.getIPAddress(true));
 
+        btnConnectServer.setText("开启服务");
         rgServerType.setOnCheckedChangeListener(
                 (group, checkedId) -> {
                     if (group.getCheckedRadioButtonId() == R.id.rb_client) {
+                        btnConnectServer.setText("连接");
                         hasServer = false;
                         etServerIp.setVisibility(View.VISIBLE);
-                        btnConnectServer.setVisibility(View.VISIBLE);
-                        btnDiscAll.setVisibility(View.VISIBLE);
-                        btnDisCurrent.setVisibility(View.VISIBLE);
                         connManager.chageStateOnServiceTypeChange(RoleType.TCP_SERVER);
                     } else {
+                        btnConnectServer.setText("开启服务");
                         hasServer = true;
                         etServerIp.setVisibility(View.GONE);
-                        btnConnectServer.setVisibility(View.GONE);
-                        btnDiscAll.setVisibility(View.GONE);
-                        btnDisCurrent.setVisibility(View.GONE);
                         // 状态发生改变，断开连接
                         connManager.chageStateOnServiceTypeChange(RoleType.TCP_CLIENT);
                     }
@@ -156,6 +155,8 @@ public class MainActivity extends BaseActivity {
         svParent.setOnTouchListener((v, event) -> {
             svRec.getParent().requestDisallowInterceptTouchEvent(false); // 允许父类截断
             svSend.getParent().requestDisallowInterceptTouchEvent(false); // 允许父类截断
+            svConnList.getParent().requestDisallowInterceptTouchEvent(false); // 允许父类截断
+
             LoggerUtils.loge(MainActivity.this, "触摸了外层ScrollView");
             return false;
         });
@@ -169,6 +170,12 @@ public class MainActivity extends BaseActivity {
         svSend.setOnTouchListener((v, event) -> {
             v.getParent().requestDisallowInterceptTouchEvent(true);
             LoggerUtils.loge(MainActivity.this, "触摸了发送ScrollView");
+            return false;
+        });
+
+        svConnList.setOnTouchListener((v, event) -> {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            LoggerUtils.loge(MainActivity.this, "触摸了连接列表的ScrollView");
             return false;
         });
     }
@@ -213,8 +220,12 @@ public class MainActivity extends BaseActivity {
                 if (ipStrCont < 4) {
                     ToastUtils.showLong("端口号为4位数，请补齐");
                 } else {
-                    if (serverIpStrCount > 0) {
+                    if (hasServer) {
                         btnConnectServer.setEnabled(true);
+                    } else {
+                        if (serverIpStrCount > 0) {
+                            btnConnectServer.setEnabled(true);
+                        }
                     }
                 }
             }

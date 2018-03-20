@@ -14,17 +14,17 @@ private void loadAppModules() {
     def file = new File("AppModules/")
     include ':AppModules'
     project(":AppModules").projectDir = file
-    include ':AppModules:ChatSocketClient'
-    include ':AppModules:ChatSocketServer'
-    include ':AppModules:mcamera'
-    include ':AppModules:mftpclient'
-    include ':AppModules:mftpserver'
-    include ':AppModules:MSocketClient'
-    include ':AppModules:MSocketServer'
+//    include ':AppModules:ChatSocketClient'
+//    include ':AppModules:ChatSocketServer'
+//    include ':AppModules:mcamera'
+//    include ':AppModules:mftpclient'
+//    include ':AppModules:mftpserver'
+//    include ':AppModules:MSocketClient'
+//    include ':AppModules:MSocketServer'
     include ':AppModules:NetworkDebugger'
-    include ':AppModules:SpeechAssistant'
-    include ':AppModules:TodayStepCounter'
-    include ':AppModules:vvlive'
+//    include ':AppModules:SpeechAssistant'
+//    include ':AppModules:TodayStepCounter'
+//    include ':AppModules:vvlive'
 }
 
 private void loadComponentLenarnModules() {
