@@ -1,5 +1,6 @@
 package com.example.ndebuger;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -67,6 +69,8 @@ public class MainActivity extends BaseActivity {
     Button btnTest;
     @BindView(R.id.btn_send_msg)
     Button btnSendMsg;
+    @BindView(R.id.ll_root)
+    LinearLayout llRoot;
 
     private boolean hasServer = true;
     private boolean hasTcp = true;
@@ -77,6 +81,7 @@ public class MainActivity extends BaseActivity {
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
+            String str = "";
             switch (msg.what) {
                 case GlobalConst.UPDATE_RECE_MSG:
                     if (msg.obj == null)
@@ -87,20 +92,45 @@ public class MainActivity extends BaseActivity {
                 case GlobalConst.UPDATE_SEND_MSG:
                     if (msg.obj == null)
                         break;
-                    String msgSendStr = (String) msg.obj;
-                    tvSend.append(msgSendStr + "\r\n");
+                    str = (String) msg.obj;
+                    tvSend.append(str + "\r\n");
                     break;
                 case GlobalConst.ENABLE_BTNS:
-                    btnDiscAll.setEnabled(true);
-                    btnDisCurrent.setEnabled(true);
-                    btnTest.setEnabled(true);
-                    btnSendMsg.setEnabled(true);
+                    enAllComponents();
+                    break;
+                case GlobalConst.UPDATE_WAIT_CONNECT_CLIENT:
+                    if (tvConnServers == null)
+                        break;
+                    tvConnServers.append("等待客户端连接...\n");
+                    break;
+                case GlobalConst.UPDATE_CONNECT_CLIENT:
+                    enAllComponents();
+                    str = (String) msg.obj;
+                    tvConnServers.append(str + "\n");
+                    break;
+                case GlobalConst.UPDATE_CONNECT_ERROR:
+                    enAllComponents();
+                    btnConnectServer.setEnabled(true);
+                    break;
+                case GlobalConst.UPDATE_CONNECT_DIS:
+                    ToastUtils.showShort("连接已断开");
+                    str = (String) msg.obj;
+                    tvConnServers.append(str + "\n");
+                    btnConnectServer.setEnabled(true);
                     break;
             }
             return false;
         }
 
     });
+
+    private void enAllComponents() {
+        btnDiscAll.setEnabled(true);
+        btnDisCurrent.setEnabled(true);
+        btnTest.setEnabled(true);
+        btnSendMsg.setEnabled(true);
+    }
+
     private RemoteConnManager connManager;
 
     @Override
@@ -112,6 +142,8 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
 
         setSupportActionBar(toolbar);
+
+        llRoot.getRootView().setBackgroundColor(Color.parseColor("#FFFFFF"));
 
         tvServerIpInfo.setText(NetworkUtils.getIPAddress(true));
 
@@ -286,7 +318,8 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.btn_connect_server, R.id.btn_disc_all, R.id.btn_disc_current, R.id.btn_test})
+    @OnClick({R.id.btn_connect_server, R.id.btn_disc_all, R.id.btn_disc_current,
+            R.id.btn_test, R.id.btn_send_msg})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_connect_server:
@@ -303,6 +336,7 @@ public class MainActivity extends BaseActivity {
                     if (!hasServer)
                         return;
 
+                    btnConnectServer.setEnabled(false);
                     if (hasTcp) {
                         connManager.openTcpServer(Integer.parseInt(strPort));
                     } else {
@@ -313,45 +347,79 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case R.id.btn_disc_all:
-                break;
             case R.id.btn_disc_current:
+                RoleType type = RoleType.TCP_SERVER;
+                if (hasServer) {
+                    if (hasTcp) {
+                        type = RoleType.TCP_SERVER;
+                    } else {
+                        type = RoleType.UDP_SERVER;
+                    }
+                } else {
+                    if (hasTcp) {
+                        type = RoleType.TCP_SERVER;
+                    } else {
+                        type = RoleType.TCP_SERVER;
+                    }
+                }
+                String tipStr = "已断开所有的连接...\n";
+                if (view.getId() == R.id.btn_disc_current)
+                    tipStr = "已断开当前连接...\n";
+
+                tvConnServers.append(tipStr);
+                connManager.chageStateOnServiceTypeChange(type);
                 break;
             case R.id.btn_test:
                 // TODO: 2018/3/17 限制两次消息发送的时间间隔
-                long currentTime = System.currentTimeMillis();
-                if (currentTime - lastSendTime < 3000) {
-                    // LoggerUtils.loge(this, "两次发送消息的时间间隔不能小于3s");
-                    ToastUtils.showShort("两次发送消息的时间间隔不能小于3s");
-                    return;
-                }
-
-                if (hasTcp) {
-                    if (hasServer) {
-                        if (connManager.getTcpServerSocket() == null) return;
-                        connManager.sendTestMsgToTcpServer(new OnMsgSendComplete() {
-                            @Override
-                            public void sucess() {
-                                lastSendTime = currentTime;
-                            }
-
-                            @Override
-                            public void error() {
-
-                            }
-                        });
-                    } else {
-                        if (connManager.getTcpClientSocket() == null) return;
-                        sendTestToTcpClient(currentTime);
-                    }
-                } else {
-                    if (hasServer) {
-
-                    } else {
-
-                    }
-                }
-
+                sendMsg("test msg");
                 break;
+            case R.id.btn_send_msg:
+                Editable msgE = etMsgSend.getText();
+                if (msgE == null)
+                    return;
+
+                String msgStr = msgE.toString();
+                int msgLen = msgStr.trim().length();
+                if (msgLen < 1)
+                    return;
+
+                sendMsg(msgStr);
+                break;
+        }
+    }
+
+    private void sendMsg(String msg) {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastSendTime < 3000) {
+            // LoggerUtils.loge(this, "两次发送消息的时间间隔不能小于3s");
+            ToastUtils.showShort("两次发送消息的时间间隔不能小于3s");
+            return;
+        }
+
+        if (hasTcp) {
+            if (hasServer) {
+                if (connManager.getTcpServerSocket() == null) return;
+                connManager.sendTestToTcpClient(msg, new OnMsgSendComplete() {
+                    @Override
+                    public void sucess() {
+                        lastSendTime = currentTime;
+                    }
+
+                    @Override
+                    public void error() {
+
+                    }
+                });
+            } else {
+                if (connManager.getTcpClientSocket() == null) return;
+                sendTestToTcpClient(currentTime);
+            }
+        } else {
+            if (hasServer) {
+
+            } else {
+
+            }
         }
     }
 
@@ -389,7 +457,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void sendTestToTcpClient(long currentTime) {
-        connManager.sendTestToTcpClient(new OnMsgSendComplete() {
+        connManager.sendTestMsgToTcpServer("test tcp msg", new OnMsgSendComplete() {
             @Override
             public void sucess() {
                 lastSendTime = currentTime;
@@ -418,7 +486,6 @@ public class MainActivity extends BaseActivity {
      * 连接udp服务器
      */
     private void connectRemoteUdpServer(String strIp, String strPort) {
-
     }
 
     /**

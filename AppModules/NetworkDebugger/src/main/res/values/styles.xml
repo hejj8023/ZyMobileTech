@@ -10,6 +10,8 @@
 
     <style name="Main" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/trans</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">true</item>
 
     </style>
 </resources>

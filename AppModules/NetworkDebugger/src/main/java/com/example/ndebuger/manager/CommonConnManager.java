@@ -32,10 +32,26 @@ public class CommonConnManager {
         message.obj = msgStr;
         mH.sendMessage(message);
     }
-    protected void notifyUIByMsgConnClient(String msgStr) {
+
+    protected void notifyUIByMsgConnClient(String str) {
         Message message = Message.obtain();
         message.what = GlobalConst.UPDATE_CONNECT_CLIENT;
-        message.obj = msgStr;
+        message.obj = str;
         mH.sendMessage(message);
+    }
+
+    protected void notifyUIByError() {
+        mH.sendEmptyMessage(GlobalConst.UPDATE_CONNECT_ERROR);
+    }
+
+    protected void notifyUIByConnDis(String str) {
+        Message message = Message.obtain();
+        message.what = GlobalConst.UPDATE_CONNECT_DIS;
+        message.obj = str;
+        mH.sendMessage(message);
+    }
+
+    protected void notifyUIByWaitConnClient() {
+        mH.sendEmptyMessage(GlobalConst.UPDATE_WAIT_CONNECT_CLIENT);
     }
 }

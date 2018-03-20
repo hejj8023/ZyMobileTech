@@ -1,10 +1,22 @@
+# app启动短暂白屏或黑屏问题解决
+
+    <style name="Main" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/trans</item>
+        <item name="android:windowDisablePreview">true</item>
+    
+    </style>
+
+# edittext软键盘弹出时短暂黑屏问题解决
+llroot为activity的根布局
+llRoot.getRootView().setBackgroundColor(Color.parseColor("#FFFFFF"));
+
 未解决的问题
 
   scrollview多层嵌套+edittext,edittext无法滚动的问题
   
   com.example.ndebuger.ScrollEditText  直接使用这个类就可以解决上面的问题
   
-  
+  https://www.cnblogs.com/holyknight-zld/archive/2012/07/17/socket_chatroom.html
   
   
  # TCP 传输

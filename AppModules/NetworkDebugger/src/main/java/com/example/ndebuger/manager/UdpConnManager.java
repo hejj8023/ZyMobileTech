@@ -18,15 +18,14 @@ import java.util.concurrent.Executors;
  * Created by zzg on 2018/3/18.
  */
 
-public class UdpConnManager implements LogListener {
+public class UdpConnManager extends CommonConnManager implements LogListener {
     private static UdpConnManager mInstance;
-    private final Context mContext;
 
     private ExecutorService threadPool = Executors.newCachedThreadPool();
     private DatagramSocket datagramSocket;
 
     private UdpConnManager(Context context, Handler handler) {
-        this.mContext = context;
+        super(context, handler);
     }
 
     public static UdpConnManager getInstance(Context context, Handler handler) {
@@ -53,23 +52,27 @@ public class UdpConnManager implements LogListener {
             @Override
             public void run() {
                 try {
+                    // 创建udp的socket服务
+                    datagramSocket = new DatagramSocket(port);
+                    // 定义数据包，用于存储接收到的数据，先定义字节数组，数据包会把数据存储到字节数组中
+                    byte[] buff = new byte[1024 * 1024];
+                    DatagramPacket dp = new DatagramPacket(buff, buff.length);
+                    notifyUIByWaitConnClient();
                     while (true) {
-                        // 创建udp的socket服务
-                        datagramSocket = new DatagramSocket(port);
-                        // 定义数据包，用于存储接收到的数据，先定义字节数组，数据包会把数据存储到字节数组中
-                        byte[] buff = new byte[1024];
-                        DatagramPacket dp = new DatagramPacket(buff, buff.length);
                         // 通过数据包的方法获取数据名的具体内容，如果:ip，端口，数据....
                         datagramSocket.receive(dp);
                         // TODO: 2018/3/20 有消息的时候这里才会调用否则一直是阻塞的
                         String hostAddress = dp.getAddress().getHostAddress();
                         int dpPort = dp.getPort();
+                        notifyUIByMsgConnClient("Udp Server -> 连接的客户端:ip = " + hostAddress);
 
-                        // TODO: 2018/3/20 读取客户端发送过来的数据 
+                        // TODO: 2018/3/20 读取客户端发送过来的数据
                         // 将数据读取出来
                         String str = new String(dp.getData(), 0, dp.getLength());
                         LoggerUtils.loge(UdpConnManager.this, "client ip = " + hostAddress + " " +
                                 ", msg = " + str);
+                        notifyUIByMsgRec(str);
+
                         // String text = "我是udp服务端，收到了请求的:" + str + "数据，已阅";
 
                         String text = " am udp server, msg has read\n";
@@ -78,6 +81,7 @@ public class UdpConnManager implements LogListener {
                                 .getBytes().length, InetAddress
                                 .getByName(hostAddress), dpPort);
                         datagramSocket.send(msgDp);
+                        notifyUIByMsgSend(text);
                     }
                 } catch (SocketException e) {
                     e.printStackTrace();

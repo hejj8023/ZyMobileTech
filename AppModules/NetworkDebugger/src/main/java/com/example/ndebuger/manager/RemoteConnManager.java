@@ -95,12 +95,24 @@ public class RemoteConnManager {
         return tcpConnManager.getTcpServerSocket();
     }
 
-    public void sendTestToTcpClient(OnMsgSendComplete listener) {
-        tcpConnManager.sendTestMsgToTcpServer(listener);
+    /**
+     * server 角色
+     *
+     * @param str
+     * @param listener
+     */
+    public void sendTestToTcpClient(String str, OnMsgSendComplete listener) {
+        tcpConnManager.sendMsgToTcpClient(str, listener);
     }
 
-    public void sendTestMsgToTcpServer(OnMsgSendComplete listener) {
-        tcpConnManager.sendTestMsgToTcpServer(listener);
+    /**
+     * client角色
+     *
+     * @param str
+     * @param listener
+     */
+    public void sendTestMsgToTcpServer(String str, OnMsgSendComplete listener) {
+        tcpConnManager.sendMsgToTcpServer(str, listener);
     }
 
     public Socket getTcpClientSocket() {

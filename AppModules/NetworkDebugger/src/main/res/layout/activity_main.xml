@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -153,7 +154,7 @@
                             android:id="@+id/tv_conn_servers"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="连接状态" />
+                            android:text="" />
 
                     </LinearLayout>
                 </ScrollView>
@@ -162,9 +163,11 @@
                     android:id="@+id/et_msg_send"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#ffffff"
                     android:hint="发送内容"
                     android:maxHeight="100dp"
-                    android:minLines="3" />
+                    android:minLines="3"
+                    android:textCursorDrawable="@drawable/shape_ed_drawable" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -187,7 +190,7 @@
                         android:layout_weight="1"
                         android:enabled="false"
                         android:gravity="center"
-                        android:text="断开C" />
+                        android:text="断开当前连接" />
 
                     <Button
                         android:id="@+id/btn_disc_all"
@@ -196,7 +199,7 @@
                         android:layout_weight="1"
                         android:enabled="false"
                         android:gravity="center"
-                        android:text="断开A" />
+                        android:text="断开全部" />
 
                 </LinearLayout>
 
