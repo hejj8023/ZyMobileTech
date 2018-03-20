@@ -6,6 +6,7 @@ import android.os.Handler;
 import com.example.ndebuger.OnMsgSendComplete;
 import com.example.ndebuger.RoleType;
 
+import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
@@ -17,12 +18,12 @@ public class RemoteConnManager {
 
     private static RemoteConnManager mInstance;
 
-    private final TcpConnManager tcpConnManage;
-    private final UdpConnManager udpConnManage;
+    private final TcpConnManager tcpConnManager;
+    private final UdpConnManager udpConnManager;
 
     private RemoteConnManager(Context context, Handler handler) {
-        tcpConnManage = TcpConnManager.getInstance(context, handler);
-        udpConnManage = UdpConnManager.getInstance(context, handler);
+        tcpConnManager = TcpConnManager.getInstance(context, handler);
+        udpConnManager = UdpConnManager.getInstance(context, handler);
     }
 
     public static RemoteConnManager getInstance(Context context, Handler handler) {
@@ -57,16 +58,16 @@ public class RemoteConnManager {
     private void closeUdpSocket(RoleType type) {
         switch (type) {
             case TCP_CLIENT:
-                tcpConnManage.closeClient();
+                tcpConnManager.closeClient();
                 break;
             case TCP_SERVER:
-                tcpConnManage.closeServer();
+                tcpConnManager.closeServer();
                 break;
             case UDP_SERVER:
-                udpConnManage.closeServer();
+                udpConnManager.closeServer();
                 break;
             case UDP_CLIENT:
-                udpConnManage.closeClient();
+                udpConnManager.closeClient();
                 break;
         }
     }
@@ -75,34 +76,42 @@ public class RemoteConnManager {
      * 连接远程服务器
      */
     public void connectRemoteTcpServer(String ip, String port) {
-        tcpConnManage.connectRemoteTcpServer(ip, port);
+        tcpConnManager.connectRemoteTcpServer(ip, port);
     }
 
     private void closeTcpSocket(RoleType type) {
         // 状态发生改变，断开连接
         switch (type) {
             case TCP_CLIENT:
-                tcpConnManage.closeClient();
+                tcpConnManager.closeClient();
                 break;
             case TCP_SERVER:
-                tcpConnManage.closeServer();
+                tcpConnManager.closeServer();
                 break;
         }
     }
 
-    public Socket getTcpServerSocket() {
-        return tcpConnManage.getTcpServerSocket();
+    public ServerSocket getTcpServerSocket() {
+        return tcpConnManager.getTcpServerSocket();
     }
 
     public void sendTestToTcpClient(OnMsgSendComplete listener) {
-        tcpConnManage.sendTestMsgToTcpServer(listener);
+        tcpConnManager.sendTestMsgToTcpServer(listener);
     }
 
     public void sendTestMsgToTcpServer(OnMsgSendComplete listener) {
-        tcpConnManage.sendTestMsgToTcpServer(listener);
+        tcpConnManager.sendTestMsgToTcpServer(listener);
     }
 
     public Socket getTcpClientSocket() {
-        return tcpConnManage.getTcpClientSocket();
+        return tcpConnManager.getTcpClientSocket();
+    }
+
+    public void openTcpServer(int port) {
+        tcpConnManager.createAndOpenServer(port);
+    }
+
+    public void openUdpServer(int port) {
+        udpConnManager.createAndOpenServer(port);
     }
 }

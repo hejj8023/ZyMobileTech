@@ -41,6 +41,8 @@ public class MainActivity extends BaseActivity {
     EditText etServerIp;
     @BindView(R.id.et_server_port)
     EditText etServerPort;
+    @BindView(R.id.et_msg_send)
+    EditText etMsgSend;
     @BindView(R.id.tv_conn_servers)
     TextView tvConnServers;
     @BindView(R.id.sv_parent)
@@ -63,6 +65,8 @@ public class MainActivity extends BaseActivity {
     Button btnDisCurrent;
     @BindView(R.id.btn_test)
     Button btnTest;
+    @BindView(R.id.btn_send_msg)
+    Button btnSendMsg;
 
     private boolean hasServer = true;
     private boolean hasTcp = true;
@@ -90,6 +94,7 @@ public class MainActivity extends BaseActivity {
                     btnDiscAll.setEnabled(true);
                     btnDisCurrent.setEnabled(true);
                     btnTest.setEnabled(true);
+                    btnSendMsg.setEnabled(true);
                     break;
             }
             return false;
@@ -285,7 +290,27 @@ public class MainActivity extends BaseActivity {
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_connect_server:
-                doConnectServer();
+                if (hasServer) {
+                    Editable portEable = etServerPort.getText();
+                    if (portEable == null)
+                        return;
+
+                    String strPort = portEable.toString();
+                    int portLen = strPort.length();
+                    if (portLen == 0)
+                        return;
+
+                    if (!hasServer)
+                        return;
+
+                    if (hasTcp) {
+                        connManager.openTcpServer(Integer.parseInt(strPort));
+                    } else {
+                        connManager.openUdpServer(Integer.parseInt(strPort));
+                    }
+                } else {
+                    doConnectServer();
+                }
                 break;
             case R.id.btn_disc_all:
                 break;

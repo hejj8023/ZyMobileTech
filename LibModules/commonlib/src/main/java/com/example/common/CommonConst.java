@@ -5,5 +5,5 @@ package com.example.common;
  */
 
 public class CommonConst {
-    public static String LOG_TAG = "muke";
+    public static String LOG_TAG = "zytech";
 }

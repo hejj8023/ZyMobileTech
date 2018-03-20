@@ -8,4 +8,5 @@ public class GlobalConst {
     public static final int UPDATE_RECE_MSG = 0x100;
     public static final int UPDATE_SEND_MSG = 0x101;
     public static final int ENABLE_BTNS = 0x102;
+    public static final int UPDATE_CONNECT_CLIENT = 0x103;
 }
