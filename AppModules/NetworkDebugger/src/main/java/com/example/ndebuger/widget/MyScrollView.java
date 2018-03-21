@@ -1,4 +1,4 @@
-package com.example.ndebuger;
+package com.example.ndebuger.widget;
 
 import android.content.Context;
 import android.graphics.Rect;

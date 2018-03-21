@@ -3,7 +3,7 @@ package com.example.ndebuger.manager;
 import android.content.Context;
 import android.os.Handler;
 
-import com.example.ndebuger.OnMsgSendComplete;
+import com.example.ndebuger.common.OnMsgSendComplete;
 import com.example.utils.LogListener;
 import com.example.utils.LoggerUtils;
 

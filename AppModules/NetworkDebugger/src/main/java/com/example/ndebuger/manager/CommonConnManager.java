@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.example.ndebuger.GlobalConst;
+import com.example.ndebuger.common.GlobalConst;
 
 /**
  * Created by example on 2018/3/20.

@@ -3,8 +3,8 @@ package com.example.ndebuger.manager;
 import android.content.Context;
 import android.os.Handler;
 
-import com.example.ndebuger.OnMsgSendComplete;
-import com.example.ndebuger.RoleType;
+import com.example.ndebuger.common.OnMsgSendComplete;
+import com.example.ndebuger.common.RoleType;
 
 import java.net.ServerSocket;
 import java.net.Socket;

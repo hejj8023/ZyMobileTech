@@ -14,7 +14,7 @@ llRoot.getRootView().setBackgroundColor(Color.parseColor("#FFFFFF"));
 
   scrollview多层嵌套+edittext,edittext无法滚动的问题
   
-  com.example.ndebuger.ScrollEditText  直接使用这个类就可以解决上面的问题
+  com.example.ndebuger.widget.ScrollEditText  直接使用这个类就可以解决上面的问题
   
   https://www.cnblogs.com/holyknight-zld/archive/2012/07/17/socket_chatroom.html
   

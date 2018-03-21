@@ -1,4 +1,4 @@
-package com.example.ndebuger;
+package com.example.ndebuger.common;
 
 /**
  * Created by zzg on 2018/3/18.

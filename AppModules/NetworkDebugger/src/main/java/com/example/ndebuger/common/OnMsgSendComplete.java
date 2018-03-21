@@ -1,4 +1,4 @@
-package com.example.ndebuger;
+package com.example.ndebuger.common;
 
 public interface OnMsgSendComplete {
     void sucess();
