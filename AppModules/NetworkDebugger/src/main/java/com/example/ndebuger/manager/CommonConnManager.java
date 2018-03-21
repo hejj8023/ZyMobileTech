@@ -13,6 +13,7 @@ import com.example.ndebuger.common.GlobalConst;
 public class CommonConnManager {
     protected final Context mContext;
     protected final Handler mH;
+    public int serverPort;
 
     public CommonConnManager(Context context, Handler handler) {
         this.mContext = context;
@@ -47,6 +48,12 @@ public class CommonConnManager {
     protected void notifyUIByConnDis(String str) {
         Message message = Message.obtain();
         message.what = GlobalConst.UPDATE_CONNECT_DIS;
+        message.obj = str;
+        mH.sendMessage(message);
+    }
+    protected void notifyUIByMsgConnServer(String str) {
+        Message message = Message.obtain();
+        message.what = GlobalConst.UPDATE_CONNECT_SERVER;
         message.obj = str;
         mH.sendMessage(message);
     }

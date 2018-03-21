@@ -67,3 +67,109 @@ llRoot.getRootView().setBackgroundColor(Color.parseColor("#FFFFFF"));
   ④：通过数据包的方法获取数据包中的具体数据内容，比如ip、端口、数据等等。
   
   ⑤：关闭资源。
+  
+  
+# UDP案例
+https://www.cnblogs.com/gccbuaa/p/6882802.html
+
+1）server端
+
+    /**
+     * UDPserver端
+     * */
+    public class UdpServer {
+        // 定义一些常量
+        private final intMAX_LENGTH = 1024; // 最大接收字节长度
+        private final intPORT_NUM   = 5066;   // port号
+        // 用以存放接收数据的字节数组
+        private byte[] receMsgs = new byte[MAX_LENGTH];
+        // 数据报套接字
+        private DatagramSocket datagramSocket;
+        // 用以接收数据报
+        private DatagramPacket datagramPacket;
+       
+        public UdpServer(){
+            try {
+                /******* 接收数据流程**/
+                // 创建一个数据报套接字，并将其绑定到指定port上
+                datagramSocket = new DatagramSocket(PORT_NUM);
+                // DatagramPacket(byte buf[], int length),建立一个字节数组来接收UDP包
+                datagramPacket = new DatagramPacket(receMsgs, receMsgs.length);
+                // receive()来等待接收UDP数据报
+                datagramSocket.receive(datagramPacket);
+               
+                /****** 解析数据报****/
+                String receStr = new String(datagramPacket.getData(), 0 , datagramPacket.getLength());
+                System.out.println("Server Rece:" + receStr);
+                System.out.println("Server Port:" + datagramPacket.getPort());
+               
+                /***** 返回ACK消息数据报*/
+                // 组装数据报
+                byte[] buf = "I receive the message".getBytes();
+                DatagramPacket sendPacket = new DatagramPacket(buf, buf.length, datagramPacket.getAddress(), datagramPacket.getPort());
+                // 发送消息
+                datagramSocket.send(sendPacket);
+            } catch (SocketException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                // 关闭socket
+                if (datagramSocket != null) {
+                    datagramSocket.close();
+                }
+            }
+        }
+    }
+
+2）client
+
+    /***
+     * UDPclientClient端
+     ***/
+    public class UdpClient {
+       
+        private String sendStr = "SendString";
+        private String netAddress = "127.0.0.1";
+        private final intPORT_NUM = 5066;
+       
+        private DatagramSocket datagramSocket;
+        private DatagramPacket datagramPacket;
+       
+        public UdpClient(){
+            try {
+               
+                /*** 发送数据***/
+                // 初始化datagramSocket,注意与前面Server端实现的差别
+                datagramSocket = new DatagramSocket();
+                // 使用DatagramPacket(byte buf[], int length, InetAddress address, int port)函数组装发送UDP数据报
+                byte[] buf = sendStr.getBytes();
+                InetAddress address = InetAddress.getByName(netAddress);
+                datagramPacket = new DatagramPacket(buf, buf.length, address, PORT_NUM);
+                // 发送数据
+                datagramSocket.send(datagramPacket);
+               
+                /*** 接收数据***/
+                byte[] receBuf = new byte[1024];
+                DatagramPacket recePacket = new DatagramPacket(receBuf, receBuf.length);
+                datagramSocket.receive(recePacket);
+               
+                String receStr = new String(recePacket.getData(), 0 , recePacket.getLength());
+                System.out.println("Client Rece Ack:" + receStr);
+                System.out.println(recePacket.getPort());
+               
+               
+            } catch (SocketException e) {
+                e.printStackTrace();
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                // 关闭socket
+                if(datagramSocket != null){
+                    datagramSocket.close();
+                }
+            }
+        }  
+    }
