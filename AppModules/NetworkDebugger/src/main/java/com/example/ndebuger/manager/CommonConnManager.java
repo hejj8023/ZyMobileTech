@@ -51,6 +51,7 @@ public class CommonConnManager {
         message.obj = str;
         mH.sendMessage(message);
     }
+
     protected void notifyUIByMsgConnServer(String str) {
         Message message = Message.obtain();
         message.what = GlobalConst.UPDATE_CONNECT_SERVER;
@@ -58,7 +59,14 @@ public class CommonConnManager {
         mH.sendMessage(message);
     }
 
-    protected void notifyUIByWaitConnClient() {
+    protected void notifyUIByWaitConntTcpClient() {
         mH.sendEmptyMessage(GlobalConst.UPDATE_WAIT_CONNECT_CLIENT);
+    }
+
+    protected void notifyUIByWaitConnUdpServer() {
+        mH.sendEmptyMessage(GlobalConst.UPDATE_WAIT_CONNECT_UDP_SERVER);
+    }
+    protected void notifyUIByWaitConnUdpClient() {
+        mH.sendEmptyMessage(GlobalConst.UPDATE_WAIT_CONNECT_UDP_CLIENT);
     }
 }

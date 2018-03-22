@@ -80,7 +80,7 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
             public void run() {
                 try {
                     clientSocket = new Socket(ip, Integer.parseInt(port));
-                    notifyUIByWaitConnClient();
+                    notifyUIByWaitConntTcpClient();
                     InputStream inputStream = clientSocket.getInputStream();
                     threadPool.execute(new Runnable() {
                         @Override
@@ -166,7 +166,7 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
                 try {
                     serverSocket = new ServerSocket(port);
                     // TODO: 2018/3/20 通知ui当前状态为等待客户端连接
-                    notifyUIByWaitConnClient();
+                    notifyUIByWaitConntTcpClient();
                     while (true) {
                         sClientSocket = serverSocket.accept();
                         if (socketList.contains(sClientSocket)) {

@@ -1,7 +1,7 @@
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
 
 loadLibs()
-loadAppModule()
+//loadAppModule()
 //loadComponentLenarnModule()
 //loadDatasturectureModule()
 //loadDesignpatternModule()
@@ -10,4 +10,4 @@ loadAppModule()
 //loadJeeModule()
 //loadInteriewModule()
 //loadAlgorithmsModule()
-//loadGoogleSampleModule()
+loadGoogleSampleModule()

@@ -72,7 +72,7 @@ public class UdpConnManager extends CommonConnManager implements LogListener {
                     // 定义数据包，用于存储接收到的数据，先定义字节数组，数据包会把数据存储到字节数组中
                     byte[] buff = new byte[1024 * 1024];
                     serverClientDp = new DatagramPacket(buff, buff.length);
-                    notifyUIByWaitConnClient();
+                    notifyUIByWaitConnUdpClient();
                     while (true) {
                         // 通过数据包的方法获取数据名的具体内容，如果:ip，端口，数据....
                         ds.receive(serverClientDp);
@@ -172,7 +172,7 @@ public class UdpConnManager extends CommonConnManager implements LogListener {
                     String testMsg = "this is a test msg from udp server";
                     DatagramPacket datagramPacket = new DatagramPacket(testMsg.getBytes(), testMsg.getBytes().length, cSAddress, serverPort);
                     cSSocket.send(datagramPacket);
-                    notifyUIByWaitConnClient();
+                    notifyUIByWaitConnUdpServer();
                     // 循环的读取服务器发送过来的消息
                     byte[] dataBuff = new byte[1024 * 1024];
                     DatagramPacket csDp = new DatagramPacket(dataBuff, dataBuff.length);

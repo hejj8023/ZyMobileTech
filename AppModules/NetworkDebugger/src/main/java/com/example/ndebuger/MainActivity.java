@@ -122,6 +122,14 @@ public class MainActivity extends BaseActivity {
                     tvConnServers.append(str + "\n");
                     btnConnectServer.setEnabled(true);
                     break;
+                case GlobalConst.UPDATE_CONNECT_SERVER:
+                    break;
+                case GlobalConst.UPDATE_WAIT_CONNECT_UDP_SERVER:
+                    tvConnServers.append("等待Udp客户端连接...\n客户端连接后要先发送一条消息\n");
+                    break;
+                case GlobalConst.UPDATE_WAIT_CONNECT_UDP_CLIENT:
+                    tvConnServers.append("等待服务器连接...\n服务器连接后要先发送一条消息\n");
+                    break;
             }
             return false;
         }

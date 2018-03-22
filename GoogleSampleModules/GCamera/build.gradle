@@ -46,4 +46,5 @@ dependencies {
 
     implementation project(':LibModules:commonlib')
     implementation project(':LibModules:CammeraViewLib')
+    implementation project(':LibModules:JCameraViewLib')
 }

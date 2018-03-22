@@ -13,4 +13,6 @@ public class GlobalConst {
     public static final int UPDATE_CONNECT_DIS = 0x105;
     public static final int UPDATE_WAIT_CONNECT_CLIENT = 0x106;
     public static final int UPDATE_CONNECT_SERVER = 0x107;
+    public static final int UPDATE_WAIT_CONNECT_UDP_SERVER = 0x108;
+    public static final int UPDATE_WAIT_CONNECT_UDP_CLIENT = 0x109;
 }
