@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.common.corel.BaseActivity;
+import com.example.gcamera.activity.GoogleCameraViewActivity;
+import com.example.gcamera.activity.JCameraView2Activity;
 import com.example.gcamera.activity.JCameraViewActivity;
 
 import butterknife.BindView;
@@ -37,11 +39,17 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick(R.id.btn_jcamera_view)
+    @OnClick({R.id.btn_jcamera_view, R.id.btn_jcamera_view2,R.id.btn_google_camera_view})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_jcamera_view:
                 forward(JCameraViewActivity.class);
+                break;
+            case R.id.btn_jcamera_view2:
+                forward(JCameraView2Activity.class);
+                break;
+            case R.id.btn_google_camera_view:
+                forward(GoogleCameraViewActivity.class);
                 break;
         }
 

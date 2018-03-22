@@ -23,6 +23,18 @@
                     android:id="@+id/btn_jcamera_view"
                     android:text="JCameraView"
                     android:layout_height="wrap_content"/>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:id="@+id/btn_jcamera_view2"
+                    android:text="JCameraView2"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:id="@+id/btn_google_camera_view"
+                    android:text="GoogleCameraView"
+                    android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 
