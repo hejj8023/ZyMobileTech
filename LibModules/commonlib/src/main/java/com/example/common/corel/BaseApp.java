@@ -2,8 +2,10 @@ package com.example.common.corel;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
 
 import com.blankj.utilcode.util.Utils;
 import com.example.common.BuildConfig;
@@ -26,6 +28,8 @@ public class BaseApp extends Application {
     private static Handler handler;
     private static Looper looper;
     private static int myPid;
+    private int mScreenWidth, mScreenHeight;
+    private Bitmap mCameraBitmap;
 
     @Override
     public void onCreate() {
@@ -39,9 +43,13 @@ public class BaseApp extends Application {
         mThreadId = android.os.Process.myTid();
         mThreadName = Thread.currentThread().getName();
 
+        DisplayMetrics mDisplayMetrics = getApplicationContext().getResources()
+                .getDisplayMetrics();
+        mScreenWidth = mDisplayMetrics.widthPixels;
+        mScreenHeight = mDisplayMetrics.heightPixels;
         // TODO: 2018/3/14 Utils init
         Utils.init(this);
-        
+
         initLogger();
     }
 
@@ -83,11 +91,39 @@ public class BaseApp extends Application {
         return handler;
     }
 
-    public static Context getAppInstance() {
+    public static BaseApp getAppInstance() {
         return mAppInstance;
     }
 
     public static Context getContext() {
         return mContext;
+    }
+
+    public Bitmap getCameraBitmap() {
+        return mCameraBitmap;
+    }
+
+    public int getScreenWidth() {
+        return mScreenWidth;
+    }
+
+    public int getScreenHeight() {
+        return mScreenHeight;
+    }
+
+    public void setCameraBitmap(Bitmap mCameraBitmap) {
+        if (mCameraBitmap != null) {
+            recycleCameraBitmap();
+        }
+        this.mCameraBitmap = mCameraBitmap;
+    }
+
+    public void recycleCameraBitmap() {
+        if (mCameraBitmap != null) {
+            if (!mCameraBitmap.isRecycled()) {
+                mCameraBitmap.recycle();
+            }
+            mCameraBitmap = null;
+        }
     }
 }

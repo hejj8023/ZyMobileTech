@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.btn_jcamera_view, R.id.btn_jcamera_view2,R.id.btn_google_camera_view})
+    @OnClick({R.id.btn_jcamera_view, R.id.btn_jcamera_view2, R.id.btn_google_camera_view, R.id.btn_zy_camera_view})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_jcamera_view:
@@ -50,6 +50,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_google_camera_view:
                 forward(GoogleCameraViewActivity.class);
+                break;
+            case R.id.btn_zy_camera_view:
+                forward(ZyCameraViewActivity.class);
                 break;
         }
 

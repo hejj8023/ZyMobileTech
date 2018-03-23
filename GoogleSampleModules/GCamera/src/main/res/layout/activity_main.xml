@@ -35,6 +35,11 @@
                     android:id="@+id/btn_google_camera_view"
                     android:text="GoogleCameraView"
                     android:layout_height="wrap_content"/>
+            <Button
+                    android:layout_width="match_parent"
+                    android:id="@+id/btn_zy_camera_view"
+                    android:text="ZyCameraView"
+                    android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 
