@@ -6,6 +6,8 @@ private void loadLibModules() {
     project(":LibModules").projectDir = file
     include ':LibModules:commonlib'
     include ':LibModules:CommonAlgorithmLib'
+    include ':LibModules:CammeraViewLib'
+    include ':LibModules:JCameraViewLib'
 }
 
 private void loadAppModules() {
@@ -81,6 +83,14 @@ private void loadInteriewModules() {
     include ':InteriewModules'
     project(":InteriewModules").projectDir = file
 }
+private void loadGoogleSampleModules() {
+    println "loadGoogleSampleModules"
+
+    def file = new File("GoogleSampleModules/")
+    include ':GoogleSampleModules'
+    project(":GoogleSampleModules").projectDir = file
+    include ':GoogleSampleModules:GCamera'
+}
 
 private void loadAlgorithmsModules() {
     println "loadInteriewModules"
@@ -103,4 +113,5 @@ ext {
     loadJeeModule = this.&loadJeeModules
     loadInteriewModule = this.&loadInteriewModules
     loadAlgorithmsModule = this.&loadAlgorithmsModules
+    loadGoogleSampleModule = this.&loadGoogleSampleModules
 }

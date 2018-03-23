@@ -3,6 +3,7 @@ package com.example.ndebuger;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -19,6 +20,9 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.common.corel.BaseActivity;
+import com.example.ndebuger.common.GlobalConst;
+import com.example.ndebuger.common.OnMsgSendComplete;
+import com.example.ndebuger.common.RoleType;
 import com.example.ndebuger.manager.RemoteConnManager;
 import com.example.utils.LoggerUtils;
 
@@ -118,6 +122,14 @@ public class MainActivity extends BaseActivity {
                     tvConnServers.append(str + "\n");
                     btnConnectServer.setEnabled(true);
                     break;
+                case GlobalConst.UPDATE_CONNECT_SERVER:
+                    break;
+                case GlobalConst.UPDATE_WAIT_CONNECT_UDP_SERVER:
+                    tvConnServers.append("等待Udp客户端连接...\n客户端连接后要先发送一条消息\n");
+                    break;
+                case GlobalConst.UPDATE_WAIT_CONNECT_UDP_CLIENT:
+                    tvConnServers.append("等待服务器连接...\n服务器连接后要先发送一条消息\n");
+                    break;
             }
             return false;
         }
@@ -189,32 +201,25 @@ public class MainActivity extends BaseActivity {
          当子类布局滑动时，父类不拦截事件，子类布局.getParent().requestDisallowInterceptTouchEvent(true)
          */
 
-        svParent.setOnTouchListener((v, event) -> {
+        svParent.setOnTouchListener(getSVOnTouchListener("触摸了外层ScrollView"));
+
+        svRec.setOnTouchListener(getSVOnTouchListener("触摸了接收ScrollView"));
+
+        svSend.setOnTouchListener(getSVOnTouchListener("触摸了发送ScrollView"));
+
+        svConnList.setOnTouchListener(getSVOnTouchListener("触摸了连接列表的ScrollView"));
+    }
+
+    @NonNull
+    private View.OnTouchListener getSVOnTouchListener(String msg) {
+        return (v, event) -> {
             svRec.getParent().requestDisallowInterceptTouchEvent(false); // 允许父类截断
             svSend.getParent().requestDisallowInterceptTouchEvent(false); // 允许父类截断
             svConnList.getParent().requestDisallowInterceptTouchEvent(false); // 允许父类截断
 
-            LoggerUtils.loge(MainActivity.this, "触摸了外层ScrollView");
+            LoggerUtils.loge(MainActivity.this, msg);
             return false;
-        });
-
-        svRec.setOnTouchListener((v, event) -> {
-            v.getParent().requestDisallowInterceptTouchEvent(true);
-            LoggerUtils.loge(MainActivity.this, "触摸了接收ScrollView");
-            return false;
-        });
-
-        svSend.setOnTouchListener((v, event) -> {
-            v.getParent().requestDisallowInterceptTouchEvent(true);
-            LoggerUtils.loge(MainActivity.this, "触摸了发送ScrollView");
-            return false;
-        });
-
-        svConnList.setOnTouchListener((v, event) -> {
-            v.getParent().requestDisallowInterceptTouchEvent(true);
-            LoggerUtils.loge(MainActivity.this, "触摸了连接列表的ScrollView");
-            return false;
-        });
+        };
     }
 
 
@@ -399,26 +404,16 @@ public class MainActivity extends BaseActivity {
         if (hasTcp) {
             if (hasServer) {
                 if (connManager.getTcpServerSocket() == null) return;
-                connManager.sendTestToTcpClient(msg, new OnMsgSendComplete() {
-                    @Override
-                    public void sucess() {
-                        lastSendTime = currentTime;
-                    }
-
-                    @Override
-                    public void error() {
-
-                    }
-                });
+                connManager.sendToTcpClient(msg, getOnMsgSendCompleteListener(currentTime));
             } else {
                 if (connManager.getTcpClientSocket() == null) return;
                 sendTestToTcpClient(currentTime);
             }
         } else {
             if (hasServer) {
-
+                connManager.sendMsgToUdpClient(msg, getOnMsgSendCompleteListener(currentTime));
             } else {
-
+                connManager.sendMsgToUdpServer(msg, getOnMsgSendCompleteListener(currentTime));
             }
         }
     }
@@ -457,7 +452,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void sendTestToTcpClient(long currentTime) {
-        connManager.sendTestMsgToTcpServer("test tcp msg", new OnMsgSendComplete() {
+        connManager.sendMsgToTcpServer("test tcp msg", getOnMsgSendCompleteListener(currentTime));
+    }
+
+    @NonNull
+    private OnMsgSendComplete getOnMsgSendCompleteListener(long currentTime) {
+        return new OnMsgSendComplete() {
             @Override
             public void sucess() {
                 lastSendTime = currentTime;
@@ -467,7 +467,7 @@ public class MainActivity extends BaseActivity {
             public void error() {
 
             }
-        });
+        };
     }
 
     /**
@@ -486,6 +486,7 @@ public class MainActivity extends BaseActivity {
      * 连接udp服务器
      */
     private void connectRemoteUdpServer(String strIp, String strPort) {
+        connManager.connectRemoteUdpServer(strIp, strPort);
     }
 
     /**

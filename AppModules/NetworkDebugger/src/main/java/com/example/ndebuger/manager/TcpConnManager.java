@@ -3,7 +3,7 @@ package com.example.ndebuger.manager;
 import android.content.Context;
 import android.os.Handler;
 
-import com.example.ndebuger.OnMsgSendComplete;
+import com.example.ndebuger.common.OnMsgSendComplete;
 import com.example.utils.LogListener;
 import com.example.utils.LoggerUtils;
 
@@ -46,6 +46,7 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
     private Socket sClientSocket;
 
     private List<Socket> socketList = new LinkedList<>();
+    private int serverCount = 0;
 
     private TcpConnManager(Context context, Handler handler) {
         super(context, handler);
@@ -79,7 +80,7 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
             public void run() {
                 try {
                     clientSocket = new Socket(ip, Integer.parseInt(port));
-                    notifyUIByWaitConnClient();
+                    notifyUIByWaitConntTcpClient();
                     InputStream inputStream = clientSocket.getInputStream();
                     threadPool.execute(new Runnable() {
                         @Override
@@ -89,6 +90,10 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
                                 int len = -1;
                                 try {
                                     while ((len = inputStream.read(buffer)) != -1) {
+                                        serverCount++;
+                                        if (serverCount == 1) {
+                                            notifyUIByMsgConnServer("Tcp Server -> 连接的客户端:ip = " + ip);
+                                        }
                                         String msg = new String
                                                 (buffer, 0, len, "utf-8");
                                         // LoggerUtils.loge(MainActivity.this, "接收 的数据:" + msg);
@@ -146,9 +151,6 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
 
     /**
      * 发送消息给客户端
-     *
-     * @param str
-     * @param listener
      */
     public void sendMsgToTcpClient(String str, OnMsgSendComplete listener) {
         sendMsg(sClientSocket, str, listener);
@@ -156,8 +158,6 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
 
     /**
      * 创建并开启服务器
-     *
-     * @param port
      */
     public void createAndOpenServer(int port) {
         threadPool.execute(new Runnable() {
@@ -166,7 +166,7 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
                 try {
                     serverSocket = new ServerSocket(port);
                     // TODO: 2018/3/20 通知ui当前状态为等待客户端连接
-                    notifyUIByWaitConnClient();
+                    notifyUIByWaitConntTcpClient();
                     while (true) {
                         sClientSocket = serverSocket.accept();
                         if (socketList.contains(sClientSocket)) {
@@ -223,10 +223,6 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
 
     /**
      * 发送消息
-     *
-     * @param socket
-     * @param str
-     * @param listener
      */
     private void sendMsg(Socket socket, String str, OnMsgSendComplete listener) {
         threadPool.execute(new Runnable() {

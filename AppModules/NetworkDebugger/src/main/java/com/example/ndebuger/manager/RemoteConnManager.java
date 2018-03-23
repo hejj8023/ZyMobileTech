@@ -3,8 +3,8 @@ package com.example.ndebuger.manager;
 import android.content.Context;
 import android.os.Handler;
 
-import com.example.ndebuger.OnMsgSendComplete;
-import com.example.ndebuger.RoleType;
+import com.example.ndebuger.common.OnMsgSendComplete;
+import com.example.ndebuger.common.RoleType;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -97,22 +97,24 @@ public class RemoteConnManager {
 
     /**
      * server 角色
-     *
-     * @param str
-     * @param listener
      */
-    public void sendTestToTcpClient(String str, OnMsgSendComplete listener) {
+    public void sendToTcpClient(String str, OnMsgSendComplete listener) {
         tcpConnManager.sendMsgToTcpClient(str, listener);
     }
 
     /**
      * client角色
-     *
-     * @param str
-     * @param listener
      */
-    public void sendTestMsgToTcpServer(String str, OnMsgSendComplete listener) {
+    public void sendMsgToTcpServer(String str, OnMsgSendComplete listener) {
         tcpConnManager.sendMsgToTcpServer(str, listener);
+    }
+
+    public void sendMsgToUdpClient(String msg, OnMsgSendComplete listener) {
+        udpConnManager.sendMsgToClient(msg,listener);
+    }
+
+    public void sendMsgToUdpServer(String msg, OnMsgSendComplete listener) {
+        udpConnManager.sendMsgToServer(msg,listener);
     }
 
     public Socket getTcpClientSocket() {
@@ -125,5 +127,10 @@ public class RemoteConnManager {
 
     public void openUdpServer(int port) {
         udpConnManager.createAndOpenServer(port);
+    }
+
+
+    public void connectRemoteUdpServer(String ip, String port) {
+udpConnManager.connectRemoteServer(ip,port);
     }
 }
