@@ -32,9 +32,6 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
 
     private Handler mH = new Handler();
 
-    @BindView(R.id.imageview)
-    ImageView imageView;
-
     @Override
     protected int getContentViewId() {
         return R.layout.layout_google_camera_view2;
@@ -82,8 +79,12 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-ddHHmmss");
                     String fileName = dateFormat.format(new Date(System.currentTimeMillis()));
                     File file = new File(dir, "原始图" + fileName + ".jpg");
-
                     savePic(dir, data, file);
+                    try {
+                        Thread.sleep(800);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                     // 将图片以surface的大小进行显示
                     Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
@@ -99,14 +100,20 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                     file = new File(dir, "scale缩放图" + fileName + ".jpg");
                     cmsBitmap(file, scaledBitmap);
 
-                    scaledBitmap = Bitmap.createScaledBitmap(bitmap, 150, 150, true);
+                    try {
+                        Thread.sleep(800);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    // 图片会变形(会被拉伸）
+                    scaledBitmap = Bitmap.createScaledBitmap(bitmap, 150, (int) (150 / 0.75f), true);
                     LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "scaledBitmap w = "
                             + scaledBitmap.getWidth() + " , scaledBitmap h = " + scaledBitmap.getHeight());
 
                     fileName = dateFormat.format(new Date(System.currentTimeMillis()));
                     file = new File(dir, "p-scale150缩放图" + fileName + ".jpg");
                     cmsBitmap(file, scaledBitmap);
-
 
                     // TODO: 2018/3/25 将图片4:3进行截取，surfaceview宽度的0.75
                     int tH = (int) (cameraView.getWidth() * 0.75f);
@@ -122,8 +129,15 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                     file = new File(dir, "最终裁剪图" + fileName + ".jpg");
                     cmsBitmap(file, bitmap1);
 
-                    // 缩放150-150(图片会拉伸)
-                    scaledBitmap = Bitmap.createScaledBitmap(bitmap1, 150, 150, true);
+                    try {
+                        Thread.sleep(800);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    // 缩放150-150
+                    // scaledBitmap = Bitmap.createScaledBitmap(bitmap1, (int) (150 / 0.75f), 150, true);
+                    scaledBitmap = Bitmap.createScaledBitmap(bitmap1, 150, (int) (150 * 0.75f), true);
                     LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "150px scaledBitmap w = "
                             + scaledBitmap.getWidth() + " , 150px scaledBitmap h = " + scaledBitmap.getHeight());
 
@@ -131,18 +145,21 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                     file = new File(dir, "s150px缩放图" + fileName + ".jpg");
                     cmsBitmap(file, scaledBitmap);
 
+                    try {
+                        Thread.sleep(800);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                     Bitmap finalScaledBitmap = scaledBitmap;
                     mH.post(new Runnable() {
                         @Override
                         public void run() {
-                            if (imageView == null)
-                                return;
-                            imageView.setVisibility(View.VISIBLE);
-                            imageView.setImageBitmap(finalScaledBitmap);
                         }
                     });
 
-                    // TODO: 2018/3/25 将比例缩放的图，缩放至4:3 
+                    // TODO: 2018/3/25 将比例缩放的图，缩放至4:3
+
                 }
             });
         }
