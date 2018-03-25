@@ -37,8 +37,8 @@
                     android:layout_height="wrap_content"/>
             <Button
                     android:layout_width="match_parent"
-                    android:id="@+id/btn_zy_camera_view"
-                    android:text="ZyCameraView"
+                    android:id="@+id/btn_pic_cut"
+                    android:text="图片截取"
                     android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>

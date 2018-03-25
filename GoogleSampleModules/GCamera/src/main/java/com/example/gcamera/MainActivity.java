@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.common.corel.BaseActivity;
+import com.example.gcamera.activity.CustomerGoogleCamerViewActivity;
 import com.example.gcamera.activity.GoogleCameraViewActivity;
 import com.example.gcamera.activity.JCameraView2Activity;
 import com.example.gcamera.activity.JCameraViewActivity;
@@ -39,7 +40,7 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.btn_jcamera_view, R.id.btn_jcamera_view2, R.id.btn_google_camera_view, R.id.btn_zy_camera_view})
+    @OnClick({R.id.btn_jcamera_view, R.id.btn_jcamera_view2, R.id.btn_google_camera_view, R.id.btn_pic_cut})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_jcamera_view:
@@ -51,8 +52,8 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_google_camera_view:
                 forward(GoogleCameraViewActivity.class);
                 break;
-            case R.id.btn_zy_camera_view:
-                forward(ZyCameraViewActivity.class);
+            case R.id.btn_pic_cut:
+                forward(CustomerGoogleCamerViewActivity.class);
                 break;
         }
 

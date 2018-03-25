@@ -200,7 +200,7 @@ public class GoogleCameraViewActivity extends CameraViewActivity implements Aspe
         return super.onOptionsItemSelected(item);
     }
 
-    private Handler getBackgroundHandler() {
+    protected Handler getBackgroundHandler() {
         if (mBackgroundHandler == null) {
             HandlerThread thread = new HandlerThread("background");
             thread.start();
@@ -209,7 +209,7 @@ public class GoogleCameraViewActivity extends CameraViewActivity implements Aspe
         return mBackgroundHandler;
     }
 
-    private CameraView.Callback mCallback
+    public CameraView.Callback mCallback
             = new CameraView.Callback() {
 
         @Override
@@ -232,6 +232,7 @@ public class GoogleCameraViewActivity extends CameraViewActivity implements Aspe
                 public void run() {
                     /*File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES),
                             "picture.jpg");*/
+
                     File dir = new File(Environment.getExternalStorageDirectory(), "JCameraView");
                     if (!dir.exists()) {
                         dir.mkdirs();
@@ -264,7 +265,6 @@ public class GoogleCameraViewActivity extends CameraViewActivity implements Aspe
                 }
             });
         }
-
     };
 
     @Override
