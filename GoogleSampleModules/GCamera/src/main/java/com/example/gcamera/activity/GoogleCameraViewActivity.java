@@ -1,10 +1,6 @@
 package com.example.gcamera.activity;
 
-import com.google.android.cameraview.AspectRatio;
-import com.google.android.cameraview.CameraView;
-
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -15,24 +11,24 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.example.common.corel.BaseActivity;
 import com.example.gcamera.AspectRatioFragment;
 import com.example.gcamera.CameraViewActivity;
 import com.example.gcamera.R;
 import com.example.utils.LoggerUtils;
+import com.google.android.cameraview.AspectRatio;
+import com.google.android.cameraview.CameraView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,7 +50,7 @@ public class GoogleCameraViewActivity extends CameraViewActivity implements Aspe
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.take_picture)
-    FloatingActionButton fab;
+    ImageButton fab;
 
     private static final int[] FLASH_OPTIONS = {
             CameraView.FLASH_AUTO,

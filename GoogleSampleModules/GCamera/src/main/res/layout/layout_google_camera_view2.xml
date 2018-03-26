@@ -1,91 +1,95 @@
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/root"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/black"
-        tools:context=".MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            />
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
 
     <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <com.google.android.cameraview.CameraView
-                android:id="@+id/camera"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:background="@android:color/black"/>
+            android:id="@+id/camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@android:color/black" />
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+            android:id="@+id/capture_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shadow"/>
+            <ImageView
+                android:id="@+id/capture_mask_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shadow" />
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                android:id="@+id/cen"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <View
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shadow"
-                        android:layout_height="match_parent"/>
+                <ImageView
+                    android:id="@+id/capture_mask_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shadow" />
 
                 <RelativeLayout
-                        android:layout_width="150dp"
-                        android:background="@drawable/qr_code_bg"
-                        android:layout_gravity="center"
-                        android:layout_height="150dp"/>
+                    android:id="@+id/capture_crop_font_view"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/qr_code_bg" />
 
-                <View
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shadow"
-                        android:layout_height="match_parent"/>
-            </LinearLayout>
-
-            <View
+                <ImageView
+                    android:id="@+id/capture_mask_bottom"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shadow"/>
+                    android:background="@drawable/shadow" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/capture_mask_right"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shadow" />
         </LinearLayout>
 
     </FrameLayout>
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:background="@color/ad_tr"
-            android:layout_height="0dp">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/ad_tr"
+        android:gravity="center">
 
         <android.support.design.widget.FloatingActionButton
-                android:id="@+id/take_picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_camera"
-                android:layout_centerInParent="true"
-                app:useCompatPadding="true"
-                tools:ignore="VectorDrawableCompat"/>
+            android:id="@+id/take_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_camera"
+            app:useCompatPadding="true"
+            tools:ignore="VectorDrawableCompat" />
     </RelativeLayout>
 
 

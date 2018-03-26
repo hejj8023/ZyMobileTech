@@ -21,6 +21,7 @@ import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Build;
 import android.support.v4.util.SparseArrayCompat;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 import java.io.IOException;
@@ -89,11 +90,18 @@ class Camera1 extends CameraViewImpl {
         chooseCamera();
         openCamera();
         if (mPreview.isReady()) {
+            printPreviewSize();
             setUpPreview();
         }
         mShowingPreview = true;
         mCamera.startPreview();
         return true;
+    }
+
+    private void printPreviewSize() {
+        int height = mPreview.getHeight();
+        int width = mPreview.getWidth();
+        Log.e("testapp", "mPreview w = " + width + " , h = " + height);
     }
 
     @Override
@@ -288,6 +296,8 @@ class Camera1 extends CameraViewImpl {
         if (mCamera != null) {
             releaseCamera();
         }
+        Log.e("testapp", "openCamera");
+        printPreviewSize();
         mCamera = Camera.open(mCameraId);
         mCameraParameters = mCamera.getParameters();
         // Supported preview sizes
@@ -321,6 +331,7 @@ class Camera1 extends CameraViewImpl {
     }
 
     void adjustCameraParameters() {
+        Log.e("testapp", "adjustCameraParameters");
         SortedSet<Size> sizes = mPreviewSizes.sizes(mAspectRatio);
         if (sizes == null) { // Not supported
             mAspectRatio = chooseAspectRatio();
@@ -334,9 +345,17 @@ class Camera1 extends CameraViewImpl {
         if (mShowingPreview) {
             mCamera.stopPreview();
         }
-        mCameraParameters.setPreviewSize(size.getWidth(), size.getHeight());
-        mCameraParameters.setPictureSize(pictureSize.getWidth(), pictureSize.getHeight());
-        mCameraParameters.setRotation(calcCameraRotation(mDisplayOrientation));
+        int pW = size.getWidth();
+        int pH = size.getHeight();
+        mCameraParameters.setPreviewSize(pW, pH);
+        Log.e("testapp", "PreviewSize pvW = " + pW + " , pvH = " + pH);
+        int piW = pictureSize.getWidth();
+        int piH = pictureSize.getHeight();
+        Log.e("testapp", "PreviewSize piW = " + piW + " , piH = " + piH);
+        mCameraParameters.setPictureSize(piW, piH);
+        int rotation = calcCameraRotation(mDisplayOrientation);
+        Log.e("testapp", "rotation = " + rotation);
+        mCameraParameters.setRotation(rotation);
         setAutoFocusInternal(mAutoFocus);
         setFlashInternal(mFlash);
         mCamera.setParameters(mCameraParameters);
@@ -354,6 +373,8 @@ class Camera1 extends CameraViewImpl {
         int desiredHeight;
         final int surfaceWidth = mPreview.getWidth();
         final int surfaceHeight = mPreview.getHeight();
+        Log.e("testapp", "chooseOptimalSize surfaceWidth =" + surfaceWidth + " , surfaceHeight " +
+                "= " + surfaceHeight);
         if (isLandscape(mDisplayOrientation)) {
             desiredWidth = surfaceHeight;
             desiredHeight = surfaceWidth;
@@ -383,9 +404,9 @@ class Camera1 extends CameraViewImpl {
     /**
      * Calculate display orientation
      * https://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int)
-     *
+     * <p>
      * This calculation is used for orienting the preview
-     *
+     * <p>
      * Note: This is not the same calculation as the camera rotation
      *
      * @param screenOrientationDegrees Screen orientation in degrees
@@ -401,10 +422,10 @@ class Camera1 extends CameraViewImpl {
 
     /**
      * Calculate camera rotation
-     *
+     * <p>
      * This calculation is applied to the output JPEG either via Exif Orientation tag
      * or by actually transforming the bitmap. (Determined by vendor camera API implementation)
-     *
+     * <p>
      * Note: This is not the same calculation as the display orientation
      *
      * @param screenOrientationDegrees Screen orientation in degrees
