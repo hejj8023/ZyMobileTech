@@ -4,7 +4,9 @@ import com.google.android.cameraview.CameraView;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Environment;
 import android.os.Handler;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import com.example.gcamera.R;
 import com.example.utils.LoggerUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -95,6 +98,17 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                     LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "scaledBitmap w = "
                             + scaledBitmap.getWidth() + " , scaledBitmap h = " + scaledBitmap.getHeight());
 
+                    // TODO: 2018/3/26 中心区域截取200*200
+                    Bitmap tBmp1 = Bitmap.createBitmap(scaledBitmap, scaledBitmap.getWidth() / 2, scaledBitmap.getHeight() / 2, 200, 200);
+                    LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "tBmp1 w = "
+                            + tBmp1.getWidth() + " , tBmp1 h = " + tBmp1.getHeight());
+                    fileName = dateFormat.format(new Date(System.currentTimeMillis()));
+                    file = new File(dir, "crop-1-200x200缩放图" + fileName + ".jpg");
+                    cmsBitmap(file, scaledBitmap);
+
+                    // TODO: 2018/3/26 BitmapRegionDecoder 200*200
+                    cropByRDecoder(dir, dateFormat, scaledBitmap, "cropDecoder-1-200x200缩放图");
+
                     Bitmap cScaledBitmap = scaledBitmap;
                     fileName = dateFormat.format(new Date(System.currentTimeMillis()));
                     file = new File(dir, "scale缩放图" + fileName + ".jpg");
@@ -106,7 +120,7 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                         e.printStackTrace();
                     }
 
-                    // 图片会变形(会被拉伸）
+                    // 缩放至150->4:3
                     scaledBitmap = Bitmap.createScaledBitmap(bitmap, 150, (int) (150 / 0.75f), true);
                     LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "scaledBitmap w = "
                             + scaledBitmap.getWidth() + " , scaledBitmap h = " + scaledBitmap.getHeight());
@@ -114,13 +128,14 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                     fileName = dateFormat.format(new Date(System.currentTimeMillis()));
                     file = new File(dir, "p-scale150缩放图" + fileName + ".jpg");
                     cmsBitmap(file, scaledBitmap);
+                    if (bitmap != null && !bitmap.isRecycled()) {
+                        bitmap.recycle();
+                    }
 
                     // TODO: 2018/3/25 将图片4:3进行截取，surfaceview宽度的0.75
                     int tH = (int) (cameraView.getWidth() * 0.75f);
                     // 区域裁剪
                     Bitmap bitmap1 = Bitmap.createBitmap(cScaledBitmap, 0, (cScaledBitmap.getHeight() - tH) / 2, cameraView.getWidth(), tH);
-                    Canvas canvas = new Canvas(bitmap1);
-                    canvas.drawBitmap(bitmap1, 0, 0, null);
                     if (bitmap1 != null) {
                         LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "bitmap1 w = "
                                 + bitmap1.getWidth() + " , bitmap1 h = " + bitmap1.getHeight());
@@ -129,13 +144,38 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                     file = new File(dir, "最终裁剪图" + fileName + ".jpg");
                     cmsBitmap(file, bitmap1);
 
+                    if (cScaledBitmap != null && !cScaledBitmap.isRecycled()) {
+                        cScaledBitmap.recycle();
+                    }
+
                     try {
                         Thread.sleep(800);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
 
-                    // 缩放150-150
+                    // TODO: 2018/3/26 BitmapRegionDecoder 200*200
+                    cropByRDecoder(dir, dateFormat, bitmap1, "cropDecoder-2-200x200缩放图");
+
+                    try {
+                        Thread.sleep(800);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    // TODO: 2018/3/26 中心区域截取200*200
+                    tBmp1 = Bitmap.createBitmap(bitmap1, bitmap1.getWidth() / 2, bitmap1.getHeight() / 2, 200, 200);
+                    LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "tBmp1 w = "
+                            + tBmp1.getWidth() + " , tBmp1 h = " + tBmp1.getHeight());
+                    fileName = dateFormat.format(new Date(System.currentTimeMillis()));
+                    file = new File(dir, "crop-2-200x200缩放图" + fileName + ".jpg");
+                    cmsBitmap(file, scaledBitmap);
+
+                    if (tBmp1 != null && !tBmp1.isRecycled()) {
+                        tBmp1.recycle();
+                    }
+
+                    // 缩放至150->4:3
                     // scaledBitmap = Bitmap.createScaledBitmap(bitmap1, (int) (150 / 0.75f), 150, true);
                     scaledBitmap = Bitmap.createScaledBitmap(bitmap1, 150, (int) (150 * 0.75f), true);
                     LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "150px scaledBitmap w = "
@@ -145,25 +185,59 @@ public class CustomerGoogleCamerViewActivity extends GoogleCameraViewActivity {
                     file = new File(dir, "s150px缩放图" + fileName + ".jpg");
                     cmsBitmap(file, scaledBitmap);
 
-                    try {
-                        Thread.sleep(800);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    if (scaledBitmap != null && !scaledBitmap.isRecycled()) {
+                        scaledBitmap.recycle();
                     }
 
-                    Bitmap finalScaledBitmap = scaledBitmap;
-                    mH.post(new Runnable() {
-                        @Override
-                        public void run() {
-                        }
-                    });
-
-                    // TODO: 2018/3/25 将比例缩放的图，缩放至4:3
-
+                    if (bitmap1 != null && !bitmap1.isRecycled()) {
+                        bitmap1.recycle();
+                    }
+                    LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "finished");
                 }
             });
         }
     };
+
+    private void cropByRDecoder(File dir, SimpleDateFormat dateFormat, Bitmap bitmap, String filePrefix) {
+        String fileName;
+        File file;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        boolean compress = bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        if (!compress) {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 80, baos);
+        }
+
+        byte[] imgData = baos.toByteArray();
+        Bitmap tBmp = null;
+        try {
+            BitmapRegionDecoder regionDecoder = BitmapRegionDecoder.newInstance(imgData, 0, imgData.length, true);
+            int l = bitmap.getWidth() / 2;
+            int t = bitmap.getHeight() / 2;
+            Rect rect = new Rect(l - 200, l + 200, t - 200, t + 200);
+            tBmp = regionDecoder.decodeRegion(rect, new BitmapFactory.Options());
+            if (tBmp != null) {
+                LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "tBmp w = "
+                        + tBmp.getWidth() + " , tBmp h = " + tBmp.getHeight());
+                fileName = dateFormat.format(new Date(System.currentTimeMillis()));
+                file = new File(dir, filePrefix + fileName + ".jpg");
+                cmsBitmap(file, tBmp);
+            } else {
+                LoggerUtils.loge(CustomerGoogleCamerViewActivity.this, "bitmap生成失败");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (tBmp != null && !tBmp.isRecycled()) {
+                tBmp.recycle();
+            }
+
+            try {
+                baos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private void cmsBitmap(File file, Bitmap bitmap) {
         FileOutputStream fileOutputStream = null;
