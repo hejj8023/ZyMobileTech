@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:background="@color/colorPrimary"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_home">
+
+    <LinearLayout
+        android:id="@+id/ll_menu"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_send"
+            style="@style/style_home_text_view"
+            android:text="我要发送" />
+
+        <Button
+            android:id="@+id/btn_rec"
+            style="@style/style_home_text_view"
+            android:layout_marginTop="32dp"
+            android:text="我要接收" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_menu"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_conn_dev"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_menu_item_main"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_conn_dev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_device_24dp" />
+
+            <TextView
+                android:id="@+id/tv_conn_dev_nums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_conn_dev"
+                android:layout_centerHorizontal="true"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/tv_conn_dev_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_conn_dev_nums"
+                android:layout_centerHorizontal="true"
+                android:text="连接设备数" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_files"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_menu_item_main"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_files"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_file_24dp" />
+
+            <TextView
+                android:id="@+id/tv_file_nums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_files"
+                android:layout_centerHorizontal="true"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/tv_file_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_file_nums"
+                android:layout_centerHorizontal="true"
+                android:text="收到的文件" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_throttle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_menu_item_main"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_throttle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_storage_24dp" />
+
+            <TextView
+                android:id="@+id/tv_throttle_nums"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/iv_throttle"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/tv_throttle_title"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

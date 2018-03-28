@@ -14,6 +14,8 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.bugly.crashreport.crash.jni.NativeExceptionHandler;
 
 /**
  * Created by example on 2018/2/9.
@@ -51,6 +53,8 @@ public class BaseApp extends Application {
         Utils.init(this);
 
         initLogger();
+
+        CrashReport.initCrashReport(this);
     }
 
     private void initLogger() {

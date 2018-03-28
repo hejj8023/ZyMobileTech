@@ -23,7 +23,9 @@ private void loadAppModules() {
 //    include ':AppModules:mftpserver'
 //    include ':AppModules:MSocketClient'
 //    include ':AppModules:MSocketServer'
-    include ':AppModules:NetworkDebugger'
+//    include ':AppModules:NetworkDebugger'
+    include ':AppModules:KuaiChuan'
+    include ':AppModules:wanandroidclient'
 //    include ':AppModules:SpeechAssistant'
 //    include ':AppModules:TodayStepCounter'
 //    include ':AppModules:vvlive'
@@ -83,6 +85,7 @@ private void loadInteriewModules() {
     include ':InteriewModules'
     project(":InteriewModules").projectDir = file
 }
+
 private void loadGoogleSampleModules() {
     println "loadGoogleSampleModules"
 

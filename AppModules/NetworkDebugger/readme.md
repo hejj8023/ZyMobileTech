@@ -1,3 +1,5 @@
+# TCP UDP网络调试助手 2018年3月
+
 # app启动短暂白屏或黑屏问题解决
 
     <style name="Main" parent="Theme.AppCompat.Light.NoActionBar">
@@ -6,7 +8,7 @@
     
     </style>
 
-# edittext软键盘弹出时短暂黑屏问题解决
+## edittext软键盘弹出时短暂黑屏问题解决
 llroot为activity的根布局
 llRoot.getRootView().setBackgroundColor(Color.parseColor("#FFFFFF"));
 
@@ -19,7 +21,7 @@ llRoot.getRootView().setBackgroundColor(Color.parseColor("#FFFFFF"));
   https://www.cnblogs.com/holyknight-zld/archive/2012/07/17/socket_chatroom.html
   
   
- # TCP 传输
+ ## TCP 传输
    两个端点的建立连接后会有一个传输数据的通道，这通道称为流，而且是建立在网络基础上
    的流，称之为socket 流。该流中既有读取，也有写入。
    
@@ -39,7 +41,7 @@ llRoot.getRootView().setBackgroundColor(Color.parseColor("#FFFFFF"));
    
    ③：关闭资源。 
   
- # udp巩固
+ ## udp巩固
  
   udp 的发送端：
   
@@ -69,7 +71,7 @@ llRoot.getRootView().setBackgroundColor(Color.parseColor("#FFFFFF"));
   ⑤：关闭资源。
   
   
-# UDP案例
+## UDP案例
 https://www.cnblogs.com/gccbuaa/p/6882802.html
 
 1）server端

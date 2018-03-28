@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:orderInCategory="100"
+        android:title="Settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_send"
+        android:orderInCategory="100"
+        android:title="我要发送"
+        app:showAsAction="never" />
+    
+    <item
+        android:id="@+id/menu_rec"
+        android:orderInCategory="100"
+        android:title="我要接收"
+        app:showAsAction="never" />
+</menu>

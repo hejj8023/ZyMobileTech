@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="电脑传" />
+    <item android:title="网页传" />
+    <item android:title="帮助与反馈" />
+    <item android:title="更新版本" />
+    <item android:title="关于作者" />
+</menu>
