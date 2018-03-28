@@ -33,102 +33,77 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_menu"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin">
 
         <RelativeLayout
             android:id="@+id/rl_conn_dev"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/selector_menu_item_main"
-            android:gravity="center">
+            style="@style/style_container_main_menu">
 
             <ImageView
                 android:id="@+id/iv_conn_dev"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_device_24dp" />
+                android:background="@drawable/ic_device_24dp"
+                style="@style/style_icon_main_menu" />
 
             <TextView
                 android:id="@+id/tv_conn_dev_nums"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_below="@id/iv_conn_dev"
-                android:layout_centerHorizontal="true"
-                android:text="0" />
+                android:text="0"
+                style="@style/style_icon_main_menu" />
 
             <TextView
                 android:id="@+id/tv_conn_dev_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_below="@id/tv_conn_dev_nums"
-                android:layout_centerHorizontal="true"
-                android:text="连接设备数" />
+                android:text="连接设备数"
+                style="@style/style_icon_main_menu" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_files"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/selector_menu_item_main"
-            android:gravity="center">
+            style="@style/style_container_main_menu">
 
             <ImageView
                 android:id="@+id/iv_files"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_file_24dp" />
+                android:background="@drawable/ic_file_24dp"
+                style="@style/style_icon_main_menu" />
 
             <TextView
                 android:id="@+id/tv_file_nums"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_below="@id/iv_files"
-                android:layout_centerHorizontal="true"
-                android:text="0" />
+                android:text="0"
+                style="@style/style_icon_main_menu" />
 
             <TextView
                 android:id="@+id/tv_file_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_below="@id/tv_file_nums"
-                android:layout_centerHorizontal="true"
-                android:text="收到的文件" />
+                android:text="收到的文件"
+                style="@style/style_icon_main_menu" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_throttle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/selector_menu_item_main"
-            android:gravity="center">
+            style="@style/style_container_main_menu">
 
             <ImageView
                 android:id="@+id/iv_throttle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_storage_24dp" />
+                android:background="@drawable/ic_storage_24dp"
+                style="@style/style_icon_main_menu" />
 
             <TextView
                 android:id="@+id/tv_throttle_nums"
-                android:layout_width="wrap_content"
                 android:layout_below="@id/iv_throttle"
-                android:layout_height="wrap_content"
                 android:text="0"
-                android:layout_centerHorizontal="true" />
+                style="@style/style_icon_main_menu" />
 
             <TextView
                 android:id="@+id/tv_throttle_title"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true" />
+                android:layout_below="@id/tv_throttle_nums"
+                android:text="节省流量"
+                style="@style/style_icon_main_menu" />
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

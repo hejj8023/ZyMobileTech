@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">KuaiChuan</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_func_create_desc">功能正在建设中,请稍候...</string>
 </resources>

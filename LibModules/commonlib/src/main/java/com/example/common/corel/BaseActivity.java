@@ -15,10 +15,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telecom.StatusHints;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.example.common.utils.StatusBarUtils;
 import com.example.utils.LogListener;
 import com.orhanobut.logger.Logger;
 
@@ -54,6 +56,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
         if (getContentViewId() != 0) {
             preprocess();
+            if (hasSupportTransStatusBar()) {
+                StatusBarUtils.setStatusBarAndBottomBarTranslucent(this);
+            }
             setContentView(getContentViewId());
             mContext = this;
             DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
@@ -72,6 +77,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         } else {
             throw new IllegalArgumentException("请使用合法的布局文件");
         }
+    }
+
+    /**
+     * 是否支持沉浸式状态栏
+     *
+     * @return
+     */
+    protected boolean hasSupportTransStatusBar() {
+        return false;
     }
 
     protected void preprocess() {
