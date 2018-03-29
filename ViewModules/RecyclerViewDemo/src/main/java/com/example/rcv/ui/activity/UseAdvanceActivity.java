@@ -1,8 +1,9 @@
-package com.example.rcv;
+package com.example.rcv.ui.activity;
 
 import android.view.View;
 
 import com.example.common.corel.BaseActivity;
+import com.example.rcv.R;
 import com.example.rcv.ui.activity.BaseRecyclerViewActivity;
 import com.example.rcv.ui.activity.BasicUseRecyclerViewPagerActivity;
 import com.example.rcv.ui.activity.CategoryFJMtDynamicSoreViewActivity;

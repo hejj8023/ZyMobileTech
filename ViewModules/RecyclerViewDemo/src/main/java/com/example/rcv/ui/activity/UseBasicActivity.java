@@ -1,4 +1,4 @@
-package com.example.rcv;
+package com.example.rcv.ui.activity;
 
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.example.rcv.R;
 import com.example.rcv.adapter.BasicListAdapter;
 import com.example.rcv.divider.GridDivider;
 import com.example.rcv.divider.LinearDivider;

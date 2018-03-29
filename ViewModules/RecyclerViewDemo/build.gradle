@@ -47,5 +47,7 @@ dependencies {
     compile rootProject.ext.ext_tools.tablayoutsupport
     compile rootProject.ext.ext_tools.FJMtSortButton
 
+    compile 'com.github.FJ917:FJEditTextCount:v1.0.4'
+
     implementation project(':LibModules:commonlib')
 }
