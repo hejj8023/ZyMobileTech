@@ -31,21 +31,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Line" />
+                android:text="Line"
+                android:textColor="@color/brown" />
 
             <Button
                 android:id="@+id/btn_b_type_grid"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Grid" />
-
-            <Button
-                android:id="@+id/btn_b_type_stage"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Stage" />
+                android:text="Grid"
+                android:textColor="@color/brown" />
 
         </LinearLayout>
 
@@ -64,21 +59,42 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Line" />
+                android:text="Line"
+                android:textColor="@color/brown" />
 
             <Button
                 android:id="@+id/btn_di_type_grid"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Grid" />
+                android:text="Grid"
+                android:textColor="@color/brown" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_ch_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义分割线-高级使用" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/btn_di_type_stage"
+                android:id="@+id/btn_di_type_chline"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Stage" />
+                android:text="Line" />
+
+            <Button
+                android:id="@+id/btn_di_type_chgrid"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Grid" />
 
         </LinearLayout>
     </LinearLayout>

@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".UseAdvanceActivity" />
         <activity android:name=".UseBasicActivity" />
+        <activity android:name=".ui.activity.BasicUseRecyclerViewPagerActivity" />
     </application>
 
 </manifest>

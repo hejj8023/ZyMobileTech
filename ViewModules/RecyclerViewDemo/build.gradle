@@ -42,7 +42,9 @@ dependencies {
     implementation rootProject.ext.ext_tools.gson
 
     compile rootProject.ext.ext_tools.logger
-//    compile rootProject.ext.ext_tools.BaseRecyclerViewAdapterHelper
+    compile rootProject.ext.ext_tools.BaseRecyclerViewAdapter
+    compile rootProject.ext.ext_tools.RecyclerViewPager
+    compile rootProject.ext.ext_tools.tablayoutsupport
 
     implementation project(':LibModules:commonlib')
 }

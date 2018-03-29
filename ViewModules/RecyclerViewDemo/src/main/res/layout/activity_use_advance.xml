@@ -51,12 +51,70 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="画廓" />
+                android:text="画廊" />
+
+            <Button
+                android:id="@+id/btn_rec_vp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ViewPager效果"
+                android:textColor="@color/brown" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ViewPager效果" />
+                android:text="分类效果" />
+
+            <Button
+                android:id="@+id/btn_rec_vp_basic_usage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="recyclerviewpager基础使用" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -26,4 +26,22 @@
     
 ## 万能分割线
     
+    https://blog.csdn.net/zxwd2015/article/details/53115377
     
+    
+    
+# RecyclerViewPager(Recyclerview实现ViewPager效果)
+
+    参考资料https://github.com/lsjwzh/RecyclerViewPager
+    
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+        ...
+    }
+    
+    dependencies {
+        ...
+        compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar'
+        ...
+    }
