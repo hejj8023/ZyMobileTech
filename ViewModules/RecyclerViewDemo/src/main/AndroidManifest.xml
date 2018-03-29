@@ -20,6 +20,10 @@
         <activity android:name=".UseAdvanceActivity" />
         <activity android:name=".UseBasicActivity" />
         <activity android:name=".ui.activity.BasicUseRecyclerViewPagerActivity" />
+        <activity android:name=".ui.activity.FreeFlingRecyclerViewPagerActivity" />
+        <activity
+            android:name=".ui.activity.MaterialRecyclerViewPagerActivity"
+            android:theme="@style/AppMaterial" />
     </application>
 
 </manifest>

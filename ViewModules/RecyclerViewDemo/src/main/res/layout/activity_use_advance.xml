@@ -72,14 +72,16 @@
                 android:text="recyclerviewpager基础使用" />
 
             <Button
+                android:id="@+id/btn_rec_vp_free_fling"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text="recyclerviewpager基础使用-FreeFling" />
 
             <Button
+                android:id="@+id/btn_rec_vp_free_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text="recyclerviewpager基础使用-Material" />
 
             <Button
                 android:layout_width="match_parent"
