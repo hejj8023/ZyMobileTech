@@ -5,9 +5,9 @@ private void loadLibModules() {
     include ':LibModules'
     project(":LibModules").projectDir = file
     include ':LibModules:commonlib'
-    include ':LibModules:CommonAlgorithmLib'
-    include ':LibModules:CammeraViewLib'
-    include ':LibModules:JCameraViewLib'
+//    include ':LibModules:CommonAlgorithmLib'
+//    include ':LibModules:CammeraViewLib'
+//    include ':LibModules:JCameraViewLib'
 }
 
 private void loadAppModules() {
@@ -65,6 +65,7 @@ private void loadViewModules() {
     def file = new File("ViewModules/")
     include ':ViewModules'
     project(":ViewModules").projectDir = file
+    include ':ViewModules:RecyclerViewDemo'
 }
 
 private void loadJeeModules() {
@@ -106,6 +107,16 @@ private void loadAlgorithmsModules() {
     include ':AlgorithmsModules:DS2A4JavaSamples'
 }
 
+
+private void loadKotlinModules() {
+    println "loadKotlinModules"
+
+    def file = new File("KotlinAppModules/")
+    include ':KotlinAppModules'
+    project(":KotlinAppModules").projectDir = file
+    include ':KotlinAppModules:HelloKt'
+}
+
 ext {
     loadLibs = this.&loadLibModules
     loadAppModule = this.&loadAppModules
@@ -117,4 +128,5 @@ ext {
     loadInteriewModule = this.&loadInteriewModules
     loadAlgorithmsModule = this.&loadAlgorithmsModules
     loadGoogleSampleModule = this.&loadGoogleSampleModules
+    loadKotlinModule = this.&loadKotlinModules
 }

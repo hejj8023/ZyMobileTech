@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="baic_data_list">
+
+        <item>前端开发</item>
+        <item>HTML/CSS</item>
+        <item>JavaScript</item>
+        <item>Html5</item>
+        <item>CSS3</item>
+        <item>jQuery</item>
+        <item>Node.js</item>
+        <item>后端开发</item>
+        <item>Php</item>
+        <item>Java</item>
+        <item>SpringBoot</item>
+        <item>Python</item>
+        <item>C</item>
+        <item>C++</item>
+        <item>移动开发</item>
+        <item>Android</item>
+        <item>iOS</item>
+        <item>Unity3D</item>
+        <item>Cocos2d-x</item>
+        <item>数据库</item>
+        <item>MySQL</item>
+        <item>MongoDB</item>
+        <item>Oracle</item>
+        <item>SQL Server</item>
+        <item>人工智能</item>
+        <item>机器学习</item>
+        <item>深度学习</item>
+        <item>云计算&amp;大数据</item>
+        <item>大数据</item>
+        <item>云计算</item>
+        <item>运维&amp;测试</item>
+        <item>测试</item>
+        <item>Linux</item>
+        <item>UI设计</item>
+        <item>动效动画</item>
+        <item>APPUI设计</item>
+        <item>设计工具</item>
+        <item>设计基础</item>
+
+    </string-array>
+
+</resources>
