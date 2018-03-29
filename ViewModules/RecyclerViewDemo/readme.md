@@ -45,3 +45,7 @@
         compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar'
         ...
     }
+    
+# 分类效果
+   参考资料
+    https://github.com/FJ917/FJMtSortButton

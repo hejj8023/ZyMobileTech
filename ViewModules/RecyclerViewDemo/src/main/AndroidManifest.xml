@@ -24,6 +24,9 @@
         <activity
             android:name=".ui.activity.MaterialRecyclerViewPagerActivity"
             android:theme="@style/AppMaterial" />
+
+        <activity android:name=".ui.activity.CategoryFJMtSortButtonActivity"/>
+        <activity android:name=".ui.activity.CategoryFJMtDynamicSoreViewActivity"/>
     </application>
 
 </manifest>

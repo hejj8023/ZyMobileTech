@@ -5,6 +5,8 @@ import android.view.View;
 import com.example.common.corel.BaseActivity;
 import com.example.rcv.ui.activity.BaseRecyclerViewActivity;
 import com.example.rcv.ui.activity.BasicUseRecyclerViewPagerActivity;
+import com.example.rcv.ui.activity.CategoryFJMtDynamicSoreViewActivity;
+import com.example.rcv.ui.activity.CategoryFJMtSortButtonActivity;
 import com.example.rcv.ui.activity.FreeFlingRecyclerViewPagerActivity;
 import com.example.rcv.ui.activity.MaterialRecyclerViewPagerActivity;
 
@@ -35,7 +37,8 @@ public class UseAdvanceActivity extends BaseRecyclerViewActivity {
         super.initData();
     }
 
-    @OnClick({R.id.btn_rec_vp, R.id.btn_rec_vp_basic_usage, R.id.btn_rec_vp_free_fling, R.id.btn_rec_vp_free_material})
+    @OnClick({R.id.btn_rec_vp, R.id.btn_rec_vp_basic_usage, R.id.btn_rec_vp_free_fling,
+            R.id.btn_rec_vp_free_material, R.id.btn_action_category, R.id.btn_action_category2})
     public void onViewClick(View view) {
         Class<? extends BaseActivity> tarCls = null;
         switch (view.getId()) {
@@ -49,6 +52,12 @@ public class UseAdvanceActivity extends BaseRecyclerViewActivity {
                 break;
             case R.id.btn_rec_vp_free_material:
                 tarCls = MaterialRecyclerViewPagerActivity.class;
+                break;
+            case R.id.btn_action_category:
+                tarCls = CategoryFJMtSortButtonActivity.class;
+                break;
+            case R.id.btn_action_category2:
+                tarCls = CategoryFJMtDynamicSoreViewActivity.class;
                 break;
         }
         if (tarCls != null) {

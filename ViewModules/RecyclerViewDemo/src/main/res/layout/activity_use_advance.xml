@@ -1,122 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="上拉加载更多,下拉刷新" />
+                android:orientation="vertical"
+                android:padding="10dp">
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="局部刷新" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="上拉加载更多,下拉刷新"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="LcrView歌词控件" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="局部刷新"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RecyclerView歌词控件" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="LcrView歌词控件"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="悬停" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RecyclerView歌词控件"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="联系人" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="悬停"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="轮播图" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="联系人"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="画廊" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="轮播图"/>
 
             <Button
-                android:id="@+id/btn_rec_vp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ViewPager效果"
-                android:textColor="@color/brown" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="画廊"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="分类效果" />
+                    android:id="@+id/btn_rec_vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ViewPager效果"
+                    android:textColor="@color/brown"/>
 
             <Button
-                android:id="@+id/btn_rec_vp_basic_usage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="recyclerviewpager基础使用" />
+                    android:id="@+id/btn_action_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="分类效果"/>
 
             <Button
-                android:id="@+id/btn_rec_vp_free_fling"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="recyclerviewpager基础使用-FreeFling" />
+                    android:id="@+id/btn_action_category2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="分类效果2"/>
 
             <Button
-                android:id="@+id/btn_rec_vp_free_material"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="recyclerviewpager基础使用-Material" />
+                    android:id="@+id/btn_rec_vp_basic_usage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="recyclerviewpager基础使用"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                    android:id="@+id/btn_rec_vp_free_fling"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="recyclerviewpager基础使用-FreeFling"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                    android:id="@+id/btn_rec_vp_free_material"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="recyclerviewpager基础使用-Material"/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

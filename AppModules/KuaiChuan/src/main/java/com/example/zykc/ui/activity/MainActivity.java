@@ -1,4 +1,4 @@
-package com.example.zykc;
+package com.example.zykc.ui.activity;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.common.corel.BaseActivity;
+import com.example.zykc.R;
 
 import butterknife.BindView;
 

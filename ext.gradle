@@ -105,7 +105,8 @@ project.ext {
 
             RecyclerViewPager       : 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar',
 
-            tablayoutsupport        : 'com.github.lsjwzh.RecyclerViewPager:tablayoutsupport:v1.1.2@aar'
+            tablayoutsupport        : 'com.github.lsjwzh.RecyclerViewPager:tablayoutsupport:v1.1.2@aar',
+            FJMtSortButton          : 'com.github.FJ917:FJMtSortButton:v1.1'
     ]
 }
 

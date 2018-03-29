@@ -1,4 +1,4 @@
-package com.example.zykc;
+package com.example.zykc.ui.activity;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.common.corel.BaseActivity;
+import com.example.zykc.R;
 
 import butterknife.BindView;
 import butterknife.OnClick;
