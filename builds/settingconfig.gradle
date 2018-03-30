@@ -29,6 +29,11 @@ private void loadAppModules() {
 //    include ':AppModules:SpeechAssistant'
 //    include ':AppModules:TodayStepCounter'
 //    include ':AppModules:vvlive'
+    include ':AppModules:SharingBike'
+//    include ':AppModules:JDStore'
+//    include ':AppModules:TakeWay'
+
+    //':SharingBike', ':JDStore', ':TakeWay'
 }
 
 private void loadComponentLenarnModules() {
