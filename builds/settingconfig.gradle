@@ -24,12 +24,12 @@ private void loadAppModules() {
 //    include ':AppModules:MSocketClient'
 //    include ':AppModules:MSocketServer'
 //    include ':AppModules:NetworkDebugger'
-    include ':AppModules:KuaiChuan'
-    include ':AppModules:wanandroidclient'
+//    include ':AppModules:KuaiChuan'
+//    include ':AppModules:wanandroidclient'
 //    include ':AppModules:SpeechAssistant'
 //    include ':AppModules:TodayStepCounter'
 //    include ':AppModules:vvlive'
-    include ':AppModules:SharingBike'
+//    include ':AppModules:SharingBike'
 //    include ':AppModules:JDStore'
 //    include ':AppModules:TakeWay'
 
@@ -120,6 +120,7 @@ private void loadKotlinModules() {
     include ':KotlinAppModules'
     project(":KotlinAppModules").projectDir = file
     include ':KotlinAppModules:HelloKt'
+    include ':KotlinAppModules:Fasthub'
 }
 
 ext {

@@ -6,7 +6,7 @@ android {
     compileSdkVersion rootProject.ext._android.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.example.hellokt"
+        applicationId "com.example.fasthub"
         minSdkVersion rootProject.ext._android.minSdkVersion
         targetSdkVersion rootProject.ext._android.targetSdkVersion
         versionCode rootProject.ext._android.versionCode
