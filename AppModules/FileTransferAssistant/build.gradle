@@ -29,14 +29,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true // 是否混淆
+            minifyEnabled false // 是否混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
     }
 
     compileOptions {
@@ -63,30 +58,10 @@ dependencies {
     implementation rootProject.ext.ext_tools.gson
 
     compile rootProject.ext.ext_tools.logger
-    compile rootProject.ext.ext_tools.BaseRecyclerViewAdapter
-    compile rootProject.ext.ext_tools.PhotoView
-
-    implementation rootProject.ext.ext_tools.rxjava
-    implementation rootProject.ext.ext_tools.rxandroid
-    implementation rootProject.ext.ext_tools.retrofit
-    implementation rootProject.ext.ext_tools.converter_gson
-    implementation rootProject.ext.ext_tools.adapter_rxjava2
-    implementation rootProject.ext.ext_tools.converter_scalars
-    implementation rootProject.ext.ext_tools.okhttp
-    implementation rootProject.ext.ext_tools.okhttp_urlconnection
-    implementation rootProject.ext.ext_tools.logging_interceptor
-    implementation rootProject.ext.ext_tools.okhttp_mockwebserver
-    implementation rootProject.ext.ext_tools.dagger
-    implementation rootProject.ext.ext_tools.dagger_android
-    implementation rootProject.ext.ext_tools.dagger_android_support
-    annotationProcessor rootProject.ext.ext_tools.dagger_compiler
-    annotationProcessor rootProject.ext.ext_tools.dagger_android_processor
 
     implementation project(':LibModules:commonlib')
 
     /*butternife*/
     implementation rootProject.ext.ext_tools.glide
     annotationProcessor rootProject.ext.ext_tools.glide_compiler
-
-    compile 'de.hdodenhof:circleimageview:2.1.0'
 }
