@@ -32,8 +32,7 @@ private void loadAppModules() {
 //    include ':AppModules:SharingBike'
 //    include ':AppModules:JDStore'
 //    include ':AppModules:TakeWay'
-
-    //':SharingBike', ':JDStore', ':TakeWay'
+    include ':AppModules:FileTransferAssistant'
 }
 
 private void loadComponentLenarnModules() {
@@ -119,8 +118,16 @@ private void loadKotlinModules() {
     def file = new File("KotlinAppModules/")
     include ':KotlinAppModules'
     project(":KotlinAppModules").projectDir = file
-    include ':KotlinAppModules:HelloKt'
+//    include ':KotlinAppModules:HelloKt'
     include ':KotlinAppModules:Fasthub'
+}
+private void loadGithubLibs() {
+    println "loadGithubLibs"
+
+    def file = new File("GithubLibs/")
+    include ':GithubLibs'
+    project(":GithubLibs").projectDir = file
+    include ':GithubLibs:FtpserverLib'
 }
 
 ext {
@@ -135,4 +142,5 @@ ext {
     loadAlgorithmsModule = this.&loadAlgorithmsModules
     loadGoogleSampleModule = this.&loadGoogleSampleModules
     loadKotlinModule = this.&loadKotlinModules
+    loadGithubLib = this.&loadGithubLibs
 }

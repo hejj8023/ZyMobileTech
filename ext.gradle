@@ -98,6 +98,9 @@ project.ext {
             nineoldandroids_lib     : 'com.nineoldandroids:library:2.4.0',
 
             utilcode                : 'com.blankj:utilcode:1.12.5',
+            sak                     : 'com.wanjian:sak:0.3.1',
+            zxing                   : 'com.google.zxing:core:3.3.0',
+            jsoup                   : 'org.jsoup:jsoup:1.10.3',
 
             BaseRecyclerViewAdapter : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.12',
 

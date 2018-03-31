@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 // 注：需要配置符号表时，使用bugly插件
 apply plugin: 'bugly'
 bugly {
-    appId = '900029763'
-    appKey = '9gXN6JiEyCUD3jbF'
+    appId = ''
+    appKey = ''
 }
 
 android {
@@ -63,6 +63,24 @@ dependencies {
     implementation rootProject.ext.ext_tools.gson
 
     compile rootProject.ext.ext_tools.logger
+    compile rootProject.ext.ext_tools.BaseRecyclerViewAdapter
+    compile rootProject.ext.ext_tools.PhotoView
+
+    implementation rootProject.ext.ext_tools.rxjava
+    implementation rootProject.ext.ext_tools.rxandroid
+    implementation rootProject.ext.ext_tools.retrofit
+    implementation rootProject.ext.ext_tools.converter_gson
+    implementation rootProject.ext.ext_tools.adapter_rxjava2
+    implementation rootProject.ext.ext_tools.converter_scalars
+    implementation rootProject.ext.ext_tools.okhttp
+    implementation rootProject.ext.ext_tools.okhttp_urlconnection
+    implementation rootProject.ext.ext_tools.logging_interceptor
+    implementation rootProject.ext.ext_tools.okhttp_mockwebserver
+    implementation rootProject.ext.ext_tools.dagger
+    implementation rootProject.ext.ext_tools.dagger_android
+    implementation rootProject.ext.ext_tools.dagger_android_support
+    annotationProcessor rootProject.ext.ext_tools.dagger_compiler
+    annotationProcessor rootProject.ext.ext_tools.dagger_android_processor
 
     implementation project(':LibModules:commonlib')
 

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.fta.MainActivity">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content">
+
+                <EditText
+                        android:id="@+id/et_server_ip"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="Server IP地址"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/et_server_port"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="端口号"
+                        android:inputType="numberSigned"
+                        android:maxEms="6"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content">
+
+                <EditText
+                        android:id="@+id/et_server_uname"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="用户名"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/et_server_pwd"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="密码"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <RadioGroup
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content">
+
+                <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="服务器端"
+                        android:checked="true"
+                        android:layout_height="wrap_content"/>
+
+                <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="客户端"
+                        android:layout_height="wrap_content"/>
+            </RadioGroup>
+
+            <RadioGroup
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content">
+
+                <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="ApacheFtpServer"
+                        android:layout_height="wrap_content"/>
+
+                <RadioButton
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="swiftp"
+                        android:layout_height="wrap_content"/>
+            </RadioGroup>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:text="打开 or 连接"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
