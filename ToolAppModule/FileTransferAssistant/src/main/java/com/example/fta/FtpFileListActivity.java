@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseSectionQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -17,6 +18,7 @@ import com.example.fta.bean.FtpFileBean;
 import com.example.utils.LoggerUtils;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,6 +32,7 @@ public class FtpFileListActivity extends BaseFtpActivity {
 
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
+    private List<FtpFileBean> checkList = new LinkedList<>();
 
     @Override
     protected int getContentViewId() {
@@ -62,13 +65,30 @@ public class FtpFileListActivity extends BaseFtpActivity {
                             LoggerUtils.loge(this, " file -> name = " + fileBean.getName());
                         }
 
-                        BaseQuickAdapter<FtpFileBean, BaseViewHolder> baseQuickAdapter = new BaseQuickAdapter<FtpFileBean, BaseViewHolder>(R.layout.layout_item_file_list, fileBeanList) {
-                            @Override
-                            protected void convert(BaseViewHolder helper, FtpFileBean item) {
-                                helper.setText(R.id.tv_name, item.getName());
-                                helper.setText(R.id.tv_size, item.getSize() + "");
-                            }
-                        };
+                        BaseQuickAdapter<FtpFileBean, BaseViewHolder> baseQuickAdapter =
+                                new BaseQuickAdapter<FtpFileBean, BaseViewHolder>(R.layout.layout_item_file_list, fileBeanList) {
+                                    @Override
+                                    protected void convert(BaseViewHolder helper, FtpFileBean item) {
+                                        helper.setChecked(R.id.cb_check, item.isChecked());
+                                        helper.setText(R.id.tv_name, item.getName());
+                                        helper.setText(R.id.tv_size, item.getSize() + "");
+
+                                        helper.setOnClickListener(R.id.ll_item_root, v -> {
+                                            item.setChecked(!item.isChecked());
+                                            if (item.isChecked()) {
+                                                if (!checkList.contains(item)) {
+                                                    checkList.add(item);
+                                                }
+                                            } else {
+                                                if (checkList.contains(item)) {
+                                                    checkList.remove(item);
+                                                }
+                                            }
+                                            helper.setChecked(R.id.cb_check, item.isChecked());
+                                            getData().set(helper.getPosition(), item);
+                                        });
+                                    }
+                                };
                         recyclerView.setAdapter(baseQuickAdapter);
                     }
                 }
@@ -89,6 +109,7 @@ public class FtpFileListActivity extends BaseFtpActivity {
                 break;
             case R.id.tv_confirm:
                 // TODO: 2018/4/1 批量下载图片，使用ftp
+                ToastUtils.showShort("选择了:" + checkList.size() + "条数据");
                 break;
         }
     }

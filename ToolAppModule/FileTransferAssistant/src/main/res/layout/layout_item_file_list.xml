@@ -4,16 +4,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:id="@+id/ll_item_root"
         android:gravity="center"
         android:padding="10dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:layout_height="wrap_content">
 
     <CheckBox
             android:id="@+id/cb_check"
             android:layout_width="wrap_content"
             android:layout_gravity="right"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_height="wrap_content"/>
 
     <LinearLayout
@@ -40,19 +42,24 @@
                 android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
             android:layout_height="60dp">
 
         <ImageView
                 android:layout_width="45dp"
                 android:layout_gravity="center_vertical"
+                android:src="@drawable/ease_chat_image_normal"
+                android:layout_alignParentLeft="true"
                 android:layout_height="45dp"/>
 
         <io.netopen.hotbitmapgg.library.view.RingProgressBar
                 android:id="@+id/progress_bar_2"
-                android:layout_width="44dp"
+                android:layout_width="45dp"
+                android:layout_alignParentRight="true"
                 android:layout_height="45dp"
                 app:max="100"
                 android:layout_gravity="center_vertical"
@@ -63,7 +70,7 @@
                 app:textColor="@color/colorPrimary"
                 app:textIsShow="true"
                 app:textSize="16sp"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
             android:id="@+id/tv_date"

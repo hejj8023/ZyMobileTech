@@ -7,13 +7,15 @@ import java.util.Calendar;
  * Created by zzg on 2018/4/1.
  */
 
-public class FtpFileBean implements Serializable{
+public class FtpFileBean implements Serializable {
 
     private static final long serialVersionUID = 7508731497801799638L;
 
     private long size = -1L;
     private String name = null;
     private Calendar date = null;
+
+    private boolean checked;
 
     public FtpFileBean() {
     }
@@ -40,6 +42,14 @@ public class FtpFileBean implements Serializable{
 
     public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     @Override

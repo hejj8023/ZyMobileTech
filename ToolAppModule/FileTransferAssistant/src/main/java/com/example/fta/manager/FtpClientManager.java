@@ -1,4 +1,4 @@
-package com.example.fta;
+package com.example.fta.manager;
 
 import android.os.Environment;
 
@@ -15,7 +15,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.SocketException;
 
 /**
  * Created by zzg on 2018/4/1.

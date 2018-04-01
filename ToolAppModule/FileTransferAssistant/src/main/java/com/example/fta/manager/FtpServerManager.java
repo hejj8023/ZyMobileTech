@@ -1,5 +1,6 @@
-package com.example.fta;
+package com.example.fta.manager;
 
+import com.example.fta.Const;
 import com.example.fta.server.manager.ApacheFtpManager;
 import com.example.fta.server.manager.SwiftpManager;
 
