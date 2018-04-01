@@ -1,7 +1,4 @@
-package com.example.fta;
-
-import com.example.fta.manager.ApacheFtpManager;
-import com.example.fta.manager.SwiftpManager;
+package com.example.fta.manager;
 
 /**
  * Created by zzg on 2018/3/31.

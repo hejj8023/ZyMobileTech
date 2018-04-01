@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.fta.MainActivity">
+        tools:context="com.example.fta.FtpHomeActivity">
 
     <ScrollView
             android:layout_width="match_parent"
@@ -64,51 +64,75 @@
             </LinearLayout>
 
             <RadioGroup
+                    android:id="@+id/rg_server_role_type"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content">
 
                 <RadioButton
+                        android:id="@+id/rb_role_server_type"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="服务器端"
+                        android:background="@color/trans"
                         android:checked="true"
                         android:layout_height="wrap_content"/>
 
                 <RadioButton
+                        android:id="@+id/rb_role_client_type"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="客户端"
+                        android:background="@color/trans"
                         android:layout_height="wrap_content"/>
             </RadioGroup>
 
             <RadioGroup
+                    android:id="@+id/rg_server_type"
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:layout_marginTop="5dp"
                     android:layout_height="wrap_content">
 
                 <RadioButton
+                        android:id="@+id/rb_apacheftp"
                         android:layout_width="0dp"
                         android:layout_weight="1"
+                        android:background="@color/trans"
                         android:checked="true"
                         android:text="ApacheFtpServer"
                         android:layout_height="wrap_content"/>
 
                 <RadioButton
+                        android:id="@+id/rb_swiftp"
                         android:layout_width="0dp"
+                        android:background="@color/trans"
                         android:layout_weight="1"
                         android:text="swiftp"
                         android:layout_height="wrap_content"/>
             </RadioGroup>
 
-            <Button
-                    android:id="@+id/btn_create_or_open"
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:text="打开 or 连接"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
+
+                <Button
+                        android:id="@+id/btn_open_server"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="开启服务"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                        android:id="@+id/btn_connect_server"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="远程连接"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
