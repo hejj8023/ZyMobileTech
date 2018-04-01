@@ -13,12 +13,12 @@ public class FtpServerManager {
     // 0 apache,1 swiftp
     // 0 server,1 client
     private int mType, mMode;
-    private final ApacheFtpManager apacheFtpManager;
-    private final SwiftpManager swiftpManager;
+    private ApacheFtpManager apacheFtpManager;
+    private SwiftpManager swiftpManager;
+    private String mUserName, mUserPwd, mServerIp, mServerPort;
 
     private FtpServerManager() {
-        apacheFtpManager = new ApacheFtpManager();
-        swiftpManager = new SwiftpManager();
+
     }
 
     public static FtpServerManager getInstance() {
@@ -41,11 +41,32 @@ public class FtpServerManager {
         this.mMode = mode;
     }
 
+    public void setUserName(String name) {
+        this.mUserName = name;
+    }
+
+    public void setServerIp(String ipAddress) {
+        this.mServerIp = ipAddress;
+    }
+
+    public void setServerPort(String port) {
+        this.mServerPort = port;
+    }
+
+    public void setUserPwd(String pwd) {
+        this.mUserPwd = pwd;
+    }
+
     public void init() {
         if (mType == 0) {
+            if (apacheFtpManager == null)
+                apacheFtpManager = new ApacheFtpManager(mServerIp, mServerPort, mUserName, mUserPwd);
+
             apacheFtpManager.setMode(mMode);
             apacheFtpManager.init();
         } else {
+            if (swiftpManager == null)
+                swiftpManager = new SwiftpManager();
             swiftpManager.setMode(mMode);
             swiftpManager.init();
         }
@@ -57,6 +78,5 @@ public class FtpServerManager {
         } else {
             swiftpManager.start();
         }
-
     }
 }

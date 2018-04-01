@@ -22,6 +22,7 @@ import android.view.View;
 
 import com.example.common.utils.StatusBarUtils;
 import com.example.utils.LogListener;
+import com.example.utils.LoggerUtils;
 import com.orhanobut.logger.Logger;
 
 import butterknife.ButterKnife;
@@ -54,6 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        LoggerUtils.loge(this, "onCreate");
         if (getContentViewId() != 0) {
             preprocess();
             if (hasSupportTransStatusBar()) {
@@ -81,8 +83,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     /**
      * 是否支持沉浸式状态栏
-     *
-     * @return
      */
     protected boolean hasSupportTransStatusBar() {
         return false;
@@ -218,14 +218,63 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        LoggerUtils.loge(this, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoggerUtils.loge(this, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LoggerUtils.loge(this, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        LoggerUtils.loge(this, "");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        LoggerUtils.loge(this, "onNewIntent");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        LoggerUtils.loge(this, "onSaveInstanceState");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        LoggerUtils.loge(this, "onRestoreInstanceState");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LoggerUtils.loge(this, "onRestart");
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+        LoggerUtils.loge(this, "onDestroy");
         if (unbinder != null) {
             unbinder.unbind();
         }
     }
 
-    public interface PermissionListener {
+    public interface PermissionListener extends LogListener {
         void onGrant(int code);
 
         void onDeny(int code);

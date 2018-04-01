@@ -23,7 +23,6 @@ private void loadAppModules() {
 //    include ':AppModules:mftpserver'
 //    include ':AppModules:MSocketClient'
 //    include ':AppModules:MSocketServer'
-//    include ':AppModules:NetworkDebugger'
 //    include ':AppModules:KuaiChuan'
 //    include ':AppModules:wanandroidclient'
 //    include ':AppModules:SpeechAssistant'
@@ -32,7 +31,6 @@ private void loadAppModules() {
 //    include ':AppModules:SharingBike'
 //    include ':AppModules:JDStore'
 //    include ':AppModules:TakeWay'
-    include ':AppModules:FileTransferAssistant'
 }
 
 private void loadComponentLenarnModules() {
@@ -41,6 +39,16 @@ private void loadComponentLenarnModules() {
     def file = new File("ComponentLenarnModules/")
     include ':ComponentLenarnModules'
     project(":ComponentLenarnModules").projectDir = file
+}
+
+private void loadToolAppModule() {
+    println "loadToolAppModule"
+
+    def file = new File("ToolAppModule/")
+    include ':ToolAppModule'
+    project(":ToolAppModule").projectDir = file
+    include ':ToolAppModule:FileTransferAssistant'
+//    include ':ToolAppModule:NetworkDebugger'
 }
 
 private void loadDatasturectureModules() {
@@ -143,4 +151,5 @@ ext {
     loadGoogleSampleModule = this.&loadGoogleSampleModules
     loadKotlinModule = this.&loadKotlinModules
     loadGithubLib = this.&loadGithubLibs
+    loadToolAppModule = this.&loadToolAppModule
 }
