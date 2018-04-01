@@ -29,9 +29,8 @@ import java.util.concurrent.Executors;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class FtpHomeActivity extends BaseActivity {
+public class FtpHomeActivity extends BaseFtpActivity {
 
-    private FtpServerManager ftpServerManager;
     private boolean isFtpServerRuning;
     private boolean hasSdCardPermission;
 
@@ -71,10 +70,6 @@ public class FtpHomeActivity extends BaseActivity {
 
     private boolean hasConnected;
     private boolean hasGetingFileList;
-
-    private FtpClientManager ftpClientManager;
-
-    private ExecutorService threadPool = Executors.newCachedThreadPool();
 
     private PermissionListener mPermissionListener = new PermissionListener() {
         @Override
@@ -157,8 +152,7 @@ public class FtpHomeActivity extends BaseActivity {
     @Override
     protected void initData() {
         LoggerUtils.loge(this, "initData");
-        ftpServerManager = FtpServerManager.getInstance();
-        ftpClientManager = FtpClientManager.getInstance();
+        super.initData();
     }
 
     @Override

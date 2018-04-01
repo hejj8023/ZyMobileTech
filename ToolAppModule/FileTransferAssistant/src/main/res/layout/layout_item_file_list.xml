@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="wrap_content">
+
+    <CheckBox
+            android:id="@+id/cb_check"
+            android:layout_width="wrap_content"
+            android:layout_gravity="right"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="name"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="size"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="60dp">
+
+        <ImageView
+                android:layout_width="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="45dp"/>
+
+        <io.netopen.hotbitmapgg.library.view.RingProgressBar
+                android:id="@+id/progress_bar_2"
+                android:layout_width="44dp"
+                android:layout_height="45dp"
+                app:max="100"
+                android:layout_gravity="center_vertical"
+                app:ringColor="@android:color/darker_gray"
+                app:ringProgressColor="@color/colorPrimary"
+                app:ringWidth="3dp"
+                app:style="STROKE"
+                app:textColor="@color/colorPrimary"
+                app:textIsShow="true"
+                app:textSize="16sp"/>
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:text="date"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"/>
+</LinearLayout>
