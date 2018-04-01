@@ -9,7 +9,6 @@ import android.widget.RadioGroup;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.common.corel.BaseActivity;
-import com.example.fta.manager.FtpServerManager;
 import com.example.utils.LoggerUtils;
 
 import butterknife.BindView;
@@ -45,6 +44,14 @@ public class FtpHomeActivity extends BaseActivity {
     @BindView(R.id.rb_apacheftp)
     View vApacheFtp;
 
+    // 是否是服务器角色
+    private boolean hasServerRole;
+    private String ipAddress;
+    // 是否采用apache框架
+    private boolean hasApacheFtp;
+
+    private FtpClientManager ftpClientManager;
+
     private PermissionListener mPermissionListener = new PermissionListener() {
         @Override
         public void onGrant(int code) {
@@ -60,10 +67,6 @@ public class FtpHomeActivity extends BaseActivity {
 
         }
     };
-
-    // 是否是服务器角色
-    private boolean hasServerRole;
-    private String ipAddress;
 
     @Override
     protected void onResume() {
@@ -113,8 +116,10 @@ public class FtpHomeActivity extends BaseActivity {
                 return;
             switch (checkedId) {
                 case R.id.rb_apacheftp:
+                    hasApacheFtp = true;
                     break;
                 case R.id.rb_swiftp:
+                    hasApacheFtp = false;
                     break;
             }
         }));
@@ -131,7 +136,6 @@ public class FtpHomeActivity extends BaseActivity {
         return mPermissionListener;
     }
 
-
     @OnClick({R.id.btn_open_server, R.id.btn_connect_server})
     public void onViewClick(View view) {
         switch (view.getId()) {
@@ -145,7 +149,54 @@ public class FtpHomeActivity extends BaseActivity {
     }
 
     private void connectFtpServer() {
+        if (ftpClientManager == null) {
+            LoggerUtils.loge(this, "ftpClientManager,返回");
+            return;
+        }
 
+        String serverIp = etServerIp.getText().toString().trim();
+        if (TextUtils.isEmpty(serverIp)) {
+            return;
+        }
+
+        if (serverIp.length() == 0) {
+            return;
+        }
+
+        ftpClientManager.setServerIp(serverIp);
+
+        String serverName = etServerName.getText().toString().trim();
+        if (TextUtils.isEmpty(serverName))
+            return;
+        if (serverName.length() == 0) {
+            return;
+        }
+        ftpClientManager.setUserName(serverName);
+
+        String serverPort = etServerPort.getText().toString().trim();
+        if (TextUtils.isEmpty(serverPort))
+            return;
+        if (serverPort.length() == 0) {
+            return;
+        }
+        ftpClientManager.setServerPort(serverPort);
+
+        String serverPwd = etServerPwd.getText().toString().trim();
+        if (TextUtils.isEmpty(serverPwd))
+            return;
+        if (serverPwd.length() == 0) {
+            return;
+        }
+        ftpClientManager.setUserPwd(serverPwd);
+
+        ftpClientManager.init();
+        etServerIp.setEnabled(false);
+        etServerPort.setEnabled(false);
+        etServerName.setEnabled(false);
+        etServerPwd.setEnabled(false);
+        ftpClientManager.connect();
+        ToastUtils.showShort("ftp服务器开启成功...");
+        isFtpServerRuning = true;
     }
 
     private void openFtpServer() {
@@ -176,8 +227,8 @@ public class FtpHomeActivity extends BaseActivity {
 
         ftpServerManager.setServerIp(serverIp);
 
-        ftpServerManager.setServerType(0);
-        ftpServerManager.seterverMode(0);
+        ftpServerManager.setServerType(hasServerRole ? Const.TYPE_SERVER : Const.TYPE_CLIENT);
+        ftpServerManager.seterverMode(hasApacheFtp ? Const.MODE_APACHE_FTP : Const.MODE_SWI_FTP);
 
         String serverName = etServerName.getText().toString().trim();
         if (TextUtils.isEmpty(serverName))

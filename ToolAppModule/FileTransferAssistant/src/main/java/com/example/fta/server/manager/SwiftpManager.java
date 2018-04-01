@@ -1,4 +1,4 @@
-package com.example.fta.manager;
+package com.example.fta.server.manager;
 
 /**
  * Created by zzg on 2018/3/31.

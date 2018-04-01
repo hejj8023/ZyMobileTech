@@ -1,4 +1,4 @@
-package com.example.fta.manager;
+package com.example.fta.server.manager;
 
 import org.apache.ftpserver.ftplet.FtpException;
 

@@ -1,4 +1,7 @@
-package com.example.fta.manager;
+package com.example.fta;
+
+import com.example.fta.server.manager.ApacheFtpManager;
+import com.example.fta.server.manager.SwiftpManager;
 
 /**
  * Created by zzg on 2018/3/31.
@@ -7,9 +10,13 @@ package com.example.fta.manager;
 public class FtpServerManager {
 
     private static FtpServerManager INSTANCE = null;
-    // 0 apache,1 swiftp
+
     // 0 server,1 client
-    private int mType, mMode;
+    private int mType;
+
+    // 0 apache,1 swiftp
+    private int mMode;
+
     private ApacheFtpManager apacheFtpManager;
     private SwiftpManager swiftpManager;
     private String mUserName, mUserPwd, mServerIp, mServerPort;
@@ -55,25 +62,36 @@ public class FtpServerManager {
     }
 
     public void init() {
-        if (mType == 0) {
-            if (apacheFtpManager == null)
-                apacheFtpManager = new ApacheFtpManager(mServerIp, mServerPort, mUserName, mUserPwd);
+        if (mType == Const.TYPE_SERVER) {
+            switch (mMode) {
+                case Const.MODE_APACHE_FTP:
+                    if (apacheFtpManager == null)
+                        apacheFtpManager = new ApacheFtpManager(mServerIp, mServerPort, mUserName, mUserPwd);
 
-            apacheFtpManager.setMode(mMode);
-            apacheFtpManager.init();
-        } else {
-            if (swiftpManager == null)
-                swiftpManager = new SwiftpManager();
-            swiftpManager.setMode(mMode);
-            swiftpManager.init();
+                    apacheFtpManager.setMode(mMode);
+                    apacheFtpManager.init();
+                    break;
+                case Const.MODE_SWI_FTP:
+                    if (swiftpManager == null)
+                        swiftpManager = new SwiftpManager();
+                    swiftpManager.setMode(mMode);
+                    swiftpManager.init();
+                    break;
+            }
         }
+
     }
 
     public void start() {
-        if (mType == 0) {
-            apacheFtpManager.start();
-        } else {
-            swiftpManager.start();
+        if (mType == Const.TYPE_SERVER) {
+            switch (mMode) {
+                case Const.MODE_APACHE_FTP:
+                    apacheFtpManager.start();
+                    break;
+                case Const.MODE_SWI_FTP:
+                    swiftpManager.start();
+                    break;
+            }
         }
     }
 }
