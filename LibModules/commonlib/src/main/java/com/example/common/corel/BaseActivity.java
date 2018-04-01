@@ -20,6 +20,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.blankj.utilcode.util.AppUtils;
 import com.example.common.utils.StatusBarUtils;
 import com.example.utils.LogListener;
 import com.example.utils.LoggerUtils;
@@ -70,7 +71,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
             unbinder = ButterKnife.bind(this);
 
-            if (getClass().getSimpleName().equals("MainActivity") && hasCheckPermission()) {
+            if (hasCheckPermission()
+                    && getClass().getSimpleName().equals("MainActivity")
+                    && hasCheckPermission()) {
                 checkSDCardPermission(getPermissonCallBack());
             }
             initView();
@@ -170,6 +173,18 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
 
         startActivity(new Intent(this, activityCls));
+    }
+
+    protected void forward(Class<? extends Activity> activityCls, Bundle bundle) {
+        if (activityCls == null) {
+            return;
+        }
+
+        Intent intent = new Intent(this, activityCls);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
     }
 
     @Override

@@ -9,10 +9,6 @@ public class SwiftpManager {
 
     }
 
-    public void setMode(int mode) {
-
-    }
-
     public void init() {
 
     }

@@ -3,6 +3,8 @@ package com.example.fta;
 import com.example.fta.server.manager.ApacheFtpManager;
 import com.example.fta.server.manager.SwiftpManager;
 
+import org.apache.ftpserver.ftplet.FtpException;
+
 /**
  * Created by zzg on 2018/3/31.
  */
@@ -68,13 +70,11 @@ public class FtpServerManager {
                     if (apacheFtpManager == null)
                         apacheFtpManager = new ApacheFtpManager(mServerIp, mServerPort, mUserName, mUserPwd);
 
-                    apacheFtpManager.setMode(mMode);
                     apacheFtpManager.init();
                     break;
                 case Const.MODE_SWI_FTP:
                     if (swiftpManager == null)
                         swiftpManager = new SwiftpManager();
-                    swiftpManager.setMode(mMode);
                     swiftpManager.init();
                     break;
             }
@@ -82,7 +82,7 @@ public class FtpServerManager {
 
     }
 
-    public void start() {
+    public void start() throws FtpException {
         if (mType == Const.TYPE_SERVER) {
             switch (mMode) {
                 case Const.MODE_APACHE_FTP:

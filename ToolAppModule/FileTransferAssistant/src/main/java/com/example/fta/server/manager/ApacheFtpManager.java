@@ -14,19 +14,11 @@ public class ApacheFtpManager {
         ftpServerlet = FtpServerlet.getInstance(mServerPort, mUserName, mUserPwd);
     }
 
-    public void setMode(int mode) {
-
-    }
-
     public void init() {
 
     }
 
-    public void start() {
-        try {
-            ftpServerlet.start();
-        } catch (FtpException e) {
-            e.printStackTrace();
-        }
+    public void start() throws FtpException {
+        ftpServerlet.start();
     }
 }

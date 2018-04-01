@@ -60,6 +60,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:hint="密码"
+                        android:inputType="numberSigned"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
 
@@ -130,9 +131,29 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="远程连接"
+                        android:enabled="false"
                         android:layout_marginTop="5dp"
                         android:layout_height="wrap_content"/>
             </LinearLayout>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:text="下载功能"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:id="@+id/btn_ftp_file_list"
+                    android:layout_width="match_parent"
+                    android:enabled="false"
+                    android:text="文件列表"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:id="@+id/btn_ftp_down_target_file"
+                    android:layout_width="match_parent"
+                    android:text="下载指定文件"
+                    android:enabled="false"
+                    android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
