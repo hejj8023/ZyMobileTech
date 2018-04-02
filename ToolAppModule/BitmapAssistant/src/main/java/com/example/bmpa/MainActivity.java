@@ -59,9 +59,12 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
+    private int sv = 700;
+
     @OnClick({R.id.btn_create_bmp, R.id.btn_sobmp_scale_target,
             R.id.btn_sobmp_crop_target, R.id.btn_scbmp_crop_target})
     public void onViewClick(View view) {
+
         switch (view.getId()) {
             case R.id.btn_create_bmp:
                 createSourceFile();
@@ -71,17 +74,21 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_sobmp_crop_target:
                 if (sourceFile.exists()) {
-//                    Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
-//                    bitmap = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 2, bitmap.getHeight() / 2, 700, 700);
-//                    saveFile(bitmap, firDir.getPath(), "test_source_700x700.png");
+                    Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
+                    int h = bitmap.getHeight() / 2;
+                    int w = bitmap.getWidth() / 2;
+                    bitmap = Bitmap.createBitmap(bitmap, w - (sv / 2), h - (sv / 2), sv, sv);
+                    saveFile(bitmap, firDir.getPath(), "test_source_700x700.png");
                 }
                 break;
             case R.id.btn_scbmp_crop_target:
                 File file = new File(firDir, "test_1920x1080.png");
                 if (file.exists()) {
-//                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-//                    bitmap = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 2, bitmap.getHeight() / 2, 700, 700);
-//                    saveFile(bitmap, firDir.getPath(), "test_scale_700x700.png");
+                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    int h = bitmap.getHeight() / 2;
+                    int w = bitmap.getWidth() / 2;
+                    bitmap = Bitmap.createBitmap(bitmap, w - (sv / 2), h - (sv / 2), sv, sv);
+                    saveFile(bitmap, firDir.getPath(), "test_scale_700x700.png");
                 }
                 break;
         }
@@ -136,14 +143,14 @@ public class MainActivity extends BaseActivity {
         if (!imgFile.exists()) {
             try {
                 imgFile.createNewFile();
-                try {
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(imgFile));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        try {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(imgFile));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }
