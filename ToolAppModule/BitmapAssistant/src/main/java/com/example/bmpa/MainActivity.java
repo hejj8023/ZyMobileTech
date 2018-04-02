@@ -2,6 +2,7 @@ package com.example.bmpa;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,6 +24,11 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
+    private File firDir;
+
+    private String sourFileName = "test_source.png";
+    private File sourceFile;
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_main;
@@ -40,7 +46,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        firDir = new File(Environment.getExternalStorageDirectory(), "test");
+        if (!firDir.exists()) {
+            firDir.mkdirs();
+        }
 
+        sourceFile = new File(firDir, sourFileName);
     }
 
     @Override
@@ -48,23 +59,46 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.btn_create_bmp})
+    @OnClick({R.id.btn_create_bmp, R.id.btn_sobmp_scale_target,
+            R.id.btn_sobmp_crop_target, R.id.btn_scbmp_crop_target})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_create_bmp:
                 createSourceFile();
                 break;
+            case R.id.btn_sobmp_scale_target:
+                scaleSourceBitmap();
+                break;
+            case R.id.btn_sobmp_crop_target:
+                if (sourceFile.exists()) {
+//                    Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
+//                    bitmap = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 2, bitmap.getHeight() / 2, 700, 700);
+//                    saveFile(bitmap, firDir.getPath(), "test_source_700x700.png");
+                }
+                break;
+            case R.id.btn_scbmp_crop_target:
+                File file = new File(firDir, "test_1920x1080.png");
+                if (file.exists()) {
+//                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+//                    bitmap = Bitmap.createBitmap(bitmap, bitmap.getWidth() / 2, bitmap.getHeight() / 2, 700, 700);
+//                    saveFile(bitmap, firDir.getPath(), "test_scale_700x700.png");
+                }
+                break;
         }
     }
 
+    private void scaleSourceBitmap() {
+        Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
+        // 压缩到1920*1080尺寸
+        // 使用1。 bitmapsale, 2。 使用option
+        bitmap = Bitmap.createScaledBitmap(bitmap, 1920, 1080, true);
+        saveFile(bitmap, firDir.getPath(), "test_1920x1080.png");
+    }
+
     private void createSourceFile() {
-        File firDir = new File(Environment.getExternalStorageDirectory(), "test");
-        if (!firDir.exists()) {
-            firDir.mkdirs();
-        } else {
-            // TODO: 2018/4/2 图片存在就直接返回
+        if (sourceFile.exists())
             return;
-        }
+
         int imgWidth = (int) (1920 * 1.5);
         int imgHeight = (int) (1080 * 1.5);
         Rect rect = new Rect(0, 0, imgWidth, imgHeight);//画一个矩形
@@ -94,7 +128,7 @@ public class MainActivity extends BaseActivity {
         String mText = "A";
         textPaint.getTextBounds(mText, 0, mText.length(), bounds);
         canvas.drawText(mText, rect.width() / 2, rect.height() / 2, textPaint);
-        saveFile(bitmap, firDir.getAbsolutePath(), "test_source.png");
+        saveFile(bitmap, firDir.getAbsolutePath(), sourFileName);
     }
 
     private void saveFile(Bitmap bitmap, String fileDir, String fileName) {
