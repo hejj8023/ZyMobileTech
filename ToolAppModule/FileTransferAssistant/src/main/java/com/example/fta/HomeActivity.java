@@ -37,7 +37,8 @@ public class HomeActivity extends BaseActivity {
     }
 
     @OnClick({R.id.btn_ftp, R.id.btn_bluebooth, R.id.btn_hot_point,
-            R.id.btn_tcp, R.id.btn_udp, R.id.btn_wifi})
+            R.id.btn_tcp, R.id.btn_udp, R.id.btn_wifi,
+            R.id.btn_nfc})
     public void onViewClick(View view) {
         Class<? extends BaseActivity> tCls = null;
         switch (view.getId()) {
@@ -53,6 +54,9 @@ public class HomeActivity extends BaseActivity {
             case R.id.btn_tcp:
                 break;
             case R.id.btn_wifi:
+                break;
+            case R.id.btn_nfc:
+                tCls = NFCHomeActivity.class;
                 break;
         }
         if (tCls != null) {

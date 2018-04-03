@@ -1,49 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <Button
+        android:id="@+id/btn_ftp"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:padding="15dp"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:text="ftp" />
 
     <Button
-            android:id="@+id/btn_ftp"
-            android:layout_width="match_parent"
-            android:text="ftp"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/btn_wifi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="wifi" />
 
     <Button
-            android:id="@+id/btn_wifi"
-            android:layout_width="match_parent"
-            android:text="wifi"
-            android:enabled="false"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/btn_hot_point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="热点" />
 
     <Button
-            android:id="@+id/btn_hot_point"
-            android:layout_width="match_parent"
-            android:text="热点"
-            android:enabled="false"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/btn_nfc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NFC" />
+
 
     <Button
-            android:id="@+id/btn_bluebooth"
-            android:layout_width="match_parent"
-            android:text="蓝牙"
-            android:enabled="false"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/btn_bluebooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="蓝牙" />
 
     <Button
-            android:id="@+id/btn_tcp"
-            android:layout_width="match_parent"
-            android:text="tcp"
-            android:enabled="false"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/btn_tcp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="tcp" />
 
     <Button
-            android:id="@+id/btn_udp"
-            android:layout_width="match_parent"
-            android:text="udp"
-            android:enabled="false"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/btn_udp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="udp" />
 </LinearLayout>
