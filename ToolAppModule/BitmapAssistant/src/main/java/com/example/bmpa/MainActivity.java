@@ -2,7 +2,6 @@ package com.example.bmpa;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,6 +13,7 @@ import android.widget.ImageView;
 import com.example.common.corel.BaseActivity;
 import com.example.glide.GlideApp;
 import com.example.glide.GlideCircleTransform;
+import com.example.utils.BitmapUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -104,75 +104,38 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.btn_sobmp_crop_target_by_brd:
                 if (sourceFile.exists()) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
+                    Bitmap bitmap = BitmapUtils.regionDecoderByPath(sourceFile.getAbsolutePath(), sv);
                     if (bitmap != null) {
-                        int h = bitmap.getHeight() / 2;
-                        int w = bitmap.getWidth() / 2;
-                        Rect react = new Rect();
-                        react.left = w - (sv / 2);
-                        react.top = h - (sv / 2);
-                        react.right = w + (sv / 2);
-                        react.bottom = h + (sv / 2);
-                        BitmapRegionDecoder regionDecoder = null;
-                        try {
-                            regionDecoder = BitmapRegionDecoder.newInstance(sourceFile.getAbsolutePath(), true);
-                            Bitmap bitmap1 = regionDecoder.decodeRegion(react, null);
-                            saveFile(bitmap1, firDir.getPath(), "test_brd_source_700x700.png");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        saveFile(bitmap, firDir.getPath(), "test_brd_source_700x700.png");
                     }
                 }
                 break;
             case R.id.btn_scbmp_crop_target_by_brd:
                 File tFile = new File(firDir, "test_1920x1080.png");
                 if (tFile.exists()) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(tFile.getAbsolutePath());
-                    try {
-                        BitmapRegionDecoder regionDecoder = BitmapRegionDecoder.newInstance(tFile.getAbsolutePath(), true);
-                        int h = bitmap.getHeight() / 2;
-                        int w = bitmap.getWidth() / 2;
-                        Rect react = new Rect();
-                        react.left = w - (sv / 2);
-                        react.top = h - (sv / 2);
-                        react.right = w + (sv / 2);
-                        react.bottom = h + (sv / 2);
-                        Bitmap bitmap1 = regionDecoder.decodeRegion(react, null);
-                        saveFile(bitmap1, firDir.getPath(), "test_brd_scale_700x700.png");
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    Bitmap bitmap = BitmapUtils.regionDecoderByPath(tFile.getAbsolutePath(), sv);
+                    if (bitmap != null) {
+                        saveFile(bitmap, firDir.getPath(), "test_brd_scale_700x700.png");
                     }
                 }
                 break;
             case R.id.btn_load_cicle_by_glide:
                 File tmpFile = new File(firDir, "test_brd_scale_700x700.png");
                 if (tmpFile.exists()) {
-                    Bitmap bitmap = BitmapFactory.decodeFile(tmpFile.getAbsolutePath());
-                    try {
-                        BitmapRegionDecoder regionDecoder = BitmapRegionDecoder.newInstance(tmpFile.getAbsolutePath(), true);
-                        int h = bitmap.getHeight() / 2;
-                        int w = bitmap.getWidth() / 2;
-                        Rect react = new Rect();
-                        int baseLine = 200 / 2;
-                        react.left = w - baseLine;
-                        react.top = h - baseLine;
-                        react.right = w + baseLine;
-                        react.bottom = h + baseLine;
-                        Bitmap bitmap1 = regionDecoder.decodeRegion(react, null);
-
+                    Bitmap bitmap = BitmapUtils.regionDecoderByPath(tmpFile.getAbsolutePath(), 200);
+                    if (bitmap != null) {
                         // TODO: 2018/4/3 使用glide加载circle图片
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap1.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
                         byte[] bytes = baos.toByteArray();
                         GlideCircleTransform circleTransform = new GlideCircleTransform(mContext);
                         GlideApp.with(mContext).load(bytes).transform(circleTransform).into
                                 (imageView);
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
                 break;
         }
+
     }
 
     private void scaleSourceBitmap() {
