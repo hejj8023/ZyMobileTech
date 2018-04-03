@@ -33,5 +33,16 @@
             android:layout_width="match_parent"
             android:text="缩放图->图片裁剪700x700"
             android:layout_height="wrap_content"/>
+    <Button
+            android:id="@+id/btn_sobmp_crop_target_by_brd"
+            android:layout_width="match_parent"
+            android:text="原图->图片裁剪700x700(BitmapRegionDecoder区域截图)"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/btn_scbmp_crop_target_by_brd"
+            android:layout_width="match_parent"
+            android:text="缩放图->图片裁剪700x700(BitmapRegionDecoder区域截图)"
+            android:layout_height="wrap_content"/>
 
 </LinearLayout>

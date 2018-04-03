@@ -3,6 +3,7 @@ package com.example.bmpa;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -62,7 +63,9 @@ public class MainActivity extends BaseActivity {
     private int sv = 700;
 
     @OnClick({R.id.btn_create_bmp, R.id.btn_sobmp_scale_target,
-            R.id.btn_sobmp_crop_target, R.id.btn_scbmp_crop_target})
+            R.id.btn_sobmp_crop_target, R.id.btn_scbmp_crop_target,
+            R.id.btn_sobmp_crop_target_by_brd, R.id.btn_scbmp_crop_target_by_brd
+    })
     public void onViewClick(View view) {
 
         switch (view.getId()) {
@@ -70,15 +73,19 @@ public class MainActivity extends BaseActivity {
                 createSourceFile();
                 break;
             case R.id.btn_sobmp_scale_target:
+                if (!sourceFile.exists())
+                    return;
                 scaleSourceBitmap();
                 break;
             case R.id.btn_sobmp_crop_target:
                 if (sourceFile.exists()) {
                     Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
-                    int h = bitmap.getHeight() / 2;
-                    int w = bitmap.getWidth() / 2;
-                    bitmap = Bitmap.createBitmap(bitmap, w - (sv / 2), h - (sv / 2), sv, sv);
-                    saveFile(bitmap, firDir.getPath(), "test_source_700x700.png");
+                    if (bitmap != null) {
+                        int h = bitmap.getHeight() / 2;
+                        int w = bitmap.getWidth() / 2;
+                        bitmap = Bitmap.createBitmap(bitmap, w - (sv / 2), h - (sv / 2), sv, sv);
+                        saveFile(bitmap, firDir.getPath(), "test_source_700x700.png");
+                    }
                 }
                 break;
             case R.id.btn_scbmp_crop_target:
@@ -91,15 +98,60 @@ public class MainActivity extends BaseActivity {
                     saveFile(bitmap, firDir.getPath(), "test_scale_700x700.png");
                 }
                 break;
+            case R.id.btn_sobmp_crop_target_by_brd:
+                if (sourceFile.exists()) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
+                    if (bitmap != null) {
+                        int h = bitmap.getHeight() / 2;
+                        int w = bitmap.getWidth() / 2;
+                        Rect react = new Rect();
+                        react.left = w - (sv / 2);
+                        react.top = h - (sv / 2);
+                        react.right = w + (sv / 2);
+                        react.bottom = h + (sv / 2);
+                        BitmapRegionDecoder regionDecoder = null;
+                        try {
+                            regionDecoder = BitmapRegionDecoder.newInstance(sourceFile.getAbsolutePath(), true);
+                            Bitmap bitmap1 = regionDecoder.decodeRegion(react, null);
+                            saveFile(bitmap1, firDir.getPath(), "test_brd_source_700x700.png");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                break;
+            case R.id.btn_scbmp_crop_target_by_brd:
+                File tFile = new File(firDir, "test_1920x1080.png");
+                if (tFile.exists()) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(tFile.getAbsolutePath());
+                    try {
+                        BitmapRegionDecoder regionDecoder = BitmapRegionDecoder.newInstance(tFile.getAbsolutePath(), true);
+                        int h = bitmap.getHeight() / 2;
+                        int w = bitmap.getWidth() / 2;
+                        Rect react = new Rect();
+                        react.left = w - (sv / 2);
+                        react.top = h - (sv / 2);
+                        react.right = w + (sv / 2);
+                        react.bottom = h + (sv / 2);
+                        Bitmap bitmap1 = regionDecoder.decodeRegion(react, null);
+                        saveFile(bitmap1, firDir.getPath(), "test_brd_scale_700x700.png");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+
         }
     }
 
     private void scaleSourceBitmap() {
         Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
-        // 压缩到1920*1080尺寸
-        // 使用1。 bitmapsale, 2。 使用option
-        bitmap = Bitmap.createScaledBitmap(bitmap, 1920, 1080, true);
-        saveFile(bitmap, firDir.getPath(), "test_1920x1080.png");
+        if (bitmap != null) {
+            // 压缩到1920*1080尺寸
+            // 使用1。 bitmapsale, 2。 使用option
+            bitmap = Bitmap.createScaledBitmap(bitmap, 1920, 1080, true);
+            saveFile(bitmap, firDir.getPath(), "test_1920x1080.png");
+        }
     }
 
     private void createSourceFile() {
