@@ -41,6 +41,10 @@ dependencies {
 
     implementation rootProject.ext.ext_tools.utilcode
 
+    /*butternife*/
+    implementation rootProject.ext.ext_tools.glide
+    annotationProcessor rootProject.ext.ext_tools.glide_compiler
+
     //bugly need
     // 其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.7
     // (注：从2.1.5开始要分开Bugly SDK和NDK的配置）
