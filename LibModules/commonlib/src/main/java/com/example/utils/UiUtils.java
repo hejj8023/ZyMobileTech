@@ -59,7 +59,7 @@ public class UiUtils {
         return getResources(context).getStringArray(arrsResId);
     }
 
-    private static Resources getResources(Context context) {
+    public static Resources getResources(Context context) {
         return context.getResources();
     }
 
