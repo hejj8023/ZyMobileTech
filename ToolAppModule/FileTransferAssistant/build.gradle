@@ -54,7 +54,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation rootProject.ext.support.appcompat
     implementation rootProject.ext.support.constraint_layout
     implementation rootProject.ext.support.design
@@ -62,20 +62,15 @@ dependencies {
     testImplementation rootProject.ext.support.junit
     androidTestImplementation rootProject.ext.support.test_runner
     androidTestImplementation rootProject.ext.support.espresso_core
-
     /*butternife*/
     implementation rootProject.ext.ext_tools.butterknife
     annotationProcessor rootProject.ext.ext_tools.butterknife_compiler
-
     implementation rootProject.ext.ext_tools.utilcode
     implementation rootProject.ext.ext_tools.gson
-
     compile rootProject.ext.ext_tools.logger
     implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
     implementation rootProject.ext.ext_tools.ringprogressbar
-
     implementation project(':LibModules:commonlib')
-
     /*butternife*/
     implementation rootProject.ext.ext_tools.glide
     annotationProcessor rootProject.ext.ext_tools.glide_compiler

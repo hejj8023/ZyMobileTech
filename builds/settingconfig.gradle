@@ -48,7 +48,7 @@ private void loadToolAppModule() {
     include ':ToolAppModule'
     project(":ToolAppModule").projectDir = file
     include ':ToolAppModule:FileTransferAssistant'
-//    include ':ToolAppModule:BitmapAssistant'
+    include ':ToolAppModule:BitmapAssistant'
 //    include ':ToolAppModule:NetworkDebugger'
 }
 

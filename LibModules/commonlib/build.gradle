@@ -8,8 +8,6 @@ android {
         println("${project.name}:defaultConfig")
         minSdkVersion rootProject.ext._android.minSdkVersion as Integer
         targetSdkVersion rootProject.ext._android.targetSdkVersion as Integer
-        versionCode rootProject.ext._android.versionCode as Integer
-        versionName rootProject.ext._android.versionName as String
     }
 
     buildTypes {

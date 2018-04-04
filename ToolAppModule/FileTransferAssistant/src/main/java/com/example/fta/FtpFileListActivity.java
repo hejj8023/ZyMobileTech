@@ -1,6 +1,5 @@
 package com.example.fta;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -10,10 +9,7 @@ import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseSectionQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.chad.library.adapter.base.entity.SectionEntity;
-import com.example.common.corel.BaseActivity;
 import com.example.fta.bean.FtpFileBean;
 import com.example.utils.LoggerUtils;
 
@@ -41,7 +37,7 @@ public class FtpFileListActivity extends BaseFtpActivity {
 
     @Override
     protected void initView() {
-        setTitle("文件列表");
+        setTitle("文件列表->批量下载");
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
     }

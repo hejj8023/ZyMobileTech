@@ -13,6 +13,21 @@ import java.io.InputStream;
  */
 
 public class BitmapUtils {
+
+    /**
+     * 图片中心截取，生成的是希望值大小的正文形图片
+     *
+     * @param bitmap
+     * @param reqSize
+     * @return
+     */
+    public static Bitmap cropCenter(Bitmap bitmap, int reqSize) {
+        int h = bitmap.getHeight() / 2;
+        int w = bitmap.getWidth() / 2;
+        bitmap = Bitmap.createBitmap(bitmap, w - (reqSize / 2), h - (reqSize / 2), reqSize, reqSize);
+        return bitmap;
+    }
+
     /**
      * 图片区域截取
      *
@@ -20,7 +35,7 @@ public class BitmapUtils {
      * @param reqSize
      * @return
      */
-    public static Bitmap regionDecoderByPath(String filePath, int reqSize) {
+    public static Bitmap cropRegoinDecoder(String filePath, int reqSize) {
         Bitmap bitmap = BitmapFactory.decodeFile(filePath);
         try {
             BitmapRegionDecoder regionDecoder = BitmapRegionDecoder.newInstance(filePath, true);
@@ -38,7 +53,7 @@ public class BitmapUtils {
      * @param reqSize
      * @return
      */
-    public static Bitmap regionDecoderByPath(byte[] data, int reqSize) {
+    public static Bitmap cropRegoinDecoder(byte[] data, int reqSize) {
         Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         try {
             BitmapRegionDecoder regionDecoder = BitmapRegionDecoder.newInstance(data, 0, data.length, true);
@@ -56,7 +71,7 @@ public class BitmapUtils {
      * @param reqSize
      * @return
      */
-    public static Bitmap regionDecoderByPath(InputStream is, int reqSize) {
+    public static Bitmap cropRegoinDecoder(InputStream is, int reqSize) {
         Bitmap bitmap = BitmapFactory.decodeStream(is);
         try {
             BitmapRegionDecoder regionDecoder = BitmapRegionDecoder.newInstance(is, true);
@@ -67,6 +82,14 @@ public class BitmapUtils {
         return bitmap;
     }
 
+    /**
+     * 区域截取图片
+     *
+     * @param reqSize
+     * @param bitmap
+     * @param regionDecoder
+     * @return
+     */
     private static Bitmap getRegionBitmap(int reqSize, Bitmap bitmap, BitmapRegionDecoder regionDecoder) {
         int h = bitmap.getHeight() / 2;
         int w = bitmap.getWidth() / 2;
@@ -79,4 +102,18 @@ public class BitmapUtils {
         bitmap = regionDecoder.decodeRegion(react, null);
         return bitmap;
     }
+
+    /**
+     * 缩放bitmap到希望的宽高
+     *
+     * @param bitmap
+     * @param reqW
+     * @param reqH
+     * @return
+     */
+    public static Bitmap scale(Bitmap bitmap, int reqW, int reqH) {
+        return Bitmap.createScaledBitmap(bitmap, reqW, reqH, true);
+    }
+
+
 }
