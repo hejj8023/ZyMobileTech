@@ -70,7 +70,7 @@ dependencies {
     compile rootProject.ext.ext_tools.logger
     implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
     implementation rootProject.ext.ext_tools.ringprogressbar
-    implementation project(':LibModules:commonlib')
+    compile 'com.github.syusikoku:ZYSdk:v1.0.0'
     /*butternife*/
     implementation rootProject.ext.ext_tools.glide
     annotationProcessor rootProject.ext.ext_tools.glide_compiler

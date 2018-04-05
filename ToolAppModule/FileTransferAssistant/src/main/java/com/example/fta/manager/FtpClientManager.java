@@ -2,8 +2,9 @@ package com.example.fta.manager;
 
 import android.os.Environment;
 
-import com.example.utils.LogListener;
-import com.example.utils.LoggerUtils;
+
+import com.zhiyangstudio.sdklibrary.utils.LogListener;
+import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;

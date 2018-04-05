@@ -87,7 +87,7 @@ dependencies {
     annotationProcessor rootProject.ext.ext_tools.dagger_compiler
     annotationProcessor rootProject.ext.ext_tools.dagger_android_processor
 
-    implementation project(':LibModules:commonlib')
+    compile 'com.github.syusikoku:ZYSdk:v1.0.0'
 
     /*butternife*/
     implementation rootProject.ext.ext_tools.glide

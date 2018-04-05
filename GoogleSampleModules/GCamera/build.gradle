@@ -44,7 +44,7 @@ dependencies {
 
     compile rootProject.ext.ext_tools.logger
 
-    implementation project(':LibModules:commonlib')
+    compile 'com.github.syusikoku:ZYSdk:v1.0.0'
     implementation project(':LibModules:CammeraViewLib')
     implementation project(':LibModules:JCameraViewLib')
 }

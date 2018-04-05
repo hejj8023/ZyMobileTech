@@ -9,11 +9,10 @@ import android.widget.RadioGroup;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.example.common.corel.BaseActivity;
-import com.example.common.utils.CommonUtils;
 import com.example.fta.bean.FtpFileBean;
-import com.example.utils.LoggerUtils;
-import com.example.utils.UiUtils;
+import com.zhiyangstudio.sdklibrary.common.utils.CommonUtils;
+import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
+import com.zhiyangstudio.sdklibrary.utils.UiUtils;
 
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.ftpserver.ftplet.FtpException;

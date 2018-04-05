@@ -1,8 +1,8 @@
 package com.example.fta;
 
-import com.example.common.corel.BaseActivity;
 import com.example.fta.manager.FtpClientManager;
 import com.example.fta.manager.FtpServerManager;
+import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

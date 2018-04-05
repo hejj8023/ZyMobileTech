@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.fta.bean.FtpFileBean;
-import com.example.utils.LoggerUtils;
+import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
 
 import java.io.Serializable;
 import java.util.LinkedList;

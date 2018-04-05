@@ -4,7 +4,7 @@ private void loadLibModules() {
     def file = new File("LibModules/")
     include ':LibModules'
     project(":LibModules").projectDir = file
-    include ':LibModules:commonlib'
+//    include ':LibModules:commonlib'
 //    include ':LibModules:CommonAlgorithmLib'
 //    include ':LibModules:CammeraViewLib'
 //    include ':LibModules:JCameraViewLib'
@@ -49,7 +49,7 @@ private void loadToolAppModule() {
     project(":ToolAppModule").projectDir = file
     include ':ToolAppModule:FileTransferAssistant'
     include ':ToolAppModule:BitmapAssistant'
-//    include ':ToolAppModule:NetworkDebugger'
+    include ':ToolAppModule:NetworkDebugger'
 }
 
 private void loadDatasturectureModules() {

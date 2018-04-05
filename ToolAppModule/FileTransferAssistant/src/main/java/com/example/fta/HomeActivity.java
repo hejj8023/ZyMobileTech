@@ -2,7 +2,8 @@ package com.example.fta;
 
 import android.view.View;
 
-import com.example.common.corel.BaseActivity;
+
+import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 
 import butterknife.OnClick;
 

@@ -19,12 +19,12 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.example.common.corel.BaseActivity;
 import com.example.ndebuger.common.GlobalConst;
 import com.example.ndebuger.common.OnMsgSendComplete;
 import com.example.ndebuger.common.RoleType;
 import com.example.ndebuger.manager.RemoteConnManager;
-import com.example.utils.LoggerUtils;
+import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
+import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -86,4 +86,18 @@ https://github.com/googlesamples?language=java
           View decorView = getWindow().getDecorView();
           int option = View.SYSTEM_UI_FLAG_FULLSCREEN;
           decorView.setSystemUiVisibility(option);
-      }            
+      }
+                  
+# 屏蔽掉common_lib,使用jitpack库
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+        }
+    }
+    
+    dependencies {
+        compile 'com.github.syusikoku:ZYSdk:v1.0.0'
+    }                  
+    
+  不使用common_lib，在线的github组织仓库    

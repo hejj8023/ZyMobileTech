@@ -49,5 +49,5 @@ dependencies {
 
     compile 'com.github.FJ917:FJEditTextCount:v1.0.4'
 
-    implementation project(':LibModules:commonlib')
+    compile 'com.github.syusikoku:ZYSdk:v1.0.0'
 }
