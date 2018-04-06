@@ -38,16 +38,13 @@ public class HomeActivity extends BaseActivity {
         return null;
     }
 
-    @OnClick({R.id.btn_ftp, R.id.btn_bluebooth, R.id.btn_hot_point,
-            R.id.btn_socket, R.id.btn_socket_wifi_hotspot, R.id.btn_wifi,
-            R.id.btn_nfc})
+    @OnClick({R.id.btn_ftp, R.id.btn_bluebooth, R.id.btn_socket,
+            R.id.btn_socket_wifi_hotspot, R.id.btn_wifi, R.id.btn_nfc})
     public void onViewClick(View view) {
         Class<? extends BaseActivity> tCls = null;
         switch (view.getId()) {
             case R.id.btn_ftp:
                 tCls = FtpHomeActivity.class;
-                break;
-            case R.id.btn_hot_point:
                 break;
             case R.id.btn_bluebooth:
                 break;

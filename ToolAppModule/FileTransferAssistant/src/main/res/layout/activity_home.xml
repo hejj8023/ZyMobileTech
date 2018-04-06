@@ -9,21 +9,14 @@
             android:id="@+id/btn_ftp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ftp"/>
+            android:text="Ftp传输"/>
 
     <Button
             android:id="@+id/btn_wifi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="wifi"/>
-
-    <Button
-            android:id="@+id/btn_hot_point"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="热点"/>
+            android:text="wifi传输"/>
 
     <Button
             android:id="@+id/btn_nfc"
@@ -49,5 +42,5 @@
             android:id="@+id/btn_socket_wifi_hotspot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="socket2-> WiFi Hotspot "/>
+            android:text="WiFi热点传输 "/>
 </LinearLayout>
