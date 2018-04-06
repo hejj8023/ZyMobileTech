@@ -21,3 +21,5 @@ https://github.com/WhoIsAA/SocketDemo
 
 https://github.com/Leezhijiang/SocketTransport
 
+# viewstub的使用
+vs_send_files_open_hotspot

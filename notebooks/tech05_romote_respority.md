@@ -56,7 +56,7 @@
 ### 2. 在github找到该项目https://github.com/syusikoku/ZYSdk，找到release创建release发布
 ### 3. create new release，创建发布版本
 ### 4. 发布到jitpack.io
-    https://github.com/syusikoku/ZYSdk/v1.0.0 复制到jitpack.io->lookup
+    https://github.com/syusikoku/ZYSdk/releases/tag/v1.0.0复制到jitpack.io->lookup
 ### 5. 点击版本1.0.0 -> get it
 ### 6. 使用(不要使用代理)
     allprojects {

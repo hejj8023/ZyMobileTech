@@ -15,7 +15,7 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        setTitle("Wifi热点传输-接收端");
     }
 
     @Override

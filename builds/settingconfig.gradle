@@ -8,6 +8,7 @@ private void loadLibModules() {
 //    include ':LibModules:CommonAlgorithmLib'
 //    include ':LibModules:CammeraViewLib'
 //    include ':LibModules:JCameraViewLib'
+    include ':LibModules:CommonAlertPop'
 }
 
 private void loadAppModules() {
