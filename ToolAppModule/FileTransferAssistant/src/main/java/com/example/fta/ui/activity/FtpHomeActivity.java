@@ -1,4 +1,4 @@
-package com.example.fta;
+package com.example.fta.ui.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +9,8 @@ import android.widget.RadioGroup;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.example.fta.Const;
+import com.example.fta.R;
 import com.example.fta.bean.FtpFileBean;
 import com.zhiyangstudio.sdklibrary.common.utils.CommonUtils;
 import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
@@ -22,8 +24,6 @@ import java.io.Serializable;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -99,6 +99,7 @@ public class FtpHomeActivity extends BaseFtpActivity {
 
     @Override
     protected void initView() {
+        setTitle("Ftp传输-ApacheFtp服务器端");
         ipAddress = NetworkUtils.getIPAddress(true);
         etServerIp.setText(ipAddress);
         etServerIp.setEnabled(false);
@@ -110,6 +111,7 @@ public class FtpHomeActivity extends BaseFtpActivity {
         rgRole.setOnCheckedChangeListener(((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.rb_role_server_type:
+                    setTitle("Ftp传输-服务器端");
                     hasServerRole = true;
                     vSwiftp.setEnabled(true);
                     etServerIp.setText(ipAddress);
@@ -121,6 +123,7 @@ public class FtpHomeActivity extends BaseFtpActivity {
                     vDownloadFile.setEnabled(false);
                     break;
                 case R.id.rb_role_client_type:
+                    setTitle("Ftp传输-客户端");
                     hasServerRole = false;
                     etServerIp.setText("");
                     vSwiftp.setEnabled(false);
@@ -139,10 +142,12 @@ public class FtpHomeActivity extends BaseFtpActivity {
                 return;
             switch (checkedId) {
                 case R.id.rb_apacheftp:
+                    setTitle("Ftp传输-ApacheFtp服务器端");
                     hasApacheFtp = true;
                     break;
                 case R.id.rb_swiftp:
                     hasApacheFtp = false;
+                    setTitle("Ftp传输-SwiFtp服务器端");
                     break;
             }
         }));

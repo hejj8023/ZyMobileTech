@@ -1,8 +1,9 @@
-package com.example.fta;
+package com.example.fta.ui.activity;
 
 import android.view.View;
 
 
+import com.example.fta.R;
 import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 
 import butterknife.OnClick;
@@ -38,7 +39,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     @OnClick({R.id.btn_ftp, R.id.btn_bluebooth, R.id.btn_hot_point,
-            R.id.btn_tcp, R.id.btn_udp, R.id.btn_wifi,
+            R.id.btn_socket, R.id.btn_socket_wifi_hotspot, R.id.btn_wifi,
             R.id.btn_nfc})
     public void onViewClick(View view) {
         Class<? extends BaseActivity> tCls = null;
@@ -50,11 +51,14 @@ public class HomeActivity extends BaseActivity {
                 break;
             case R.id.btn_bluebooth:
                 break;
-            case R.id.btn_udp:
+            case R.id.btn_socket:
+                tCls = Socket1HomeActivity.class;
                 break;
-            case R.id.btn_tcp:
+            case R.id.btn_socket_wifi_hotspot:
+                tCls = WifiHotspotHomeActivity.class;
                 break;
             case R.id.btn_wifi:
+                tCls = WifiHomeActivity.class;
                 break;
             case R.id.btn_nfc:
                 tCls = NFCHomeActivity.class;

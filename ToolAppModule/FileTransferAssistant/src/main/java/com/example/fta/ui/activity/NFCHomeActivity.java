@@ -1,4 +1,4 @@
-package com.example.fta;
+package com.example.fta.ui.activity;
 
 import android.content.Intent;
 import android.nfc.NfcAdapter;
@@ -6,6 +6,7 @@ import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
 import android.widget.TextView;
 
+import com.example.fta.R;
 import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 
 import butterknife.BindView;

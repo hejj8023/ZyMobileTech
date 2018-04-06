@@ -1,4 +1,4 @@
-package com.example.fta;
+package com.example.fta.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.example.fta.R;
 import com.example.fta.bean.FtpFileBean;
 import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
 

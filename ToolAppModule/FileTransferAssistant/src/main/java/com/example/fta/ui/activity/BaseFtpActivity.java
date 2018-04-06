@@ -1,4 +1,4 @@
-package com.example.fta;
+package com.example.fta.ui.activity;
 
 import com.example.fta.manager.FtpClientManager;
 import com.example.fta.manager.FtpServerManager;
