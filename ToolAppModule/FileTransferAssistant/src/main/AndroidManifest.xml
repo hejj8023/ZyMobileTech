@@ -80,6 +80,7 @@
         <activity android:name=".ui.activity.WifiHotspotHomeActivity"/>
         <activity android:name=".ui.activity.WifiHotspotSendFilesActivity"/>
         <activity android:name=".ui.activity.WifiHotspotReceiveFilesActivity"/>
+        <activity android:name=".ui.activity.HttpHomeActivity"/>
     </application>
 
 </manifest>

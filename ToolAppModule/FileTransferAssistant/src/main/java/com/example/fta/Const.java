@@ -1,5 +1,7 @@
 package com.example.fta;
 
+import android.os.Environment;
+
 import com.example.fta.bean.FileInfo;
 
 import java.util.Comparator;
@@ -20,6 +22,11 @@ public class Const {
      * UDP通信服务端默认端口号
      */
     public static final int DEFAULT_SERVER_UDP_PORT = 8204;
+
+    /**
+     * 文件接收端监听默认端口号->TCP
+     */
+    public static final int DEFAULT_FILE_RECEIVE_SERVER_PORT = 8284;
 
     /**
      * Wifi连接成功时未分配的默认Ip地址
@@ -69,4 +76,11 @@ public class Const {
             }
         }
     };
+
+    /**
+     * SD卡路径
+     */
+    public static final String SDCARD_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+
 }

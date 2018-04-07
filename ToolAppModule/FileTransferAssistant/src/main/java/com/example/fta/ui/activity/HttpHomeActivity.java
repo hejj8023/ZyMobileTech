@@ -4,19 +4,20 @@ import com.example.fta.R;
 import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 
 /**
- * Created by zzg on 2018/4/5.
- * 技术借鉴:https://github.com/leavesC/WifiP2P
+ * Created by zzg on 2018/4/7.
+ *
+ * 技能借鉴于:https://github.com/mayubao/KuaiChuan
  */
 
-public class WifiHomeActivity extends BaseActivity {
+public class HttpHomeActivity extends BaseActivity {
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_wifi_home;
+        return R.layout.activity_http_home;
     }
 
     @Override
     protected void initView() {
-        setTitle("Wifi-P2P传输");
+
     }
 
     @Override

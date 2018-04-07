@@ -16,7 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="wifi传输"/>
+            android:text="Wifi-P2P传输"/>
+
+    <Button
+            android:id="@+id/btn_http"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Http传输"/>
 
     <Button
             android:id="@+id/btn_nfc"
@@ -43,5 +50,5 @@
             android:id="@+id/btn_socket_wifi_hotspot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="WiFi热点传输 "/>
+            android:text="WiFi-热点传输 "/>
 </LinearLayout>
