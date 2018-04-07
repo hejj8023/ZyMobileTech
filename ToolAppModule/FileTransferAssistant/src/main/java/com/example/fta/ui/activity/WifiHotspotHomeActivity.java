@@ -8,7 +8,15 @@ import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 import butterknife.OnClick;
 
 /**
- * Created by zzg on 2018/4/5.
+ * Created by zzg on 2018/4/5
+ *
+ * 技术借鉴:https://github.com/WhoIsAA/SocketDemo
+ * - 发送端创建WiFi热点
+ * - 接收端连接热点
+ * - 发送端使用UDP发送文件列表
+ * - 接收端收到后展示文件列表，选择要接收的文件发送给发送端
+ * - 发送端通过TCP发送所选文件
+ * - 接收端开始接收...
  */
 
 public class WifiHotspotHomeActivity extends BaseActivity {
