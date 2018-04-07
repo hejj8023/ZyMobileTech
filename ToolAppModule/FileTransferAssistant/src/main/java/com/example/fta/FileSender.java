@@ -16,7 +16,7 @@ import java.util.concurrent.locks.Lock;
  * Created by zzg on 2018/4/7.
  */
 
-public class FileSender extends BaseTransfer implements Runnable, LogListener {
+public class FileSender extends BaseTransfer{
     private final Socket mSocket;
     private final FileInfo mFileInfo;
 

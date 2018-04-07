@@ -2,14 +2,20 @@ package com.example.fta;
 
 import android.content.Context;
 import android.net.DhcpInfo;
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
+import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 import com.zhiyangstudio.sdklibrary.common.utils.EmptyUtils;
 import com.zhiyangstudio.sdklibrary.common.utils.InternalUtils;
+import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zzg on 2018/4/7.
@@ -26,7 +32,6 @@ public class WifiUtils {
      * 获取开启热点后自身热点Ip地址
      */
     public static String getLocalAddress() {
-
         DhcpInfo dhcpInfo = sWifiManager.getDhcpInfo();
         if (dhcpInfo != null) {
             int address = dhcpInfo.serverAddress;
@@ -52,7 +57,8 @@ public class WifiUtils {
      */
     public static boolean isApOn() {
         try {
-            Method isWifiApEnabledMethod = sWifiManager.getClass().getDeclaredMethod("isWifiApEnabledMethod");
+            Method isWifiApEnabledMethod = sWifiManager.getClass().getDeclaredMethod
+                    ("isWifiApEnabledMethod");
             isWifiApEnabledMethod.setAccessible(true);
             return (Boolean) isWifiApEnabledMethod.invoke(sWifiManager);
         } catch (NoSuchMethodException pE) {
@@ -70,7 +76,8 @@ public class WifiUtils {
      */
     public static void closeAp() {
         try {
-            Method setWifiApEnabledMethod = sWifiManager.getClass().getMethod("setWifiApEnabled");
+            Method setWifiApEnabledMethod = sWifiManager.getClass().getMethod("setWifiApEnabled",
+                    WifiConfiguration.class, boolean.class);
             setWifiApEnabledMethod.invoke(sWifiManager, null, false);
         } catch (NoSuchMethodException pE) {
             pE.printStackTrace();
@@ -100,7 +107,8 @@ public class WifiUtils {
             }
 
             // 使用反射开启wifi热点
-            Method setWifiApEnabledMethod = sWifiManager.getClass().getMethod("setWifiApEnabled");
+            Method setWifiApEnabledMethod = sWifiManager.getClass().getMethod("setWifiApEnabled",
+                    WifiConfiguration.class, boolean.class);
             setWifiApEnabledMethod.invoke(sWifiManager, wifiConfiguration, true);
             return true;
         } catch (Exception e) {
@@ -128,5 +136,134 @@ public class WifiUtils {
         config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
         config.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
         return config;
+    }
+
+    /**
+     * 清除当前连接的WiFi网络
+     */
+    public static void clearWifiConfig() {
+        String ssid = sWifiManager.getConnectionInfo().getSSID().replace("\"", "");
+        List<WifiConfiguration> wifiConfigurations = sWifiManager.getConfiguredNetworks();
+        if (wifiConfigurations != null && wifiConfigurations.size() > 0) {
+            for (WifiConfiguration configuration : wifiConfigurations) {
+                if (configuration.SSID.replace("\"", "").contains(ssid)) {
+                    sWifiManager.removeNetwork(configuration.networkId);
+                    sWifiManager.saveConfiguration();
+                }
+            }
+        }
+    }
+
+    /**
+     * 扫描周围可用wifi
+     */
+    public static List<ScanResult> getScanResults() {
+        List<ScanResult> list = sWifiManager.getScanResults();
+        if (list != null && list.size() > 0) {
+            return fileterScanReuslt(list);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    /**
+     * 过滤wifi扫描结果
+     */
+    private static List<ScanResult> fileterScanReuslt(List<ScanResult> list) {
+        List<ScanResult> results = new ArrayList<>();
+        if (results == null) {
+            return results;
+        }
+
+        for (ScanResult scanResult : list) {
+            if (EmptyUtils.isNotEmpty(scanResult.SSID) && scanResult.level > -80) {
+                results.add(scanResult);
+            }
+        }
+
+        // TODO: 2018/4/7 对结果进行排序
+        for (int i = 0; i < results.size(); i++) {
+            for (int j = 0; j < results.size(); j++) {
+                // 将搜索到的wifi根据信号强度从强到弱进行排序
+                ScanResult tmp = results.get(i);
+                results.set(i, results.get(j));
+                results.set(j, tmp);
+            }
+        }
+        return results;
+    }
+
+    /**
+     * 获取周围信号强度大于-80的wifi列表(wifi强度为负数，值越大信号越好
+     */
+    private static List<ScanResult> getWifiScanList(List<ScanResult> list) {
+        List<ScanResult> resultList = new ArrayList<>();
+        if (sWifiManager.startScan()) {
+            List<ScanResult> tmpList = sWifiManager.getScanResults();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (tmpList != null && tmpList.size() > 0) {
+                for (ScanResult scanResult : tmpList) {
+                    if (scanResult.level > -80) {
+                        resultList.add(scanResult);
+                    }
+                }
+            } else {
+                LoggerUtils.loge((BaseActivity) CommonUtils.getCurrentActivity(), "扫描为空");
+            }
+        }
+        return resultList;
+    }
+
+    /**
+     * 当前wifi是否开启
+     */
+    public static boolean isWifiEnabled() {
+        return sWifiManager.isWifiEnabled();
+    }
+
+    /**
+     * 获取当前连接wifi的SSID
+     */
+    public static String getConnectedSSID() {
+        WifiInfo wifiInfo = sWifiManager.getConnectionInfo();
+        return wifiInfo != null ? wifiInfo.getSSID().replaceAll("\"", "") : "";
+    }
+
+    /**
+     * 扫描周围可用WiFi
+     */
+    public static boolean startScan() {
+        if (isWifiEnabled()) {
+            return sWifiManager.startScan();
+        }
+        return false;
+    }
+
+    /**
+     * 打开wifi
+     */
+    public static void openWifi() {
+        if (!isWifiEnabled()) {
+            sWifiManager.setWifiEnabled(true);
+        }
+    }
+
+    /**
+     * 获取连接wifi后的ip地址
+     */
+    public static String getIpAddressFromHotSpot() {
+        DhcpInfo dhcpInfo = sWifiManager.getDhcpInfo();
+        if (dhcpInfo != null) {
+            int address = dhcpInfo.gateway;
+            return (address & 0XFF)
+                    + "." + ((address >> 8) & 0XFF)
+                    + "." + ((address >> 16) & 0XFF)
+                    + "." + ((address >> 24) & 0XFF);
+        }
+        return "";
     }
 }

@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.Utils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.fta.ApManager;
@@ -32,6 +34,7 @@ import com.zhiyangstudio.sdklibrary.common.corel.BaseInternalHandler;
 import com.zhiyangstudio.sdklibrary.common.utils.EmptyUtils;
 import com.zhiyangstudio.sdklibrary.common.utils.GsonUtils;
 import com.zhiyangstudio.sdklibrary.common.utils.InternalUtils;
+import com.zhiyangstudio.sdklibrary.common.utils.ThreadUtils;
 import com.zhiyangstudio.sdklibrary.components.receiver.HotSpotBroadcastReceiver;
 import com.zhiyangstudio.sdklibrary.utils.LogListener;
 import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
@@ -55,11 +58,6 @@ import butterknife.BindView;
  */
 
 public class WifiHotspotSendFilesActivity extends BaseActivity {
-
-    /**
-     * WiFi热点连接和创建权限请求码
-     */
-    protected static final int PERMISSION_REQ_CONNECT_WIFI = 3020;
 
     /**
      * 创建便携热点权限请求码
@@ -113,6 +111,20 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
      */
     private DatagramSocket mDatagramSocket;
 
+    private FtaApp mAppInstance;
+
+    /**
+     * 文件发送线程
+     */
+    private SenderServerTask mSenderServerTask;
+
+    /**
+     * 发送文件线程列表数据
+     */
+    private List<FileSender> mFileSenderList = new ArrayList<>();
+
+    private BaseQuickAdapter<Map.Entry<String, FileInfo>, BaseViewHolder> sendFileAdapter;
+
     private BaseInternalHandler mH = new BaseInternalHandler(this) {
         @Override
         protected void processMessage(Message message) {
@@ -128,6 +140,11 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
                     break;
                 case MSG_UPDATE_PROGRESS:
                     // 更新文件发送进度
+                    int position = message.arg1;
+                    int progress = message.arg2;
+                    if (position >= 0 && position < sendFileAdapter.getItemCount()) {
+                        updateProgress(position, progress);
+                    }
                     break;
                 case MSG_UPDATE_ADAPTER:
                     // 更新列表适配器
@@ -140,17 +157,23 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
             }
         }
     };
-    private FtaApp mAppInstance;
 
     /**
-     * 文件发送线程
+     * 更新进度条
      */
-    private SenderServerTask mSenderServerTask;
+    private void updateProgress(int position, int progress) {
+        if (position < 0 || position >= sendFileAdapter.getItemCount()) {
+            return;
+        }
 
-    /**
-     * 发送文件线程列表数据
-     */
-    private List<FileSender> mFileSenderList = new ArrayList<>();
+        FileInfo fileInfo = sendFileAdapter.getData().get(position).getValue();
+        fileInfo.setProgress(progress);
+        if (position == mAppInstance.getSendFileInfoMap().size() - 1 && progress == 100) {
+            LoggerUtils.loge(this, "所有的文件都已发送完毕");
+            ToastUtils.showShort("所有文件发送完毕");
+        }
+    }
+
 
     /**
      * 显示发送文件视图
@@ -163,8 +186,13 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
         Collections.sort(fileInfos, Const.DEFAULT_COMPARATOR);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
-        BaseQuickAdapter lQuickAdapter = new BaseQuickAdapter<Map.Entry<String, FileInfo>, BaseViewHolder>(
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager
+                .VERTICAL));
+        //文件路径
+        //文件大小
+        //文件发送状态
+        //文件发送进度
+        sendFileAdapter = new BaseQuickAdapter<Map.Entry<String, FileInfo>, BaseViewHolder>(
                 R.layout.layout_item_wifi_hotspot_send_filelist, fileInfos) {
 
             @Override
@@ -173,7 +201,8 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
                 //文件路径
                 helper.setText(R.id.tv_item_file_transfer_file_path, fileInfo.getFilePath());
                 //文件大小
-                helper.setText(R.id.tv_item_file_transfer_size, FileUtils.formatFileSize(fileInfo.getSize()));
+                helper.setText(R.id.tv_item_file_transfer_size, FileUtils.formatFileSize(fileInfo
+                        .getSize()));
                 //文件发送状态
                 if (fileInfo.getProgress() >= 100) {
                     helper.setText(R.id.tv_item_file_transfer_status, "发送完毕");
@@ -189,7 +218,7 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
                 progressBar.setProgress(fileInfo.getProgress());
             }
         };
-        mRecyclerView.setAdapter(lQuickAdapter);
+        mRecyclerView.setAdapter(sendFileAdapter);
     }
 
     /**
@@ -256,13 +285,6 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 发送数据给客户端
-     */
-    private void sendFile() {
-
-    }
-
     @Override
     protected void addListener() {
 
@@ -270,12 +292,12 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
         mAppInstance = (FtaApp) FtaApp.getAppInstance();
 
         //请求权限，开启热点
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{CommonConst.ACTION_HOTSPOT_STATE_CHANGED}, PERMISSION_REQ_CREATE_HOTSPOT);
+            requestPermissions(new String[]{CommonConst.ACTION_HOTSPOT_STATE_CHANGED},
+                    PERMISSION_REQ_CREATE_HOTSPOT);
 
         } else {
             // TODO: 2018/4/6 高版本需要权限，低版本不需要权限
@@ -327,7 +349,8 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
                 receiveInitSuccessOrder(Const.DEFAULT_SERVER_UDP_PORT);
             } catch (IOException pE) {
                 pE.printStackTrace();
-                LoggerUtils.loge(WifiHotspotSendFilesActivity.this, "receiveInitSuccessOrderRunnable err msg = " + pE.getMessage());
+                LoggerUtils.loge(WifiHotspotSendFilesActivity.this,
+                        "receiveInitSuccessOrderRunnable err msg = " + pE.getMessage());
             }
         };
     }
@@ -358,12 +381,14 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
         while (true) {
             byte[] receiveDataBuff = new byte[1024];
             // 把接收到的数据存储到这个DatagramPacket中
-            DatagramPacket receiveDp = new DatagramPacket(receiveDataBuff, 0, receiveDataBuff.length);
+            DatagramPacket receiveDp = new DatagramPacket(receiveDataBuff, 0, receiveDataBuff
+                    .length);
             // TODO: 2018/4/6 这里是阻塞式的，有数据来的时候会存储到 DatagramPacket中
             mDatagramSocket.receive(receiveDp);
             String response = new String(receiveDp.getData()).trim();
             InetAddress lAddress = receiveDp.getAddress();
-            LoggerUtils.loge(this, "client ip = " + lAddress.getHostName() + ", response = " + response);
+            LoggerUtils.loge(this, "client ip = " + lAddress.getHostName() + ", response = " +
+                    response);
             if (EmptyUtils.isNotEmpty(response)) {
                 // TODO: 2018/4/6 接收端初始化成功的指令
                 if (response.equalsIgnoreCase(Const.MSG_FILE_RECEIVER_INIT_SUCCESS)) {
@@ -389,6 +414,18 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
      * 将字符串解析成FileInfo
      */
     private void parseFileInfo(String response) {
+        if (EmptyUtils.isNotEmpty(response)) {
+            List<FileInfo> fileInfos = FileInfo.toObjectList(response);
+            if (EmptyUtils.isNotEmpty(fileInfos)) {
+                for (FileInfo fileInfo : fileInfos) {
+                    if (fileInfo != null && EmptyUtils.isNotEmpty(fileInfo.getFilePath())) {
+                        fileInfo.setPosition(fileInfos.indexOf(fileInfo));
+                        mAppInstance.addSendFileInfo(fileInfo);
+                        mH.sendEmptyMessage(MSG_UPDATE_ADAPTER);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -397,7 +434,7 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
      */
     private void initSenderServer() {
         mSenderServerTask = new SenderServerTask();
-        new Thread(mSenderServerTask).start();
+        ThreadUtils.execute(mSenderServerTask);
     }
 
     /**
@@ -408,7 +445,8 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
             String json = GsonUtils.toJsonStr(mAllFileInfos);
             LoggerUtils.loge(this, "json = " + json);
             if (EmptyUtils.isNotEmpty(json)) {
-                DatagramPacket sendFileInfoPacket = new DatagramPacket(json.getBytes(), json.getBytes().length, pAddress, pPort);
+                DatagramPacket sendFileInfoPacket = new DatagramPacket(json.getBytes(), json
+                        .getBytes().length, pAddress, pPort);
                 try {
                     // TODO: 2018/4/6 发送文件列表给接收端
                     mDatagramSocket.send(sendFileInfoPacket);
@@ -520,10 +558,12 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_REQ_CREATE_HOTSPOT:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager
+                        .PERMISSION_GRANTED) {
                     mIsPermissionGranted = true;
                 } else {
                     mIsPermissionGranted = false;
@@ -553,14 +593,16 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
                         @Override
                         public void onStart() {
                             LoggerUtils.loge(this, "onStart");
-                            mH.obtainMessage(MSG_SET_STATUS, "开始发送" + FileUtils.getFileName(fileInfo.getFilePath())).sendToTarget();
+                            mH.obtainMessage(MSG_SET_STATUS, "开始发送" + FileUtils.getFileName
+                                    (fileInfo.getFilePath())).sendToTarget();
                         }
 
                         @Override
                         public void onProgress(long progress, long total) {
                             LoggerUtils.loge(this, "onProgress");
                             int i_progress = (int) (progress * 100 / total);
-                            LoggerUtils.loge(this, "正在发送：" + fileInfo.getFilePath() + "\n当前进度：" + i_progress);
+                            LoggerUtils.loge(this, "正在发送：" + fileInfo.getFilePath() + "\n当前进度：" +
+                                    i_progress);
 
                             Message message = Message.obtain();
                             message.what = MSG_UPDATE_PROGRESS;
@@ -573,7 +615,8 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
                         public void onSucess(FileInfo fileInfo) {
                             LoggerUtils.loge(this, "onSucess");
 
-                            mH.obtainMessage(MSG_SET_STATUS, "文件：" + FileUtils.getFileName(fileInfo.getFilePath()) + "发送成功").sendToTarget();
+                            mH.obtainMessage(MSG_SET_STATUS, "文件：" + FileUtils.getFileName
+                                    (fileInfo.getFilePath()) + "发送成功").sendToTarget();
                             fileInfo.setResult(Const.FLAG_STATE_SUCESS_FILE);
                             mAppInstance.updateSendFileInfo(fileInfo);
 
@@ -588,7 +631,8 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
                         public void onFailure(Throwable throwable, FileInfo fileInfo) {
                             LoggerUtils.loge(this, "onFailure");
 
-                            mH.obtainMessage(MSG_SET_STATUS, "文件：" + FileUtils.getFileName(fileInfo.getFilePath()) + "发送失败").sendToTarget();
+                            mH.obtainMessage(MSG_SET_STATUS, "文件：" + FileUtils.getFileName
+                                    (fileInfo.getFilePath()) + "发送失败").sendToTarget();
                             fileInfo.setResult(Const.FLAG_STATE_FAILURE_FILE);
                             mAppInstance.updateSendFileInfo(fileInfo);
 

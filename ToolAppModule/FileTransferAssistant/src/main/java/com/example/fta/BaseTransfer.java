@@ -1,10 +1,13 @@
 package com.example.fta;
 
+import com.zhiyangstudio.sdklibrary.utils.LogListener;
+import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
+
 /**
  * Created by zzg on 2018/4/7.
  */
 
-public abstract class BaseTransfer implements Transferable {
+public abstract class BaseTransfer implements Transferable, LogListener, Runnable {
     /**
      * 字节数组长度
      */
