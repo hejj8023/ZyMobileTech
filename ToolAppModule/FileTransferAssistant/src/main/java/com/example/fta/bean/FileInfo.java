@@ -1,7 +1,7 @@
 package com.example.fta.bean;
 
 import com.google.gson.reflect.TypeToken;
-import com.zhiyangstudio.sdklibrary.common.utils.GsonUtils;
+import com.zhiyangstudio.commonlib.utils.GsonUtils;
 
 import java.io.Serializable;
 import java.util.List;

@@ -28,18 +28,17 @@ import com.example.fta.Const;
 import com.example.fta.FileReceiver;
 import com.example.fta.FtaApp;
 import com.example.fta.R;
-import com.example.fta.WifiBroadcastReceiver;
-import com.example.fta.WifiUtils;
 import com.example.fta.bean.FileInfo;
 import com.example.fta.decoration.GridSpaceItemDecoration;
 import com.example.fta.utils.FileUtils;
-import com.zhiyangstudio.sdklibrary.CommonConst;
-import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
-import com.zhiyangstudio.sdklibrary.common.corel.BaseInternalHandler;
-import com.zhiyangstudio.sdklibrary.common.utils.EmptyUtils;
-import com.zhiyangstudio.sdklibrary.common.utils.InternalUtils;
-import com.zhiyangstudio.sdklibrary.common.utils.ThreadUtils;
-import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.CommonConst;
+import com.zhiyangstudio.commonlib.components.receiver.WifiBroadcastReceiver;
+import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
+import com.zhiyangstudio.commonlib.utils.EmptyUtils;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.utils.ThreadUtils;
+import com.zhiyangstudio.commonlib.utils.WifiUtils;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -223,7 +222,7 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
      * 发送选中的文件列表给发送端
      */
     private void sendFile50FileSender() {
-        ThreadUtils.execute(new Runnable() {
+        ThreadUtils.executeBySingleThread(new Runnable() {
             @Override
             public void run() {
                 LoggerUtils.loge(WifiHotspotReceiveFilesActivity.this, "sendFile50FileSender");
@@ -280,7 +279,7 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
      */
     private void sendInitSucessToFileSender() {
         LoggerUtils.loge(this, "sendInitSucessToFileSender");
-        ThreadUtils.execute(new Runnable() {
+        ThreadUtils.executeBySingleThread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -289,7 +288,7 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
                     String serverIp = WifiUtils.getIpAddressFromHotSpot();
                     while (serverIp.equalsIgnoreCase(Const.DEFAULT_UNKNOW_IP) && tryCount < Const
                             .DEFAULT_TRY_COUNT) {
-                        InternalUtils.doSleep(1000);
+                        ThreadUtils.doSleep(1000);
                         serverIp = WifiUtils.getIpAddressFromHotSpot();
                         tryCount++;
                     }
@@ -298,7 +297,7 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
                     tryCount = 0;
                     while (!(NetworkUtils.isAvailableByPing(serverIp)) && tryCount < Const
                             .DEFAULT_TRY_COUNT) {
-                        InternalUtils.doSleep(500);
+                        ThreadUtils.doSleep(500);
                         LoggerUtils.loge(WifiHotspotReceiveFilesActivity.this, "Try to ping " +
                                 "------" + serverIp + " - " + tryCount);
                         tryCount++;
@@ -687,7 +686,7 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
     private void initReceiverServer() {
         LoggerUtils.loge(this, "initReceiverServer");
         mReceiveServerRunnable = new ReceiveServerRunnable();
-        ThreadUtils.execute(mReceiveServerRunnable);
+        ThreadUtils.executeBySingleThread(mReceiveServerRunnable);
     }
 
     private class ReceiveServerRunnable implements Runnable {
@@ -697,7 +696,7 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
                 // 发送选择接收的文件
                 mH.sendEmptyMessage(MSG_SEND_RECEIVE_FILE_LIST);
 
-                InternalUtils.doSleep(3000);
+                ThreadUtils.doSleep(3000);
 
                 // 开始接收文件
                 String serverIP = WifiUtils.getIpAddressFromHotSpot();

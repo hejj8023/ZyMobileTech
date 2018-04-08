@@ -23,19 +23,18 @@ import com.example.fta.Const;
 import com.example.fta.FileSender;
 import com.example.fta.FtaApp;
 import com.example.fta.R;
-import com.example.fta.WifiUtils;
 import com.example.fta.bean.FileInfo;
 import com.example.fta.utils.FileUtils;
-import com.zhiyangstudio.sdklibrary.CommonConst;
-import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
-import com.zhiyangstudio.sdklibrary.common.corel.BaseInternalHandler;
-import com.zhiyangstudio.sdklibrary.common.utils.EmptyUtils;
-import com.zhiyangstudio.sdklibrary.common.utils.GsonUtils;
-import com.zhiyangstudio.sdklibrary.common.utils.InternalUtils;
-import com.zhiyangstudio.sdklibrary.common.utils.ThreadUtils;
-import com.zhiyangstudio.sdklibrary.components.receiver.HotSpotBroadcastReceiver;
-import com.zhiyangstudio.sdklibrary.utils.LogListener;
-import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.CommonConst;
+import com.zhiyangstudio.commonlib.components.receiver.HotSpotBroadcastReceiver;
+import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
+import com.zhiyangstudio.commonlib.utils.EmptyUtils;
+import com.zhiyangstudio.commonlib.utils.GsonUtils;
+import com.zhiyangstudio.commonlib.utils.LogListener;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.utils.ThreadUtils;
+import com.zhiyangstudio.commonlib.utils.WifiUtils;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -328,7 +327,7 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
 
         // TODO: 2018/4/6 获取热点的ip地址，如果获取的是0.0.0.0并且未到达最大尝试次数，就尝试再次获取
         while (localIp.equals(Const.DEFAULT_UNKNOW_IP) && tryCount > Const.DEFAULT_TRY_COUNT) {
-            InternalUtils.doSleep(1000);
+            ThreadUtils.doSleep(1000);
             localIp = ApManager.getHotspotLocalIpAddress();
             tryCount++;
         }
@@ -400,7 +399,7 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
      */
     private void initSenderServer() {
         mSenderServerTask = new SenderServerTask();
-        ThreadUtils.execute(mSenderServerTask);
+        ThreadUtils.executeBySingleThread(mSenderServerTask);
     }
 
     /**

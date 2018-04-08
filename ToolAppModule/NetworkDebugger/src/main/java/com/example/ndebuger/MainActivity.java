@@ -23,8 +23,8 @@ import com.example.ndebuger.common.GlobalConst;
 import com.example.ndebuger.common.OnMsgSendComplete;
 import com.example.ndebuger.common.RoleType;
 import com.example.ndebuger.manager.RemoteConnManager;
-import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
-import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

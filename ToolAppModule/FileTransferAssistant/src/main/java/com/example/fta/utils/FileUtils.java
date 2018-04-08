@@ -1,7 +1,7 @@
 package com.example.fta.utils;
 
 import com.example.fta.Const;
-import com.zhiyangstudio.sdklibrary.common.utils.EmptyUtils;
+import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

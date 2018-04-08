@@ -1,6 +1,7 @@
 package com.example.fta;
 
-import com.zhiyangstudio.sdklibrary.utils.LogListener;
+
+import com.zhiyangstudio.commonlib.utils.LogListener;
 
 /**
  * Created by zzg on 2018/4/7.

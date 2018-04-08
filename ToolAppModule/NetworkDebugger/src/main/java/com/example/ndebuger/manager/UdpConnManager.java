@@ -5,8 +5,8 @@ import android.os.Handler;
 import android.text.TextUtils;
 
 import com.example.ndebuger.common.OnMsgSendComplete;
-import com.zhiyangstudio.sdklibrary.utils.LogListener;
-import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.utils.LogListener;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

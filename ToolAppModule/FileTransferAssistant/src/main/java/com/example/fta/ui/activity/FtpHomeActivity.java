@@ -12,9 +12,9 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.fta.Const;
 import com.example.fta.R;
 import com.example.fta.bean.FtpFileBean;
-import com.zhiyangstudio.sdklibrary.common.utils.CommonUtils;
-import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
-import com.zhiyangstudio.sdklibrary.utils.UiUtils;
+import com.zhiyangstudio.commonlib.utils.CommonUtils;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.ftpserver.ftplet.FtpException;

@@ -1,5 +1,7 @@
 package com.example.fta;
 
+import com.zhiyangstudio.commonlib.utils.WifiUtils;
+
 /**
  * Created by zzg on 2018/4/6.
  */

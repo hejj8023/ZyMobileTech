@@ -12,7 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.fta.R;
 import com.example.fta.bean.FtpFileBean;
-import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
 import java.io.Serializable;
 import java.util.LinkedList;

@@ -10,9 +10,9 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
-import com.zhiyangstudio.sdklibrary.glide.GlideUtils;
-import com.zhiyangstudio.sdklibrary.utils.BitmapUtils;
+import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zhiyangstudio.commonlib.glide.GlideUtils;
+import com.zhiyangstudio.commonlib.utils.BitmapUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

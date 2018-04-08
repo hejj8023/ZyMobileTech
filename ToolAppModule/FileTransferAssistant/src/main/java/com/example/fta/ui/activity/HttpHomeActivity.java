@@ -1,7 +1,7 @@
 package com.example.fta.ui.activity;
 
 import com.example.fta.R;
-import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
+import com.zhiyangstudio.commonlib.corel.BaseActivity;
 
 /**
  * Created by zzg on 2018/4/7.
