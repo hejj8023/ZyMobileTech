@@ -1,5 +1,6 @@
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
-
+//include ':ZySdkLib'
+//project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 loadLibs()
 //loadAppModule()
 //loadComponentLenarnModule()

@@ -37,19 +37,20 @@
     
 ###  在项目目录 build   uploadArchives执行做任务生成aar
 ###  使用git将aar提交到远程仓库
-   git add -A / git add .
-   git commit -m "aaa"
-   git push
+       git add -A / git add .
+       git commit -m "aaa"
+       git push
 
 ### 3.使用,在需要使用的藏在的project build.gradle,通过
     maven { url "https://raw.githubusercontent.com/zydeveloperteam/zysdk/master" }
    zydeveloperteam/zysdk为仓库地址
+   
 ### 4. 项目使用(把代理关闭掉):
-   compile 'com.szzynt:common_lib:1.0.0' 
-   分别对应如下
-   PUBLISH_GROUP_ID = 'com.szzynt'
-   PUBLISH_ARTIFACT_ID = 'common_lib'
-   PUBLISH_VERSION = '1.0.0'
+       compile 'com.szzynt:common_lib:1.0.0' 
+       分别对应如下
+       PUBLISH_GROUP_ID = 'com.szzynt'
+       PUBLISH_ARTIFACT_ID = 'common_lib'
+       PUBLISH_VERSION = '1.0.0'
    
 ## 第二种,直接将lib分布
 ### 1. 先将项目分享到github,清除掉app工程,上传到github
@@ -70,3 +71,15 @@
         compile 'com.github.syusikoku:ZYSdk:v1.0.0'
     }
     
+## 注意
+ 有的时候，jitpack发布后，本地aar下载后工程不刷新，需要重新启动软件方可生效
+    
+# 重要说明    
+ 本项目在本地开发避免开两个工程来回修改，setting.gradle中做如下操作:
+  
+      include ':ZySdkLib'
+      project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
+      
+  使用使用的工程中做如下依赖:
+  
+      compile project(':ZySdkLib')    

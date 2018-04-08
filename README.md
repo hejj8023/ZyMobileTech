@@ -101,3 +101,13 @@ https://github.com/googlesamples?language=java
     }                  
     
   不使用common_lib，在线的github组织仓库    
+  
+# 重要说明:
+  本项目在本地开发避免开两个工程来回修改，setting.gradle中做如下操作:
+  
+      include ':ZySdkLib'
+      project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
+      
+  使用使用的工程中做如下依赖:
+  
+      compile project(':ZySdkLib')

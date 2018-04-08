@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_action_open_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="打开wifi" />
+
+            <Button
+                android:id="@+id/btn_action_close_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="关闭wifi" />
+
+            <Button
+                android:id="@+id/btn_action_create_wifi_hotspot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="创建wifi热点" />
+
+            <Button
+                android:id="@+id/btn_action_close_wifi_hotspot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="关闭wifi热点" />
+
+            <Button
+                android:id="@+id/btn_action_scan_av_wifi_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="扫描可用wifi列表" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

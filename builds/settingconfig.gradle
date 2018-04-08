@@ -48,9 +48,9 @@ private void loadToolAppModule() {
     def file = new File("ToolAppModule/")
     include ':ToolAppModule'
     project(":ToolAppModule").projectDir = file
-    include ':ToolAppModule:FileTransferAssistant'
+//    include ':ToolAppModule:FileTransferAssistant'
     include ':ToolAppModule:HardwareAssistant'
-    include ':ToolAppModule:BitmapAssistant'
+//    include ':ToolAppModule:BitmapAssistant'
 //    include ':ToolAppModule:NetworkDebugger'
 }
 
