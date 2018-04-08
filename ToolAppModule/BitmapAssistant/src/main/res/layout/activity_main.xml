@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context="com.example.bmpa.MainActivity">
+    tools:context="com.example.bmpa.PicCropScaleActivity">
 
     <ScrollView
         android:layout_width="match_parent"

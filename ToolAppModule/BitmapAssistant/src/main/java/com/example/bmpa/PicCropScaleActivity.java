@@ -22,7 +22,7 @@ import java.io.IOException;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class PicCropScaleActivity extends BaseActivity {
 
     @BindView(R.id.image_view)
     ImageView imageView;

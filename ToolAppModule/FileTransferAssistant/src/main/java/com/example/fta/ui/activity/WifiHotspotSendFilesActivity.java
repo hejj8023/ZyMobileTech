@@ -1,7 +1,9 @@
 package com.example.fta.ui.activity;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -29,6 +31,7 @@ import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.components.receiver.HotSpotBroadcastReceiver;
 import com.zhiyangstudio.commonlib.corel.BaseActivity;
 import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
+import com.zhiyangstudio.commonlib.utils.CommonUtils;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.GsonUtils;
 import com.zhiyangstudio.commonlib.utils.LogListener;
@@ -263,7 +266,11 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
             }
         } else {
             showTipsDialog("获取权限失败,开启热点", ((dialog, which) -> {
-                finish();
+                Intent intent = new Intent("android.settings.action.MANAGE_WRITE_SETTINGS");
+                intent.setData(Uri.parse("package:" + mContext.getPackageName()));
+                if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }));
         }
     }
@@ -431,13 +438,14 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
         mAppInstance = (FtaApp) FtaApp.getAppInstance();
 
         //请求权限，开启热点
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{CommonConst.ACTION_HOTSPOT_STATE_CHANGED},
-                    PERMISSION_REQ_CREATE_HOTSPOT);
-
-        } else {
-            // TODO: 2018/4/6 高版本需要权限，低版本不需要权限
-            mIsPermissionGranted = true;
+        if (CommonUtils.canWriteOsSetting(this)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{CommonConst.PERMISSION_CREATE_HOTSPOT},
+                        PERMISSION_REQ_CREATE_HOTSPOT);
+            } else {
+                // TODO: 2018/4/6 高版本需要权限，低版本不需要权限
+                mIsPermissionGranted = true;
+            }
         }
     }
 

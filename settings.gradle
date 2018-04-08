@@ -1,4 +1,3 @@
-include ':TestApp'
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
 
 loadLibs()

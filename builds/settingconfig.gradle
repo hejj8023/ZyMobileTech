@@ -49,8 +49,9 @@ private void loadToolAppModule() {
     include ':ToolAppModule'
     project(":ToolAppModule").projectDir = file
     include ':ToolAppModule:FileTransferAssistant'
+    include ':ToolAppModule:HardwareAssistant'
     include ':ToolAppModule:BitmapAssistant'
-    include ':ToolAppModule:NetworkDebugger'
+//    include ':ToolAppModule:NetworkDebugger'
 }
 
 private void loadDatasturectureModules() {
@@ -131,6 +132,7 @@ private void loadKotlinModules() {
 //    include ':KotlinAppModules:HelloKt'
     include ':KotlinAppModules:Fasthub'
 }
+
 private void loadGithubLibs() {
     println "loadGithubLibs"
 
