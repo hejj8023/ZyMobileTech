@@ -3,8 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
 
-
-
     defaultConfig {
         applicationId "com.example.hwa"
         minSdkVersion 15
@@ -41,9 +39,12 @@ dependencies {
     compile rootProject.ext.ext_tools.logger
     implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
     implementation rootProject.ext.ext_tools.ringprogressbar
-//    compile 'com.github.syusikoku:ZYSdk:v1.0.7'
-    compile project(':ZySdkLib')
-    /*butternife*/
+    if (gradle.ext.hasUseLocalSdk == true) {
+        compile project(':ZySdkLib')
+    } else {
+        compile 'com.github.syusikoku:ZYSdk:v1.0.7'
+    }
+    /*glide*/
     implementation rootProject.ext.ext_tools.glide
     annotationProcessor rootProject.ext.ext_tools.glide_compiler
 }

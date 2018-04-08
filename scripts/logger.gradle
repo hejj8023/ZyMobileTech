@@ -1,0 +1,7 @@
+def printlnx(def msg) {
+    println(msg)
+}
+
+ext {
+    printlnx = this.&printlnx
+}

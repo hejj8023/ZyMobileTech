@@ -1,0 +1,15 @@
+apply from: getRootDir().getAbsolutePath() + "/scripts/logger.gradle"
+
+def String getLocalProperties(def propFile, def pKey) {
+    printlnx("需要获取的key:${pKey}")
+    def properties = new Properties()
+    def file = new File(rootDir.getAbsolutePath(), propFile)
+    properties.load(file.newDataInputStream())
+    def sValue = properties.getProperty(pKey)
+    printlnx "sValue =$sValue"
+    return sValue
+}
+
+ext {
+    getLocalProperties = this.&getLocalProperties
+}
