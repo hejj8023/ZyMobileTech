@@ -22,10 +22,10 @@ public class MyEditText extends EditText {
     @Override
     public boolean onTouchEvent(MotionEvent evt) {
         switch (evt.getAction()) {
-        case MotionEvent.ACTION_MOVE:
-        // 通知其父控件，现在进行的是本控件的操作，不允许拦截    
-                  getParent().requestDisallowInterceptTouchEvent(true);
-            break;
+            case MotionEvent.ACTION_MOVE:
+                // 通知其父控件，现在进行的是本控件的操作，不允许拦截
+                getParent().requestDisallowInterceptTouchEvent(true);
+                break;
         }
         return super.onTouchEvent(evt);
     }

@@ -66,6 +66,7 @@ public class CommonConnManager {
     protected void notifyUIByWaitConnUdpServer() {
         mH.sendEmptyMessage(GlobalConst.UPDATE_WAIT_CONNECT_UDP_SERVER);
     }
+
     protected void notifyUIByWaitConnUdpClient() {
         mH.sendEmptyMessage(GlobalConst.UPDATE_WAIT_CONNECT_UDP_CLIENT);
     }

@@ -55,7 +55,7 @@ dependencies {
     implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
     implementation rootProject.ext.ext_tools.ringprogressbar
 
-    compile 'com.github.syusikoku:ZYSdk:v1.0.0'
+    compile 'com.github.syusikoku:ZYSdk:v1.0.3'
 
     implementation rootProject.ext.ext_tools.glide
     annotationProcessor rootProject.ext.ext_tools.glide_compiler

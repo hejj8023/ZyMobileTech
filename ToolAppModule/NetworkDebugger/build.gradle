@@ -43,5 +43,5 @@ dependencies {
 
     compile rootProject.ext.ext_tools.logger
 
-    compile 'com.github.syusikoku:ZYSdk:v1.0.0'
+    compile 'com.github.syusikoku:ZYSdk:v1.0.3'
 }

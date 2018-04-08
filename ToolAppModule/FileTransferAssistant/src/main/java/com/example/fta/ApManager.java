@@ -1,11 +1,5 @@
 package com.example.fta;
 
-import android.content.Context;
-import android.net.DhcpInfo;
-import android.net.wifi.WifiManager;
-
-import com.zhiyangstudio.sdklibrary.common.utils.InternalUtils;
-
 /**
  * Created by zzg on 2018/4/6.
  */
@@ -24,10 +18,10 @@ public class ApManager {
     }
 
     public static void closeAp() {
-         WifiUtils.closeAp();
+        WifiUtils.closeAp();
     }
 
     public static boolean openAp(String ssidStr, String pwdStr) {
-        return WifiUtils.openAp(ssidStr,pwdStr);
+        return WifiUtils.openAp(ssidStr, pwdStr);
     }
 }

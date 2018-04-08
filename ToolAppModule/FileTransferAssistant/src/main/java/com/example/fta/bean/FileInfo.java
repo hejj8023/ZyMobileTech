@@ -1,7 +1,6 @@
 package com.example.fta.bean;
 
 import com.google.gson.reflect.TypeToken;
-
 import com.zhiyangstudio.sdklibrary.common.utils.GsonUtils;
 
 import java.io.Serializable;
@@ -62,6 +61,23 @@ public class FileInfo implements Serializable {
         position = pPosition;
     }
 
+    public static String toJsonStr(FileInfo fileInfo) {
+        return GsonUtils.toJsonStr(fileInfo);
+    }
+
+    public static String toJsonStr(List<FileInfo> fileInfoList) {
+        return GsonUtils.toJsonStr(fileInfoList);
+    }
+
+    public static FileInfo toObject(String jsonStr) {
+        return GsonUtils.toObject(jsonStr, FileInfo.class);
+    }
+
+    public static List<FileInfo> toObjectList(String jsonStr) {
+        return GsonUtils.toObjectList(jsonStr, new TypeToken<List<FileInfo>>() {
+        });
+    }
+
     public String getFilePath() {
         return filePath;
     }
@@ -117,24 +133,6 @@ public class FileInfo implements Serializable {
     public void setPosition(int pPosition) {
         position = pPosition;
     }
-
-    public static String toJsonStr(FileInfo fileInfo) {
-        return GsonUtils.toJsonStr(fileInfo);
-    }
-
-    public static String toJsonStr(List<FileInfo> fileInfoList) {
-        return GsonUtils.toJsonStr(fileInfoList);
-    }
-
-    public static FileInfo toObject(String jsonStr) {
-        return GsonUtils.toObject(jsonStr, FileInfo.class);
-    }
-
-    public static List<FileInfo> toObjectList(String jsonStr) {
-        return GsonUtils.toObjectList(jsonStr, new TypeToken<List<FileInfo>>() {
-        });
-    }
-
 
     @Override
     public String toString() {

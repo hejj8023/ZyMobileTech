@@ -112,6 +112,10 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
         });
     }
 
+    public void closeClient() {
+        closeTcpSocket(clientSocket);
+    }
+
     private void closeTcpSocket(Socket socket) {
         // 状态发生改变，断开连接
         if (socket != null && socket.isConnected()) {
@@ -121,10 +125,6 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void closeClient() {
-        closeTcpSocket(clientSocket);
     }
 
     public void closeServer() {
@@ -147,6 +147,30 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
      */
     public void sendMsgToTcpServer(String str, OnMsgSendComplete listener) {
         sendMsg(clientSocket, str, listener);
+    }
+
+    /**
+     * 发送消息
+     */
+    private void sendMsg(Socket socket, String str, OnMsgSendComplete listener) {
+        threadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                // TODO: 2018/3/17 发送测试消息给服务器
+                try {
+                    OutputStream outputStream = socket.getOutputStream();
+                    String msgStr = str + "\n";
+                    outputStream.write(msgStr.getBytes("utf-8"));
+                    outputStream.flush();
+                    notifyUIByMsgSend(msgStr);
+                    if (listener != null) {
+                        listener.sucess();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     /**
@@ -216,30 +240,6 @@ public class TcpConnManager extends CommonConnManager implements LogListener {
                 } catch (IOException e) {
                     e.printStackTrace();
                     notifyUIByError();
-                }
-            }
-        });
-    }
-
-    /**
-     * 发送消息
-     */
-    private void sendMsg(Socket socket, String str, OnMsgSendComplete listener) {
-        threadPool.execute(new Runnable() {
-            @Override
-            public void run() {
-                // TODO: 2018/3/17 发送测试消息给服务器
-                try {
-                    OutputStream outputStream = socket.getOutputStream();
-                    String msgStr = str + "\n";
-                    outputStream.write(msgStr.getBytes("utf-8"));
-                    outputStream.flush();
-                    notifyUIByMsgSend(msgStr);
-                    if (listener != null) {
-                        listener.sucess();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
         });

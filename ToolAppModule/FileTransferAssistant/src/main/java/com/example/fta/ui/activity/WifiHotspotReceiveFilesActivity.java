@@ -40,7 +40,6 @@ import com.zhiyangstudio.sdklibrary.common.utils.EmptyUtils;
 import com.zhiyangstudio.sdklibrary.common.utils.InternalUtils;
 import com.zhiyangstudio.sdklibrary.common.utils.ThreadUtils;
 import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
-import com.zhiyangstudio.sdklibrary.utils.UiUtils;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -93,50 +92,40 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
      * 设置当前状态
      */
     public static final int MSG_SET_STATUS = 0x666;
-
-    private FtaApp mAppInstance;
-    private boolean mIsPermissionGranted;
     /**
      * WiFi热点连接和创建权限请求码
      */
     protected static final int PERMISSION_REQ_CONNECT_WIFI = 3020;
-
+    @BindView(R.id.tv_receive_files_status)
+    TextView tvStatus;
+    @BindView(R.id.rv_receive_files_choose_hotspot)
+    RecyclerView rvChooseHotspot;
+    @BindView(R.id.rv_receive_files)
+    RecyclerView rvReceiveFiles;
+    @BindView(R.id.btn_receive_files)
+    Button btnSendFileList;
+    private FtaApp mAppInstance;
+    private boolean mIsPermissionGranted;
     /**
      * 用来接收文件的Socket
      */
     private Socket mClientSocket;
-
     /**
      * UDP Socket
      */
     private DatagramSocket mDatagramSocket;
-
     /**
      * 选中待发送的文件列表
      */
     private List<FileInfo> mSendFileInfos = new ArrayList<>();
-
     /**
      * 接收文件线程列表数据
      */
     private List<FileReceiver> mFileReceiverList = new ArrayList<>();
-
     /**
      * 扫描到的可用WiFi列表
      */
     private List<ScanResult> mScanResults = new ArrayList<>();
-
-    @BindView(R.id.tv_receive_files_status)
-    TextView tvStatus;
-
-    @BindView(R.id.rv_receive_files_choose_hotspot)
-    RecyclerView rvChooseHotspot;
-
-    @BindView(R.id.rv_receive_files)
-    RecyclerView rvReceiveFiles;
-
-    @BindView(R.id.btn_receive_files)
-    Button btnSendFileList;
     /**
      * 当前所选wifi的SSID
      */
@@ -171,6 +160,62 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
                     sendFile50FileSender();
                     break;
             }
+        }
+    };
+    private BaseQuickAdapter<ScanResult, BaseViewHolder> mChooseHotspotAdapter;
+    /**
+     * wifi状态变换广播
+     */
+    private WifiBroadcastReceiver mWifiReceiver = new WifiBroadcastReceiver() {
+        @Override
+        protected void onWifiEnabled() {
+            LoggerUtils.loge(this, "onWifiEnabled");
+            // Wifi已开启，开始扫描可用wifi
+            setStaus("正在扫描可用Wifi...");
+            WifiUtils.startScan();
+        }
+
+        @Override
+        protected void onWifiDisabled() {
+            LoggerUtils.loge(this, "onWifiDisabled");
+            // wifi已关闭，清除可用wifi列表
+            mSelectedSSID = "";
+            mScanResults.clear();
+            setupWifiAdapter();
+        }
+
+        @Override
+        protected void onScanResultsAvaliable(List<ScanResult> list) {
+            LoggerUtils.loge(this, "onScanResultsAvaliable");
+            // 扫描周围可用wifi成功，设置可用wifi列表
+            mScanResults.clear();
+            mScanResults.addAll(list);
+            setupWifiAdapter();
+        }
+
+        @Override
+        protected void onWifiConnected(String ssid) {
+            LoggerUtils.loge(this, "onWifiConnected");
+
+            // 判断指定wifi是否连接成功
+            if (ssid.equalsIgnoreCase(mSelectedSSID) && !mIsSendInitOrder) {
+                // 连接成功
+                setStaus("wifi连接成功...");
+                // 显示发送列表，隐藏wifi选择列表
+                rvChooseHotspot.setVisibility(View.GONE);
+                rvReceiveFiles.setVisibility(View.VISIBLE);
+
+                // 告知发送端，接收端初始化完毕
+                mH.sendEmptyMessage(MSG_FILE_RECEIVER_INIT_SUCCESS);
+                mIsSendInitOrder = true;
+            } else {
+
+            }
+        }
+
+        @Override
+        protected void onWifiDisconnected() {
+            LoggerUtils.loge(this, "onWifiDisconnected");
         }
     };
 
@@ -228,65 +273,6 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
                 }
             }
         });
-    }
-
-    /**
-     * 设置接收文件列表适配器
-     */
-    private void setupReceiveFilesAdapter() {
-        List<Map.Entry<String, FileInfo>> fileInfoList = mAppInstance
-                .getReceiverFileInfoMap();
-        Collections.sort(fileInfoList, Const.DEFAULT_COMPARATOR);
-        // 设置适配器
-        if (mReceiveFilesAdapter == null) {
-            mReceiveFilesAdapter = new BaseQuickAdapter<Map.Entry<String, FileInfo>,
-                    BaseViewHolder>(R.layout.item_files_selector, fileInfoList) {
-                @Override
-                protected void convert(BaseViewHolder holder, Map.Entry<String, FileInfo> item) {
-                    final FileInfo fileInfo = item.getValue();
-                    //文件路径
-                    holder.setText(R.id.tv_item_files_selector_file_path, fileInfo.getFilePath());
-                    //文件大小
-                    holder.setText(R.id.tv_item_files_selector_size, FileUtils.formatFileSize
-                            (fileInfo.getSize()));
-                    //文件接收状态
-                    if (fileInfo.getProgress() >= 100) {
-                        holder.setText(R.id.tv_item_files_selector_status, "接收完毕");
-                    } else if (fileInfo.getProgress() == 0) {
-                        holder.setText(R.id.tv_item_files_selector_status, "准备接收");
-                    } else if (fileInfo.getProgress() < 100) {
-                        holder.setText(R.id.tv_item_files_selector_status, "正在接收");
-                    } else {
-                        holder.setText(R.id.tv_item_files_selector_status, "接收失败");
-                    }
-                    //文件接收进度
-                    ProgressBar progressBar = holder.getView(R.id.pb_item_files_selector);
-                    progressBar.setProgress(fileInfo.getProgress());
-
-                    //选中文件
-                    CheckBox checkBox = holder.getView(R.id.cb_item_files_selector);
-                    checkBox.setOnCheckedChangeListener(new CompoundButton
-                            .OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            if (isChecked) {
-                                mSendFileInfos.add(fileInfo);
-                            } else {
-                                mSendFileInfos.remove(fileInfo);
-                            }
-                            //选中的文件个数大于零才可点击底部按钮
-                            btnSendFileList.setEnabled(mSendFileInfos.size() > 0);
-                        }
-                    });
-                }
-            };
-            rvReceiveFiles.setAdapter(mReceiveFilesAdapter);
-            rvReceiveFiles.setLayoutManager(new LinearLayoutManager(mContext));
-            rvReceiveFiles.addItemDecoration(new DividerItemDecoration(mContext,
-                    LinearLayoutManager.VERTICAL));
-        } else {
-            mReceiveFilesAdapter.notifyDataSetChanged();
-        }
     }
 
     /**
@@ -376,64 +362,6 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
     }
 
     /**
-     * wifi状态变换广播
-     */
-    private WifiBroadcastReceiver mWifiReceiver = new WifiBroadcastReceiver() {
-        @Override
-        protected void onWifiDisconnected() {
-            LoggerUtils.loge(this, "onWifiDisconnected");
-        }
-
-        @Override
-        protected void onWifiConnected(String ssid) {
-            LoggerUtils.loge(this, "onWifiConnected");
-
-            // 判断指定wifi是否连接成功
-            if (ssid.equalsIgnoreCase(mSelectedSSID) && !mIsSendInitOrder) {
-                // 连接成功
-                setStaus("wifi连接成功...");
-                // 显示发送列表，隐藏wifi选择列表
-                rvChooseHotspot.setVisibility(View.GONE);
-                rvReceiveFiles.setVisibility(View.VISIBLE);
-
-                // 告知发送端，接收端初始化完毕
-                mH.sendEmptyMessage(MSG_FILE_RECEIVER_INIT_SUCCESS);
-                mIsSendInitOrder = true;
-            } else {
-
-            }
-        }
-
-        @Override
-        protected void onScanResultsAvaliable(List<ScanResult> list) {
-            LoggerUtils.loge(this, "onScanResultsAvaliable");
-            // 扫描周围可用wifi成功，设置可用wifi列表
-            mScanResults.clear();
-            mScanResults.addAll(list);
-            setupWifiAdapter();
-        }
-
-        @Override
-        protected void onWifiDisabled() {
-            LoggerUtils.loge(this, "onWifiDisabled");
-            // wifi已关闭，清除可用wifi列表
-            mSelectedSSID = "";
-            mScanResults.clear();
-            setupWifiAdapter();
-        }
-
-        @Override
-        protected void onWifiEnabled() {
-            LoggerUtils.loge(this, "onWifiEnabled");
-            // Wifi已开启，开始扫描可用wifi
-            setStaus("正在扫描可用Wifi...");
-            WifiUtils.startScan();
-        }
-    };
-
-    private BaseQuickAdapter<ScanResult, BaseViewHolder> mChooseHotspotAdapter;
-
-    /**
      * 设置Wifi列表适配器
      */
     private void setupWifiAdapter() {
@@ -490,29 +418,6 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (mIsPermissionGranted && mWifiReceiver == null) {
-            registerWifiReceiver();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mWifiReceiver != null) {
-            unRegisterWifiReceiver();
-        }
-    }
-
-    private void unRegisterWifiReceiver() {
-        if (mWifiReceiver != null) {
-            unregisterReceiver(mWifiReceiver);
-            mWifiReceiver = null;
-        }
-    }
-
-    @Override
     protected PermissionListener getPermissonCallBack() {
         return null;
     }
@@ -551,11 +456,47 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mIsPermissionGranted && mWifiReceiver == null) {
+            registerWifiReceiver();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mWifiReceiver != null) {
+            unRegisterWifiReceiver();
+        }
+    }
+
+    private void unRegisterWifiReceiver() {
+        if (mWifiReceiver != null) {
+            unregisterReceiver(mWifiReceiver);
+            mWifiReceiver = null;
+        }
+    }
+
     /**
-     * 设置状态
+     * 权限是否都已授权
      */
-    private void setStaus(String msg) {
-        tvStatus.append(msg + "\n");
+    private boolean verifyPermission(String[] permissions, int[] grantResults) {
+        boolean hasAllPermissionAllow = true;
+        if (permissions.length == grantResults.length) {
+            for (int i = 0; i < grantResults.length; i++) {
+                int grantResult = grantResults[i];
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    LoggerUtils.loge(this, permissions[i] + ",权限拒绝了");
+                    // 只要有一个没有允许就是未全部授权
+                    hasAllPermissionAllow = false;
+                } else {
+                    LoggerUtils.loge(this, permissions[i] + ",权限允许了");
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -568,6 +509,22 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
         intentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
 
         registerReceiver(mWifiReceiver, intentFilter);
+    }
+
+    /**
+     * 设置状态
+     */
+    private void setStaus(String msg) {
+        tvStatus.append(msg + "\n");
+    }
+
+    /**
+     * 启动当前应用设置页面
+     */
+    private void startAppSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.parse("package:" + getPackageName()));
+        startActivity(intent);
     }
 
     @Override
@@ -615,17 +572,11 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
         finish();
     }
 
-    /**
-     * 断开接收文件的Socket
-     */
-    private void closeClientSocket() {
-        if (mClientSocket != null) {
-            try {
-                mClientSocket.close();
-                mClientSocket = null;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    private void closeUDPSocket() {
+        if (mDatagramSocket != null) {
+            mDatagramSocket.disconnect();
+            mDatagramSocket.close();
+            mDatagramSocket = null;
         }
     }
 
@@ -640,41 +591,18 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
         }
     }
 
-    private void closeUDPSocket() {
-        if (mDatagramSocket != null) {
-            mDatagramSocket.disconnect();
-            mDatagramSocket.close();
-            mDatagramSocket = null;
-        }
-    }
-
     /**
-     * 启动当前应用设置页面
+     * 断开接收文件的Socket
      */
-    private void startAppSettings() {
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.setData(Uri.parse("package:" + getPackageName()));
-        startActivity(intent);
-    }
-
-    /**
-     * 权限是否都已授权
-     */
-    private boolean verifyPermission(String[] permissions, int[] grantResults) {
-        boolean hasAllPermissionAllow = true;
-        if (permissions.length == grantResults.length) {
-            for (int i = 0; i < grantResults.length; i++) {
-                int grantResult = grantResults[i];
-                if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                    LoggerUtils.loge(this, permissions[i] + ",权限拒绝了");
-                    // 只要有一个没有允许就是未全部授权
-                    hasAllPermissionAllow = false;
-                } else {
-                    LoggerUtils.loge(this, permissions[i] + ",权限允许了");
-                }
+    private void closeClientSocket() {
+        if (mClientSocket != null) {
+            try {
+                mClientSocket.close();
+                mClientSocket = null;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        return false;
     }
 
     @OnClick({R.id.btn_receive_files})
@@ -691,6 +619,65 @@ public class WifiHotspotReceiveFilesActivity extends BaseActivity {
                 setupReceiveFilesAdapter();
                 initReceiverServer();
                 break;
+        }
+    }
+
+    /**
+     * 设置接收文件列表适配器
+     */
+    private void setupReceiveFilesAdapter() {
+        List<Map.Entry<String, FileInfo>> fileInfoList = mAppInstance
+                .getReceiverFileInfoMap();
+        Collections.sort(fileInfoList, Const.DEFAULT_COMPARATOR);
+        // 设置适配器
+        if (mReceiveFilesAdapter == null) {
+            mReceiveFilesAdapter = new BaseQuickAdapter<Map.Entry<String, FileInfo>,
+                    BaseViewHolder>(R.layout.item_files_selector, fileInfoList) {
+                @Override
+                protected void convert(BaseViewHolder holder, Map.Entry<String, FileInfo> item) {
+                    final FileInfo fileInfo = item.getValue();
+                    //文件路径
+                    holder.setText(R.id.tv_item_files_selector_file_path, fileInfo.getFilePath());
+                    //文件大小
+                    holder.setText(R.id.tv_item_files_selector_size, FileUtils.formatFileSize
+                            (fileInfo.getSize()));
+                    //文件接收状态
+                    if (fileInfo.getProgress() >= 100) {
+                        holder.setText(R.id.tv_item_files_selector_status, "接收完毕");
+                    } else if (fileInfo.getProgress() == 0) {
+                        holder.setText(R.id.tv_item_files_selector_status, "准备接收");
+                    } else if (fileInfo.getProgress() < 100) {
+                        holder.setText(R.id.tv_item_files_selector_status, "正在接收");
+                    } else {
+                        holder.setText(R.id.tv_item_files_selector_status, "接收失败");
+                    }
+                    //文件接收进度
+                    ProgressBar progressBar = holder.getView(R.id.pb_item_files_selector);
+                    progressBar.setProgress(fileInfo.getProgress());
+
+                    //选中文件
+                    CheckBox checkBox = holder.getView(R.id.cb_item_files_selector);
+                    checkBox.setOnCheckedChangeListener(new CompoundButton
+                            .OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            if (isChecked) {
+                                mSendFileInfos.add(fileInfo);
+                            } else {
+                                mSendFileInfos.remove(fileInfo);
+                            }
+                            //选中的文件个数大于零才可点击底部按钮
+                            btnSendFileList.setEnabled(mSendFileInfos.size() > 0);
+                        }
+                    });
+                }
+            };
+            rvReceiveFiles.setAdapter(mReceiveFilesAdapter);
+            rvReceiveFiles.setLayoutManager(new LinearLayoutManager(mContext));
+            rvReceiveFiles.addItemDecoration(new DividerItemDecoration(mContext,
+                    LinearLayoutManager.VERTICAL));
+        } else {
+            mReceiveFilesAdapter.notifyDataSetChanged();
         }
     }
 

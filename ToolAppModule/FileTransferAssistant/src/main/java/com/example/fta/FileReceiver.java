@@ -1,6 +1,5 @@
 package com.example.fta;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.example.fta.bean.FileInfo;
 import com.example.fta.utils.FileUtils;
 import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
@@ -16,23 +15,22 @@ import java.net.Socket;
  */
 
 public class FileReceiver extends BaseTransfer {
+    /**
+     * 用来控制线程暂停、恢复
+     */
+    private final Object LOCK = new Object();
     private Socket mSocket;
     private FileInfo mFileInfo;
     /**
      * 该线程是否执行完毕
      */
     private boolean mIsFinish;
-
     /**
      * 设置未执行线程的不执行标识
      */
     private boolean mIsStop;
     private OnReceiveListener mOnReceiveListener;
     private InputStream mInputStream;
-    /**
-     * 用来控制线程暂停、恢复
-     */
-    private final Object LOCK = new Object();
     private boolean mIsPaused = false;
 
     public FileReceiver(Socket socket, FileInfo fileInfo) {
@@ -45,6 +43,47 @@ public class FileReceiver extends BaseTransfer {
      */
     public void setOnReceiveListener(OnReceiveListener onReceiveListener) {
         mOnReceiveListener = onReceiveListener;
+    }
+
+    @Override
+    public void run() {
+        if (mIsStop) {
+            return;
+        }
+
+        // 初始化
+        try {
+            if (mOnReceiveListener != null) {
+                mOnReceiveListener.onStart();
+            }
+            init();
+        } catch (Exception e) {
+            e.printStackTrace();
+            LoggerUtils.loge(this, "FileReceiver init() ------->>> occur expection");
+            if (mOnReceiveListener != null) {
+                mOnReceiveListener.onFailure(e, mFileInfo);
+            }
+        }
+        //发送文件实体数据
+        try {
+            parseBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+            LoggerUtils.loge(this, "FileReceiver parseBody() ------->>> occur expection");
+            if (mOnReceiveListener != null) {
+                mOnReceiveListener.onFailure(e, mFileInfo);
+            }
+        }
+        //文件传输完毕
+        try {
+            finishTransfer();
+        } catch (Exception e) {
+            e.printStackTrace();
+            LoggerUtils.loge(this, "FileReceiver finishTransfer() ------->>> occur expection");
+            if (mOnReceiveListener != null) {
+                mOnReceiveListener.onFailure(e, mFileInfo);
+            }
+        }
     }
 
     @Override
@@ -117,47 +156,6 @@ public class FileReceiver extends BaseTransfer {
                 mSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-        }
-    }
-
-    @Override
-    public void run() {
-        if (mIsStop) {
-            return;
-        }
-
-        // 初始化
-        try {
-            if (mOnReceiveListener != null) {
-                mOnReceiveListener.onStart();
-            }
-            init();
-        } catch (Exception e) {
-            e.printStackTrace();
-            LoggerUtils.loge(this, "FileReceiver init() ------->>> occur expection");
-            if (mOnReceiveListener != null) {
-                mOnReceiveListener.onFailure(e, mFileInfo);
-            }
-        }
-        //发送文件实体数据
-        try {
-            parseBody();
-        } catch (Exception e) {
-            e.printStackTrace();
-            LoggerUtils.loge(this, "FileReceiver parseBody() ------->>> occur expection");
-            if (mOnReceiveListener != null) {
-                mOnReceiveListener.onFailure(e, mFileInfo);
-            }
-        }
-        //文件传输完毕
-        try {
-            finishTransfer();
-        } catch (Exception e) {
-            e.printStackTrace();
-            LoggerUtils.loge(this, "FileReceiver finishTransfer() ------->>> occur expection");
-            if (mOnReceiveListener != null) {
-                mOnReceiveListener.onFailure(e, mFileInfo);
             }
         }
     }

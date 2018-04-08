@@ -5,7 +5,7 @@ import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 
 /**
  * Created by zzg on 2018/4/7.
- *
+ * <p>
  * 技能借鉴于:https://github.com/mayubao/KuaiChuan
  */
 

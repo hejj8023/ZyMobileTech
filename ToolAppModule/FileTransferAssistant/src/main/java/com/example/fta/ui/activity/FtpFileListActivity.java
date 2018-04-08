@@ -49,6 +49,11 @@ public class FtpFileListActivity extends BaseFtpActivity {
     }
 
     @Override
+    protected PermissionListener getPermissonCallBack() {
+        return null;
+    }
+
+    @Override
     protected void initData() {
         Intent intent = getIntent();
         if (intent != null) {
@@ -91,11 +96,6 @@ public class FtpFileListActivity extends BaseFtpActivity {
                 }
             }
         }
-    }
-
-    @Override
-    protected PermissionListener getPermissonCallBack() {
-        return null;
     }
 
     @OnClick({R.id.tv_reback, R.id.tv_confirm})

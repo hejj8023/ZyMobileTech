@@ -10,27 +10,24 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.concurrent.locks.Lock;
 
 /**
  * Created by zzg on 2018/4/7.
  */
 
-public class FileSender extends BaseTransfer{
+public class FileSender extends BaseTransfer {
     private final Socket mSocket;
     private final FileInfo mFileInfo;
-
+    /**
+     * 用来控制线程的暂停和恢复
+     */
+    private final Object LOCK = new Object();
     /**
      * 设置未执行线程的不执行标识
      */
     private boolean mIsStop;
     private OnSendListener mOnSendListener;
     private BufferedOutputStream mOutputStream;
-
-    /**
-     * 用来控制线程的暂停和恢复
-     */
-    private final Object LOCK = new Object();
     private boolean mIsPause;
     /**
      * 该线程是否执行完毕
@@ -100,40 +97,6 @@ public class FileSender extends BaseTransfer{
         mOutputStream = new BufferedOutputStream(os);
     }
 
-    /**
-     * 暂停发送线程
-     */
-    public void pause() {
-        synchronized (LOCK) {
-            mIsPause = true;
-            LOCK.notifyAll();
-        }
-    }
-
-    /**
-     * 恢复发送线程
-     */
-    public void resume() {
-        synchronized (LOCK) {
-            mIsPause = false;
-            LOCK.notifyAll();
-        }
-    }
-
-    /**
-     * 设置当前的发送任务不执行
-     */
-    public void stop() {
-        mIsStop = true;
-    }
-
-    /**
-     * 文件是否在发送中
-     */
-    public boolean isRunning() {
-        return !mIsFinish;
-    }
-
     @Override
     public void parseBody() throws Exception {
         long size = mFileInfo.getSize();
@@ -199,6 +162,40 @@ public class FileSender extends BaseTransfer{
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 暂停发送线程
+     */
+    public void pause() {
+        synchronized (LOCK) {
+            mIsPause = true;
+            LOCK.notifyAll();
+        }
+    }
+
+    /**
+     * 恢复发送线程
+     */
+    public void resume() {
+        synchronized (LOCK) {
+            mIsPause = false;
+            LOCK.notifyAll();
+        }
+    }
+
+    /**
+     * 设置当前的发送任务不执行
+     */
+    public void stop() {
+        mIsStop = true;
+    }
+
+    /**
+     * 文件是否在发送中
+     */
+    public boolean isRunning() {
+        return !mIsFinish;
     }
 
     public interface OnSendListener extends LogListener {

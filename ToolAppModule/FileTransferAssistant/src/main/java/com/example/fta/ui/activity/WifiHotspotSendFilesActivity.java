@@ -15,9 +15,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.blankj.utilcode.util.Utils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.fta.ApManager;
@@ -60,52 +58,40 @@ import butterknife.BindView;
 public class WifiHotspotSendFilesActivity extends BaseActivity {
 
     /**
-     * 创建便携热点权限请求码
-     */
-    protected static final int PERMISSION_REQ_CREATE_HOTSPOT = 3021;
-
-    /**
      * 更新进度条
      */
     public static final int MSG_UPDATE_PROGRESS = 0x661;
-
     /**
      * 更新列表适配器
      */
     public static final int MSG_UPDATE_ADAPTER = 0x662;
-
     /**
      * 接收端初始化成功
      */
     public static final int MSG_FILE_RECEIVER_INIT_SUCCESS = 0x663;
-
     /**
      * 设置当前状态
      */
     public static final int MSG_SET_STATUS = 0x664;
-
+    /**
+     * 创建便携热点权限请求码
+     */
+    protected static final int PERMISSION_REQ_CREATE_HOTSPOT = 3021;
     @BindView(R.id.vs_send_files_open_hotspot)
     ViewStub vsOpenHotspot;
-
+    @BindView(R.id.tv_send_files_status)
+    TextView tvSendStatus;
+    @BindView(R.id.rv_send_files)
+    RecyclerView mRecyclerView;
     private EditText etHotspotSsid;
     private EditText etHotspoPwd;
-
     // 获取创建热点权限成功
     private boolean mIsPermissionGranted;
-
     private HotSpotBroadcastReceiver mHotSpotBroadcastReceiver;
-
     /**
      * 是否初始化成功
      */
     private boolean mIsInitialized;
-
-    @BindView(R.id.tv_send_files_status)
-    TextView tvSendStatus;
-
-    @BindView(R.id.rv_send_files)
-    RecyclerView mRecyclerView;
-
     /**
      * Udp socket
      */
@@ -157,6 +143,10 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
             }
         }
     };
+    /**
+     * 发送端所有待发送的文件列表
+     */
+    private List<FileInfo> mAllFileInfos = new ArrayList<>();
 
     /**
      * 更新进度条
@@ -173,7 +163,6 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
             ToastUtils.showShort("所有文件发送完毕");
         }
     }
-
 
     /**
      * 显示发送文件视图
@@ -220,11 +209,6 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
         };
         mRecyclerView.setAdapter(sendFileAdapter);
     }
-
-    /**
-     * 发送端所有待发送的文件列表
-     */
-    private List<FileInfo> mAllFileInfos = new ArrayList<>();
 
     @Override
     protected int getContentViewId() {
@@ -285,35 +269,6 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void addListener() {
-
-    }
-
-    @Override
-    protected void initData() {
-        mAppInstance = (FtaApp) FtaApp.getAppInstance();
-
-        //请求权限，开启热点
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{CommonConst.ACTION_HOTSPOT_STATE_CHANGED},
-                    PERMISSION_REQ_CREATE_HOTSPOT);
-
-        } else {
-            // TODO: 2018/4/6 高版本需要权限，低版本不需要权限
-            mIsPermissionGranted = true;
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mIsPermissionGranted && mHotSpotBroadcastReceiver == null) {
-            // TODO: 2018/4/6 注册热点广播
-            registerHotSpotReceiver();
-        }
-    }
-
     private void registerHotSpotReceiver() {
         if (mHotSpotBroadcastReceiver == null) {
             mHotSpotBroadcastReceiver = new HotSpotBroadcastReceiver() {
@@ -337,6 +292,13 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
 
         IntentFilter filter = new IntentFilter(CommonConst.ACTION_HOTSPOT_STATE_CHANGED);
         registerReceiver(mHotSpotBroadcastReceiver, filter);
+    }
+
+    /**
+     * 设置状态
+     */
+    private void setStatus(String status) {
+        tvSendStatus.append(status + "\n");
     }
 
     /**
@@ -411,33 +373,6 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
     }
 
     /**
-     * 将字符串解析成FileInfo
-     */
-    private void parseFileInfo(String response) {
-        if (EmptyUtils.isNotEmpty(response)) {
-            List<FileInfo> fileInfos = FileInfo.toObjectList(response);
-            if (EmptyUtils.isNotEmpty(fileInfos)) {
-                for (FileInfo fileInfo : fileInfos) {
-                    if (fileInfo != null && EmptyUtils.isNotEmpty(fileInfo.getFilePath())) {
-                        fileInfo.setPosition(fileInfos.indexOf(fileInfo));
-                        mAppInstance.addSendFileInfo(fileInfo);
-                        mH.sendEmptyMessage(MSG_UPDATE_ADAPTER);
-                    }
-                }
-            }
-        }
-
-    }
-
-    /**
-     * 初始化发送端服务，开始发送文件
-     */
-    private void initSenderServer() {
-        mSenderServerTask = new SenderServerTask();
-        ThreadUtils.execute(mSenderServerTask);
-    }
-
-    /**
      * 通过UDP发送文件列表给接收端
      */
     private void sendFileInfoListToFileReceiverWithUdp(InetAddress pAddress, int pPort) {
@@ -461,10 +396,79 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
     }
 
     /**
-     * 设置状态
+     * 初始化发送端服务，开始发送文件
      */
-    private void setStatus(String status) {
-        tvSendStatus.append(status + "\n");
+    private void initSenderServer() {
+        mSenderServerTask = new SenderServerTask();
+        ThreadUtils.execute(mSenderServerTask);
+    }
+
+    /**
+     * 将字符串解析成FileInfo
+     */
+    private void parseFileInfo(String response) {
+        if (EmptyUtils.isNotEmpty(response)) {
+            List<FileInfo> fileInfos = FileInfo.toObjectList(response);
+            if (EmptyUtils.isNotEmpty(fileInfos)) {
+                for (FileInfo fileInfo : fileInfos) {
+                    if (fileInfo != null && EmptyUtils.isNotEmpty(fileInfo.getFilePath())) {
+                        fileInfo.setPosition(fileInfos.indexOf(fileInfo));
+                        mAppInstance.addSendFileInfo(fileInfo);
+                        mH.sendEmptyMessage(MSG_UPDATE_ADAPTER);
+                    }
+                }
+            }
+        }
+
+    }
+
+    @Override
+    protected void addListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+        mAppInstance = (FtaApp) FtaApp.getAppInstance();
+
+        //请求权限，开启热点
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{CommonConst.ACTION_HOTSPOT_STATE_CHANGED},
+                    PERMISSION_REQ_CREATE_HOTSPOT);
+
+        } else {
+            // TODO: 2018/4/6 高版本需要权限，低版本不需要权限
+            mIsPermissionGranted = true;
+        }
+    }
+
+    @Override
+    protected PermissionListener getPermissonCallBack() {
+        return null;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQ_CREATE_HOTSPOT:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager
+                        .PERMISSION_GRANTED) {
+                    mIsPermissionGranted = true;
+                } else {
+                    mIsPermissionGranted = false;
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mIsPermissionGranted && mHotSpotBroadcastReceiver == null) {
+            // TODO: 2018/4/6 注册热点广播
+            registerHotSpotReceiver();
+        }
     }
 
     @Override
@@ -473,6 +477,13 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
         if (mHotSpotBroadcastReceiver != null) {
             // TODO: 2018/4/6 反注册热点广播
             unregisterHotSpotBroadcastReceiver();
+        }
+    }
+
+    private void unregisterHotSpotBroadcastReceiver() {
+        if (mHotSpotBroadcastReceiver != null) {
+            unregisterReceiver(mHotSpotBroadcastReceiver);
+            mHotSpotBroadcastReceiver = null;
         }
     }
 
@@ -524,17 +535,6 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
     }
 
     /**
-     * 停止所有文件发送任务
-     */
-    private void stopAllFileSendingTask() {
-        for (FileSender fileSender : mFileSenderList) {
-            if (fileSender != null) {
-                fileSender.stop();
-            }
-        }
-    }
-
-    /**
      * 关闭UDP socket
      */
     private void closeUdpSocket() {
@@ -545,30 +545,14 @@ public class WifiHotspotSendFilesActivity extends BaseActivity {
         }
     }
 
-    private void unregisterHotSpotBroadcastReceiver() {
-        if (mHotSpotBroadcastReceiver != null) {
-            unregisterReceiver(mHotSpotBroadcastReceiver);
-            mHotSpotBroadcastReceiver = null;
-        }
-    }
-
-    @Override
-    protected PermissionListener getPermissonCallBack() {
-        return null;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQ_CREATE_HOTSPOT:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager
-                        .PERMISSION_GRANTED) {
-                    mIsPermissionGranted = true;
-                } else {
-                    mIsPermissionGranted = false;
-                }
-                break;
+    /**
+     * 停止所有文件发送任务
+     */
+    private void stopAllFileSendingTask() {
+        for (FileSender fileSender : mFileSenderList) {
+            if (fileSender != null) {
+                fileSender.stop();
+            }
         }
     }
 

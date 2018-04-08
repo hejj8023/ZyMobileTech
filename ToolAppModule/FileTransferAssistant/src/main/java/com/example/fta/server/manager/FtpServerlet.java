@@ -5,7 +5,6 @@ import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
-
 import com.zhiyangstudio.sdklibrary.utils.LogListener;
 import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
 
@@ -43,25 +42,16 @@ import java.util.Map;
  */
 public class FtpServerlet extends DefaultFtplet implements LogListener {
 
-    private FtpServer mFtpServer;
-
-    private int mPort = 2121;
-
-    private String mDirectory = Environment.getExternalStorageDirectory().getPath() + "/FtpFileTest";
-
-    private String mUser = "way";
-
-    private String mPassword = "way";
-
-    private static FtpServerlet mInstance;
-
-    private static final int BYTES_PER_KB = 1024;
-
     public final static int MAX_CONCURRENT_LOGINS = 20;
-
     public final static int MAX_CONCURRENT_LOGINS_PER_IP = 5;
-
+    private static final int BYTES_PER_KB = 1024;
+    private static FtpServerlet mInstance;
     private static int maxRate = 4800000;
+    private FtpServer mFtpServer;
+    private int mPort = 2121;
+    private String mDirectory = Environment.getExternalStorageDirectory().getPath() + "/FtpFileTest";
+    private String mUser = "way";
+    private String mPassword = "way";
 
     private FtpServerlet(String portStr, String nameStr, String pwdStr) {
         mPort = Integer.parseInt(portStr);
@@ -147,27 +137,6 @@ public class FtpServerlet extends DefaultFtplet implements LogListener {
         }
     }
 
-    @Override
-    public FtpletResult onAppendStart(FtpSession session, FtpRequest request)
-            throws FtpException, IOException {
-        LoggerUtils.loge(this, "onAppendStart");
-        return super.onAppendStart(session, request);
-    }
-
-    @Override
-    public FtpletResult onAppendEnd(FtpSession session, FtpRequest request)
-            throws FtpException, IOException {
-        LoggerUtils.loge(this, "onAppendEnd");
-        return super.onAppendEnd(session, request);
-    }
-
-    @Override
-    public FtpletResult onLogin(FtpSession session, FtpRequest request)
-            throws FtpException, IOException {
-        LoggerUtils.loge(this, "onLogin,client ip = " + session.getClientAddress());
-        return super.onLogin(session, request);
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public FtpletResult onConnect(FtpSession session) throws FtpException,
@@ -200,6 +169,13 @@ public class FtpServerlet extends DefaultFtplet implements LogListener {
     }
 
     @Override
+    public FtpletResult onLogin(FtpSession session, FtpRequest request)
+            throws FtpException, IOException {
+        LoggerUtils.loge(this, "onLogin,client ip = " + session.getClientAddress());
+        return super.onLogin(session, request);
+    }
+
+    @Override
     public FtpletResult onUploadStart(FtpSession session, FtpRequest request)
             throws FtpException, IOException {
         LoggerUtils.loge(this, "onUploadStart");
@@ -214,5 +190,19 @@ public class FtpServerlet extends DefaultFtplet implements LogListener {
         File uploadFile = new File(FtpUploadPath);
         uploadFile.delete();
         return super.onUploadEnd(session, request);
+    }
+
+    @Override
+    public FtpletResult onAppendStart(FtpSession session, FtpRequest request)
+            throws FtpException, IOException {
+        LoggerUtils.loge(this, "onAppendStart");
+        return super.onAppendStart(session, request);
+    }
+
+    @Override
+    public FtpletResult onAppendEnd(FtpSession session, FtpRequest request)
+            throws FtpException, IOException {
+        LoggerUtils.loge(this, "onAppendEnd");
+        return super.onAppendEnd(session, request);
     }
 }

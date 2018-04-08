@@ -5,7 +5,6 @@ import com.zhiyangstudio.sdklibrary.common.utils.EmptyUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
@@ -14,16 +13,6 @@ import java.text.DecimalFormat;
  */
 
 public class FileUtils {
-    /**
-     * 根据文件路径获取文件名称
-     */
-    public static String getFileName(String filePath) {
-        if (EmptyUtils.isEmpty(filePath)) {
-            return "";
-        }
-        return filePath.substring(filePath.lastIndexOf(File.separator) + 1);
-    }
-
     /**
      * 生成本地文件路径
      */
@@ -34,6 +23,16 @@ public class FileUtils {
             file.mkdirs();
         }
         return new File(file, fileName);
+    }
+
+    /**
+     * 根据文件路径获取文件名称
+     */
+    public static String getFileName(String filePath) {
+        if (EmptyUtils.isEmpty(filePath)) {
+            return "";
+        }
+        return filePath.substring(filePath.lastIndexOf(File.separator) + 1);
     }
 
     /**

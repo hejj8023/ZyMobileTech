@@ -16,24 +16,21 @@ import java.util.concurrent.Executors;
 
 public class FtaApp extends BaseApp {
     /**
-     * 待发送的文件数据
-     */
-    private Map<String, FileInfo> mSendFileInfoMap = new HashMap<>();
-
-    /**
      * 接收到的文件数据
      */
     public Map<String, FileInfo> mReceivedFileInfoMap = new HashMap<>();
-
     /**
      * 主线程池
      */
     public Executor MAIN_EXECUTOR = Executors.newFixedThreadPool(5);
-
     /**
      * 文件发送端单线程
      */
     public Executor FILE_SENDER_EXECUTOR = Executors.newSingleThreadExecutor();
+    /**
+     * 待发送的文件数据
+     */
+    private Map<String, FileInfo> mSendFileInfoMap = new HashMap<>();
 
 
     /**************************************************************************************

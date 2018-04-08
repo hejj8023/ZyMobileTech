@@ -10,7 +10,6 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.ImageView;
 
-
 import com.zhiyangstudio.sdklibrary.common.corel.BaseActivity;
 import com.zhiyangstudio.sdklibrary.glide.GlideUtils;
 import com.zhiyangstudio.sdklibrary.utils.BitmapUtils;
@@ -25,13 +24,12 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
-    private File firDir;
-
-    private String sourFileName = "test_source.png";
-    private File sourceFile;
-
     @BindView(R.id.image_view)
     ImageView imageView;
+    private File firDir;
+    private String sourFileName = "test_source.png";
+    private File sourceFile;
+    private int sv = 700;
 
     @Override
     protected int getContentViewId() {
@@ -62,8 +60,6 @@ public class MainActivity extends BaseActivity {
     protected PermissionListener getPermissonCallBack() {
         return null;
     }
-
-    private int sv = 700;
 
     @OnClick({R.id.btn_create_bmp, R.id.btn_sobmp_scale_target,
             R.id.btn_sobmp_crop_target, R.id.btn_scbmp_crop_target,
@@ -128,16 +124,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void scaleSourceBitmap() {
-        Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
-        if (bitmap != null) {
-            // 压缩到1920*1080尺寸
-            // 使用1。 bitmapsale, 2。 使用option
-            bitmap = BitmapUtils.scale(bitmap, 1920, 1080);
-            saveFile(bitmap, firDir.getPath(), "test_1920x1080.png");
-        }
-    }
-
     private void createSourceFile() {
         if (sourceFile.exists())
             return;
@@ -172,6 +158,16 @@ public class MainActivity extends BaseActivity {
         textPaint.getTextBounds(mText, 0, mText.length(), bounds);
         canvas.drawText(mText, rect.width() / 2, rect.height() / 2, textPaint);
         saveFile(bitmap, firDir.getAbsolutePath(), sourFileName);
+    }
+
+    private void scaleSourceBitmap() {
+        Bitmap bitmap = BitmapFactory.decodeFile(sourceFile.getAbsolutePath());
+        if (bitmap != null) {
+            // 压缩到1920*1080尺寸
+            // 使用1。 bitmapsale, 2。 使用option
+            bitmap = BitmapUtils.scale(bitmap, 1920, 1080);
+            saveFile(bitmap, firDir.getPath(), "test_1920x1080.png");
+        }
     }
 
     private void saveFile(Bitmap bitmap, String fileDir, String fileName) {

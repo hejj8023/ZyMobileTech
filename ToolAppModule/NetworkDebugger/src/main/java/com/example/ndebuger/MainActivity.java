@@ -135,6 +135,7 @@ public class MainActivity extends BaseActivity {
         }
 
     });
+    private RemoteConnManager connManager;
 
     private void enAllComponents() {
         btnDiscAll.setEnabled(true);
@@ -142,8 +143,6 @@ public class MainActivity extends BaseActivity {
         btnTest.setEnabled(true);
         btnSendMsg.setEnabled(true);
     }
-
-    private RemoteConnManager connManager;
 
     @Override
     protected int getContentViewId() {
@@ -210,6 +209,18 @@ public class MainActivity extends BaseActivity {
         svConnList.setOnTouchListener(getSVOnTouchListener("触摸了连接列表的ScrollView"));
     }
 
+    /**
+     * view状态还原
+     */
+    public void restoreAllComponents() {
+        tvRec.setText("");
+        tvSend.setText("");
+        btnConnectServer.setEnabled(false);
+        btnDiscAll.setEnabled(false);
+        btnDisCurrent.setEnabled(false);
+        btnTest.setEnabled(false);
+    }
+
     @NonNull
     private View.OnTouchListener getSVOnTouchListener(String msg) {
         return (v, event) -> {
@@ -221,7 +232,6 @@ public class MainActivity extends BaseActivity {
             return false;
         };
     }
-
 
     @Override
     protected void addListener() {
@@ -298,6 +308,45 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 执行连接服务器操作
+     */
+    private void doConnectServer() {
+        Editable ipEable = etServerIp.getText();
+        if (ipEable == null)
+            return;
+
+        String strIp = ipEable.toString();
+        int ipLen = strIp.length();
+        if (ipLen == 0)
+            return;
+
+        Editable portEable = etServerPort.getText();
+        if (portEable == null)
+            return;
+
+        String strPort = portEable.toString();
+        int portLen = strPort.length();
+        if (portLen == 0)
+            return;
+
+        // 非服务器模式
+        if (hasServer)
+            return;
+
+        if (hasTcp) {
+            connectRemoteTcpServer(strIp, strPort);
+        } else {
+            connectRemoteUdpServer(strIp, strPort);
+        }
+    }
+
+    /**
+     * 打开tcpserver
+     */
+    private void openTcpServer() {
+
+    }
 
     /**
      * 打开udp服务器
@@ -307,10 +356,17 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 打开tcpserver
+     * 连接tcp服务器
      */
-    private void openTcpServer() {
+    private void connectRemoteTcpServer(String strIp, String strPort) {
+        connManager.connectRemoteTcpServer(strIp, strPort);
+    }
 
+    /**
+     * 连接udp服务器
+     */
+    private void connectRemoteUdpServer(String strIp, String strPort) {
+        connManager.connectRemoteUdpServer(strIp, strPort);
     }
 
     @Override
@@ -418,43 +474,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 执行连接服务器操作
-     */
-    private void doConnectServer() {
-        Editable ipEable = etServerIp.getText();
-        if (ipEable == null)
-            return;
-
-        String strIp = ipEable.toString();
-        int ipLen = strIp.length();
-        if (ipLen == 0)
-            return;
-
-        Editable portEable = etServerPort.getText();
-        if (portEable == null)
-            return;
-
-        String strPort = portEable.toString();
-        int portLen = strPort.length();
-        if (portLen == 0)
-            return;
-
-        // 非服务器模式
-        if (hasServer)
-            return;
-
-        if (hasTcp) {
-            connectRemoteTcpServer(strIp, strPort);
-        } else {
-            connectRemoteUdpServer(strIp, strPort);
-        }
-    }
-
-    private void sendTestToTcpClient(long currentTime) {
-        connManager.sendMsgToTcpServer("test tcp msg", getOnMsgSendCompleteListener(currentTime));
-    }
-
     @NonNull
     private OnMsgSendComplete getOnMsgSendCompleteListener(long currentTime) {
         return new OnMsgSendComplete() {
@@ -470,29 +489,7 @@ public class MainActivity extends BaseActivity {
         };
     }
 
-    /**
-     * view状态还原
-     */
-    public void restoreAllComponents() {
-        tvRec.setText("");
-        tvSend.setText("");
-        btnConnectServer.setEnabled(false);
-        btnDiscAll.setEnabled(false);
-        btnDisCurrent.setEnabled(false);
-        btnTest.setEnabled(false);
-    }
-
-    /**
-     * 连接udp服务器
-     */
-    private void connectRemoteUdpServer(String strIp, String strPort) {
-        connManager.connectRemoteUdpServer(strIp, strPort);
-    }
-
-    /**
-     * 连接tcp服务器
-     */
-    private void connectRemoteTcpServer(String strIp, String strPort) {
-        connManager.connectRemoteTcpServer(strIp, strPort);
+    private void sendTestToTcpClient(long currentTime) {
+        connManager.sendMsgToTcpServer("test tcp msg", getOnMsgSendCompleteListener(currentTime));
     }
 }

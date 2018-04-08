@@ -57,13 +57,13 @@ public abstract class WifiBroadcastReceiver extends BroadcastReceiver implements
         }
     }
 
-    protected abstract void onWifiDisconnected();
-
-    protected abstract void onWifiConnected(String ssid);
-
-    protected abstract void onScanResultsAvaliable(List<ScanResult> list);
+    protected abstract void onWifiEnabled();
 
     protected abstract void onWifiDisabled();
 
-    protected abstract void onWifiEnabled();
+    protected abstract void onScanResultsAvaliable(List<ScanResult> list);
+
+    protected abstract void onWifiConnected(String ssid);
+
+    protected abstract void onWifiDisconnected();
 }

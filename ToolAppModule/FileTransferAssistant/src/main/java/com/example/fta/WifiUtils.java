@@ -53,42 +53,6 @@ public class WifiUtils {
     }
 
     /**
-     * 热点是否开启
-     */
-    public static boolean isApOn() {
-        try {
-            Method isWifiApEnabledMethod = sWifiManager.getClass().getDeclaredMethod
-                    ("isWifiApEnabledMethod");
-            isWifiApEnabledMethod.setAccessible(true);
-            return (Boolean) isWifiApEnabledMethod.invoke(sWifiManager);
-        } catch (NoSuchMethodException pE) {
-            pE.printStackTrace();
-        } catch (IllegalAccessException pE) {
-            pE.printStackTrace();
-        } catch (InvocationTargetException pE) {
-            pE.printStackTrace();
-        }
-        return false;
-    }
-
-    /**
-     * 关闭热点
-     */
-    public static void closeAp() {
-        try {
-            Method setWifiApEnabledMethod = sWifiManager.getClass().getMethod("setWifiApEnabled",
-                    WifiConfiguration.class, boolean.class);
-            setWifiApEnabledMethod.invoke(sWifiManager, null, false);
-        } catch (NoSuchMethodException pE) {
-            pE.printStackTrace();
-        } catch (IllegalAccessException pE) {
-            pE.printStackTrace();
-        } catch (InvocationTargetException pE) {
-            pE.printStackTrace();
-        }
-    }
-
-    /**
      * 开启热点
      */
     public static boolean openAp(String ssidStr, String pwdStr) {
@@ -136,6 +100,42 @@ public class WifiUtils {
         config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
         config.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
         return config;
+    }
+
+    /**
+     * 热点是否开启
+     */
+    public static boolean isApOn() {
+        try {
+            Method isWifiApEnabledMethod = sWifiManager.getClass().getDeclaredMethod
+                    ("isWifiApEnabledMethod");
+            isWifiApEnabledMethod.setAccessible(true);
+            return (Boolean) isWifiApEnabledMethod.invoke(sWifiManager);
+        } catch (NoSuchMethodException pE) {
+            pE.printStackTrace();
+        } catch (IllegalAccessException pE) {
+            pE.printStackTrace();
+        } catch (InvocationTargetException pE) {
+            pE.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 关闭热点
+     */
+    public static void closeAp() {
+        try {
+            Method setWifiApEnabledMethod = sWifiManager.getClass().getMethod("setWifiApEnabled",
+                    WifiConfiguration.class, boolean.class);
+            setWifiApEnabledMethod.invoke(sWifiManager, null, false);
+        } catch (NoSuchMethodException pE) {
+            pE.printStackTrace();
+        } catch (IllegalAccessException pE) {
+            pE.printStackTrace();
+        } catch (InvocationTargetException pE) {
+            pE.printStackTrace();
+        }
     }
 
     /**
@@ -219,13 +219,6 @@ public class WifiUtils {
     }
 
     /**
-     * 当前wifi是否开启
-     */
-    public static boolean isWifiEnabled() {
-        return sWifiManager.isWifiEnabled();
-    }
-
-    /**
      * 获取当前连接wifi的SSID
      */
     public static String getConnectedSSID() {
@@ -241,6 +234,13 @@ public class WifiUtils {
             return sWifiManager.startScan();
         }
         return false;
+    }
+
+    /**
+     * 当前wifi是否开启
+     */
+    public static boolean isWifiEnabled() {
+        return sWifiManager.isWifiEnabled();
     }
 
     /**

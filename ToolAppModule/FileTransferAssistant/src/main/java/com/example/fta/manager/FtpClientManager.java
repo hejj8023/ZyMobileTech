@@ -2,7 +2,6 @@ package com.example.fta.manager;
 
 import android.os.Environment;
 
-
 import com.zhiyangstudio.sdklibrary.utils.LogListener;
 import com.zhiyangstudio.sdklibrary.utils.LoggerUtils;
 

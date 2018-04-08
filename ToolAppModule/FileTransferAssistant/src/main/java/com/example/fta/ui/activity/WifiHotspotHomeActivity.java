@@ -9,7 +9,7 @@ import butterknife.OnClick;
 
 /**
  * Created by zzg on 2018/4/5
- *
+ * <p>
  * 技术借鉴:https://github.com/WhoIsAA/SocketDemo
  * - 发送端创建WiFi热点
  * - 接收端连接热点

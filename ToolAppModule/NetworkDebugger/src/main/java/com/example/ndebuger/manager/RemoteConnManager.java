@@ -55,6 +55,18 @@ public class RemoteConnManager {
         }
     }
 
+    private void closeTcpSocket(RoleType type) {
+        // 状态发生改变，断开连接
+        switch (type) {
+            case TCP_CLIENT:
+                tcpConnManager.closeClient();
+                break;
+            case TCP_SERVER:
+                tcpConnManager.closeServer();
+                break;
+        }
+    }
+
     private void closeUdpSocket(RoleType type) {
         switch (type) {
             case TCP_CLIENT:
@@ -79,18 +91,6 @@ public class RemoteConnManager {
         tcpConnManager.connectRemoteTcpServer(ip, port);
     }
 
-    private void closeTcpSocket(RoleType type) {
-        // 状态发生改变，断开连接
-        switch (type) {
-            case TCP_CLIENT:
-                tcpConnManager.closeClient();
-                break;
-            case TCP_SERVER:
-                tcpConnManager.closeServer();
-                break;
-        }
-    }
-
     public ServerSocket getTcpServerSocket() {
         return tcpConnManager.getTcpServerSocket();
     }
@@ -110,11 +110,11 @@ public class RemoteConnManager {
     }
 
     public void sendMsgToUdpClient(String msg, OnMsgSendComplete listener) {
-        udpConnManager.sendMsgToClient(msg,listener);
+        udpConnManager.sendMsgToClient(msg, listener);
     }
 
     public void sendMsgToUdpServer(String msg, OnMsgSendComplete listener) {
-        udpConnManager.sendMsgToServer(msg,listener);
+        udpConnManager.sendMsgToServer(msg, listener);
     }
 
     public Socket getTcpClientSocket() {
@@ -131,6 +131,6 @@ public class RemoteConnManager {
 
 
     public void connectRemoteUdpServer(String ip, String port) {
-udpConnManager.connectRemoteServer(ip,port);
+        udpConnManager.connectRemoteServer(ip, port);
     }
 }
