@@ -25,15 +25,14 @@ private void loadAppModules() {
 //    include ':AppModules:MSocketClient'
 //    include ':AppModules:MSocketServer'
 //    include ':AppModules:KuaiChuan'
-//    include ':AppModules:wanandroidclient'
 //    include ':AppModules:SpeechAssistant'
 //    include ':AppModules:TodayStepCounter'
 //    include ':AppModules:vvlive'
 //    include ':AppModules:SharingBike'
 //    include ':AppModules:JDStore'
 //    include ':AppModules:TakeWay'
-    include ':AppModules:FaceApp'
-    include ':AppModules:FaceHelper'
+//    include ':AppModules:FaceApp'
+//    include ':AppModules:FaceHelper'
 }
 
 private void loadComponentLenarnModules() {
@@ -132,7 +131,8 @@ private void loadKotlinModules() {
     include ':KotlinAppModules'
     project(":KotlinAppModules").projectDir = file
 //    include ':KotlinAppModules:HelloKt'
-    include ':KotlinAppModules:Fasthub'
+//    include ':KotlinAppModules:Fasthub'
+    include ':KotlinAppModules:wanandroidclient'
 }
 
 private void loadGithubLibs() {
@@ -142,6 +142,15 @@ private void loadGithubLibs() {
     include ':GithubLibs'
     project(":GithubLibs").projectDir = file
     include ':GithubLibs:FtpserverLib'
+}
+
+private void loadMvpModules() {
+    println "loadMvpModules"
+
+    def file = new File("MvpModules/")
+    include ':MvpModules'
+    project(":MvpModules").projectDir = file
+    include ':MvpModules:WanAndroid'
 }
 
 ext {
@@ -158,4 +167,5 @@ ext {
     loadKotlinModule = this.&loadKotlinModules
     loadGithubLib = this.&loadGithubLibs
     loadToolAppModule = this.&loadToolAppModule
+    loadMvpModule = this.&loadMvpModules
 }
