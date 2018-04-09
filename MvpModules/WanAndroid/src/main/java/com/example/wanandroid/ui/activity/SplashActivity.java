@@ -1,6 +1,5 @@
 package com.example.wanandroid.ui.activity;
 
-import com.example.wanandroid.MainActivity;
 import com.example.wanandroid.R;
 import com.example.wanandroid.base.BaseWanAndroidActivity;
 import com.example.wanandroid.manager.UserInfoManager;
@@ -58,6 +57,7 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
         mH.postDelayed(() -> {
             // 自动登录
             autoLogin();
+            finish();
         }, 2000);
     }
 
@@ -68,7 +68,8 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
         if (UserInfoManager.isLogin()) {
 
         }
-        forward(MainActivity.class);
+        forward(HomeActivity.class);
+
     }
 
     @Override

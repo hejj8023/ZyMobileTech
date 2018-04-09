@@ -9,6 +9,7 @@ import com.zhiyangstudio.commonlib.utils.PreUtils;
 
 public class UserInfoManager {
     public static boolean isLogin() {
-        return (boolean) PreUtils.get(Const.USERINFO_KEY.IS_LOGIN,false);
+        Object o = PreUtils.get(Const.USERINFO_KEY.IS_LOGIN, false);
+        return (o != null && o instanceof Boolean) ? ((Boolean) o) : false;
     }
 }

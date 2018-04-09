@@ -17,8 +17,7 @@ import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
  * Created by example on 2018/4/9.
  */
 
-public abstract class BaseWanAndroidActivity<P extends BasePresenter<LoginContract.ILoginView>, V
-        extends IView> extends BasePresenterActivivty {
+public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends IView> extends BasePresenterActivivty {
 
     protected BaseInternalHandler mH = new BaseInternalHandler(this) {
         @Override

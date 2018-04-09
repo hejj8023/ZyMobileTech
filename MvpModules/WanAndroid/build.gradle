@@ -67,7 +67,7 @@ dependencies {
     implementation rootProject.ext.ext_tools.okhttp
     implementation rootProject.ext.ext_tools.logging_interceptor
 
-//    compile project(':ZySdkLib')
+    compile project(':ZySdkLib')
 
-    compile 'com.github.syusikoku:ZYSdk:v1.0.8'
+//    compile 'com.github.syusikoku:ZYSdk:v1.0.8'
 }
