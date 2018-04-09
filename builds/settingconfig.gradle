@@ -32,6 +32,8 @@ private void loadAppModules() {
 //    include ':AppModules:SharingBike'
 //    include ':AppModules:JDStore'
 //    include ':AppModules:TakeWay'
+    include ':AppModules:FaceApp'
+    include ':AppModules:FaceHelper'
 }
 
 private void loadComponentLenarnModules() {

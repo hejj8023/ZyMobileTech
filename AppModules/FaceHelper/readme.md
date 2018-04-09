@@ -1,0 +1,1 @@
+demo的用途用于调用faceapp assets中的表情资源

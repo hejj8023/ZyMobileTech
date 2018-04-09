@@ -1,22 +1,9 @@
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
-//include ':ZySdkLib'
-//project(':ZySdkLib').projectDir = new File('../ZYMobileSdk/SDKLibrary')
-
-//加载本地配置文件决定是否使用本地的sdk如果是使用，就使用本地的库如果不使用，就使用上线的库
-def dHasUseLocalSdk = getLocalProperties("local.properties", "hasUseLocalSdk")
-println "dHasUseLocalSdk = $dHasUseLocalSdk"
-gradle.ext.hasUseLocalSdk = dHasUseLocalSdk
-
-if (dHasUseLocalSdk) {
-    def sdkPath = getLocalProperties("local.properties", "sdk.path")
-    println "sdkPath = $sdkPath"
-
-    include ':ZySdkLib'
-    project(':ZySdkLib').projectDir = new File(sdkPath)
-}
+include ':ZySdkLib'
+project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 
 loadLibs()
-//loadAppModule()
+loadAppModule()
 //loadComponentLenarnModule()
 //loadDatasturectureModule()
 //loadDesignpatternModule()
@@ -29,14 +16,3 @@ loadLibs()
 //loadKotlinModule()
 //loadGithubLib()
 loadToolAppModule()
-
-
-def String getLocalProperties(def propFile, def pKey) {
-    println("需要获取的key:${pKey}")
-    def properties = new Properties()
-    def file = new File(rootDir.getAbsolutePath(), propFile)
-    properties.load(file.newDataInputStream())
-    def sValue = properties.getProperty(pKey)
-    println "sValue =$sValue"
-    return sValue
-}
