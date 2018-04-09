@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext._android.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.example.wanandroid"
+        minSdkVersion rootProject.ext._android.minSdkVersion
+        targetSdkVersion rootProject.ext._android.targetSdkVersion
+        versionCode rootProject.ext._android.versionCode
+        versionName rootProject.ext._android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // 是否混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.support.appcompat
+    implementation rootProject.ext.support.constraint_layout
+    implementation rootProject.ext.support.design
+    implementation rootProject.ext.support.constraint_layout
+    testImplementation rootProject.ext.support.junit
+    androidTestImplementation rootProject.ext.support.test_runner
+    androidTestImplementation rootProject.ext.support.espresso_core
+
+    /*butternife*/
+    implementation rootProject.ext.ext_tools.butterknife
+    annotationProcessor rootProject.ext.ext_tools.butterknife_compiler
+
+    implementation rootProject.ext.ext_tools.utilcode
+    implementation rootProject.ext.ext_tools.gson
+
+    compile rootProject.ext.ext_tools.logger
+    implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
+    implementation rootProject.ext.ext_tools.ringprogressbar
+
+    implementation rootProject.ext.ext_tools.glide
+    annotationProcessor rootProject.ext.ext_tools.glide_compiler
+
+    implementation rootProject.ext.ext_tools.rxjava
+    implementation rootProject.ext.ext_tools.rxandroid
+    implementation rootProject.ext.ext_tools.retrofit
+    implementation rootProject.ext.ext_tools.converter_gson
+    implementation rootProject.ext.ext_tools.adapter_rxjava2
+    implementation rootProject.ext.ext_tools.converter_scalars
+    implementation rootProject.ext.ext_tools.okhttp
+    implementation rootProject.ext.ext_tools.logging_interceptor
+
+//    compile project(':ZySdkLib')
+
+    compile 'com.github.syusikoku:ZYSdk:v1.0.8'
+}
