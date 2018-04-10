@@ -12,4 +12,5 @@ public class UserInfoManager {
         Object o = PreUtils.get(Const.USERINFO_KEY.IS_LOGIN, false);
         return (o != null && o instanceof Boolean) ? ((Boolean) o) : false;
     }
+
 }

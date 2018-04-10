@@ -12,6 +12,7 @@ import com.example.wanandroid.mvp.presenter.LoginPresenter;
 
 public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, LoginContract
         .ILoginView> implements LoginContract.ILoginView {
+
     @Override
     public String getUserName() {
         return null;
@@ -38,13 +39,8 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
     }
 
     @Override
-    protected boolean hasShowToolbar() {
+    protected boolean initToolBar() {
         return false;
-    }
-
-    @Override
-    protected void onNavigationClick() {
-
     }
 
     @Override
@@ -53,7 +49,12 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
     }
 
     @Override
-    protected void initContentView() {
+    protected PermissionListener getPermissonCallBack() {
+        return null;
+    }
+
+    @Override
+    public void initView() {
         mH.postDelayed(() -> {
             // 自动登录
             autoLogin();
@@ -66,25 +67,24 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
      */
     private void autoLogin() {
         if (UserInfoManager.isLogin()) {
-
+            // 自动登录
         }
         forward(HomeActivity.class);
 
     }
 
     @Override
-    protected PermissionListener getPermissonCallBack() {
-        return null;
-    }
-
-    @Override
-    protected void addListener() {
+    public void initData() {
 
     }
 
     @Override
-    protected void initData() {
+    public void refreshUi() {
 
     }
 
+    @Override
+    public void release() {
+
+    }
 }

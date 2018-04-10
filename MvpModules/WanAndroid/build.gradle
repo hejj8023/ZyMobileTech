@@ -39,7 +39,6 @@ dependencies {
     implementation rootProject.ext.support.appcompat
     implementation rootProject.ext.support.constraint_layout
     implementation rootProject.ext.support.design
-    implementation rootProject.ext.support.constraint_layout
     testImplementation rootProject.ext.support.junit
     androidTestImplementation rootProject.ext.support.test_runner
     androidTestImplementation rootProject.ext.support.espresso_core
@@ -52,6 +51,7 @@ dependencies {
     implementation rootProject.ext.ext_tools.gson
 
     compile rootProject.ext.ext_tools.logger
+    implementation rootProject.ext.ext_tools.fragmentation
     implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
     implementation rootProject.ext.ext_tools.ringprogressbar
 
@@ -70,4 +70,7 @@ dependencies {
     compile project(':ZySdkLib')
 
 //    compile 'com.github.syusikoku:ZYSdk:v1.0.8'
+}
+repositories {
+    mavenCentral()
 }

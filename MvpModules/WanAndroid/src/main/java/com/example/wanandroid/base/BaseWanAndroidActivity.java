@@ -7,17 +7,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.wanandroid.R;
-import com.example.wanandroid.mvp.contract.LoginContract;
 import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
 import com.zhiyangstudio.commonlib.mvp.BasePresenterActivivty;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by example on 2018/4/9.
  */
 
-public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends IView> extends BasePresenterActivivty {
+public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends IView> extends
+        BasePresenterActivivty {
 
     protected BaseInternalHandler mH = new BaseInternalHandler(this) {
         @Override
@@ -25,19 +27,18 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends 
 
         }
     };
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
     private FrameLayout containerLayout;
 
-    @Override
-    protected int getContentViewId() {
-        return R.layout.activity_base_wan_android;
-    }
 
     @Override
-    protected void initView() {
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+
+        // TODO: 2018/4/10 在这里处理注解无法使用的问题
         toolbar = findViewById(R.id.toolbar);
         containerLayout = findViewById(R.id.frameLayout);
-        if (hasShowToolbar()) {
+        if (initToolBar()) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbar.setNavigationOnClickListener((v) -> {
@@ -46,30 +47,44 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends 
         } else {
             toolbar.setVisibility(View.GONE);
         }
-        initContent(getContentLayoutId());
-    }
 
-    protected abstract boolean hasShowToolbar();
-
-    protected abstract void onNavigationClick();
-
-    private void initContent(int layoutId) {
-        if (layoutId != 0) {
-            View contentView = LayoutInflater.from(mContext).inflate(layoutId, containerLayout,
+        if (getContentLayoutId() != 0) {
+            View contentView = LayoutInflater.from(mContext).inflate(getContentLayoutId(), containerLayout,
                     false);
             containerLayout.addView(contentView);
-            initContentView();
+            // TODO: 2018/4/10 重新绑定view,不重新绑定会无法使用
+            unbinder = ButterKnife.bind(this);
         }
+
+    }
+
+    protected abstract boolean initToolBar();
+
+    protected void onNavigationClick() {
+
     }
 
     protected abstract int getContentLayoutId();
-
-    protected abstract void initContentView();
 
     @Override
     protected void onDestroy() {
         mH.destory();
         super.onDestroy();
+    }
+
+    @Override
+    public void preProcess() {
+
+    }
+
+    @Override
+    public int getContentId() {
+        return R.layout.activity_base_wan_android;
+    }
+
+    @Override
+    public void addListener() {
+
     }
 
 }

@@ -9,10 +9,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/_0091ea"
         android:fitsSystemWindows="true"
         android:theme="@style/ToolBarStyle"
-        app:contentInsetStartWithNavigation="0dp" />
+        app:contentInsetStartWithNavigation="0dp"
+        app:titleTextColor="@color/white" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
