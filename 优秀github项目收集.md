@@ -20,3 +20,9 @@ https://github.com/wangzailfm/WanAndroidClient
 
 #Xposed Remove 微博国际版(Weico) the start Ad
 https://github.com/wangzailfm/XposedRemoveAd
+
+# remusic(仿网易云音乐 安卓版，netease android，音乐播放器 在线 下载)
+https://github.com/aa112901/remusic
+
+# 基于retorfit2，Rxjva2，Okhttp3，Glide，Dagger2,GreenDAO等框架采用MVP架构的仿应用商店App
+https://github.com/guzhigang001/Bailan

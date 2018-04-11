@@ -151,6 +151,7 @@ private void loadMvpModules() {
     include ':MvpModules'
     project(":MvpModules").projectDir = file
     include ':MvpModules:WanAndroid'
+//    include ':MvpModules:BaiLan'
 }
 
 ext {
