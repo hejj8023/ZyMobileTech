@@ -32,22 +32,32 @@ public class HomeListPresenter extends BasePresenter<HomeListContract.IHomeListV
         mHomeModel.getHomeData(page, new RxConsumer<List<BannerBean>>() {
             @Override
             protected void onSucess(List<BannerBean> data) {
-                LoggerUtils.loge(this,"accept");
+                LoggerUtils.loge(this, "onSucess");
+                homeListView.setBannerData(data);
             }
 
             @Override
             protected void onFail(String errorMsg) {
-                LoggerUtils.loge(this,"accept");
+                LoggerUtils.loge(this, "onFail");
+                homeListView.showFail(errorMsg);
+
             }
         }, new RxPageListObserver<ArticleBean>(this, HomeListModel.class.getName()) {
             @Override
             protected void onSucess(List<ArticleBean> list) {
-                LoggerUtils.loge(this,"accept");
+                LoggerUtils.loge(this, "onSucess");
+                homeListView.setData(list);
+                if (homeListView.getData().size() == 0) {
+                    homeListView.showEmpty();
+                } else {
+                    homeListView.showContent();
+                }
             }
 
             @Override
             protected void onFailure(int errorCode, String errorMsg) {
-                LoggerUtils.loge(this,"accept");
+                LoggerUtils.loge(this, "onFailure");
+                homeListView.showFail(errorMsg);
             }
         });
     }

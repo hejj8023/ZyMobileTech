@@ -5,6 +5,7 @@ import com.example.wanandroid.base.BaseWanAndroidActivity;
 import com.example.wanandroid.manager.UserInfoManager;
 import com.example.wanandroid.mvp.contract.LoginContract;
 import com.example.wanandroid.mvp.presenter.LoginPresenter;
+import com.zhiyangstudio.commonlib.CommonConst;
 
 /**
  * Created by example on 2018/4/9.
@@ -50,11 +51,26 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
 
     @Override
     protected PermissionListener getPermissonCallBack() {
-        return null;
+        return new PermissionListener() {
+            @Override
+            public void onGrant(int code) {
+                if (code == CommonConst.PERMISSION.REQ_SDCARD_PERMISSION) {
+
+                }
+                goMain();
+            }
+
+            @Override
+            public void onDeny(int code) {
+                if (code == CommonConst.PERMISSION.REQ_SDCARD_PERMISSION) {
+
+                }
+                goMain();
+            }
+        };
     }
 
-    @Override
-    public void initView() {
+    private void goMain() {
         mH.postDelayed(() -> {
             // 自动登录
             autoLogin();
@@ -74,6 +90,10 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
     }
 
     @Override
+    public void initView() {
+    }
+
+    @Override
     public void initData() {
 
     }
@@ -87,4 +107,6 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
     public void release() {
 
     }
+
+
 }

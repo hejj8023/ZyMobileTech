@@ -90,4 +90,11 @@ public class Const {
         public static final int COLLECT = 2;
         public static final int SEARCH = 3;
     }
+
+    //图片加载
+    public static class IMAGE_LOADER {
+        public static final int HEAD_IMG = 0;
+        public static final int NOMAL_IMG = 1;
+    }
+
 }

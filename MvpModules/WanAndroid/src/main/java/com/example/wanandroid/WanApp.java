@@ -1,5 +1,6 @@
 package com.example.wanandroid;
 
+import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.corel.BaseApp;
 import com.zhiyangstudio.commonlib.utils.PreUtils;
 
@@ -11,6 +12,7 @@ public class WanApp extends BaseApp {
     @Override
     public void onCreate() {
         super.onCreate();
+        CommonConst.NET_CACHE_DIR_NAME = "wanandroid_cache";
         PreUtils.init("wanandorid_userinfo");
     }
 }
