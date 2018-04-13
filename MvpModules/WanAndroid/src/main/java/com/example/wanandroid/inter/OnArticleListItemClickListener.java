@@ -1,7 +1,7 @@
 package com.example.wanandroid.inter;
 
 /**
- * Created by ubt on 2018/4/11.
+ * Created by example on 2018/4/11.
  */
 
 public interface OnArticleListItemClickListener {

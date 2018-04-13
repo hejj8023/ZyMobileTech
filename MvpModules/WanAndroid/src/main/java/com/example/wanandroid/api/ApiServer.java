@@ -13,7 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 /**
- * Created by ubt on 2018/4/11.
+ * Created by example on 2018/4/11.
  */
 
 public interface ApiServer {

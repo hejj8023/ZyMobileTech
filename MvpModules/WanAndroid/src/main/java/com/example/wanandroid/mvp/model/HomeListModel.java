@@ -15,7 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by ubt on 2018/4/11.
+ * Created by example on 2018/4/11.
  */
 
 public class HomeListModel extends BaseWanModel implements IHomeListModel {

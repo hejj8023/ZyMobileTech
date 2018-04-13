@@ -68,7 +68,7 @@ project.ext {
             okhttp_mockwebserver    : "com.squareup.okhttp3:mockwebserver:$okhttpLibVersion",
 
             android_async_http      : 'com.loopj.android:android-async-http:1.4.5',
-            
+
             /*dagger*/
             dagger                  : "com.google.dagger:dagger:$daggerLibVersion",
             dagger_android          : "com.google.dagger:dagger-android:$daggerLibVersion",
@@ -153,8 +153,12 @@ project.ext {
             vitamio                 : 'com.charonchui.vitamio:vitamio:4.2.2',
 
             material_dialogs        : 'com.afollestad.material-dialogs:commons:0.9.0.2',
-            NiceDialog              : 'com.github.Othershe:NiceDialog:1.1.4'
+            NiceDialog              : 'com.github.Othershe:NiceDialog:1.1.4',
 
+            /*agentweb https://github.com/Justson/AgentWeb */
+            agentweb                : 'com.just.agentweb:agentweb:4.0.1',
+            agentweb_download       : 'com.just.agentweb:download:4.0.2',
+            agentweb_filechooser    : 'com.just.agentweb:filechooser:4.0.2'
     ]
 }
 

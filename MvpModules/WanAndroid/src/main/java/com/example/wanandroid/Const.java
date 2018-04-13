@@ -97,4 +97,8 @@ public class Const {
         public static final int NOMAL_IMG = 1;
     }
 
+    public class BUNDLE_KEY {
+        public static final String HOME_LIST_ITEM_TITLE = "banner_title";
+        public static final String HOME_LIST_ITEM_URL = "banner_url";
+    }
 }
