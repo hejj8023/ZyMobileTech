@@ -1,9 +1,7 @@
 package com.example.wanandroid.ui.activity;
 
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.example.wanandroid.R;
 import com.example.wanandroid.bean.SearchBean;
@@ -11,7 +9,7 @@ import com.example.wanandroid.mvp.contract.SearchContract;
 import com.example.wanandroid.mvp.presenter.SearchPresenter;
 import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
 import com.zhiyangstudio.commonlib.mvp.BaseAbsListActivity;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zhiyangstudio.commonlib.widget.recyclerview.CommonRViewHolder;
 
 import java.util.List;
 
@@ -29,7 +27,8 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
 
     @Override
     public void initData() {
-
+        if (mPresenter != null)
+            mPresenter.loadList();
     }
 
     @Override
@@ -43,13 +42,8 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
     }
 
     @Override
-    public void setData(List<SearchBean> data) {
-
-    }
-
-    @Override
     protected SearchPresenter createPresenter() {
-        return null;
+        return new SearchPresenter();
     }
 
     @Override
@@ -59,7 +53,7 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
 
     @Override
     protected BaseListAdapter getListAdapter() {
-        return null;
+        return new SearchListAdapter();
     }
 
     @Override
@@ -73,28 +67,26 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
     }
 
     @Override
-    public void setContentView(int layoutResID) {
-        LinearLayout linearLayout = new LinearLayout(mContext);
-        View contentView = UiUtils.inflateView(R.layout.activity_base_wan_android, linearLayout);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        Toolbar toolbar = contentView.findViewById(R.id.toolbar);
-        toolbar.setTitle(UiUtils.getStr(R.string.search));
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        LinearLayout llContainer = contentView.findViewById(R.id.frameLayout);
-        llContainer.addView(UiUtils.inflateView(layoutResID, linearLayout));
-        linearLayout.addView(contentView);
-        super.setContentView(linearLayout);
-    }
-
-    @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.search_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void setData(List<SearchBean> data) {
+        mListData.clear();
+        mListData.addAll(data);
+    }
+
+    private class SearchListAdapter extends BaseListAdapter<SearchBean> {
+        @Override
+        protected int getLayoutId(int viewType) {
+            return R.layout.layout_item_test_list;
+        }
+
+        @Override
+        protected void bindDatas(CommonRViewHolder holder, SearchBean bean, int itemViewType, int position) {
+            holder.getHolderHelper().setText(R.id.tv_name, bean.getName());
+        }
     }
 }
