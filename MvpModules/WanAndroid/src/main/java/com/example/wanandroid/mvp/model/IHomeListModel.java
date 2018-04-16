@@ -8,7 +8,7 @@ import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 import java.util.List;
 
 /**
- * Created by ubt on 2018/4/11.
+ * Created by example on 2018/4/11.
  */
 
 public interface IHomeListModel {

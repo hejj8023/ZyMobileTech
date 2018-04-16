@@ -69,7 +69,7 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
     @Override
     protected View initHeaderView() {
         View headerView = UiUtils.inflateView(R.layout.main_header_banner, recyclerView);
-        mViewPager = (BannerViewPager) headerView.findViewById(R.id.viewPager);
+        mViewPager = (BannerViewPager) headerView.findViewById(R.id.banner_viewpager);
         return headerView;
     }
 
@@ -83,7 +83,17 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
         // TODO: 2018/4/11 对轮播图的数据进行初始化
         if (mBannerAdapter == null) {
             mBannerAdapter = new BannerAdapter(mBannerList);
+            // 设置预加载两个界面
+            mViewPager.setAdapter(mBannerAdapter);
+            mViewPager.setOffscreenPageLimit(2);
+            setCurrentItem(1000 * mBannerList.size());
+            mViewPager.start();
         }
+        mBannerAdapter.notifyDatas(mBannerList);
+    }
+
+    private void setCurrentItem(int position) {
+        mViewPager.setCurrentItem(position, false);
     }
 
     @Override
@@ -115,5 +125,17 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
     public void setBannerData(List<BannerBean> list) {
         mBannerList.clear();
         mBannerList.addAll(list);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mViewPager.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mViewPager.stop();
     }
 }

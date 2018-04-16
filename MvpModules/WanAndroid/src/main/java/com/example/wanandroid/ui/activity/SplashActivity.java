@@ -5,7 +5,8 @@ import com.example.wanandroid.base.BaseWanAndroidActivity;
 import com.example.wanandroid.manager.UserInfoManager;
 import com.example.wanandroid.mvp.contract.LoginContract;
 import com.example.wanandroid.mvp.presenter.LoginPresenter;
-import com.zhiyangstudio.commonlib.CommonConst;
+import com.zhiyangstudio.commonlib.utils.CommonUtils;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
 
 /**
  * Created by example on 2018/4/9.
@@ -40,34 +41,25 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
     }
 
     @Override
-    protected boolean initToolBar() {
-        return false;
+    public void initView() {
+        if (!CommonUtils.hasNeedCheckPermission()) {
+            goMain();
+        }
     }
 
     @Override
-    protected int getContentLayoutId() {
-        return R.layout.activity_splash;
+    public void initData() {
+
     }
 
     @Override
-    protected PermissionListener getPermissonCallBack() {
-        return new PermissionListener() {
-            @Override
-            public void onGrant(int code) {
-                if (code == CommonConst.PERMISSION.REQ_SDCARD_PERMISSION) {
+    public void refreshUi() {
 
-                }
-                goMain();
-            }
+    }
 
-            @Override
-            public void onDeny(int code) {
-                if (code == CommonConst.PERMISSION.REQ_SDCARD_PERMISSION) {
+    @Override
+    public void release() {
 
-                }
-                goMain();
-            }
-        };
     }
 
     private void goMain() {
@@ -85,27 +77,28 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
         if (UserInfoManager.isLogin()) {
             // 自动登录
         }
-        forward(HomeActivity.class);
+        IntentUtils.forward(HomeActivity.class);
 
     }
 
     @Override
-    public void initView() {
+    protected void onPermissonGrant(int code) {
+        goMain();
     }
 
     @Override
-    public void initData() {
-
+    protected void onPermissionDeny(int code) {
+        goMain();
     }
 
     @Override
-    public void refreshUi() {
-
+    protected boolean initToolBar() {
+        return false;
     }
 
     @Override
-    public void release() {
-
+    protected int getContentLayoutId() {
+        return R.layout.activity_splash;
     }
 
 

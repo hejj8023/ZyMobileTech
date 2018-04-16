@@ -22,6 +22,7 @@ import com.example.wanandroid.mvp.contract.HomeContract;
 import com.example.wanandroid.mvp.presenter.HomePresenter;
 import com.example.wanandroid.ui.fragment.HomeFragment;
 import com.example.wanandroid.ui.fragment.TreeFragment;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import butterknife.BindView;
@@ -95,11 +96,6 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
     }
 
     @Override
-    protected PermissionListener getPermissonCallBack() {
-        return null;
-    }
-
-    @Override
     public void initView() {
         initMainMenus();
         initDrawerLayout();
@@ -163,6 +159,7 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
         switch (item.getItemId()) {
             case R.id.action_search:
                 ToastUtils.showShort("搜索");
+                IntentUtils.forward(SearchActivity.class);
                 break;
         }
         return true;

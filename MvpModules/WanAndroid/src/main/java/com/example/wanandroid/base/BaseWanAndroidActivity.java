@@ -4,7 +4,7 @@ import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.example.wanandroid.R;
 import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
@@ -28,7 +28,8 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends 
         }
     };
     protected Toolbar toolbar;
-    private FrameLayout containerLayout;
+
+    private LinearLayout containerLayout;
 
 
     @Override
@@ -41,7 +42,7 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends 
         if (initToolBar()) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            toolbar.setNavigationOnClickListener((v) -> {
+            toolbar.setNavigationOnClickListener(v -> {
                 onNavigationClick();
             });
         } else {
@@ -61,7 +62,8 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends 
     protected abstract boolean initToolBar();
 
     protected void onNavigationClick() {
-
+        finish();
+        release();
     }
 
     protected abstract int getContentLayoutId();
@@ -86,5 +88,4 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends 
     public void addListener() {
 
     }
-
 }

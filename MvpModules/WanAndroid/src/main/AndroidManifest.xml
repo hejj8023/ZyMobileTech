@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.HomeActivity" />
+        <activity android:name=".ui.activity.WebViewActivity" />
+        <activity android:name=".ui.activity.SearchActivity" />
     </application>
 
 </manifest>

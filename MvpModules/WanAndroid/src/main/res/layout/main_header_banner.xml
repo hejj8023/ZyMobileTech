@@ -4,11 +4,9 @@
     android:layout_height="200dp"
     android:orientation="vertical">
 
-
     <com.zhiyangstudio.commonlib.widget.BannerViewPager
-        android:id="@+id/viewPager"
+        android:id="@+id/banner_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="200dp" />
 
 </LinearLayout>

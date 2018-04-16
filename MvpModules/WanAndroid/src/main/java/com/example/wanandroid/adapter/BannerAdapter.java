@@ -1,5 +1,7 @@
 package com.example.wanandroid.adapter;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.util.SparseArray;
 import android.view.View;
@@ -11,12 +13,14 @@ import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
 import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.manager.GlideLoaderManager;
+import com.example.wanandroid.ui.activity.WebViewActivity;
+import com.zhiyangstudio.commonlib.utils.CommonUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import java.util.List;
 
 /**
- * Created by ubt on 2018/4/11.
+ * Created by example on 2018/4/11.
  */
 
 public class BannerAdapter extends PagerAdapter {
@@ -44,24 +48,40 @@ public class BannerAdapter extends PagerAdapter {
             BannerBean bannerBean = mList.get(position);
             view = UiUtils.inflateView(R.layout.layout_item_banner, container);
             ImageView imageView = view.findViewById(R.id.img);
-            GlideLoaderManager.loadImage(imageView,bannerBean.getImagePath(), Const.IMAGE_LOADER
+            GlideLoaderManager.loadImage(imageView, bannerBean.getImagePath(), Const.IMAGE_LOADER
                     .NOMAL_IMG);
-//            GlideApp.with(UiUtils.getContext()).load(bannerBean.getImagePath(),)
             TextView textView = view.findViewById(R.id.title);
             textView.setText(bannerBean.getTitle());
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(UiUtils.getContext(), WebViewActivity.class);
+                intent.putExtra(Const.BUNDLE_KEY.HOME_LIST_ITEM_TITLE, bannerBean.getTitle());
+                intent.putExtra(Const.BUNDLE_KEY.HOME_LIST_ITEM_URL, bannerBean.getUrl());
+                Activity currentActivity = CommonUtils.getCurrentActivity();
+                if (currentActivity != null) {
+                    currentActivity.startActivity(intent);
+                } else {
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    UiUtils.getContext().startActivity(intent);
+                }
+            });
             mViews.put(position, view);
         }
         container.addView(view);
-        return super.instantiateItem(container, position);
+        return view;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        super.destroyItem(container, position, object);
+        container.removeView((View) object);
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
+    }
+
+    public void notifyDatas(List<BannerBean> list) {
+        this.mList = list;
+        notifyDataSetChanged();
     }
 }

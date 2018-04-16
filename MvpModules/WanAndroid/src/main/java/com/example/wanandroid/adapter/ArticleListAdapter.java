@@ -20,7 +20,7 @@ import com.zhiyangstudio.commonlib.utils.UiUtils;
 import com.zhiyangstudio.commonlib.widget.recyclerview.CommonRViewHolder;
 
 /**
- * Created by ubt on 2018/4/11.
+ * Created by example on 2018/4/11.
  */
 
 public class ArticleListAdapter extends BaseListAdapter<ArticleBean> {
