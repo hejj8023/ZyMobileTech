@@ -1,7 +1,7 @@
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
-include ':ZySdkLib'
-//project(':ZySdkLib').projectDir = new File('../ZYMobileSdk/SDKLibrary')
-project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
+include ':ZySdkLib',':TestLibApp'
+project(':ZySdkLib').projectDir = new File('../ZYMobileSdk/SDKLibrary')
+//project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 
 loadLibs()
 //loadAppModule()
@@ -17,4 +17,4 @@ loadLibs()
 //loadKotlinModule()
 //loadGithubLib()
 //loadToolAppModule()
-loadMvpModule()
+//loadMvpModule()
