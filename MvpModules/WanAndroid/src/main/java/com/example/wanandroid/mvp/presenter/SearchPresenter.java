@@ -1,41 +1,89 @@
 package com.example.wanandroid.mvp.presenter;
 
-import com.example.wanandroid.WanApp;
-import com.example.wanandroid.bean.SearchBean;
+import com.example.wanandroid.bean.ArticleBean;
+import com.example.wanandroid.bean.FriendBean;
+import com.example.wanandroid.bean.HotwordBean;
 import com.example.wanandroid.mvp.contract.SearchContract;
+import com.example.wanandroid.mvp.model.SearchModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
+import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by example on 2018/4/13.
  */
 
 public class SearchPresenter extends BasePresenter<SearchContract.ISearchView> implements SearchContract.ISearchPresenter {
-    public void loadList() {
-        new Thread() {
+
+    private final SearchModel mSearchModel;
+    private SearchContract.ISearchView mSearchView;
+
+    public SearchPresenter() {
+        mSearchModel = new SearchModel();
+    }
+
+    @Override
+    public void getHotWord() {
+        mSearchView = getView();
+        mSearchModel.getHotWord(new RxObserver<List<HotwordBean>>(this) {
+
             @Override
-            public void run() {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            protected void onSucess(List<HotwordBean> data) {
+                if (data != null) {
+                    mSearchView.setHotwordData(data);
                 }
-                ArrayList<SearchBean> objects = new ArrayList<>();
-                SearchBean searchBean = null;
-                for (int i = 0; i < 20; i++) {
-                    searchBean = new SearchBean();
-                    searchBean.setName("index " + (i + 1));
-                    objects.add(searchBean);
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                mSearchView.showFail(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void getFriend() {
+        mSearchView = getView();
+        mSearchModel.getFriend(new RxObserver<List<FriendBean>>(this) {
+
+            @Override
+            protected void onSucess(List<FriendBean> data) {
+                if (data != null) {
+                    mSearchView.setFriendData(data);
                 }
-                WanApp.getAppHandler().post(new Runnable() {
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                mSearchView.showFail(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void search() {
+        mSearchView = getView();
+        int page = mSearchView.getPage();
+        LoggerUtils.loge(this, page + "");
+        mSearchModel.searchArticle(page, mSearchView.getKeyword(), new
+                RxPageListObserver<ArticleBean>(this) {
                     @Override
-                    public void run() {
-                        getView().setData(objects);
-                        getView().showContent();
+                    protected void onSucess(List<ArticleBean> list) {
+                        mSearchView.setData(list);
+                        if (mSearchView.getData().size() == 0) {
+                            mSearchView.showEmpty();
+                        } else {
+                            mSearchView.showContent();
+                        }
+                    }
+
+                    @Override
+                    protected void onFailure(int errorCode, String errorMsg) {
+                        mSearchView.showFail(errorMsg);
                     }
                 });
-            }
-        }.start();
     }
 }

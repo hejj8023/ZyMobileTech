@@ -16,10 +16,7 @@ public class TreeFragment extends BaseFragment {
 
     }
 
-    @Override
-    public void preProcess() {
 
-    }
 
     @Override
     public int getContentId() {
