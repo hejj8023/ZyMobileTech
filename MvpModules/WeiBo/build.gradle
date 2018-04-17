@@ -4,7 +4,7 @@ android {
     compileSdkVersion rootProject.ext._android.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.example.wanandroid"
+        applicationId "com.example.weibo"
         minSdkVersion rootProject.ext._android.minSdkVersion
         targetSdkVersion rootProject.ext._android.targetSdkVersion
         versionCode rootProject.ext._android.versionCode
@@ -69,7 +69,6 @@ dependencies {
     implementation rootProject.ext.ext_tools.logging_interceptor
 
     implementation rootProject.ext.ext_tools.agentweb
-    implementation rootProject.ext.ext_tools.flowlayout_lib
 
     compile project(':ZySdkLib')
 

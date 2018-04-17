@@ -74,10 +74,7 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends 
         super.onDestroy();
     }
 
-    @Override
-    public void preProcess() {
 
-    }
 
     @Override
     public int getContentId() {
