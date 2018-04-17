@@ -26,3 +26,6 @@ https://github.com/aa112901/remusic
 
 # 基于retorfit2，Rxjva2，Okhttp3，Glide，Dagger2,GreenDAO等框架采用MVP架构的仿应用商店App
 https://github.com/guzhigang001/Bailan
+
+# 第三方微博
+https://github.com/wenmingvs/WeiBo

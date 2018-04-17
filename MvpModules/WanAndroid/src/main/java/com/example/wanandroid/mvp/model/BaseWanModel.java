@@ -9,6 +9,13 @@ import com.zhiyangstudio.commonlib.mvp.model.BaseModel;
  */
 
 public class BaseWanModel extends BaseModel {
+
+    protected ApiServer mApiServer;
+
+    public BaseWanModel() {
+        mApiServer = getApi();
+    }
+
     public ApiServer getApi() {
         return createApiService(Const.URL_CONFIG.baseUrl, ApiServer.class);
     }

@@ -22,6 +22,7 @@ import com.example.wanandroid.mvp.contract.HomeContract;
 import com.example.wanandroid.mvp.presenter.HomePresenter;
 import com.example.wanandroid.ui.fragment.HomeFragment;
 import com.example.wanandroid.ui.fragment.TreeFragment;
+import com.zhiyangstudio.commonlib.components.receiver.AppInstallReceiver;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
@@ -52,6 +53,7 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
     };
 
     private long mExitTime;
+    private AppInstallReceiver mAppInstallReceiver;
 
     @Override
     protected HomePresenter createPresenter() {
@@ -73,6 +75,12 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onDestroy() {
+        mAppInstallReceiver.unRegister();
+        super.onDestroy();
     }
 
     @Override
@@ -130,6 +138,8 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
     @Override
     public void initData() {
         initFragments();
+        mAppInstallReceiver = new AppInstallReceiver();
+        mAppInstallReceiver.register();
     }
 
     @Override
