@@ -9,7 +9,7 @@ project.ext {
             plugin           : "com.android.tools.build:gradle:$androidPluginVersion",
             compileSdkVersion: 26,
             buildToolsVersion: '26.0.3',
-            minSdkVersion    : 15,
+            minSdkVersion    : 19,
             targetSdkVersion : 26,
             versionCode      : 1,
             versionName      : "1.0"
@@ -131,6 +131,9 @@ project.ext {
             indicatorseekbar        : 'com.github.warkiz.widget:indicatorseekbar:1.2.5',
 
             RecyclerViewPager       : 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar',
+
+            // https://github.com/hongyangAndroid/FlowLayout
+            flowlayout_lib          : 'com.hyman:flowlayout-lib:1.1.2',
 
             tablayoutsupport        : 'com.github.lsjwzh.RecyclerViewPager:tablayoutsupport:v1.1.2@aar',
             FJMtSortButton          : 'com.github.FJ917:FJMtSortButton:v1.1',
