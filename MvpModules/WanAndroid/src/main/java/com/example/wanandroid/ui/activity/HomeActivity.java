@@ -69,7 +69,6 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
 
     @Override
     protected void onNavigationClick() {
-
     }
 
     @Override
@@ -238,4 +237,5 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
         }
         return true;
     }
+
 }

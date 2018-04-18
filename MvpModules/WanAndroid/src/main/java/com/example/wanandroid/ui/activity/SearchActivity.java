@@ -260,4 +260,15 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
     public void onTreeClick(int chapterId, String chapterName) {
 
     }
+
+    @Override
+    protected boolean hasSupportTransStatusBar() {
+        return true;
+    }
+
+    @Override
+    protected int getStatusbarColor() {
+        return R.color._0091ea;
+    }
+
 }
