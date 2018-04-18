@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.adapter;
 
 /**
  * Created by zzg on 2018/4/17.

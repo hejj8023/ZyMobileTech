@@ -50,7 +50,8 @@ private void loadToolAppModule() {
     include ':ToolAppModule'
     project(":ToolAppModule").projectDir = file
 //    include ':ToolAppModule:FileTransferAssistant'
-    include ':ToolAppModule:HardwareAssistant'
+//    include ':ToolAppModule:HardwareAssistant'
+    include ':ToolAppModule:SDKLibTestApp'
 //    include ':ToolAppModule:BitmapAssistant'
 //    include ':ToolAppModule:NetworkDebugger'
 }

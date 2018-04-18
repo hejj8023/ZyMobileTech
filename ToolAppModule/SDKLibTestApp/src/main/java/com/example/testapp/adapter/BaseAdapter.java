@@ -1,4 +1,4 @@
-package com.example.testapp;
+package com.example.testapp.adapter;
 
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
