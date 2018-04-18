@@ -14,10 +14,9 @@ import com.example.wanandroid.R;
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.inter.OnArticleListItemClickListener;
 import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
-import com.zhiyangstudio.commonlib.helper.ViewHolderHelper;
+import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
 import com.zhiyangstudio.commonlib.utils.DateUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
-import com.zhiyangstudio.commonlib.widget.recyclerview.CommonRViewHolder;
 
 /**
  * Created by example on 2018/4/11.
@@ -38,13 +37,12 @@ public class ArticleListAdapter extends BaseListAdapter<ArticleBean> {
     }
 
     @Override
-    protected void bindDatas(CommonRViewHolder holder, ArticleBean bean, int itemViewType, int position) {
-        ViewHolderHelper holderHelper = holder.getHolderHelper();
-        TextView tv_author = holderHelper.findView(R.id.tv_author);
-        final TextView tv_title = holderHelper.findView(R.id.tv_title);
-        TextView tv_time = holderHelper.findView(R.id.tv_time);
-        TextView tv_type = holderHelper.findView(R.id.tv_type);
-        ImageView img_collect = holderHelper.findView(R.id.img_collect);
+    protected void bindDatas(QuickViewHolder holder, ArticleBean bean, int itemViewType, int position) {
+        TextView tv_author = holder.getView(R.id.tv_author);
+        final TextView tv_title = holder.getView(R.id.tv_title);
+        TextView tv_time = holder.getView(R.id.tv_time);
+        TextView tv_type = holder.getView(R.id.tv_type);
+        ImageView img_collect = holder.getView(R.id.img_collect);
 
         tv_author.setText("");
         tv_author.append("作者: ");
@@ -91,7 +89,7 @@ public class ArticleListAdapter extends BaseListAdapter<ArticleBean> {
             }
         });
 
-        holderHelper.getItemView().setOnClickListener(v -> {
+        holder.getItemView().setOnClickListener(v -> {
             if (mListener != null) {
                 mListener.onItemClick(tv_title.getText().toString(), bean.getLink());
             }

@@ -10,9 +10,13 @@
 
     <style name="AppTheme" parent="AppTheme.Base">
         <item name="searchViewStyle">@style/SearchViewStyle</item>
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:windowDisablePreview">true</item>
+        <!--<item name="android:windowBackground">@color/white</item>
+        <item name="android:windowDisablePreview">true</item>-->
         <!--<item name="android:windowIsTranslucent">true</item>-->
+    </style>
+
+    <style name="AppTheme.Start">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <!--定义SearchView样式-->

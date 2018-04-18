@@ -164,17 +164,6 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                ToastUtils.showShort("搜索");
-                IntentUtils.forward(SearchActivity.class);
-                break;
-        }
-        return true;
-    }
-
     @OnClick({R.id.btn_home, R.id.btn_knowtechs})
     public void onViewClick(View view) {
         switch (view.getId()) {
@@ -227,5 +216,26 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected boolean hasSupportTransStatusBar() {
+        return true;
+    }
+
+    @Override
+    protected int getStatusbarColor() {
+        return R.color._0091ea;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                ToastUtils.showShort("搜索");
+                IntentUtils.forward(SearchActivity.class);
+                break;
+        }
+        return true;
     }
 }
