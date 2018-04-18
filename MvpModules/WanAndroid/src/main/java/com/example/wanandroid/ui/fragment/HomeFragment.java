@@ -1,5 +1,6 @@
 package com.example.wanandroid.ui.fragment;
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.example.wanandroid.Const;
@@ -137,5 +138,10 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
     public void onPause() {
         super.onPause();
         mViewPager.stop();
+    }
+
+    @Override
+    protected void initArguments(Bundle bundle) {
+
     }
 }
