@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import com.example.testapp.Const;
 import com.example.testapp.R;
-import com.example.testapp.adapter.QuickAdapter;
-import com.example.testapp.adapter.QuickViewHolder;
+import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickAdapter;
+import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
 import com.zhiyangstudio.commonlib.corel.BaseFragment;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 

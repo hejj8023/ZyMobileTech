@@ -6,9 +6,9 @@ import android.widget.ImageView;
 import com.example.testapp.Const;
 import com.example.testapp.HotBean;
 import com.example.testapp.R;
-import com.example.testapp.adapter.QuickAdapter;
-import com.example.testapp.adapter.QuickMultiSupport;
-import com.example.testapp.adapter.QuickViewHolder;
+import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickAdapter;
+import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickMultiSupport;
+import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
 import com.zhiyangstudio.commonlib.corel.BaseFragment;
 import com.zhiyangstudio.commonlib.glide.GlideApp;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
@@ -21,7 +21,6 @@ public abstract class BaseMultiListFragment extends BaseFragment {
     protected static final int COMMON_TEXT = 0;
     protected static final int COMMON_IMG = 1;
     protected static final int COMMON_IMGTEXT = 2;
-
 
     protected QuickAdapter mQuickAdapter = new QuickAdapter<HotBean>(UiUtils.getContext(), Const.DATA
             .TEST_HOT_BEAN_LIST, new
