@@ -16,14 +16,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
 import com.example.wanandroid.base.BaseWanAndroidActivity;
+import com.example.wanandroid.bean.UserBean;
+import com.example.wanandroid.manager.GlideLoaderManager;
+import com.example.wanandroid.manager.UserInfoManager;
 import com.example.wanandroid.mvp.contract.HomeContract;
 import com.example.wanandroid.mvp.presenter.HomePresenter;
 import com.example.wanandroid.ui.fragment.HomeFragment;
 import com.example.wanandroid.ui.fragment.TreeFragment;
 import com.zhiyangstudio.commonlib.components.receiver.AppInstallReceiver;
+import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zhiyangstudio.commonlib.utils.PreUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import butterknife.BindView;
@@ -93,6 +99,7 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
                     break;
                 case R.id.action_logout:
                     ToastUtils.showShort("退出登录");
+                    extToLogin();
                     break;
                 case R.id.action_subjects:
                     ToastUtils.showShort("喜欢的文章");
@@ -100,6 +107,14 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
             }
             return true;
         }));
+    }
+
+    /**
+     * 退出登录
+     */
+    private void extToLogin() {
+        IntentUtils.forward(LoginActivity.class);
+        PreUtils.clearAll();
     }
 
     @Override
@@ -132,6 +147,15 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
         View headerView = navigationView.getHeaderView(0);
         menuUserIcon = headerView.findViewById(R.id.iv_user_icon);
         menuLoginStatus = headerView.findViewById(R.id.tv_login_status);
+        headerView.setOnClickListener(v -> {
+            if (UserInfoManager.isLogin()) {
+                // 如果是登录状态就退出，需要清空所有的资源
+                extToLogin();
+                return;
+            }
+            // 没有登录就跳转到登录界面
+            IntentUtils.forward(LoginActivity.class);
+        });
     }
 
     @Override
@@ -218,13 +242,37 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
     }
 
     @Override
+    protected boolean hasSupportTransStatusBar() {
+        return true;
+    }
+
+    @Override
     protected int getStatusbarColor() {
         return R.color._0091ea;
     }
 
     @Override
-    protected boolean hasSupportTransStatusBar() {
-        return true;
+    protected void onResume() {
+        super.onResume();
+        if (drawerLayout.isDrawerOpen(Gravity.START)) {
+            drawerLayout.closeDrawer(Gravity.START);
+        }
+        setUserData();
+    }
+
+    private void setUserData() {
+        if (UserInfoManager.isLogin()) {
+            UserBean userInfo = UserInfoManager.getUserInfo();
+            if (userInfo != null) {
+                menuLoginStatus.setText(userInfo.getUserName());
+                if (EmptyUtils.isNotEmpty(userInfo.getIcon())) {
+                    GlideLoaderManager.loadImage(menuUserIcon, userInfo.getIcon(), Const
+                            .IMAGE_LOADER.HEAD_IMG);
+                }
+            }
+        } else {
+            menuLoginStatus.setText("未登录");
+        }
     }
 
     @Override

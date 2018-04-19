@@ -41,5 +41,12 @@ public interface LoginContract {
          * @param msg
          */
         void showResult(String msg);
+
+        /**
+         * 登录状态 发生变化
+         *
+         * @param status
+         */
+        void onLoginStatusChange(int status);
     }
 }

@@ -8,6 +8,12 @@ public class Const {
     public static class USERINFO_KEY {
         // 登录状态
         public static final String IS_LOGIN = "mIsLogin";
+
+        // 用户信息密钥
+        public static final String AES = "mAES";
+
+        // 用户信息
+        public static final String USER_INFO = "mUserInfo";
     }
 
     public static class URL_CONFIG {
@@ -111,5 +117,15 @@ public class Const {
         public static final int ACTION_LIST = 1;
         public static final String CHAPTER_ID = "chapter_id";
         public static final String CHAPTER_NAME = "chapter_name";
+    }
+
+    /**
+     * 登录和注册的状态
+     */
+    public class LOGIN_REG_STATUS {
+        public static final int LOGIN_SUCESS = 0;
+        public static final int LOGIN_FAIL = 1;
+        public static final int REG_SUCESS = 2;
+        public static final int REG_FAIL = 3;
     }
 }

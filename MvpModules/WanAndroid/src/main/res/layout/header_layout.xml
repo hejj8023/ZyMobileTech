@@ -8,13 +8,17 @@
     <ImageView
         android:id="@+id/iv_user_icon"
         android:layout_width="30dp"
-        android:layout_height="30dp" />
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher_round" />
 
     <TextView
         android:id="@+id/tv_login_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_user_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
         android:text="未登录"
         android:textColor="@color/white" />
 

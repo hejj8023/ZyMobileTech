@@ -6,6 +6,7 @@ import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.bean.FriendBean;
 import com.example.wanandroid.bean.HotwordBean;
 import com.example.wanandroid.bean.TreeBean;
+import com.example.wanandroid.bean.UserBean;
 import com.zhiyangstudio.commonlib.bean.BaseBean;
 import com.zhiyangstudio.commonlib.bean.PageListDataBean;
 
@@ -88,4 +89,29 @@ public interface ApiServer {
     @GET(Const.URL_CONFIG.TREE_LIST)
     Observable<BaseBean<PageListDataBean<ArticleBean>>> getTreeList(@Path("page") int page,
                                                                     @Query("cid") int cid);
+
+    /**
+     * 登录
+     *
+     * @param userName
+     * @param password
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(Const.URL_CONFIG.LOGIN)
+    Observable<BaseBean<UserBean>> login(@Field("username") String userName, @Field("password")
+            String password);
+
+    /**
+     * 注册
+     *
+     * @param userName
+     * @param password   密码
+     * @param repassword 重复密码
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(Const.URL_CONFIG.REGISTER)
+    Observable<BaseBean<String>> register(@Field("username") String userName, @Field("password")
+            String password, @Field("repassword") String repassword);
 }

@@ -6,4 +6,9 @@
     <string name="search_keyword">关键词</string>
     <string name="hot_search">大家都在搜</string>
     <string name="web_search">常用网站</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="loginging">登录中&#8230;</string>
+    <string name="login_sucessed">登录成功!</string>
+    <string name="reging">注册中&#8230;</string>
 </resources>

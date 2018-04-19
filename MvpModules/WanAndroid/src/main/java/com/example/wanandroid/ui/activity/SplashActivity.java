@@ -1,7 +1,9 @@
 package com.example.wanandroid.ui.activity;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.wanandroid.R;
 import com.example.wanandroid.base.BaseWanAndroidActivity;
+import com.example.wanandroid.bean.UserBean;
 import com.example.wanandroid.manager.UserInfoManager;
 import com.example.wanandroid.mvp.contract.LoginContract;
 import com.example.wanandroid.mvp.presenter.LoginPresenter;
@@ -15,19 +17,21 @@ import com.zhiyangstudio.commonlib.utils.IntentUtils;
 public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, LoginContract
         .ILoginView> implements LoginContract.ILoginView {
 
+    private UserBean userBean;
+
     @Override
     public String getUserName() {
-        return null;
+        return userBean.getUserName();
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return userBean.getPassword();
     }
 
     @Override
     public void onAccountError(String msg) {
-
+        ToastUtils.showShort(msg);
     }
 
     @Override
@@ -36,8 +40,8 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
     }
 
     @Override
-    protected LoginPresenter createPresenter() {
-        return new LoginPresenter();
+    public void onLoginStatusChange(int status) {
+
     }
 
     @Override
@@ -76,6 +80,10 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
     private void autoLogin() {
         if (UserInfoManager.isLogin()) {
             // 自动登录
+            userBean = UserInfoManager.getUserInfo();
+            if (userBean != null) {
+                mPresenter.login();
+            }
         }
         IntentUtils.forward(HomeActivity.class);
 
@@ -89,6 +97,11 @@ public class SplashActivity extends BaseWanAndroidActivity<LoginPresenter, Login
     @Override
     protected void onPermissionDeny(int code) {
         goMain();
+    }
+
+    @Override
+    protected LoginPresenter createPresenter() {
+        return new LoginPresenter();
     }
 
     @Override

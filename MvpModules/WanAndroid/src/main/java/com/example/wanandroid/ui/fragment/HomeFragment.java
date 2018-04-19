@@ -11,8 +11,10 @@ import com.example.wanandroid.adapter.BannerAdapter;
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.inter.OnArticleListItemClickListener;
+import com.example.wanandroid.manager.UserInfoManager;
 import com.example.wanandroid.mvp.contract.HomeListContract;
 import com.example.wanandroid.mvp.presenter.HomeListPresenter;
+import com.example.wanandroid.ui.activity.LoginActivity;
 import com.example.wanandroid.ui.activity.TreeActivity;
 import com.example.wanandroid.utils.CommonInternalUtil;
 import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
@@ -118,7 +120,10 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
 
     @Override
     public void onCollectClick(int pos, int id) {
-
+        if (!UserInfoManager.isLogin()) {
+            IntentUtils.forward(LoginActivity.class);
+            return;
+        }
     }
 
     @Override
