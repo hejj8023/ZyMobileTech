@@ -94,6 +94,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
                 if (errorCode == CommonConst.NET_CONFIG.PARSE_ERROR) {
                     onSucess("注册成功");
                     login();
+                    return;
                 }
                 mILoginView.hideLoading();
                 mILoginView.showResult(errorMsg);
