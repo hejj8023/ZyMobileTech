@@ -52,7 +52,7 @@ public class ArticleListAdapter extends BaseListAdapter<ArticleBean> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             tv_title.setText(Html.fromHtml(bean.getTitle(), Html.FROM_HTML_MODE_LEGACY));
         } else {
-            tv_title.setText(bean.getTitle());
+            tv_title.setText(Html.fromHtml(bean.getTitle()));
         }
         tv_type.setText("");
         tv_type.append("分类: ");

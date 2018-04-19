@@ -5,6 +5,7 @@ import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.bean.FriendBean;
 import com.example.wanandroid.bean.HotwordBean;
+import com.example.wanandroid.bean.TreeBean;
 import com.zhiyangstudio.commonlib.bean.BaseBean;
 import com.zhiyangstudio.commonlib.bean.PageListDataBean;
 
@@ -16,6 +17,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by example on 2018/4/11.
@@ -67,4 +69,23 @@ public interface ApiServer {
     @POST(Const.URL_CONFIG.SEARCH)
     Observable<BaseBean<PageListDataBean<ArticleBean>>> searchArticle(@Path("page") int page, @Field("k")
             String keyword);
+
+    /**
+     * 知识体系分类
+     *
+     * @return
+     */
+    @GET(Const.URL_CONFIG.TREE)
+    Observable<BaseBean<List<TreeBean>>> getTree();
+
+    /**
+     * 知识体系列表
+     *
+     * @param page
+     * @param cid
+     * @return
+     */
+    @GET(Const.URL_CONFIG.TREE_LIST)
+    Observable<BaseBean<PageListDataBean<ArticleBean>>> getTreeList(@Path("page") int page,
+                                                                    @Query("cid") int cid);
 }

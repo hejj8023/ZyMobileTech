@@ -18,8 +18,8 @@ import butterknife.ButterKnife;
  * Created by example on 2018/4/9.
  */
 
-public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends IView> extends
-        BasePresenterActivivty {
+public abstract class BaseWanAndroidActivity<P extends BasePresenter<V>, V extends IView> extends
+        BasePresenterActivivty<P, V> {
 
     protected BaseInternalHandler mH = new BaseInternalHandler(this) {
         @Override
@@ -73,7 +73,6 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter, V extends 
         mH.destory();
         super.onDestroy();
     }
-
 
 
     @Override

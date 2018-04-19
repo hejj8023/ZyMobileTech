@@ -1,5 +1,6 @@
 package com.example.wanandroid.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,8 +13,11 @@ import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.inter.OnArticleListItemClickListener;
 import com.example.wanandroid.mvp.contract.HomeListContract;
 import com.example.wanandroid.mvp.presenter.HomeListPresenter;
+import com.example.wanandroid.ui.activity.TreeActivity;
+import com.example.wanandroid.utils.CommonInternalUtil;
 import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
 import com.zhiyangstudio.commonlib.mvp.BaseAbsListFragment;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 import com.zhiyangstudio.commonlib.widget.BannerViewPager;
 
@@ -104,7 +108,7 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
 
     @Override
     public void onItemClick(String title, String url) {
-
+        CommonInternalUtil.goWebView(title, url);
     }
 
     @Override
@@ -119,7 +123,11 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
 
     @Override
     public void onTreeClick(int chapterId, String chapterName) {
-
+        Intent intent = new Intent(mContext, TreeActivity.class);
+        intent.putExtra(Const.BUNDLE_KEY.ACTION_TYPE, Const.BUNDLE_KEY.ACTION_LIST);
+        intent.putExtra(Const.BUNDLE_KEY.CHAPTER_ID, chapterId);
+        intent.putExtra(Const.BUNDLE_KEY.CHAPTER_NAME, chapterName);
+        IntentUtils.forward(intent);
     }
 
     @Override

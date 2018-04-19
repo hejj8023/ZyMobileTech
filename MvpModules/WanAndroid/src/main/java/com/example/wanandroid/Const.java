@@ -100,5 +100,16 @@ public class Const {
     public class BUNDLE_KEY {
         public static final String HOME_LIST_ITEM_TITLE = "banner_title";
         public static final String HOME_LIST_ITEM_URL = "banner_url";
+        public static final String ACTION_TYPE = "intent_action_type";
+        public static final String OBJ = "obj";
+        public static final String ID = "_id";
+
+        // 动作来源——知识体系
+        public static final int ACTION_TREE = 0;
+
+        // 动作来源——首页列表
+        public static final int ACTION_LIST = 1;
+        public static final String CHAPTER_ID = "chapter_id";
+        public static final String CHAPTER_NAME = "chapter_name";
     }
 }

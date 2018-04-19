@@ -39,7 +39,7 @@ public class WebViewActivity extends BaseWanAndroidActivity {
     public void initData() {
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(Const.BUNDLE_KEY.HOME_LIST_ITEM_TITLE);
-        toolbar.setTitle(mTitle);
+        setTitle(mTitle);
         url = intent.getStringExtra(Const.BUNDLE_KEY.HOME_LIST_ITEM_URL);
 
         agentWeb = AgentWeb.with(this)
@@ -56,11 +56,6 @@ public class WebViewActivity extends BaseWanAndroidActivity {
     @Override
     public void release() {
 
-    }
-
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
     }
 
     @Override
@@ -85,6 +80,42 @@ public class WebViewActivity extends BaseWanAndroidActivity {
     }
 
     @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.webview_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        CommonUtils.makeHeightMenu(menu);
+        return super.onMenuOpened(featureId, menu);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // 将事件将给AgentWeb做处理
+        if (agentWeb.handleKeyEvent(keyCode, event)) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected int getStatusbarColor() {
+        return R.color._0091ea;
+    }
+
+    @Override
+    protected boolean hasSupportTransStatusBar() {
+        return true;
+    }
+
+    @Override
     protected void onPause() {
         agentWeb.getWebLifeCycle().onPause();
         super.onPause();
@@ -94,12 +125,6 @@ public class WebViewActivity extends BaseWanAndroidActivity {
     protected void onResume() {
         agentWeb.getWebLifeCycle().onResume();
         super.onResume();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.webview_menu, menu);
-        return true;
     }
 
     @Override
@@ -120,19 +145,4 @@ public class WebViewActivity extends BaseWanAndroidActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    @Override
-    public boolean onMenuOpened(int featureId, Menu menu) {
-        CommonUtils.makeHeightMenu(menu);
-        return super.onMenuOpened(featureId, menu);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // 将事件将给AgentWeb做处理
-        if (agentWeb.handleKeyEvent(keyCode, event)) {
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 }

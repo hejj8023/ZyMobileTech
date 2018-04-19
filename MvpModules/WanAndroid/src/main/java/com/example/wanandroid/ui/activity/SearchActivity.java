@@ -19,6 +19,7 @@ import com.example.wanandroid.bean.HotwordBean;
 import com.example.wanandroid.inter.OnArticleListItemClickListener;
 import com.example.wanandroid.mvp.contract.SearchContract;
 import com.example.wanandroid.mvp.presenter.SearchPresenter;
+import com.example.wanandroid.utils.CommonInternalUtil;
 import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
 import com.zhiyangstudio.commonlib.mvp.BaseAbsListActivity;
@@ -243,7 +244,7 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
 
     @Override
     public void onItemClick(String title, String url) {
-
+        CommonInternalUtil.goWebView(title, url);
     }
 
     @Override
@@ -262,13 +263,12 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
     }
 
     @Override
-    protected boolean hasSupportTransStatusBar() {
-        return true;
-    }
-
-    @Override
     protected int getStatusbarColor() {
         return R.color._0091ea;
     }
 
+    @Override
+    protected boolean hasSupportTransStatusBar() {
+        return true;
+    }
 }

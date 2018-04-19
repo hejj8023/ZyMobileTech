@@ -218,13 +218,13 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
     }
 
     @Override
-    protected boolean hasSupportTransStatusBar() {
-        return true;
+    protected int getStatusbarColor() {
+        return R.color._0091ea;
     }
 
     @Override
-    protected int getStatusbarColor() {
-        return R.color._0091ea;
+    protected boolean hasSupportTransStatusBar() {
+        return true;
     }
 
     @Override
@@ -237,5 +237,4 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
         }
         return true;
     }
-
 }

@@ -1,7 +1,5 @@
 package com.example.wanandroid.adapter;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.util.SparseArray;
 import android.view.View;
@@ -13,8 +11,7 @@ import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
 import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.manager.GlideLoaderManager;
-import com.example.wanandroid.ui.activity.WebViewActivity;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
+import com.example.wanandroid.utils.CommonInternalUtil;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import java.util.List;
@@ -53,16 +50,7 @@ public class BannerAdapter extends PagerAdapter {
             TextView textView = view.findViewById(R.id.title);
             textView.setText(bannerBean.getTitle());
             view.setOnClickListener(v -> {
-                Intent intent = new Intent(UiUtils.getContext(), WebViewActivity.class);
-                intent.putExtra(Const.BUNDLE_KEY.HOME_LIST_ITEM_TITLE, bannerBean.getTitle());
-                intent.putExtra(Const.BUNDLE_KEY.HOME_LIST_ITEM_URL, bannerBean.getUrl());
-                Activity currentActivity = CommonUtils.getCurrentActivity();
-                if (currentActivity != null) {
-                    currentActivity.startActivity(intent);
-                } else {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    UiUtils.getContext().startActivity(intent);
-                }
+                CommonInternalUtil.goWebView(bannerBean.getTitle(),bannerBean.getUrl());
             });
             mViews.put(position, view);
         }

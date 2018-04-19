@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="作者 : 依然范特西"
-            android:textColor="@color/grey"
+            android:textColor="@color/gray"
             android:textSize="13sp" />
 
         <TextView
@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="2018-01-22"
+            android:textColor="@color/gray"
             android:textSize="13sp" />
 
         <TextView
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
             android:text="分类 : 混淆"
-            android:textColor="@color/grey"
+            android:textColor="@color/gray"
             android:textSize="13sp" />
 
         <ImageView

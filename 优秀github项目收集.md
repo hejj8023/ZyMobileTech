@@ -12,8 +12,14 @@ https://github.com/GcsSloop/AndroidNote
 #diycode android app
 https://github.com/GcsSloop/diycode
 
-#玩安卓客户端(Java版)
+# WanAndroidClient -> 学习中.x
+https://github.com/wangzailfm/WanAndroidClient
+
+#玩安卓客户端(Java版) -> 学习中.
 https://github.com/kangdongpu/WanAndroid
+
+# Awesome-WanAndroid
+https://github.com/JsonChao/Awesome-WanAndroid
 
 # WanAndroidClient(kotlin版) -> 学习中...
 https://github.com/wangzailfm/WanAndroidClient
