@@ -9,6 +9,7 @@ import com.example.wanandroid.R;
 import com.example.wanandroid.base.BaseWanAndroidActivity;
 import com.example.wanandroid.mvp.contract.LoginContract;
 import com.example.wanandroid.mvp.presenter.LoginPresenter;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -69,6 +70,7 @@ public class LoginActivity extends BaseWanAndroidActivity<LoginPresenter, LoginC
     @Override
     public void onLoginStatusChange(int status) {
         if (status == Const.LOGIN_REG_STATUS.REG_SUCESS || status == Const.LOGIN_REG_STATUS.LOGIN_SUCESS) {
+            IntentUtils.forward(SplashActivity.class);
             finish();
         }
     }

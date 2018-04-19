@@ -6,6 +6,7 @@ import com.example.wanandroid.bean.UserBean;
 import com.example.wanandroid.manager.UserInfoManager;
 import com.example.wanandroid.mvp.contract.LoginContract;
 import com.example.wanandroid.mvp.model.LoginModel;
+import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
@@ -90,6 +91,10 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
 
             @Override
             protected void onFailure(int errorCode, String errorMsg) {
+                if (errorCode == CommonConst.NET_CONFIG.PARSE_ERROR) {
+                    onSucess("注册成功");
+                    login();
+                }
                 mILoginView.hideLoading();
                 mILoginView.showResult(errorMsg);
                 mILoginView.onLoginStatusChange(Const.LOGIN_REG_STATUS.REG_FAIL);
