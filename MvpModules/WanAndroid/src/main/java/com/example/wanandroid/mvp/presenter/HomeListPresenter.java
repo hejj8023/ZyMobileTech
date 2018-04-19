@@ -6,6 +6,7 @@ import com.example.wanandroid.mvp.contract.HomeListContract;
 import com.example.wanandroid.mvp.model.HomeListModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 import com.zhiyangstudio.commonlib.net.callback.RxConsumer;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
@@ -58,6 +59,39 @@ public class HomeListPresenter extends BasePresenter<HomeListContract.IHomeListV
             protected void onFailure(int errorCode, String errorMsg) {
                 LoggerUtils.loge(this, "onFailure");
                 homeListView.showFail(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void unCollectArticle() {
+        homeListView = getView();
+        homeListView = getView();
+        mHomeModel.unCollect(homeListView.getArticleId(), new RxObserver<String>(this) {
+            @Override
+            protected void onSucess(String data) {
+                homeListView.collect(false, "取消收藏成功");
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                homeListView.showFilure(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void collectArticle() {
+        homeListView = getView();
+        mHomeModel.collect(homeListView.getArticleId(), new RxObserver<String>(this) {
+            @Override
+            protected void onSucess(String data) {
+                homeListView.collect(true, "收藏成功");
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                homeListView.showFilure(errorMsg);
             }
         });
     }

@@ -65,7 +65,7 @@ public class ArticleListAdapter extends BaseListAdapter<ArticleBean> {
             case Const.LIST_TYPE.HOME:
             case Const.LIST_TYPE.SEARCH:
                 img_collect.setImageResource(bean.isCollect() ? R.drawable
-                        .ic_view_quilt_light_24dp : R.drawable.ic_favorite_gray_24dp);
+                        .ic_favorite_light_24dp : R.drawable.ic_favorite_gray_24dp);
                 img_collect.setOnClickListener(v -> {
                     if (mListener != null) {
                         // 处理收藏和取消收藏的操作

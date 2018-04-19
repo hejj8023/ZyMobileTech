@@ -4,6 +4,7 @@ import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.BannerBean;
 import com.zhiyangstudio.commonlib.net.callback.RxConsumer;
 import com.zhiyangstudio.commonlib.net.callback.RxFunction;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 import com.zhiyangstudio.commonlib.utils.RxUtils;
@@ -23,7 +24,7 @@ public class HomeListModel extends BaseWanModel implements IHomeListModel {
     @Override
     public void getHomeData(int page, RxConsumer<List<BannerBean>> consumer,
                             RxPageListObserver<ArticleBean> rxObserver) {
-        LoggerUtils.loge(this,"getHomeData");
+        LoggerUtils.loge(this, "getHomeData");
         getApi().getBannerList()
                 .compose(RxUtils.io_main())
                 .doOnNext(consumer)
@@ -31,11 +32,21 @@ public class HomeListModel extends BaseWanModel implements IHomeListModel {
                 .flatMap(new RxFunction<List<BannerBean>, ArticleBean>() {
                     @Override
                     protected Observable doOnNextRequest() {
-                        LoggerUtils.loge(this,"getArticleList");
+                        LoggerUtils.loge(this, "getArticleList");
                         return getApi().getArticleList(page);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(rxObserver);
+    }
+
+    @Override
+    public void collect(int articleId, RxObserver<String> rxObserver) {
+        getApi().collect(articleId).compose(RxUtils.io_main()).subscribe(rxObserver);
+    }
+
+    @Override
+    public void unCollect(int articleId, RxObserver<String> rxObserver) {
+        getApi().unCollect(articleId).compose(RxUtils.io_main()).subscribe(rxObserver);
     }
 }

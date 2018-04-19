@@ -3,6 +3,7 @@ package com.example.wanandroid.mvp.model;
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.BannerBean;
 import com.zhiyangstudio.commonlib.net.callback.RxConsumer;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 
 import java.util.List;
@@ -21,4 +22,20 @@ public interface IHomeListModel {
      */
     void getHomeData(int page, RxConsumer<List<BannerBean>> consumer,
                      RxPageListObserver<ArticleBean> observer);
+
+    /**
+     * 收藏
+     *
+     * @param articleId
+     * @param rxObserver
+     */
+    void collect(int articleId, RxObserver<String> rxObserver);
+
+    /**
+     * 取消收藏
+     *
+     * @param articleId
+     * @param rxObserver
+     */
+    void unCollect(int articleId, RxObserver<String> rxObserver);
 }

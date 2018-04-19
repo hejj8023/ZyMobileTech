@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
 import com.example.wanandroid.adapter.ArticleListAdapter;
@@ -36,6 +37,10 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
     private List<BannerBean> mBannerList = new ArrayList<>();
     private BannerViewPager mViewPager;
     private BannerAdapter mBannerAdapter;
+    // 位置
+    private int mPos;
+    // 文章 id
+    private int mId;
 
     @Override
     public void addListener() {
@@ -124,6 +129,12 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
             IntentUtils.forward(LoginActivity.class);
             return;
         }
+        this.mPos = pos;
+        this.mId = id;
+        if (mListData.get(mPos).isCollect())
+            mPresenter.unCollectArticle();
+        else
+            mPresenter.collectArticle();
     }
 
     @Override
@@ -139,6 +150,34 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
     public void setBannerData(List<BannerBean> list) {
         mBannerList.clear();
         mBannerList.addAll(list);
+    }
+
+    @Override
+    public int getArticleId() {
+        return mId;
+    }
+
+    @Override
+    public void collect(boolean isCollect, String msg) {
+        notifyItemData(isCollect, msg);
+    }
+
+    /**
+     * 刷新item
+     *
+     * @param isCollect
+     * @param msg
+     */
+    private void notifyItemData(boolean isCollect, String msg) {
+        mListData.get(mPos).setCollect(isCollect);
+        mPos++;
+        mListAdapter.notifyItemDataChanged(mPos, recyclerView);
+        ToastUtils.showShort(msg);
+    }
+
+    @Override
+    public void showFilure(String msg) {
+
     }
 
     @Override

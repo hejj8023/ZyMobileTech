@@ -11,11 +11,30 @@ import java.util.List;
  */
 
 public interface HomeListContract {
-    public interface IHomeListView extends IListDataView<ArticleBean> {
+    interface IHomeListView extends IListDataView<ArticleBean> {
         void setBannerData(List<BannerBean> list);
+
+        int getArticleId();
+
+        void collect(boolean isCollect, String msg);
+
+        void showFilure(String msg);
     }
 
-    public interface IHomeListPresenter {
+    interface IHomeListPresenter {
+        /**
+         * 获取首页列表及轮播图数据
+         */
         void getHomeList();
+
+        /**
+         * 取消收藏
+         */
+        void unCollectArticle();
+
+        /**
+         * 收藏
+         */
+        void collectArticle();
     }
 }

@@ -81,12 +81,17 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
             @Override
             protected void onSucess(String data) {
                 mILoginView.hideLoading();
-                mILoginView.onLoginStatusChange(Const.LOGIN_REG_STATUS.REG_SUCESS);
+                mILoginView.showResult("注册成功");
+
+                // 注册成功之后执行登录操作
+                login();
+                // mILoginView.onLoginStatusChange(Const.LOGIN_REG_STATUS.REG_SUCESS);
             }
 
             @Override
             protected void onFailure(int errorCode, String errorMsg) {
                 mILoginView.hideLoading();
+                mILoginView.showResult(errorMsg);
                 mILoginView.onLoginStatusChange(Const.LOGIN_REG_STATUS.REG_FAIL);
             }
 

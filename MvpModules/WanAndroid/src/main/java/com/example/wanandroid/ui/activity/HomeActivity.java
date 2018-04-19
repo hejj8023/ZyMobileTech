@@ -98,8 +98,11 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
                     ToastUtils.showShort("关于我们");
                     break;
                 case R.id.action_logout:
-                    ToastUtils.showShort("退出登录");
-                    extToLogin();
+                    if (UserInfoManager.isLogin()) {
+                        extToLogin();
+                    } else {
+                        ToastUtils.showShort("当前为未登录状态,不执行退出登录操作");
+                    }
                     break;
                 case R.id.action_subjects:
                     ToastUtils.showShort("喜欢的文章");

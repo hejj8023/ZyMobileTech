@@ -114,4 +114,22 @@ public interface ApiServer {
     @POST(Const.URL_CONFIG.REGISTER)
     Observable<BaseBean<String>> register(@Field("username") String userName, @Field("password")
             String password, @Field("repassword") String repassword);
+
+    /**
+     * 收藏文章
+     *
+     * @param articleId
+     * @return
+     */
+    @POST(Const.URL_CONFIG.COLLECT_ARTICLE)
+    Observable<BaseBean<String>> collect(@Path("id") int articleId);
+
+    /**
+     * 取消收藏
+     *
+     * @param articleId
+     * @return
+     */
+    @POST(Const.URL_CONFIG.UNCOLLECT_ARTICLE)
+    Observable<BaseBean<String>> unCollect(@Path("id") int articleId);
 }
