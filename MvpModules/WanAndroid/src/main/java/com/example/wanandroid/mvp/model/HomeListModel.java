@@ -2,9 +2,9 @@ package com.example.wanandroid.mvp.model;
 
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.BannerBean;
+import com.example.wanandroid.mvp.model.inter.IHomeListModel;
 import com.zhiyangstudio.commonlib.net.callback.RxConsumer;
 import com.zhiyangstudio.commonlib.net.callback.RxFunction;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 import com.zhiyangstudio.commonlib.utils.RxUtils;
@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by example on 2018/4/11.
  */
 
-public class HomeListModel extends BaseWanModel implements IHomeListModel {
+public class HomeListModel extends CollectModel implements IHomeListModel {
 
     @Override
     public void getHomeData(int page, RxConsumer<List<BannerBean>> consumer,
@@ -38,15 +38,5 @@ public class HomeListModel extends BaseWanModel implements IHomeListModel {
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(rxObserver);
-    }
-
-    @Override
-    public void collect(int articleId, RxObserver<String> rxObserver) {
-        getApi().collect(articleId).compose(RxUtils.io_main()).subscribe(rxObserver);
-    }
-
-    @Override
-    public void unCollect(int articleId, RxObserver<String> rxObserver) {
-        getApi().unCollect(articleId).compose(RxUtils.io_main()).subscribe(rxObserver);
     }
 }

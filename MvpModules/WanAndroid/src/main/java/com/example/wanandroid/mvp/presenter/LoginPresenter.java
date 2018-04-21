@@ -10,6 +10,7 @@ import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
+import com.zhiyangstudio.commonlib.utils.PreUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import io.reactivex.disposables.Disposable;
@@ -34,6 +35,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
     public void login() {
         if (!verifyAccount())
             return;
+        // 清除之前的数据
+        PreUtils.clearAll();
         mModel.login(mUserName, mPassword, new RxObserver<UserBean>(this, LoginModel.class.getName()) {
             @Override
             protected void onSucess(UserBean data) {

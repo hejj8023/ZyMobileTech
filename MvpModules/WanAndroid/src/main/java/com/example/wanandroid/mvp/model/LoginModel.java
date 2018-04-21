@@ -1,6 +1,7 @@
 package com.example.wanandroid.mvp.model;
 
 import com.example.wanandroid.bean.UserBean;
+import com.example.wanandroid.mvp.model.inter.ILoginModel;
 import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.utils.RxUtils;
 

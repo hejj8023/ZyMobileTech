@@ -1,28 +1,17 @@
 package com.example.wanandroid.mvp.contract;
 
 import com.example.wanandroid.bean.ArticleBean;
-import com.zhiyangstudio.commonlib.mvp.inter.IListDataView;
 
 /**
  * Created by zhiyang on 2018/4/19.
  */
 
 public interface TreeListContract {
-    interface ITreeListView extends IListDataView<ArticleBean> {
+    interface ITreeListView extends CollectContract.ICollectView<ArticleBean> {
         int getCid();
-
-        int getArticleId();
-
-        void collect(boolean isCollect, String msg);
-
-        void showFilure(String msg);
     }
 
-    public interface ITreeListPresenter {
+    public interface ITreeListPresenter extends CollectContract.ICollectPresenter {
         void loadTreeList();
-
-        void unCollectArticle();
-
-        void collectArticle();
     }
 }

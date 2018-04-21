@@ -1,4 +1,4 @@
-package com.example.wanandroid.mvp.model;
+package com.example.wanandroid.mvp.model.inter;
 
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.FriendBean;
