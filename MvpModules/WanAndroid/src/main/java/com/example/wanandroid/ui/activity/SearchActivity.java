@@ -2,27 +2,21 @@ package com.example.wanandroid.ui.activity;
 
 import android.os.Build;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
-import com.example.wanandroid.adapter.ArticleListAdapter;
+import com.example.wanandroid.base.BaseWanListActivity;
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.FriendBean;
 import com.example.wanandroid.bean.HotwordBean;
-import com.example.wanandroid.inter.OnArticleListItemClickListener;
 import com.example.wanandroid.mvp.contract.SearchContract;
 import com.example.wanandroid.mvp.presenter.SearchPresenter;
-import com.example.wanandroid.utils.CommonInternalUtil;
 import com.zhiyangstudio.commonlib.CommonConst;
-import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
-import com.zhiyangstudio.commonlib.mvp.BaseAbsListActivity;
 import com.zhiyangstudio.commonlib.utils.CommonUtils;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
@@ -39,11 +33,9 @@ import java.util.List;
  * 流式布局:https://github.com/hongyangAndroid/FlowLayout
  */
 
-public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchContract
-        .ISearchView, ArticleBean> implements SearchContract.ISearchView, OnArticleListItemClickListener {
+public class SearchActivity extends BaseWanListActivity<SearchPresenter, SearchContract
+        .ISearchView, ArticleBean> implements SearchContract.ISearchView {
 
-    private Toolbar toolbar;
-    private LinearLayout containerLayout;
     private SearchView mSearchView;
     private View mHeaderView;
     private TagFlowLayout mKeywordTagLayout;
@@ -53,38 +45,6 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
     // 搜索的词
     private String mKeyWord;
 
-    @Override
-    public int getContentId() {
-        return R.layout.activity_base_wan_android;
-    }
-
-    @Override
-    public void initView() {
-        toolbar = findViewById(R.id.toolbar);
-        containerLayout = findViewById(R.id.frameLayout);
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle(UiUtils.getStr(R.string.search));
-        // TODO: 2018/4/17 toolbar返回键点击时的操作
-        toolbar.setNavigationOnClickListener(v -> {
-            finish();
-        });
-
-        View listView = UiUtils.inflateView(R.layout.layout_base_recycler_list, containerLayout);
-        containerLayout.addView(listView);
-        super.initView();
-    }
-
-    @Override
-    protected boolean isCanLoadMore() {
-        return true;
-    }
-
-    @Override
-    protected BaseListAdapter getListAdapter() {
-        return new ArticleListAdapter(this, Const.LIST_TYPE.SEARCH);
-    }
 
     @Override
     protected View initHeaderView() {
@@ -125,21 +85,6 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
         mHotwordDatas.clear();
         mFriendBeanDatas.clear();
         mPresenter.search();
-    }
-
-    @Override
-    public void initData() {
-
-    }
-
-    @Override
-    public void refreshUi() {
-
-    }
-
-    @Override
-    public void release() {
-
     }
 
     @Override
@@ -243,32 +188,12 @@ public class SearchActivity extends BaseAbsListActivity<SearchPresenter, SearchC
     }
 
     @Override
-    public void onItemClick(String title, String url) {
-        CommonInternalUtil.goWebView(title, url);
+    protected String getCurrentTitle() {
+        return UiUtils.getStr(R.string.search);
     }
 
     @Override
-    public void onCollectClick(int pos, int id, int originId) {
-
-    }
-
-    @Override
-    public void onCollectClick(int pos, int id) {
-
-    }
-
-    @Override
-    public void onTreeClick(int chapterId, String chapterName) {
-
-    }
-
-    @Override
-    protected int getStatusbarColor() {
-        return R.color._0091ea;
-    }
-
-    @Override
-    protected boolean hasSupportTransStatusBar() {
-        return true;
+    protected int getType() {
+        return Const.LIST_TYPE.SEARCH;
     }
 }

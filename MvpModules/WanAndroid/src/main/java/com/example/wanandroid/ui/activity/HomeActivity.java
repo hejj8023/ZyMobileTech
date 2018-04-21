@@ -27,6 +27,7 @@ import com.example.wanandroid.mvp.presenter.HomePresenter;
 import com.example.wanandroid.ui.fragment.HomeFragment;
 import com.example.wanandroid.ui.fragment.TreeFragment;
 import com.zhiyangstudio.commonlib.components.receiver.AppInstallReceiver;
+import com.zhiyangstudio.commonlib.corel.BaseActivity;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.PreUtils;
@@ -106,6 +107,13 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
                     break;
                 case R.id.action_subjects:
                     ToastUtils.showShort("喜欢的文章");
+                    Class<? extends BaseActivity> targetCls = null;
+                    if (UserInfoManager.isLogin()) {
+                        targetCls = CollectArticleActivity.class;
+                    } else {
+                        targetCls = LoginActivity.class;
+                    }
+                    IntentUtils.forward(targetCls);
                     break;
             }
             return true;

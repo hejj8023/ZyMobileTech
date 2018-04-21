@@ -132,4 +132,13 @@ public interface ApiServer {
      */
     @POST(Const.URL_CONFIG.UNCOLLECT_ARTICLE)
     Observable<BaseBean<String>> unCollect(@Path("id") int articleId);
+
+    /**
+     * 收藏的文章列表
+     *
+     * @param page
+     * @return
+     */
+    @GET(Const.URL_CONFIG.COLLECT_ARTICLE_LIST)
+    Observable<BaseBean<PageListDataBean<ArticleBean>>> collectArticleList(@Path("page") int page);
 }
