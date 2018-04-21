@@ -61,7 +61,6 @@ public class ArticleListAdapter extends BaseListAdapter<ArticleBean> {
         switch (mType) {
             case Const.LIST_TYPE.TREE:
                 tv_type.setVisibility(View.GONE);
-                break;
             case Const.LIST_TYPE.HOME:
             case Const.LIST_TYPE.SEARCH:
                 img_collect.setImageResource(bean.isCollect() ? R.drawable

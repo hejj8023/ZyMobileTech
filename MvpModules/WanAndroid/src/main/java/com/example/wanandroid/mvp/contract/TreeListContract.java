@@ -10,9 +10,19 @@ import com.zhiyangstudio.commonlib.mvp.inter.IListDataView;
 public interface TreeListContract {
     interface ITreeListView extends IListDataView<ArticleBean> {
         int getCid();
+
+        int getArticleId();
+
+        void collect(boolean isCollect, String msg);
+
+        void showFilure(String msg);
     }
 
     public interface ITreeListPresenter {
         void loadTreeList();
+
+        void unCollectArticle();
+
+        void collectArticle();
     }
 }

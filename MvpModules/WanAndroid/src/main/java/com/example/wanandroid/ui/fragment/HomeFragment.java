@@ -170,6 +170,7 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
      */
     private void notifyItemData(boolean isCollect, String msg) {
         mListData.get(mPos).setCollect(isCollect);
+        // TODO: 2018/4/21 因为有headerview所以需要pos+1
         mPos++;
         mListAdapter.notifyItemDataChanged(mPos, recyclerView);
         ToastUtils.showShort(msg);

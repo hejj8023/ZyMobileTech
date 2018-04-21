@@ -1,6 +1,7 @@
 package com.example.wanandroid.mvp.model;
 
 import com.example.wanandroid.bean.ArticleBean;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 
 /**
@@ -9,4 +10,8 @@ import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 
 public interface ITreeListModel {
     void getTreeList(int page, int cid, RxPageListObserver<ArticleBean> observer);
+
+    void unCollect(int articleId, RxObserver<String> observer);
+
+    void collect(int articleId, RxObserver<String> rxObserver);
 }

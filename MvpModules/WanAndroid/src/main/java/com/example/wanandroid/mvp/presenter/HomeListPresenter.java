@@ -66,7 +66,6 @@ public class HomeListPresenter extends BasePresenter<HomeListContract.IHomeListV
     @Override
     public void unCollectArticle() {
         homeListView = getView();
-        homeListView = getView();
         mHomeModel.unCollect(homeListView.getArticleId(), new RxObserver<String>(this) {
             @Override
             protected void onSucess(String data) {

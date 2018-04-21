@@ -4,6 +4,7 @@ import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.mvp.contract.TreeListContract;
 import com.example.wanandroid.mvp.model.TreeListModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 
 import java.util.List;
@@ -42,5 +43,37 @@ public class TreeListPresenter extends BasePresenter<TreeListContract.ITreeListV
                         mTreeListView.showFail(errorMsg);
                     }
                 });
+    }
+
+    @Override
+    public void unCollectArticle() {
+        mTreeListView = getView();
+        mListModel.unCollect(mTreeListView.getArticleId(), new RxObserver<String>(this) {
+            @Override
+            protected void onSucess(String data) {
+                mTreeListView.collect(false, "取消收藏成功");
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                mTreeListView.showFilure(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void collectArticle() {
+        mTreeListView = getView();
+        mListModel.collect(mTreeListView.getArticleId(), new RxObserver<String>(this) {
+            @Override
+            protected void onSucess(String data) {
+                mTreeListView.collect(true, "收藏成功");
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+                mTreeListView.showFilure(errorMsg);
+            }
+        });
     }
 }
