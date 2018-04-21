@@ -1,17 +1,21 @@
 package com.example.wanandroid.base;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
 import com.example.wanandroid.adapter.ArticleListAdapter;
 import com.example.wanandroid.inter.OnArticleListItemClickListener;
+import com.example.wanandroid.ui.activity.TreeActivity;
 import com.example.wanandroid.utils.CommonInternalUtil;
 import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
 import com.zhiyangstudio.commonlib.mvp.BaseAbsListActivity;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 /**
@@ -35,7 +39,7 @@ public abstract class BaseWanListActivity<P extends BasePresenter<V>, V extends 
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle(getCurrentTitle());
+//        toolbar.setTitle(getCurrentTitle());
         // TODO: 2018/4/17 toolbar返回键点击时的操作
         toolbar.setNavigationOnClickListener(v -> {
             finish();
@@ -77,7 +81,11 @@ public abstract class BaseWanListActivity<P extends BasePresenter<V>, V extends 
 
     @Override
     public void onTreeClick(int chapterId, String chapterName) {
-
+        Intent intent = new Intent(mContext, TreeActivity.class);
+        intent.putExtra(Const.BUNDLE_KEY.ACTION_TYPE, Const.BUNDLE_KEY.ACTION_LIST);
+        intent.putExtra(Const.BUNDLE_KEY.CHAPTER_ID, chapterId);
+        intent.putExtra(Const.BUNDLE_KEY.CHAPTER_NAME, chapterName);
+        IntentUtils.forward(intent);
     }
 
     @Override
@@ -93,7 +101,7 @@ public abstract class BaseWanListActivity<P extends BasePresenter<V>, V extends 
 
     @Override
     public void initData() {
-
+        setTitle(getCurrentTitle());
     }
 
     @Override
