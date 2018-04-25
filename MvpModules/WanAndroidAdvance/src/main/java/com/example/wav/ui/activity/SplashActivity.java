@@ -1,7 +1,10 @@
-package com.example.wav;
+package com.example.wav.ui.activity;
 
 
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.example.wav.R;
+import com.example.wav.base.BaseDIPresenterActivity;
+import com.example.wav.mvp.contract.SplashContract;
+import com.example.wav.mvp.presenter.SplashPresenter;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.RxTimerUtils;
 
@@ -9,7 +12,7 @@ import com.zhiyangstudio.commonlib.utils.RxTimerUtils;
  * Created by zhiyang on 2018/4/25.
  */
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseDIPresenterActivity<SplashPresenter, SplashContract.ISplashView> implements SplashContract.ISplashView {
 
     @Override
     public int getContentId() {
@@ -28,6 +31,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        mPresenter.log("initData");
         RxTimerUtils.timer(2200, new RxTimerUtils.IRxNext() {
             @Override
             public void onNext(long number) {
@@ -51,5 +55,10 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected PermissionListener getPermissonCallBack() {
         return null;
+    }
+
+    @Override
+    protected void initInject() {
+        getActivityComponent().inject(this);
     }
 }

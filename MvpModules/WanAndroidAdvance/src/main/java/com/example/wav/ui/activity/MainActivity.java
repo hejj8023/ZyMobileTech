@@ -1,11 +1,14 @@
-package com.example.wav;
+package com.example.wav.ui.activity;
 
 import android.os.Bundle;
 
+import com.example.wav.R;
+import com.example.wav.base.BaseDIPresenterActivity;
+import com.example.wav.mvp.contract.MainContract;
+import com.example.wav.mvp.presenter.MainPresenter;
 import com.gyf.barlibrary.ImmersionBar;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseDIPresenterActivity<MainPresenter, MainContract.IMainView> implements MainContract.IMainView {
 
     private ImmersionBar mImmersionBar;
 
@@ -16,16 +19,16 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected PermissionListener getPermissonCallBack() {
-        return null;
-    }
-
-    @Override
     public void beforeSetContentView() {
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.statusBarColor(R.color._0091ea);
         mImmersionBar.fitsSystemWindows(true);
         mImmersionBar.init();
+    }
+
+    @Override
+    protected PermissionListener getPermissonCallBack() {
+        return null;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        mPresenter.log("initView");
     }
 
     @Override
@@ -66,5 +69,11 @@ public class MainActivity extends BaseActivity {
     @Override
     public void release() {
 
+    }
+
+
+    @Override
+    protected void initInject() {
+        getActivityComponent().inject(this);
     }
 }

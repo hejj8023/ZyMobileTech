@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 
 import com.example.wav.R;
 import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
-import com.zhiyangstudio.commonlib.mvp.BasePresenterActivivty;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 
@@ -19,7 +18,7 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseAdvActivity<P extends BasePresenter<V>, V extends IView> extends
-        BasePresenterActivivty<P, V> {
+        BaseDIPresenterActivity<P, V> {
 
     protected BaseInternalHandler mH = new BaseInternalHandler(this) {
         @Override
