@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext._android.compileSdkVersion
@@ -12,6 +16,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
+
+        renderscriptTargetApi 21
+        renderscriptSupportModeEnabled true    // Enable RS support
+        multiDexEnabled true
 
         ndk {
             //设置支持的SO库架构
@@ -32,6 +40,25 @@ android {
         sourceCompatibility 1.8
     }
 
+    flavorDimensions "code"
+    productFlavors {
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+
+}
+
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'
+    daoPackage 'com.example.wav.core.dao'
 }
 
 dependencies {
@@ -43,6 +70,8 @@ dependencies {
     testImplementation rootProject.ext.support.junit
     androidTestImplementation rootProject.ext.support.test_runner
     androidTestImplementation rootProject.ext.support.espresso_core
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     /*butternife*/
     implementation rootProject.ext.ext_tools.butterknife
@@ -71,6 +100,12 @@ dependencies {
 
     implementation rootProject.ext.ext_tools.agentweb
     implementation rootProject.ext.ext_tools.flowlayout_lib
+
+    implementation rootProject.ext.ext_tools.dagger
+    implementation rootProject.ext.ext_tools.dagger_android
+    implementation rootProject.ext.ext_tools.dagger_android_support
+    annotationProcessor rootProject.ext.ext_tools.dagger_compiler
+    annotationProcessor rootProject.ext.ext_tools.dagger_android_processor
 
     compile project(':ZySdkLib')
 }
