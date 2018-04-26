@@ -164,7 +164,16 @@ project.ext {
             /*agentweb https://github.com/Justson/AgentWeb */
             agentweb                : 'com.just.agentweb:agentweb:4.0.1',
             agentweb_download       : 'com.just.agentweb:download:4.0.2',
-            agentweb_filechooser    : 'com.just.agentweb:filechooser:4.0.2'
+            agentweb_filechooser    : 'com.just.agentweb:filechooser:4.0.2',
+
+            multidex                : 'com.android.support:multidex:1.0.3',
+
+            /*有兼容性的问题需要使用如下:
+             //解决支持库版本不兼容问题
+             configurations.all {resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+             def requested = details.requested
+             if (requested.group == 'com.android.support') {if (!requested.name.startsWith("multidex")) {details.useVersion '25.3.0'}}}}*/
+            lottie                  : "com.airbnb.android:lottie:2.5.4"
     ]
 }
 

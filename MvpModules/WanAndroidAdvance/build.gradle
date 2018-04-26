@@ -69,9 +69,13 @@ dependencies {
     implementation rootProject.ext.support.cardview
     testImplementation rootProject.ext.support.junit
     androidTestImplementation rootProject.ext.support.test_runner
-    androidTestImplementation rootProject.ext.support.espresso_core
+    androidTestImplementation(rootProject.ext.support.espresso_core, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation rootProject.ext.ext_tools.multidex
+    implementation rootProject.ext.ext_tools.lottie
 
     /*butternife*/
     implementation rootProject.ext.ext_tools.butterknife
@@ -109,4 +113,17 @@ dependencies {
     annotationProcessor rootProject.ext.ext_tools.dagger_android_processor
 
     compile project(':ZySdkLib')
+}
+
+//解决支持库版本不兼容问题
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                //  不要设置太高，26以上的版本会出现问题
+                details.useVersion '25.3.0'
+            }
+        }
+    }
 }
