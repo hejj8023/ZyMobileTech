@@ -1,4 +1,4 @@
-package com.example.wanandroid.base;
+package com.example.wav.base;
 
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
@@ -6,20 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.wanandroid.R;
+import com.example.wav.R;
+import com.gyf.barlibrary.ImmersionBar;
 import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
-import com.zhiyangstudio.commonlib.mvp.BaseMVPSupportActivivty;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 
 import butterknife.ButterKnife;
 
 /**
- * Created by example on 2018/4/9.
+ * Created by zhiyang on 2018/4/25.
  */
 
-public abstract class BaseWanAndroidActivity<P extends BasePresenter<V>, V extends IView> extends
-        BaseMVPSupportActivivty<P, V> {
+public abstract class BaseAdvActivity<P extends BasePresenter<V>, V extends IView> extends
+        BaseDaggerSupportActivity<P, V> {
 
     protected BaseInternalHandler mH = new BaseInternalHandler(this) {
         @Override
@@ -27,24 +27,26 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter<V>, V exten
 
         }
     };
+
     protected Toolbar toolbar;
-
+    private ImmersionBar mImmersionBar;
     private LinearLayout containerLayout;
-
 
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
 
         // TODO: 2018/4/10 在这里处理注解无法使用的问题
-        toolbar = findViewById(R.id.toolbar);
-        containerLayout = findViewById(R.id.frameLayout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        containerLayout = (LinearLayout) findViewById(R.id.frameLayout);
         if (initToolBar()) {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            toolbar.setNavigationOnClickListener(v -> {
-                onNavigationClick();
-            });
+            if (hasShowHome()) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                toolbar.setNavigationOnClickListener(v -> {
+                    onNavigationClick();
+                });
+            }
         } else {
             toolbar.setVisibility(View.GONE);
         }
@@ -61,6 +63,10 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter<V>, V exten
 
     protected abstract boolean initToolBar();
 
+    protected boolean hasShowHome() {
+        return false;
+    }
+
     protected void onNavigationClick() {
         finish();
         release();
@@ -72,8 +78,12 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter<V>, V exten
     protected void onDestroy() {
         mH.destory();
         super.onDestroy();
-    }
 
+        //必须调用该方法，防止内存泄漏
+        if (mImmersionBar != null) {
+            mImmersionBar.destroy();
+        }
+    }
 
     @Override
     public int getContentId() {
@@ -83,5 +93,12 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter<V>, V exten
     @Override
     public void addListener() {
 
+    }
+
+    @Override
+    public void beforeSetContentView() {
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.statusBarColor(R.color._0091ea);
+        mImmersionBar.init();
     }
 }
