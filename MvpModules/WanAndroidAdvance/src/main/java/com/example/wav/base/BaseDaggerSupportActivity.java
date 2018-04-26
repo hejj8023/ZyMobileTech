@@ -4,7 +4,7 @@ import com.example.wav.AdvApp;
 import com.example.wav.di.component.ActivityComponent;
 import com.example.wav.di.component.DaggerActivityComponent;
 import com.example.wav.di.module.ActivityModule;
-import com.zhiyangstudio.commonlib.mvp.BasePresenterActivivty;
+import com.zhiyangstudio.commonlib.mvp.BaseMVPSupportActivivty;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 
@@ -12,10 +12,11 @@ import javax.inject.Inject;
 
 /**
  * Created by zhiyang on 2018/4/25.
+ * dagger支持的activity
  */
 
-public abstract class BaseDIPresenterActivity<P extends BasePresenter<V>, V extends IView> extends
-        BasePresenterActivivty<P, V> {
+public abstract class BaseDaggerSupportActivity<P extends BasePresenter<V>, V extends IView> extends
+        BaseMVPSupportActivivty<P, V> {
     @Inject
     protected P mT;
 

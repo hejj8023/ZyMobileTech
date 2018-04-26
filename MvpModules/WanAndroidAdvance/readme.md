@@ -41,3 +41,28 @@
         }
     }
     
+## toolbar中menu字体颜色修改
+    <!--定义Toolbar样式-->
+    <style name="ToolBarStyle" parent="@style/ThemeOverlay.AppCompat">
+        <!--弹出菜单字体颜色-->
+        <item name="actionMenuTextColor">@color/white</item>
+    </style>
+    
+## checkbox自定义样式
+
+    <CheckBox
+    android:id="@+id/cb_customer"
+    android:layout_width="wrap_content"
+    style="@style/CustomerCheckboxStyle"
+    android:layout_height="wrap_content" />
+>    
+    <style name="CustomerCheckboxStyle" parent="@android:style/Widget.CompoundButton.CheckBox">
+    <item name="android:button">@drawable/selector_checkbox</item>
+    </style>
+>    
+    <?xml version="1.0" encoding="utf-8"?>
+    <selector xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:drawable="@drawable/ease_dx_checkbox_on" android:state_pressed="true" />
+        <item android:drawable="@drawable/ease_dx_checkbox_on" android:state_checked="true" />
+        <item android:drawable="@drawable/ease_dx_checkbox_off" />
+    </selector>

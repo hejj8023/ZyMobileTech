@@ -22,6 +22,8 @@
 
         <activity android:name="com.example.wav.ui.activity.MainActivity" />
 
+        <activity android:name="com.example.wav.ui.activity.FilterActivity" />
+        <activity android:name="com.example.wav.ui.activity.DeviceListActivity" />
     </application>
 
 </manifest>

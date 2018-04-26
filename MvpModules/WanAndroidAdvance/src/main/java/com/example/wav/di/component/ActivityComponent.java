@@ -2,10 +2,12 @@ package com.example.wav.di.component;
 
 import android.app.Activity;
 
-import com.example.wav.ui.activity.MainActivity;
-import com.example.wav.ui.activity.SplashActivity;
 import com.example.wav.di.module.ActivityModule;
 import com.example.wav.di.scope.ActivityScope;
+import com.example.wav.ui.activity.DeviceListActivity;
+import com.example.wav.ui.activity.FilterActivity;
+import com.example.wav.ui.activity.MainActivity;
+import com.example.wav.ui.activity.SplashActivity;
 
 import dagger.Component;
 
@@ -17,7 +19,11 @@ import dagger.Component;
 public interface ActivityComponent {
     Activity getActivity();
 
-    void inject(MainActivity mainActivity);
+    void inject(MainActivity activity);
 
     void inject(SplashActivity activity);
+
+    void inject(FilterActivity activity);
+
+    void inject(DeviceListActivity activity);
 }

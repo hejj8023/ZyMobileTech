@@ -30,6 +30,8 @@ public class AdvApp extends BaseApp {
     public void onCreate() {
         super.onCreate();
         initComponent();
+//        // 初始化设备列表的数据
+//        Const.TMP_DATA.DEV_LIST.addAll(DataManager.getDeviceList());
     }
 
     private void initComponent() {

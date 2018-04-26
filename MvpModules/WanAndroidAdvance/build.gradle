@@ -105,6 +105,7 @@ dependencies {
 
     implementation rootProject.ext.ext_tools.agentweb
     implementation rootProject.ext.ext_tools.flowlayout_lib
+    implementation rootProject.ext.ext_tools.VerticalTabLayout
 
     implementation rootProject.ext.ext_tools.dagger
     implementation rootProject.ext.ext_tools.dagger_android

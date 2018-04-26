@@ -2,7 +2,7 @@ package com.example.wav.ui.activity;
 
 
 import com.example.wav.R;
-import com.example.wav.base.BaseDIPresenterActivity;
+import com.example.wav.base.BaseDaggerSupportActivity;
 import com.example.wav.mvp.contract.SplashContract;
 import com.example.wav.mvp.presenter.SplashPresenter;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
@@ -12,7 +12,7 @@ import com.zhiyangstudio.commonlib.utils.RxTimerUtils;
  * Created by zhiyang on 2018/4/25.
  */
 
-public class SplashActivity extends BaseDIPresenterActivity<SplashPresenter, SplashContract.ISplashView> implements SplashContract.ISplashView {
+public class SplashActivity extends BaseDaggerSupportActivity<SplashPresenter, SplashContract.ISplashView> implements SplashContract.ISplashView {
 
     @Override
     public int getContentId() {
