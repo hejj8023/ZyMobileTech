@@ -25,6 +25,8 @@ public class CustomerGroupInfo {
 
     /**
      * 是否有条目处于选择状态
+     * 是否要选中这个方法要看需求，如果全选的时候，当前分组中的成员取消一个选择，其它很多成员是选择状态 ，
+     * 这里会返回true,此方法不适用于此场景,判断是否是全部选择用下面的方法
      *
      * @return
      */
@@ -37,12 +39,32 @@ public class CustomerGroupInfo {
         return false;
     }
 
+    /**
+     * 判断成员是否是全部选择
+     *
+     * @return
+     */
+    public boolean isAllCheckd() {
+        for (CustomerInfo customerInfo : customerList) {
+            if (!customerInfo.isChecked()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 全选
+     */
     public void selectAll() {
         for (CustomerInfo customerInfo : customerList) {
             customerInfo.setChecked(true);
         }
     }
 
+    /**
+     * 取消全选
+     */
     public void unSelectAll() {
         for (CustomerInfo customerInfo : customerList) {
             customerInfo.setChecked(false);

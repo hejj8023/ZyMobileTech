@@ -131,7 +131,7 @@ public class DeviceListActivity extends BaseWanAdvListActivity<DeviceListPresent
             List<CustomerGroupInfo> list = Const.TMP_DATA.CUSTOMERGROUP_LIST;
             List<DeviceInfo> nList = new ArrayList<>();
             // 清除掉不需要展示的数据
-            // 第一步处理
+            // 添加的条件依据是客户分组中客户的选择状态
             for (CustomerGroupInfo groupInfo : list) {
                 for (DeviceInfo dInfo : Const.TMP_DATA.DEV_LIST) {
                     if (dInfo.getGroupId() == groupInfo.getGroupId()) {
