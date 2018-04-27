@@ -7,6 +7,9 @@ import java.util.List;
  */
 
 public class CustomerGroupInfo {
+    // 默认为0普通条目，1为头部
+    private int type = 0;
+
     private int groupId;
     private String groupName;
     private List<CustomerInfo> customerList;
@@ -68,6 +71,14 @@ public class CustomerGroupInfo {
 
     public void setCustomerList(List<CustomerInfo> customerList) {
         this.customerList = customerList;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     @Override

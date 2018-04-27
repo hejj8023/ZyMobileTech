@@ -17,6 +17,7 @@ import com.example.wav.bean.DeviceInfo;
 import com.example.wav.mvp.contract.FilterContract;
 import com.example.wav.mvp.presenter.FilterPresenter;
 import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickAdapter;
+import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickMultiSupport;
 import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
 
 import java.util.List;
@@ -180,25 +181,17 @@ public class FilterActivity extends BaseAdvActivity<FilterPresenter, FilterContr
     }
 
     /**
-     * 修改状态
+     * 修改每个客户分组中的客户列表状态
      *
-     * @param checked
-     * @param customerList
+     * @param data
      */
-    private void changeCustomerState(boolean checked, List<CustomerInfo> customerList) {
-        for (CustomerInfo customerInfo : mCustomerInfoList) {
-            for (CustomerInfo info : customerList) {
-                if (customerInfo.getId() == info.getId()) {
-                    customerInfo.setChecked(checked);
-                }
-            }
-        }
-    }
-
     private void changeGroupSubDataState(CustomerInfo data) {
         if (mCustomerGroupInfoList != null && mCustomerGroupInfoList.size() > 0) {
             for (CustomerGroupInfo groupInfo : mCustomerGroupInfoList) {
                 if (groupInfo != null) {
+                    if (groupInfo.getType() == 1)
+                        // 如果是头就继续下一次循环
+                        continue;
                     List<CustomerInfo> customerList = groupInfo.getCustomerList();
                     if (customerList != null && customerList.size() > 0) {
                         for (CustomerInfo customerInfo : customerList) {
@@ -213,6 +206,73 @@ public class FilterActivity extends BaseAdvActivity<FilterPresenter, FilterContr
         }
     }
 
+    /**
+     * 是否是全选
+     *
+     * @return
+     */
+    private boolean isAllChecked() {
+        for (CustomerGroupInfo customerGroupInfo : mCustomerGroupInfoList) {
+            if (customerGroupInfo.getType() == 1)
+                // 如果是头就继续下一次循环
+                continue;
+            // 有一个未选中就不是全部选择
+            if (!customerGroupInfo.isCheckd()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 取消全选
+     */
+    private void unSelectAllCustomerGroup() {
+        for (CustomerGroupInfo groupInfo : mCustomerGroupInfoList) {
+            if (groupInfo.getType() == 1)
+                // 如果是头就继续下一次循环
+                continue;
+
+            groupInfo.unSelectAll();
+
+            // 操作客户列表
+            changeCustomerState(false, groupInfo.getCustomerList());
+        }
+    }
+
+    /**
+     * 修改客户列表状态
+     *
+     * @param checked
+     * @param customerList
+     */
+    private void changeCustomerState(boolean checked, List<CustomerInfo> customerList) {
+        for (CustomerInfo customerInfo : mCustomerInfoList) {
+            for (CustomerInfo info : customerList) {
+                if (customerInfo.getId() == info.getId()) {
+                    customerInfo.setChecked(checked);
+                }
+            }
+        }
+    }
+
+    /**
+     * 全选
+     */
+    private void selectAllCustomerGroup() {
+        for (CustomerGroupInfo groupInfo : mCustomerGroupInfoList) {
+            if (groupInfo.getType() == 1)
+                // 如果是头就继续下一次循环
+                continue;
+            groupInfo.selectAll();
+            // 操作客户列表
+            changeCustomerState(true, groupInfo.getCustomerList());
+        }
+    }
+
+    /**
+     * 客户列表
+     */
     private class CustomerInfoAdapter extends QuickAdapter<CustomerInfo> {
         public CustomerInfoAdapter(List<CustomerInfo> list) {
             super(mContext, list, R.layout.layout_item_customer_list);
@@ -242,42 +302,99 @@ public class FilterActivity extends BaseAdvActivity<FilterPresenter, FilterContr
         }
     }
 
+    /**
+     * 客户分组列表
+     */
     private class CustomerGroupAdapter extends QuickAdapter<CustomerGroupInfo> {
+        public static final int VIEW_TYPE_HEADER = 0;
+        public static final int VIEW_TYPE_DATA = 1;
+
         public CustomerGroupAdapter(List<CustomerGroupInfo> list) {
-            super(mContext, list, R.layout.layout_item_customer_group_list);
+            super(mContext, list,
+                    new QuickMultiSupport<CustomerGroupInfo>() {
+
+                        @Override
+                        public int getViewTypeCount() {
+                            return 2;
+                        }
+
+                        @Override
+                        public int getLayoutId(CustomerGroupInfo data) {
+                            return R.layout.layout_item_customer_group_list;
+                        }
+
+                        @Override
+                        public int getItemViewType(CustomerGroupInfo data) {
+                            if (data.getType() == 1) {
+                                return VIEW_TYPE_HEADER;
+                            }
+                            return VIEW_TYPE_DATA;
+                        }
+
+                        @Override
+                        public boolean isSpan(CustomerGroupInfo data) {
+                            return false;
+                        }
+                    });
         }
 
         @Override
         protected void convert(QuickViewHolder holder, CustomerGroupInfo data, int position) {
-            holder.setText(R.id.tv_group_title, data.getGroupName());
-
+            int itemViewType = getItemViewType(position);
             CheckBox checkBox = holder.getView(R.id.cb_customer_group);
+            switch (itemViewType) {
+                case VIEW_TYPE_DATA:
+                    holder.setText(R.id.tv_group_title, data.getGroupName());
+                    // 第二种方式的使用
+                    if (data.isCheckd()) {
+                        checkBox.setChecked(true);
+                    } else {
+                        checkBox.setChecked(false);
+                    }
 
-            // 第二种方式的使用
-            if (data.isChecked(mCustomerInfoList)) {
-                checkBox.setChecked(true);
-            } else {
-                checkBox.setChecked(false);
+                    holder.setOnClickListener(v -> {
+                        List<CustomerInfo> customerList = data.getCustomerList();
+                        // 方式二，在选择和取消选择的时候操作客户列表数据
+                        if (data.isCheckd()) {
+                            checkBox.setChecked(false);
+                            data.unSelectAll();
+                            changeCustomerState(false, customerList);
+                        } else {
+                            checkBox.setChecked(true);
+                            data.selectAll();
+                            changeCustomerState(true, customerList);
+                        }
+                        set(position, data);
+                    });
+                    break;
+                case VIEW_TYPE_HEADER:
+                    holder.setText(R.id.tv_group_title, data.getGroupName());
+                    holder.setTextColor(R.id.tv_dev_name, R.color.red);
+
+                    if (isAllChecked()) {
+                        checkBox.setChecked(true);
+                    } else {
+                        checkBox.setChecked(false);
+                    }
+                    holder.setOnClickListener(v -> {
+                        // 全选,取消全选 所有
+                        if (isAllChecked()) {
+                            checkBox.setChecked(false);
+                            unSelectAllCustomerGroup();
+                        } else {
+                            checkBox.setChecked(true);
+                            selectAllCustomerGroup();
+                        }
+                        notifyDataSetChanged();
+                    });
+                    break;
             }
-
-            holder.setOnClickListener(v -> {
-                List<CustomerInfo> customerList = data.getCustomerList();
-                // 方式二，在选择和取消选择的时候操作客户列表数据
-                if (data.isChecked(mCustomerInfoList)) {
-                    checkBox.setChecked(false);
-                    data.unSelectAll();
-                    changeCustomerState(false, customerList);
-                } else {
-                    checkBox.setChecked(true);
-                    data.selectAll();
-                    changeCustomerState(true, customerList);
-                }
-                set(position, data);
-            });
-
         }
     }
 
+    /**
+     * 设备列表
+     */
     private class DeviceAdapter extends QuickAdapter<DeviceInfo> {
         public DeviceAdapter(List<DeviceInfo> list) {
             super(mContext, list, R.layout.layout_item_device_list);
@@ -291,6 +408,9 @@ public class FilterActivity extends BaseAdvActivity<FilterPresenter, FilterContr
             String devGroupName = "";
             if (mCustomerGroupInfoList != null) {
                 for (CustomerGroupInfo customerGroupInfo : mCustomerGroupInfoList) {
+                    if (customerGroupInfo.getType() == 1)
+                        continue;
+
                     if (customerGroupInfo.getGroupId() == devId) {
                         groupInfo = customerGroupInfo;
                         break;

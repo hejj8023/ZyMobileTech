@@ -41,6 +41,15 @@ public class DataManager {
             groupInfo.setGroupId((10 + i));
             list.add(groupInfo);
         }
+
+        // 在最开始的位置添加头
+        CustomerGroupInfo customerGroupInfo = new CustomerGroupInfo();
+        customerGroupInfo.setType(1);
+        customerGroupInfo.setGroupName("全部分组");
+        customerGroupInfo.setGroupId(0);
+        // 设置一个空的防止空指针
+        customerGroupInfo.setCustomerList(new ArrayList<>());
+        list.add(0, customerGroupInfo);
         return list;
     }
 
