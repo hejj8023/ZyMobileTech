@@ -24,7 +24,7 @@
         <!--<item name="android:actionBarItemBackground">@drawable/action_bar_bg_selector</item>-->
         <!--自定义溢出的menu样式-->
         <item name="actionOverflowMenuStyle">@style/overflowMenuStyle</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
         <!--弹出菜单字体颜色-->
         <item name="actionMenuTextColor">@color/white</item>
     </style>

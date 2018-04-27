@@ -13,8 +13,16 @@ import java.util.List;
 
 public class Const {
 
-    public static class URL_CONFIG {
-        public static String baseUrl = "http://www.baidu.com";
+    public static class API_URL_CONFIG {
+        public static final String BASEURL = "http://www.frigate-iot.com/";
+        public static final String COMMON_PREFIX = "MonitoringCentre/";
+
+        public static final String API_DEVICE_REGISTER_URL = "API/Register.php";
+        public static final String API_APP_LOGIN_URL = "data/login_chk.php";
+        public static final String API_APP_LOGIN_URL2 = "login/app/login_bind.php";
+        public static final String API_CUSTOMER_LIST_URL = COMMON_PREFIX + "Data/SelectCustomerData.php";
+        public static final String API_CUSTOMER_GROUP_LIST_URL = COMMON_PREFIX + "Data/Pop-LoadGroup.php";
+        public static final String API_DEVICE_LIST_URL = COMMON_PREFIX + "DList/Data/DList-Data.php";
     }
 
     public static class TMP_DATA {

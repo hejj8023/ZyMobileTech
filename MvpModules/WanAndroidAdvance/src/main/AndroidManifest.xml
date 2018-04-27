@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.wav">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name="com.example.wav.AdvApp"
         android:allowBackup="true"
@@ -20,10 +21,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.wav.ui.activity.MainActivity" />
-
-        <activity android:name="com.example.wav.ui.activity.FilterActivity" />
-        <activity android:name="com.example.wav.ui.activity.DeviceListActivity" />
+        <activity android:name=".ui.activity.HomeActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.FilterActivity" />
+        <activity android:name=".ui.activity.DeviceListActivity" />
+        <activity android:name=".ui.activity.ApiTestActivity" />
     </application>
 
 </manifest>

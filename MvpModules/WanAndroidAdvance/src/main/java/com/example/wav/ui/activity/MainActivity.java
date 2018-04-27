@@ -10,6 +10,7 @@ import com.example.wav.R;
 import com.example.wav.base.BaseAdvActivity;
 import com.example.wav.mvp.contract.MainContract;
 import com.example.wav.mvp.presenter.MainPresenter;
+import com.zhiyangstudio.commonlib.utils.CommonUtils;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
 
 public class MainActivity extends BaseAdvActivity<MainPresenter, MainContract.IMainView> implements MainContract.IMainView {
@@ -62,11 +63,20 @@ public class MainActivity extends BaseAdvActivity<MainPresenter, MainContract.IM
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                ToastUtils.showShort("筛选");
                 IntentUtils.forward(DeviceListActivity.class);
+                break;
+            case R.id.action_api_test:
+                IntentUtils.forward(ApiTestActivity.class);
                 break;
         }
         return true;
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        // 让图标和文字同时展示
+        CommonUtils.makeHeightMenu(menu);
+        return super.onMenuOpened(featureId, menu);
     }
 
     @Override

@@ -16,6 +16,6 @@ public class BaseAdvModel extends BaseModel {
     }
 
     public ApiServer getApi() {
-        return createApiService(Const.URL_CONFIG.baseUrl, ApiServer.class);
+        return createApiService(Const.API_URL_CONFIG.BASEURL, ApiServer.class);
     }
 }
