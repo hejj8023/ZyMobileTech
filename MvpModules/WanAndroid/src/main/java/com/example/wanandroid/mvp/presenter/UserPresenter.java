@@ -4,6 +4,7 @@ import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.mvp.contract.UserContract;
 import com.example.wanandroid.mvp.model.UserModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 
 import java.util.List;
@@ -38,6 +39,22 @@ public class UserPresenter extends BasePresenter<UserContract.IUserView> impleme
             @Override
             protected void onFailure(int errorCode, String errorMsg) {
                 iUserView.showFail(errorMsg);
+            }
+        });
+    }
+
+    @Override
+    public void deleteCollectArticle() {
+        iUserView = getView();
+        userModel.deleteCollectArticle(iUserView.getArticleId(),iUserView.getOriginId(), new RxObserver<String>(this, UserModel.class.getName()) {
+            @Override
+            protected void onSucess(String data) {
+                iUserView.onDeleteCollectAtricleSucess();
+            }
+
+            @Override
+            protected void onFailure(int errorCode, String errorMsg) {
+
             }
         });
     }

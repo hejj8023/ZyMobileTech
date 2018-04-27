@@ -2,6 +2,7 @@ package com.example.wanandroid.mvp.model;
 
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.mvp.contract.UserContract;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
 import com.zhiyangstudio.commonlib.utils.RxUtils;
 
@@ -14,4 +15,11 @@ public class UserModel extends BaseWanModel implements UserContract.IUserModel {
     public void getCollectArticleList(int page, RxPageListObserver<ArticleBean> observer) {
         mApiServer.collectArticleList(page).compose(RxUtils.io_main()).subscribe(observer);
     }
+
+    @Override
+    public void deleteCollectArticle(int articleId, int originId, RxObserver<String> observer) {
+        mApiServer.deleteCollectArticle(articleId,originId).compose(RxUtils.io_main()).subscribe(observer);
+    }
+
+
 }

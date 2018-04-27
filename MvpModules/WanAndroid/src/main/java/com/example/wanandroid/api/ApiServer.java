@@ -141,4 +141,15 @@ public interface ApiServer {
      */
     @GET(Const.URL_CONFIG.COLLECT_ARTICLE_LIST)
     Observable<BaseBean<PageListDataBean<ArticleBean>>> collectArticleList(@Path("page") int page);
+
+    /**
+     * 删除收藏的文章
+     *
+     * @param articleId
+     * @param originId
+     * @return
+     */
+    @FormUrlEncoded
+    @POST(Const.URL_CONFIG.DELETE_COLLECT_ARTICLE)
+    Observable<BaseBean<String>> deleteCollectArticle(@Path("id") int articleId, @Field("originId") int originId);
 }

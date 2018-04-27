@@ -19,6 +19,10 @@ import java.util.List;
 public class CollectArticleActivity extends BaseWanListActivity<UserPresenter, UserContract.IUserView,
         ArticleBean> implements UserContract.IUserView, OnArticleListItemClickListener {
 
+    private int mId;
+    private int mOriginId;
+    private int mPos;
+
     @Override
     public void setData(List<ArticleBean> data) {
         mListData.addAll(data);
@@ -47,5 +51,34 @@ public class CollectArticleActivity extends BaseWanListActivity<UserPresenter, U
     @Override
     protected String getCurrentTitle() {
         return "收藏的文章";
+    }
+
+    @Override
+    public void onCollectClick(int pos, int id, int originId) {
+        // 取消 收藏
+        this.mId = id;
+        this.mOriginId = originId;
+        this.mPos = pos;
+        mPresenter.deleteCollectArticle();
+    }
+
+    @Override
+    public int getArticleId() {
+        return mId;
+    }
+
+    @Override
+    public int getOriginId() {
+        return mOriginId;
+    }
+
+    @Override
+    public void onDeleteCollectAtricleSucess() {
+        if (mListData.size() > 1) {
+            mListData.remove(mPos);
+            mListAdapter.notifyItemDataRemove(mPos, recyclerView);
+        } else {
+            loadDatas();
+        }
     }
 }
