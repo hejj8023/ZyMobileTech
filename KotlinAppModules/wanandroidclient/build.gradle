@@ -43,5 +43,5 @@ dependencies {
 
     compile rootProject.ext.ext_tools.logger
 
-    compile project(':ZySdkLib')
+//    compile project(':ZySdkLib')
 }
