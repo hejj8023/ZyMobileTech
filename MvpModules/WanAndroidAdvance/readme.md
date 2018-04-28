@@ -72,3 +72,35 @@
     BaseDaggerSupportFragment
     BaseDaggerSupportListActivity
     BaseDaggerSupportListFragment
+    
+    
+## activity中控制menu的显示和隐藏
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_device, menu);
+        this.menu = menu;
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_filter:
+                break;
+        }
+        return true;
+    }
+    
+    @Override
+    public void onPageSelected(int position) {
+        switch (position) {
+            case 0:
+                menu.findItem(R.id.action_filter).setVisible(true);
+                break;
+            case 1:
+                menu.findItem(R.id.action_filter).setVisible(false);
+                break;
+        }
+    }
+        

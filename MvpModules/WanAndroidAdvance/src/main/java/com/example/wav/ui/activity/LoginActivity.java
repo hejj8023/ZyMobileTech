@@ -72,6 +72,7 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
     private void doLogin() {
         if (isDoLoginging)
             return;
+        showLoadingDialog();
         isDoLoginging = true;
         mPresenter.login();
     }
@@ -80,10 +81,7 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-//                doLogin();
-                IntentUtils.forward(NewHomeActivity.class);
-                finish();
-
+                doLogin();
                 break;
         }
     }
@@ -100,12 +98,14 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
 
     @Override
     public void changeState(int flag) {
+        hideLoadingDialog();
         isDoLoginging = false;
         if (flag != 1) {
             ToastUtils.showShort("登录失败");
             return;
         }
 
+        ToastUtils.showShort("登录成功");
         IntentUtils.forward(NewHomeActivity.class);
         finish();
     }

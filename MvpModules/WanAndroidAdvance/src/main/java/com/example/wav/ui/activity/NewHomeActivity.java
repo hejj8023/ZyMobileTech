@@ -7,8 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TabHost;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.example.wav.Const;
 import com.example.wav.DataManager;
 import com.example.wav.R;
 import com.example.wav.base.BaseAdvActivity;
@@ -16,6 +20,7 @@ import com.example.wav.bean.MainPagerInfo;
 import com.example.wav.mvp.contract.NewHomeContract;
 import com.example.wav.mvp.presenter.NewHomePresenter;
 import com.example.wav.widget.TabIndicator;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
 
 import java.util.List;
 
@@ -33,6 +38,7 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
     FragmentTabHost mFragmentTabHost;
     private List<MainPagerInfo> mMainPagerInfos;
     private MainPagerAdapter mPagerAdapter;
+    private Menu menu;
 
     @Override
     public void initView() {
@@ -72,7 +78,7 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
 
     @Override
     protected boolean initToolBar() {
-        setTitle("主界面");
+        setTitle("设备列表");
         return true;
     }
 
@@ -95,10 +101,14 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
                 mFragmentTabHost.setCurrentTab(position);
                 switch (position) {
                     case 0:
-                        setTitle("主界面");
+                        setTitle("设备列表");
+                        // TODO: 2018/4/28 显示菜单
+                        menu.findItem(R.id.action_filter).setVisible(true);
                         break;
                     case 1:
                         setTitle("设置");
+                        // TODO: 2018/4/28 隐藏菜单
+                        menu.findItem(R.id.action_filter).setVisible(false);
                         break;
                 }
             }
@@ -108,6 +118,25 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_device, menu);
+        this.menu = menu;
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_filter:
+                ToastUtils.showShort("筛选");
+                IntentUtils.forwardForResult(FilterNewActivity.class, Const.UI_ACTION
+                        .REQ_DEVICE_LIST2);
+                break;
+        }
+        return true;
     }
 
     @Override

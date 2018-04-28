@@ -26,7 +26,7 @@ public class AccountDeviceInfo {
         this.total = total;
     }
 
-    private class DeviceDetailInfo {
+    public static class DeviceDetailInfo {
         private String Alarm;
         private String AlarmDate;
         private String AlarmText;

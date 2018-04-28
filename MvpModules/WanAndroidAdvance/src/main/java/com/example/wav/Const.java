@@ -42,5 +42,6 @@ public class Const {
         public static final int RESULT_REFRESH_UI = 1001;
         // 请求设备列表
         public static final int REQ_DEVICE_LIST = 1000;
+        public static final int REQ_DEVICE_LIST2 = 1002;
     }
 }
