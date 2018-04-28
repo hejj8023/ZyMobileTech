@@ -7,6 +7,7 @@ package com.example.wav.bean;
 public class AccountGroupInfo {
     private String id;
     private String text;
+    private boolean checked;
 
     public String getId() {
         return id;
@@ -22,6 +23,14 @@ public class AccountGroupInfo {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     @Override

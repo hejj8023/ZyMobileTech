@@ -31,10 +31,13 @@ public class Const {
     }
 
     public static class TMP_DATA {
+        public static String FILTER_CUSTOMER_GROUP_ID = "";
         public static AccountInfo ACCOUNT_INFO = null;
         public static List<DeviceInfo> DEV_LIST = new ArrayList<>();
         public static List<CustomerGroupInfo> CUSTOMERGROUP_LIST = new ArrayList<>();
         public static List<CustomerInfo> CUSTOMER_LIST = new ArrayList<>();
+        // 筛选使用的临时 变量
+        public static String FILTER_CUSTOMER_ID = "";
     }
 
     public class UI_ACTION {
