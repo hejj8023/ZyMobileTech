@@ -91,7 +91,7 @@ public class SplashActivity extends BaseDaggerSupportActivity<SplashPresenter, S
         RxTimerUtils.timer(2200, new RxTimerUtils.IRxNext() {
             @Override
             public void onNext(long number) {
-                IntentUtils.forward(HomeActivity.class);
+                IntentUtils.forward(LoginActivity.class);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

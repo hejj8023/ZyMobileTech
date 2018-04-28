@@ -1,9 +1,15 @@
 package com.example.wav;
 
+import android.support.v4.app.Fragment;
+
+import com.example.wav.bean.MainPagerInfo;
 import com.example.wav.bean.CustomerGroupInfo;
 import com.example.wav.bean.CustomerInfo;
 import com.example.wav.bean.DeviceInfo;
+import com.example.wav.ui.fragment.HomeFragment;
+import com.example.wav.ui.fragment.SettingFragment;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.utils.PreUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,4 +89,37 @@ public class DataManager {
         deviceInfos.add(deviceInfo);
         return deviceInfos;
     }
+
+    public static void saveDefaultUserId(String userId) {
+        PreUtils.put(Const.PRE_KEY_DEFAULT_USER_ID, userId);
+    }
+
+    public static String getDefaultUserId() {
+        Object o = PreUtils.get(Const.PRE_KEY_DEFAULT_USER_ID, "");
+        return o != null && o instanceof String ? (String) o : "";
+    }
+
+    public static void saveDefaultGroupId(String groupId) {
+        PreUtils.put(Const.PRE_KEY_DEFAULT_GROUP_ID, groupId);
+    }
+
+    public static String getDefaultGroupId() {
+        Object o = PreUtils.get(Const.PRE_KEY_DEFAULT_GROUP_ID, "");
+        return o != null && o instanceof String ? (String) o : "";
+    }
+
+    public static List<Fragment> getMainFragments() {
+        List<Fragment> fragments = new ArrayList<Fragment>();
+        fragments.add(new HomeFragment());
+        fragments.add(new SettingFragment());
+        return fragments;
+    }
+
+    public static List<MainPagerInfo> getMainPagerDatas() {
+        List<MainPagerInfo> pagerInfoList = new ArrayList<MainPagerInfo>();
+        pagerInfoList.add(MainPagerInfo.HOMEPAGE);
+        pagerInfoList.add(MainPagerInfo.SETTING);
+        return pagerInfoList;
+    }
+
 }

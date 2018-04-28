@@ -8,7 +8,7 @@ import android.view.View;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.wav.Const;
 import com.example.wav.R;
-import com.example.wav.base.BaseWanAdvListActivity;
+import com.example.wav.base.BaseDaggerSupportListActivity;
 import com.example.wav.bean.CustomerGroupInfo;
 import com.example.wav.bean.CustomerInfo;
 import com.example.wav.bean.DeviceInfo;
@@ -26,7 +26,7 @@ import java.util.List;
  * 默认加载的是所有的设备列表数据,只有筛选返回的时候才会是筛选之后的数据
  */
 
-public class DeviceListActivity extends BaseWanAdvListActivity<DeviceListPresenter,
+public class DeviceListActivity extends BaseDaggerSupportListActivity<DeviceListPresenter,
         DeviceListContract.IDeviceView, DeviceInfo> implements DeviceListContract
         .IDeviceView {
 

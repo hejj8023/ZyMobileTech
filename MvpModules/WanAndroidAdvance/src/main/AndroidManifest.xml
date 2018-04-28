@@ -26,6 +26,8 @@
         <activity android:name=".ui.activity.FilterActivity" />
         <activity android:name=".ui.activity.DeviceListActivity" />
         <activity android:name=".ui.activity.ApiTestActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.NewHomeActivity" />
     </application>
 
 </manifest>

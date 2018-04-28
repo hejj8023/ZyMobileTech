@@ -66,3 +66,9 @@
         <item android:drawable="@drawable/ease_dx_checkbox_on" android:state_checked="true" />
         <item android:drawable="@drawable/ease_dx_checkbox_off" />
     </selector>
+    
+## 支持库封装    
+    BaseDaggerSupportActivity
+    BaseDaggerSupportFragment
+    BaseDaggerSupportListActivity
+    BaseDaggerSupportListFragment

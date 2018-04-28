@@ -1,5 +1,6 @@
 package com.example.wav;
 
+import com.example.wav.bean.AccountInfo;
 import com.example.wav.bean.CustomerGroupInfo;
 import com.example.wav.bean.CustomerInfo;
 import com.example.wav.bean.DeviceInfo;
@@ -12,6 +13,10 @@ import java.util.List;
  */
 
 public class Const {
+
+    public static final String PRE_KEY_DEFAULT_USER_ID = "default_user_id";
+    public static final String PRE_KEY_DEFAULT_GROUP_ID = "default_group_id";
+
 
     public static class API_URL_CONFIG {
         public static final String BASEURL = "http://www.frigate-iot.com/";
@@ -26,6 +31,7 @@ public class Const {
     }
 
     public static class TMP_DATA {
+        public static AccountInfo ACCOUNT_INFO = null;
         public static List<DeviceInfo> DEV_LIST = new ArrayList<>();
         public static List<CustomerGroupInfo> CUSTOMERGROUP_LIST = new ArrayList<>();
         public static List<CustomerInfo> CUSTOMER_LIST = new ArrayList<>();

@@ -8,7 +8,9 @@ import com.example.wav.ui.activity.ApiTestActivity;
 import com.example.wav.ui.activity.DeviceListActivity;
 import com.example.wav.ui.activity.FilterActivity;
 import com.example.wav.ui.activity.HomeActivity;
+import com.example.wav.ui.activity.LoginActivity;
 import com.example.wav.ui.activity.MainActivity;
+import com.example.wav.ui.activity.NewHomeActivity;
 import com.example.wav.ui.activity.SplashActivity;
 
 import dagger.Component;
@@ -32,4 +34,8 @@ public interface ActivityComponent {
     void inject(ApiTestActivity activity);
 
     void inject(HomeActivity activity);
+
+    void inject(LoginActivity activity);
+
+    void inject(NewHomeActivity activity);
 }
