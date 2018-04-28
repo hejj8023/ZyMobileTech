@@ -160,6 +160,7 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
     public void setCustomerListData(List<AccountCustomerInfo> list) {
         AccountCustomerInfo accountGroupInfo = list.get(0);
         accountGroupInfo.setChecked(true);
+        Const.TMP_DATA.FILTER_CUSTOMER_ID = accountGroupInfo.getId() + "";
         list.set(0, accountGroupInfo);
         customerListAdapter = new FilterCustomerListAdapter(list);
     }
@@ -168,6 +169,7 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
     public void setCustomerGroupListData(List<AccountGroupInfo> list) {
         AccountGroupInfo accountGroupInfo = list.get(0);
         accountGroupInfo.setChecked(true);
+        Const.TMP_DATA.FILTER_CUSTOMER_GROUP_ID = accountGroupInfo.getId();
         list.set(0, accountGroupInfo);
         customerGroupListAdapter = new FilterCustomerGroupListAdapter(list);
     }
