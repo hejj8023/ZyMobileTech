@@ -116,7 +116,7 @@ public class FilterCustomerListFragment extends
                     DataManager.saveDefaultUserId(bean.getId() + "");
                 }
                 checkBox.setChecked(bean.isChecked());
-                notifyDataSetChanged();
+                notifyAllDatas(mListData,recyclerView);
             });
         }
     }

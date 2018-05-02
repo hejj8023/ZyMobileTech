@@ -32,7 +32,6 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
 
     @Override
     protected void initArguments(Bundle bundle) {
-        page = 1;
     }
 
     @Override

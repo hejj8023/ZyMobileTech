@@ -34,7 +34,7 @@ public class ApiTestPresenter extends BasePresenter<ApiTestContract
 
     @Override
     public void login() {
-        mModel.login("kefu02", "123456", new Consumer<ResponseBody>() {
+        mModel.login("", "", new Consumer<ResponseBody>() {
             @Override
             public void accept(ResponseBody responseBody) throws Exception {
                 String result = responseBody.string();
@@ -55,7 +55,6 @@ public class ApiTestPresenter extends BasePresenter<ApiTestContract
             @Override
             public void accept(List<AccountCustomerInfo> accountCustomerInfos) throws Exception {
 //                String result = responseBody.string();
-                // [{"id":"11723","text":"\u5ba2\u6237\u6d4b\u8bd5"}]
                 LoggerUtils.loge("getCustomerList 请求结果:" + accountCustomerInfos);
             }
         });
@@ -75,7 +74,7 @@ public class ApiTestPresenter extends BasePresenter<ApiTestContract
                     LoggerUtils.loge("getCustomerGroupList 请求结果:" + groupInfos);
                 }
             }
-        }, "kefu02");
+        }, "");
     }
 
     @Override
@@ -86,12 +85,12 @@ public class ApiTestPresenter extends BasePresenter<ApiTestContract
 //                String result = responseBody.string();
                 LoggerUtils.loge("getDeviceList 请求结果:" + responseBody.toString());
             }
-        }, "11723", "0", 0, 1, 10);
+        }, "", "0", 0, 1, 10);
     }
 
     @Override
     public void login2() {
-        mModel.login2("kefu02", "123456", "03", new Consumer<AccountInfo>() {
+        mModel.login2("", "", "03", new Consumer<AccountInfo>() {
             @Override
             public void accept(AccountInfo result) throws Exception {
                 LoggerUtils.loge("login2 请求结果:" + result.toString());
@@ -108,6 +107,6 @@ public class ApiTestPresenter extends BasePresenter<ApiTestContract
                     LoggerUtils.loge("getCustomerGroupList2 请求结果:" + accountGroupInfos);
                 }
             }
-        }, "kefu02");
+        }, "");
     }
 }
