@@ -46,21 +46,28 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
     private QuickAdapter customerGroupListAdapter;
     private QuickAdapter deviceListAdapter;
 
+    // 是否有数据在请求中，只对tab切换有效
+    private boolean hasReqDataing = false;
     VerticalTabLayout.OnTabSelectedListener onTabSelectedListener = new VerticalTabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabView tab, int position) {
+            if (hasReqDataing)
+                return;
+
+            mLoadingLayout.showLoding();
+            hasReqDataing = true;
             switch (position) {
                 case 0:
                     // 点击的时候从网络上获取最新的数据,这里取全部的客户列表
-                    recyclerView.setAdapter(customerListAdapter);
+                    mPresenter.getCustomerListData();
                     break;
                 case 1:
                     // 点击的时候从网络上获取最新的数据,使用最新的客户id
-                    recyclerView.setAdapter(customerGroupListAdapter);
+                    mPresenter.getCustomerGroupListData();
                     break;
                 case 2:
                     // 点击的时候从网络上获取最新的数据,最新的客户id+最新的groupId
-                    recyclerView.setAdapter(deviceListAdapter);
+                    mPresenter.getDevListData();
                     break;
             }
         }
@@ -70,7 +77,8 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
 
         }
     };
-
+    // 是否是第一次加载
+    private boolean isFirstLoad = true;
     private SimpleTabAdapter simpleTabAdapter = new SimpleTabAdapter() {
         @Override
         public int getCount() {
@@ -95,6 +103,7 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
                     .build();
         }
     };
+
 
     @Override
     protected boolean initToolBar() {
@@ -143,7 +152,7 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
     @Override
     public void initData() {
         mLoadingLayout.showLoding();
-        mPresenter.loadData();
+        mPresenter.getAllData();
     }
 
     @Override
@@ -163,6 +172,11 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
         Const.TMP_DATA.FILTER_CUSTOMER_ID = accountGroupInfo.getId() + "";
         list.set(0, accountGroupInfo);
         customerListAdapter = new FilterCustomerListAdapter(list);
+        hasReqDataing = false;
+        if (!isFirstLoad) {
+            recyclerView.setAdapter(customerListAdapter);
+        }
+        mLoadingLayout.showContent();
     }
 
     @Override
@@ -172,6 +186,11 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
         Const.TMP_DATA.FILTER_CUSTOMER_GROUP_ID = accountGroupInfo.getId();
         list.set(0, accountGroupInfo);
         customerGroupListAdapter = new FilterCustomerGroupListAdapter(list);
+        hasReqDataing = false;
+        if (!isFirstLoad) {
+            recyclerView.setAdapter(customerGroupListAdapter);
+        }
+        mLoadingLayout.showContent();
     }
 
     @Override
@@ -180,8 +199,29 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
             List<AccountDeviceInfo.DeviceDetailInfo> detailInfos = list.getRows();
             deviceListAdapter = new FilterDeviceAdapter(detailInfos);
         }
-        recyclerView.setAdapter(customerListAdapter);
+        hasReqDataing = false;
+        if (isFirstLoad) {
+            isFirstLoad = false;
+            recyclerView.setAdapter(customerListAdapter);
+        } else {
+            recyclerView.setAdapter(deviceListAdapter);
+        }
         mLoadingLayout.showContent();
+    }
+
+    @Override
+    public int getStatus() {
+        return 0;
+    }
+
+    @Override
+    public int getPage() {
+        return 1;
+    }
+
+    @Override
+    public int getPageSize() {
+        return 20;
     }
 
     private class FilterCustomerListAdapter extends QuickAdapter<AccountCustomerInfo> {
@@ -199,15 +239,17 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
                 checkBox.setChecked(false);
             }
             holder.setOnClickListener(v -> {
-                Const.TMP_DATA.FILTER_CUSTOMER_ID = data.getId() + "";
                 // 取消所有的选择
                 for (AccountCustomerInfo datum : mData) {
-                    datum.setChecked(false);
+                    if (!datum.equals(data))
+                        datum.setChecked(false);
                 }
                 if (data.isChecked()) {
                     data.setChecked(false);
+                    Const.TMP_DATA.FILTER_CUSTOMER_ID = "";
                 } else {
                     data.setChecked(true);
+                    Const.TMP_DATA.FILTER_CUSTOMER_ID = data.getId() + "";
                 }
                 checkBox.setChecked(data.isChecked());
                 notifyDataSetChanged();
@@ -230,15 +272,17 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
                 checkBox.setChecked(false);
             }
             holder.setOnClickListener(v -> {
-                Const.TMP_DATA.FILTER_CUSTOMER_GROUP_ID = data.getId();
                 // 取消所有的选择
                 for (AccountGroupInfo datum : mData) {
-                    datum.setChecked(false);
+                    if (!datum.equals(data))
+                        datum.setChecked(false);
                 }
                 if (data.isChecked()) {
                     data.setChecked(false);
+                    Const.TMP_DATA.FILTER_CUSTOMER_GROUP_ID = "";
                 } else {
                     data.setChecked(true);
+                    Const.TMP_DATA.FILTER_CUSTOMER_GROUP_ID = data.getId();
                 }
                 checkBox.setChecked(data.isChecked());
                 notifyDataSetChanged();

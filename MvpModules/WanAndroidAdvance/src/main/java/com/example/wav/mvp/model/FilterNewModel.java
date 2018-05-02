@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -22,9 +23,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class FilterNewModel extends BaseAdvModel implements FilterNewContract.IFilterNewModel {
     @Override
-    public void getData(Consumer<List<AccountCustomerInfo>> consumer1,
-                        Consumer<List<AccountGroupInfo>> consumer2,
-                        Consumer<AccountDeviceInfo> consumer3) {
+    public void getAllData(Consumer<List<AccountCustomerInfo>> consumer1,
+                           Consumer<List<AccountGroupInfo>> consumer2,
+                           Consumer<AccountDeviceInfo> consumer3) {
         // 链式调用
         // 取所有用户-所有分组-所有设备状态
         getApi().getCustomerList().compose(RxUtils.io_main())
@@ -63,5 +64,23 @@ public class FilterNewModel extends BaseAdvModel implements FilterNewContract.IF
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(consumer3);
+    }
+
+    @Override
+    public void getCustomerListData(Observer<List<AccountCustomerInfo>> consumer) {
+        getApi().getCustomerList().compose(RxUtils.io_main()).subscribe(consumer);
+    }
+
+    @Override
+    public void getCustomerGroupListData(String customerId, Observer<List<AccountGroupInfo>> consumer) {
+        getApi().getCustomerGroupList2(customerId).compose(RxUtils.io_main()).subscribe(consumer);
+    }
+
+    @Override
+    public void getDevListData(String customerId, String groupId, int status, int pageNum, int
+            pageSize, Observer<AccountDeviceInfo> consumer) {
+        getApi().getDeviceList(customerId, groupId, status, pageNum, pageSize)
+                .compose(RxUtils.io_main())
+                .subscribe(consumer);
     }
 }

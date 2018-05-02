@@ -1,9 +1,11 @@
 package com.example.wav.mvp.presenter;
 
+import com.example.wav.DataManager;
 import com.example.wav.bean.AccountDeviceInfo;
 import com.example.wav.mvp.contract.HomeFragmentContract;
 import com.example.wav.mvp.model.HomeFragmentModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
 import java.util.List;
 
@@ -30,22 +32,32 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract
     public void loadDeviceList() {
         mFragmentView = getView();
         mFragmentView.showLoading("数据加载中,请稍候...");
-        mFragmentModel.loadDeviceList(new Consumer<AccountDeviceInfo>() {
-            @Override
-            public void accept(AccountDeviceInfo accountDeviceInfo) throws Exception {
-                if (accountDeviceInfo != null) {
-                    List<AccountDeviceInfo.DeviceDetailInfo> infos = accountDeviceInfo.getRows();
-                    if (infos != null && infos.size() > 0) {
-                        mFragmentView.setData(infos);
-                        mFragmentView.showContent();
-                    } else {
-                        mFragmentView.showEmpty();
+        String defaultUserId = DataManager.getDefaultUserId();
+        String defaultGroupId = DataManager.getDefaultGroupId();
+        LoggerUtils.loge(this, "defaultUserId = " + defaultUserId + " , defaultGroupId = " + defaultGroupId);
+
+        mFragmentModel.loadDeviceList(
+                defaultUserId,
+                defaultGroupId,
+                mFragmentView.getStatus(),
+                mFragmentView.getPage(),
+                mFragmentView.getPageSize(),
+                new Consumer<AccountDeviceInfo>() {
+                    @Override
+                    public void accept(AccountDeviceInfo accountDeviceInfo) throws Exception {
+                        if (accountDeviceInfo != null) {
+                            List<AccountDeviceInfo.DeviceDetailInfo> infos = accountDeviceInfo.getRows();
+                            if (infos != null && infos.size() > 0) {
+                                mFragmentView.setData(infos);
+                                mFragmentView.showContent();
+                            } else {
+                                mFragmentView.showEmpty();
+                            }
+                        } else {
+                            mFragmentView.showError();
+                        }
+                        mFragmentView.hideLoading();
                     }
-                } else {
-                    mFragmentView.showError();
-                }
-                mFragmentView.hideLoading();
-            }
-        });
+                });
     }
 }

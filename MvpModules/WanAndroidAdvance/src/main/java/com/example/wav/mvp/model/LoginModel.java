@@ -7,12 +7,14 @@ import com.example.wav.bean.AccountGroupInfo;
 import com.example.wav.bean.AccountInfo;
 import com.example.wav.mvp.contract.LoginContract;
 import com.example.wav.utils.MD5Utils;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 import com.zhiyangstudio.commonlib.utils.RxUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -24,14 +26,23 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginModel extends BaseAdvModel implements LoginContract.ILoginModel {
     @Override
-    public void login(String username, String pwd, String sourceType, Consumer<AccountInfo> observer) {
+    public void login(String username, String pwd, String sourceType, Observer<AccountInfo>
+            observer) {
+        newReq(username, pwd, sourceType, observer);
+    }
+
+    private void newReq(String username, String pwd, String sourceType, Observer<AccountInfo> observer) {
         getApi().login2(username, MD5Utils.getMd5(pwd), sourceType)
                 .compose(RxUtils.io_main())
                 .observeOn(Schedulers.io())
                 .doOnNext(new Consumer<AccountInfo>() {
                     @Override
                     public void accept(AccountInfo accountInfo) throws Exception {
-                        Const.TMP_DATA.ACCOUNT_INFO = accountInfo;
+                        if (accountInfo != null) {
+                            Const.TMP_DATA.ACCOUNT_INFO = accountInfo;
+                        } else {
+                            LoggerUtils.loge("登录接口调用出现异常");
+                        }
                     }
                 })
                 .flatMap(new Function<AccountInfo, Observable<List<AccountCustomerInfo>>>() {
@@ -49,6 +60,8 @@ public class LoginModel extends BaseAdvModel implements LoginContract.ILoginMode
                         // TODO: 2018/4/28 缓存数据
                         if (accountCustomerInfos != null && accountCustomerInfos.size() > 0) {
                             DataManager.saveDefaultUserId(accountCustomerInfos.get(0).getId() + "");
+                        } else {
+                            LoggerUtils.loge("用户列表接口调用出现异常");
                         }
                     }
                 })
@@ -67,6 +80,8 @@ public class LoginModel extends BaseAdvModel implements LoginContract.ILoginMode
                     public void accept(List<AccountGroupInfo> accountGroupInfos) throws Exception {
                         if (accountGroupInfos != null && accountGroupInfos.size() > 0) {
                             DataManager.saveDefaultGroupId(accountGroupInfos.get(0).getId());
+                        } else {
+                            LoggerUtils.loge("用户分组接口调用出现异常");
                         }
                     }
                 })

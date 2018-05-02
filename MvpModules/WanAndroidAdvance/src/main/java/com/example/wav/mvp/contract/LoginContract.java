@@ -3,7 +3,7 @@ package com.example.wav.mvp.contract;
 import com.example.wav.bean.AccountInfo;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 
-import io.reactivex.functions.Consumer;
+import io.reactivex.Observer;
 
 /**
  * Created by example on 2018/4/28.
@@ -23,7 +23,7 @@ public interface LoginContract {
     }
 
     public interface ILoginModel {
-        void login(String username, String pwd, String sourceType, Consumer<AccountInfo>
+        void login(String username, String pwd, String sourceType, Observer<AccountInfo>
                 observer);
     }
 }

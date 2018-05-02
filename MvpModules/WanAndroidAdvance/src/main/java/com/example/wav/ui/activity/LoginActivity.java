@@ -4,6 +4,8 @@ import android.support.design.widget.TextInputEditText;
 import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.example.wav.Const;
+import com.example.wav.DataManager;
 import com.example.wav.R;
 import com.example.wav.base.BaseAdvActivity;
 import com.example.wav.mvp.contract.LoginContract;
@@ -74,6 +76,10 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
             return;
         showLoadingDialog();
         isDoLoginging = true;
+        // 先把数据给重置了
+        Const.TMP_DATA.ACCOUNT_INFO = null;
+        DataManager.saveDefaultUserId("");
+        DataManager.saveDefaultGroupId("");
         mPresenter.login();
     }
 

@@ -11,6 +11,9 @@ import io.reactivex.functions.Consumer;
 
 public interface HomeFragmentContract {
     public interface IHomeFragmentView extends IListDataView<AccountDeviceInfo.DeviceDetailInfo> {
+        int getStatus();
+
+        int getPageSize();
     }
 
     public interface IHomeFragmentPresenter {
@@ -18,6 +21,7 @@ public interface HomeFragmentContract {
     }
 
     public interface IHomeFragmentModel {
-        void loadDeviceList(Consumer<AccountDeviceInfo> consumer);
+        void loadDeviceList(String customerId, String groupId, int status, int pageNum, int
+                pageSize, Consumer<AccountDeviceInfo> consumer);
     }
 }

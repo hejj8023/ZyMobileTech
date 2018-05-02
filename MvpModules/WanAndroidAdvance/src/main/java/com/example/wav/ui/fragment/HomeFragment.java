@@ -32,7 +32,7 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
 
     @Override
     protected void initArguments(Bundle bundle) {
-
+        page = 1;
     }
 
     @Override
@@ -65,6 +65,9 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
 
     @Override
     protected void loadDatas() {
+        if (state == CommonConst.PAGE_STATE.STATE_REFRESH) {
+            page = 1;
+        }
         mPresenter.loadDeviceList();
     }
 
@@ -81,6 +84,16 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
     @Override
     protected View initHeaderView() {
         return null;
+    }
+
+    @Override
+    public int getStatus() {
+        return 0;
+    }
+
+    @Override
+    public int getPageSize() {
+        return 20;
     }
 
     private class DeviceListAdapter extends BaseListAdapter<AccountDeviceInfo.DeviceDetailInfo> {
