@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/_0091ea"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="设备注册"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_15">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_device_code"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:hint="请输入设备注册码" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_device_wlw_card_num"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:hint="请输入网联网卡号" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_device_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:hint="设备名称" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_device_gropu_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:hint="请输入设备分组" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_device_account"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:hint="登录账号" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_device_u_customer_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:hint="请输入上级客户名称:6-16位"
+            android:maxEms="8"
+            android:minEms="3" />
+
+        <Button
+            android:id="@+id/btn_device_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="注册" />
+
+    </LinearLayout>
+</LinearLayout>

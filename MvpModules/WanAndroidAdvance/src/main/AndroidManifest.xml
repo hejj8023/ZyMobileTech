@@ -30,6 +30,7 @@
         <activity android:name=".ui.activity.NewHomeActivity" />
         <activity android:name=".ui.activity.FilterNewActivity" />
         <activity android:name=".ui.activity.NewFilterActivity" />
+        <activity android:name=".ui.activity.DeviceRegActivity" />
     </application>
 
 </manifest>

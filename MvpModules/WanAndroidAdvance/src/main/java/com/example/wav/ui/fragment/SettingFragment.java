@@ -1,9 +1,14 @@
 package com.example.wav.ui.fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.wav.R;
+import com.example.wav.ui.activity.DeviceRegActivity;
 import com.zhiyangstudio.commonlib.corel.BaseFragment;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
+
+import butterknife.OnClick;
 
 /**
  * Created by example on 2018/4/28.
@@ -43,5 +48,14 @@ public class SettingFragment extends BaseFragment {
     @Override
     protected void initArguments(Bundle bundle) {
 
+    }
+
+    @OnClick(R.id.btn_device_reg)
+    public void onViewClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_device_reg:
+                IntentUtils.forward(DeviceRegActivity.class);
+                break;
+        }
     }
 }
