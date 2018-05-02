@@ -11,6 +11,7 @@ import com.example.wav.ui.activity.FilterNewActivity;
 import com.example.wav.ui.activity.HomeActivity;
 import com.example.wav.ui.activity.LoginActivity;
 import com.example.wav.ui.activity.MainActivity;
+import com.example.wav.ui.activity.NewFilterActivity;
 import com.example.wav.ui.activity.NewHomeActivity;
 import com.example.wav.ui.activity.SplashActivity;
 
@@ -41,4 +42,6 @@ public interface ActivityComponent {
     void inject(NewHomeActivity activity);
 
     void inject(FilterNewActivity activity);
+
+    void inject(NewFilterActivity activity);
 }

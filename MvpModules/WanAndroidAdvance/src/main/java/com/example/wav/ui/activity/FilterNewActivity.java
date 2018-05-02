@@ -118,7 +118,7 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
 
     @Override
     protected int getContentLayoutId() {
-        return R.layout.activity_filter2;
+        return R.layout.activity_filter_old;
     }
 
     @Override

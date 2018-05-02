@@ -7,9 +7,9 @@ import com.zhiyangstudio.commonlib.mvp.inter.IView;
  */
 
 public interface NewHomeContract {
-    public interface INewHomeView extends IView{
+    interface INewHomeView extends IView{
     }
 
-    public interface INewHomePresenter {
+    interface INewHomePresenter {
     }
 }

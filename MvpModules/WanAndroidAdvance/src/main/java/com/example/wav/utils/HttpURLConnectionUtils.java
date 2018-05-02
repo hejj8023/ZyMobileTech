@@ -298,7 +298,7 @@ public class HttpURLConnectionUtils {
     /**
      * 请求结果回调接口
      */
-    public interface HttpResponseCallBack {
+    interface HttpResponseCallBack {
         void onSuccess(JSONObject response);    //返回数据
 
         void onFailure();   //网络连接错误 json解析错误

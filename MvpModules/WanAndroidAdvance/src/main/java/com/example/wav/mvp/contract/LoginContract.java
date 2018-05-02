@@ -10,7 +10,7 @@ import io.reactivex.Observer;
  */
 
 public interface LoginContract {
-    public interface ILoginView extends IView {
+    interface ILoginView extends IView {
         String getUserName();
 
         String getPwd();
@@ -18,11 +18,11 @@ public interface LoginContract {
         void changeState(int flag);
     }
 
-    public interface ILoginPresenter {
+    interface ILoginPresenter {
         void login();
     }
 
-    public interface ILoginModel {
+    interface ILoginModel {
         void login(String username, String pwd, String sourceType, Observer<AccountInfo>
                 observer);
     }

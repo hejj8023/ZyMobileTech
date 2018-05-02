@@ -14,7 +14,7 @@ import io.reactivex.functions.Consumer;
  */
 
 public interface BaseFilterContract {
-    public interface IFilterModel {
+    interface IFilterModel {
         void getDataList(Consumer<List<CustomerInfo>> customerConsumer,
                          Consumer<List<CustomerGroupInfo>>
                                  customerGroupInfoConsumer, Observer<List<DeviceInfo>> observer);

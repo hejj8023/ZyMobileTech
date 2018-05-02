@@ -132,7 +132,7 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
         switch (item.getItemId()) {
             case R.id.action_filter:
                 ToastUtils.showShort("筛选");
-                IntentUtils.forwardForResult(FilterNewActivity.class, Const.UI_ACTION
+                IntentUtils.forwardForResult(NewFilterActivity.class, Const.UI_ACTION
                         .REQ_DEVICE_LIST2);
                 break;
         }

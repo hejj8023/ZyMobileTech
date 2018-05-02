@@ -26,11 +26,18 @@
             android:layout_height="match_parent"
             android:background="@color/violet" />
 
-        <FrameLayout
-            android:id="@+id/fl_filter_root"
+        <com.zhiyangstudio.commonlib.widget.LoadingLayout
+            android:id="@+id/loading_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/wheat" />
+        </com.zhiyangstudio.commonlib.widget.LoadingLayout>
 
     </LinearLayout>
 

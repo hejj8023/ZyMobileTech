@@ -7,10 +7,10 @@ import com.zhiyangstudio.commonlib.mvp.inter.IView;
  */
 
 public interface SplashContract {
-    public interface ISplashView extends IView {
+    interface ISplashView extends IView {
     }
 
-    public interface ISplashPresenter {
+    interface ISplashPresenter {
         void log(String data);
     }
 }

@@ -29,7 +29,7 @@ public interface FilterContract {
         void loadList();
     }
 
-    public interface IFilterModel {
+    interface IFilterModel {
         void getFilterData(Consumer<List<CustomerInfo>> customerConsumer, Consumer<List<CustomerGroupInfo>>
                 customerGroupInfoConsumer, Observer<List<DeviceInfo>> observer);
     }

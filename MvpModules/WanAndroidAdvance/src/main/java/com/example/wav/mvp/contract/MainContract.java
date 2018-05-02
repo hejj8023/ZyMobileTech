@@ -7,10 +7,10 @@ import com.zhiyangstudio.commonlib.mvp.inter.IView;
  */
 
 public interface MainContract {
-    public interface IMainView extends IView {
+    interface IMainView extends IView {
     }
 
-    public interface IMainPresenter {
+    interface IMainPresenter {
         void log(String s);
     }
 }

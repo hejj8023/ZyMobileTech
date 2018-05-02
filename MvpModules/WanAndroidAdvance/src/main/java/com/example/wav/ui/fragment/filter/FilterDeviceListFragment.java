@@ -1,40 +1,27 @@
-package com.example.wav.ui.fragment;
+package com.example.wav.ui.fragment.filter;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.example.wav.R;
 import com.example.wav.base.BaseDaggerSupportListFragment;
 import com.example.wav.bean.AccountDeviceInfo;
-import com.example.wav.mvp.contract.HomeFragmentContract;
-import com.example.wav.mvp.presenter.HomeFragmentPresenter;
+import com.example.wav.mvp.contract.FilterDeviceListContract;
+import com.example.wav.mvp.presenter.FilteDeviceListPresenter;
 import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
 import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
- * Created by example on 2018/4/28.
+ * Created by example on 2018/5/2.
  */
 
-public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPresenter, HomeFragmentContract
-        .IHomeFragmentView, AccountDeviceInfo.DeviceDetailInfo> implements HomeFragmentContract.IHomeFragmentView {
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void initArguments(Bundle bundle) {
-        page = 1;
-    }
-
+public class FilterDeviceListFragment extends
+        BaseDaggerSupportListFragment<FilteDeviceListPresenter, FilterDeviceListContract
+                .IFilteDeviceListView, AccountDeviceInfo.DeviceDetailInfo> implements FilterDeviceListContract
+        .IFilteDeviceListView {
     @Override
     public void addListener() {
 
@@ -64,11 +51,12 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
     }
 
     @Override
+    protected void initArguments(Bundle bundle) {
+    }
+
+    @Override
     public void loadDatas() {
-        if (state == CommonConst.PAGE_STATE.STATE_REFRESH) {
-            page = 1;
-        }
-        mPresenter.loadDeviceList();
+        mPresenter.getData();
     }
 
     @Override
@@ -87,6 +75,14 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
     }
 
     @Override
+    public int getPage() {
+        if (state == CommonConst.PAGE_STATE.STATE_REFRESH) {
+            return 1;
+        }
+        return super.getPage();
+    }
+
+    @Override
     public int getStatus() {
         return 0;
     }
@@ -99,22 +95,15 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
     private class DeviceListAdapter extends BaseListAdapter<AccountDeviceInfo.DeviceDetailInfo> {
         @Override
         protected int getLayoutId(int viewType) {
-            return R.layout.layout_item_device_list_online;
+            return R.layout.layout_item_device_list;
         }
 
         @Override
         protected void bindDatas(QuickViewHolder holder, AccountDeviceInfo.DeviceDetailInfo bean, int itemViewType, int position) {
-            holder.setText(R.id.tv_device_title, bean.getName());
-            holder.setText(R.id.tv_device_state, bean.getOnlineText());
-            SimpleDateFormat sdfDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssss");
-            try {
-                Date date = sdfDateFormat.parse(bean.getUpdataDate());
-                SimpleDateFormat sdfDateFormat1 = new SimpleDateFormat("HH:mm");
-                String timeStr = sdfDateFormat1.format(date);
-                holder.setText(R.id.tv_device_time, timeStr);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            holder.setText(R.id.tv_dev_name, bean.getName());
+            holder.setText(R.id.tv_dev_group_id, bean.getGroupName());
+            holder.setText(R.id.tv_dev_customer_id, bean.getCustomerName());
+            holder.setText(R.id.tv_state, bean.getOnlineText());
         }
     }
 }

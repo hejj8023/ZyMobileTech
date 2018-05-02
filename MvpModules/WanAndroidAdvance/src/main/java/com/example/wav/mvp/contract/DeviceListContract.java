@@ -12,14 +12,14 @@ import io.reactivex.Observer;
  */
 
 public interface DeviceListContract {
-    public interface IDeviceView extends IListDataView<DeviceInfo> {
+    interface IDeviceView extends IListDataView<DeviceInfo> {
     }
 
-    public interface IDevicePresenter {
+    interface IDevicePresenter {
         void getDeviceList();
     }
 
-    public interface IDeviceModel {
+    interface IDeviceModel {
         void getDeviceList(Observer<List<DeviceInfo>> observer);
     }
 }
