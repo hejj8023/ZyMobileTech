@@ -41,12 +41,16 @@ public class FilteDeviceListPresenter extends BasePresenter<FilterDeviceListCont
                         FilterNewModel.class.getName()) {
                     @Override
                     public void onNext(AccountDeviceInfo accountDeviceInfo) {
-                        List<AccountDeviceInfo.DeviceDetailInfo> list = accountDeviceInfo.getRows();
-                        mDeviceListView.setData(list);
-                        if (list.size() > 0) {
-                            mDeviceListView.showContent();
+                        if (accountDeviceInfo != null) {
+                            List<AccountDeviceInfo.DeviceDetailInfo> list = accountDeviceInfo.getRows();
+                            mDeviceListView.setData(list);
+                            if (list.size() > 0) {
+                                mDeviceListView.showContent();
+                            } else {
+                                mDeviceListView.showEmpty();
+                            }
                         } else {
-                            mDeviceListView.showEmpty();
+                            mDeviceListView.showError();
                         }
                     }
                 });

@@ -1,5 +1,6 @@
 package com.example.wav.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
@@ -19,7 +20,9 @@ import com.example.wav.base.BaseAdvActivity;
 import com.example.wav.bean.MainPagerInfo;
 import com.example.wav.mvp.contract.NewHomeContract;
 import com.example.wav.mvp.presenter.NewHomePresenter;
+import com.example.wav.ui.fragment.HomeFragment;
 import com.example.wav.widget.TabIndicator;
+import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
 
 import java.util.List;
@@ -137,6 +140,19 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Const.UI_ACTION.REQ_DEVICE_LIST2 &&
+                resultCode == Const.UI_ACTION.RESULT_REFRESH_UI) {
+            Fragment fragment = mMainPagerInfos.get(0).getFragment();
+            HomeFragment homeFragment = (HomeFragment) fragment;
+            homeFragment.state = CommonConst.PAGE_STATE.STATE_REFRESH;
+            // 重新 请求数据
+            homeFragment.loadDatas();
+        }
     }
 
     @Override

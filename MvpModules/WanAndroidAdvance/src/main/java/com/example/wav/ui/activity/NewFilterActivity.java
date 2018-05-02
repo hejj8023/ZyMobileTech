@@ -5,9 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.example.wav.Const;
-import com.example.wav.DataManager;
 import com.example.wav.R;
 import com.example.wav.base.BaseAdvActivity;
 import com.example.wav.bean.AccountCustomerInfo;
@@ -128,10 +126,9 @@ public class NewFilterActivity extends BaseAdvActivity<FilterNewPresenter,
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_filter_confirm:
-                ToastUtils.showShort("确定");
-                // 保存数据
-                DataManager.saveDefaultUserId(Const.TMP_DATA.FILTER_CUSTOMER_ID);
-                DataManager.saveDefaultGroupId(Const.TMP_DATA.FILTER_CUSTOMER_GROUP_ID);
+                // 方案修改了这里就不需要再存储数据了
+                setResult(Const.UI_ACTION.RESULT_REFRESH_UI);
+                finish();
                 break;
         }
         return true;
