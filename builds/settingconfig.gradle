@@ -8,7 +8,8 @@ private void loadLibModules() {
 //    include ':LibModules:CommonAlgorithmLib'
 //    include ':LibModules:CammeraViewLib'
 //    include ':LibModules:JCameraViewLib'
-    include ':LibModules:CommonAlertPop'
+//    include ':LibModules:CommonAlertPop'
+    include ':LibModules:DaggerSupportLib'
 }
 
 private void loadAppModules() {
@@ -152,6 +153,7 @@ private void loadMvpModules() {
     include ':MvpModules'
     project(":MvpModules").projectDir = file
 //    include ':MvpModules:WanAndroid'
+    include ':MvpModules:DaggerWanAndroid'
 //    include ':MvpModules:WeiBo'说说啥
 //    include ':MvpModules:BaiLan'
 }
