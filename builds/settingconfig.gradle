@@ -9,7 +9,6 @@ private void loadLibModules() {
 //    include ':LibModules:CammeraViewLib'
 //    include ':LibModules:JCameraViewLib'
 //    include ':LibModules:CommonAlertPop'
-    include ':LibModules:DaggerSupportLib'
 }
 
 private void loadAppModules() {
