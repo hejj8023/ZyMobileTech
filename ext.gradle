@@ -179,7 +179,11 @@ project.ext {
              configurations.all {resolutionStrategy.eachDependency { DependencyResolveDetails details ->
              def requested = details.requested
              if (requested.group == 'com.android.support') {if (!requested.name.startsWith("multidex")) {details.useVersion '25.3.0'}}}}*/
-            lottie                  : "com.airbnb.android:lottie:2.5.4"
+            lottie                  : "com.airbnb.android:lottie:2.5.4",
+
+            /*Android屏幕适配方案*/
+            autolayout              : 'com.zhy:autolayout:1.4.5',
+            screenadaptation        : 'me.yatoooon:screenadaptation:1.0.9'
     ]
 }
 
