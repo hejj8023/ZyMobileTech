@@ -152,7 +152,6 @@ private void loadMvpModules() {
     include ':MvpModules'
     project(":MvpModules").projectDir = file
 //    include ':MvpModules:WanAndroid'
-    include ':MvpModules:WanAndroidAdvance'
 //    include ':MvpModules:WeiBo'说说啥
 //    include ':MvpModules:BaiLan'
 }
