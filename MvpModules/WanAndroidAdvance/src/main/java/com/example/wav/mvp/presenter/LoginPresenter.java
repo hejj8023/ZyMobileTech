@@ -7,6 +7,7 @@ import com.example.wav.mvp.contract.LoginContract;
 import com.example.wav.mvp.model.LoginModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 import com.zhiyangstudio.commonlib.net.callback.AbsBaseObserver;
+import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
 import javax.inject.Inject;
@@ -20,6 +21,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
 
     private final LoginModel mLoginModel;
     private LoginContract.ILoginView mILoginView;
+    private String mUserName;
+    private String mPassword;
 
     @Inject
     public LoginPresenter() {
@@ -29,6 +32,11 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
     @Override
     public void login() {
         mILoginView = getView();
+        if (!verifyAccount()) {
+            mILoginView.changeState(0);
+            return;
+        }
+        mILoginView.showLoading("用户登录中,请稍候...");
         mLoginModel.login(mILoginView.getUserName(), mILoginView.getPwd(), "03", new
                 AbsBaseObserver<AccountInfo>(this, LoginModel.class.getName()) {
                     @Override
@@ -54,9 +62,25 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
                 });
     }
 
+    private boolean verifyAccount() {
+        mILoginView = getView();
+        mUserName = mILoginView.getUserName();
+        mPassword = mILoginView.getPwd();
+        if (EmptyUtils.isEmpty(mUserName)) {
+            mILoginView.showFail("用户名不能为空");
+            return false;
+        }
+        if (EmptyUtils.isEmpty(mPassword)) {
+            mILoginView.showFail("密码不能为空");
+            return false;
+        }
+        return true;
+    }
+
     private void printExtInfo() {
         String defaultUserId = DataManager.getDefaultUserId();
         String defaultGroupId = DataManager.getDefaultGroupId();
-        LoggerUtils.loge("defaultUserId = " + defaultUserId + " , defaultGroupId = " + defaultGroupId);
+        LoggerUtils.loge("defaultUserId = " + defaultUserId + " , defaultGroupId = " +
+                defaultGroupId);
     }
 }

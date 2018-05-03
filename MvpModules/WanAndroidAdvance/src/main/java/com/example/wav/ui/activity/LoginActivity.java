@@ -74,7 +74,6 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
     private void doLogin() {
         if (isDoLoginging)
             return;
-        showLoadingDialog();
         isDoLoginging = true;
         // 先把数据给重置了
         Const.TMP_DATA.ACCOUNT_INFO = null;
@@ -83,14 +82,19 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
         mPresenter.login();
     }
 
-    @OnClick(R.id.btn_login)
+    @OnClick({R.id.btn_login, R.id.btn_account_reg})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
                 doLogin();
                 break;
+            case R.id.btn_account_reg:
+                IntentUtils.forward(AccountRegActivity.class);
+                finish();
+                break;
         }
     }
+
 
     @Override
     public String getUserName() {
@@ -104,7 +108,6 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
 
     @Override
     public void changeState(int flag) {
-        hideLoadingDialog();
         isDoLoginging = false;
         if (flag != 1) {
             ToastUtils.showShort("登录失败");
@@ -115,4 +118,5 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
         IntentUtils.forward(NewHomeActivity.class);
         finish();
     }
+
 }

@@ -21,62 +21,91 @@ import retrofit2.http.Query;
  */
 
 public interface ApiServer {
-    @POST(Const.API_URL_CONFIG.API_APP_LOGIN_URL)
-    @FormUrlEncoded
-    Observable<ResponseBody> login(@Field("username") String userName, @Field("pwd") String pwd);
-
+    /**
+     * app登录
+     *
+     * @param account
+     * @param pwd
+     * @param sourceType
+     * @return
+     */
     @POST(Const.API_URL_CONFIG.API_APP_LOGIN_URL2)
     @FormUrlEncoded
     Observable<AccountInfo> login2(@Field("account") String account, @Field("pwd") String
             pwd, @Field("SourceType") String sourceType);
 
+
     /**
-     * DevCode:设备注册码
-     * AppendFlag:0-新建客户；1-已有客户添加设备；
-     * CustName:客户名称
-     * LoginName:登录名
-     * Password:客户登录密码
-     * ProvinceID：省份（直辖市）
-     * CityID：市
-     * TownID：区（县、市）
-     * Address：详细地址
-     * ParentName:上级客户名称
-     * GroupName:分组名称
+     * 用户注册
+     * LoginName:登录帐号（6-16位英文字母、数字和下划线，字母开头）
+     * Password:客户登录密码,MD5加密
+     */
+    @POST(Const.API_URL_CONFIG.API_ACCOUNT_REGISTER_URL)
+    @FormUrlEncoded
+    Observable<ResponseBody> accountReg(@Field("LoginName") String LoginName, @Field("Password")
+            String Password);
+
+    /**
+     * 设备注册
+     * CRCID:设备注册码
+     * SimCard:物联网卡号
      * DevName:设备名称
+     * GroupName:分组名称
+     * CustName:客户名称
+     * AppendFlag:0-新建客户；1-已注册客户；
+     * LoginName:登录帐号（6-16位英文字母、数字和下划线，字母开头）
+     * Password:客户登录密码,MD5加密
+     * ParentName:上级客户名称
      */
     @POST(Const.API_URL_CONFIG.API_DEVICE_REGISTER_URL)
     @FormUrlEncoded
-    Observable<ResponseBody> regDevice(
-            @Field("DevCode") String devCode,
-            @Field("AppendFlag") String appendFlag,
-            @Field("CustName") String custName,
-            @Field("LoginName") String loginName,
-            @Field("Password") String password,
-            @Field("ProvinceID") String provinceID,
-            @Field("CityID") String cityID,
-            @Field("TownID") String townID,
-            @Field("Address") String address,
-            @Field("ParentName") String parentName,
-            @Field("GroupName") String groupName,
-            @Field("DevName") String devName
-    );
+    Observable<ResponseBody> deviceReg(@Field("CRCID") String cRCID,
+                                       @Field("SimCard") String simCard,
+                                       @Field("DevName") String devName,
+                                       @Field("GroupName") String groupName,
+                                       @Field("CustName") String custName,
+                                       @Field("AppendFlag") String appendFlag,
+                                       @Field("LoginName") String loginName,
+                                       @Field("Password") String password,
+                                       @Field("ParentName") String parentName);
 
+    /**
+     * 获取客户列表
+     *
+     * @return
+     */
     @GET(Const.API_URL_CONFIG.API_CUSTOMER_LIST_URL)
     Observable<List<AccountCustomerInfo>> getCustomerList();
 
     @GET(Const.API_URL_CONFIG.API_CUSTOMER_GROUP_LIST_URL)
     Observable<ResponseBody> getCustomerGroupList(@Query("CustomerID") String customerID);
 
+    /**
+     * 获取客户分组列表
+     *
+     * @param customerID
+     * @return
+     */
     @GET(Const.API_URL_CONFIG.API_CUSTOMER_GROUP_LIST_URL)
-    Observable<List<AccountGroupInfo>> getCustomerGroupList2(@Query("CustomerID") String customerID);
+    Observable<List<AccountGroupInfo>> getCustomerGroupList2(@Query("CustomerID") String
+                                                                     customerID);
 
+    /**
+     * 获取设备列表
+     *
+     * @param customerID
+     * @param GroupID
+     * @param status
+     * @param page
+     * @param rows
+     * @return
+     */
     @GET(Const.API_URL_CONFIG.API_DEVICE_LIST_URL)
-    Observable<AccountDeviceInfo> getDeviceList(
-            @Query("CustomerID") String customerID,
-            @Query("GroupID") String GroupID,
-            @Query("Status") int status,
-            @Query("page") int page,
-            @Query("rows") int rows
+    Observable<AccountDeviceInfo> getDeviceList(@Query("CustomerID") String customerID,
+                                                @Query("GroupID") String GroupID,
+                                                @Query("Status") int status,
+                                                @Query("page") int page,
+                                                @Query("rows") int rows
     );
 
 }

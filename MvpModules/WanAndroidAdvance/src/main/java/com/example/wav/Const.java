@@ -22,12 +22,27 @@ public class Const {
         public static final String BASEURL = "http://www.frigate-iot.com/";
         public static final String COMMON_PREFIX = "MonitoringCentre/";
 
+        /*新设备注册*/
         public static final String API_DEVICE_REGISTER_URL = "API/Register.php";
-        public static final String API_APP_LOGIN_URL = "data/login_chk.php";
+
+
+        /*app登录账号检查*/
         public static final String API_APP_LOGIN_URL2 = "login/app/login_bind.php";
-        public static final String API_CUSTOMER_LIST_URL = COMMON_PREFIX + "Data/SelectCustomerData.php";
-        public static final String API_CUSTOMER_GROUP_LIST_URL = COMMON_PREFIX + "Data/Pop-LoadGroup.php";
-        public static final String API_DEVICE_LIST_URL = COMMON_PREFIX + "DList/Data/DList-Data.php";
+
+        /*获取客户列表*/
+        public static final String API_CUSTOMER_LIST_URL = COMMON_PREFIX +
+                "Data/SelectCustomerData.php";
+
+        /*获取客户分组列表*/
+        public static final String API_CUSTOMER_GROUP_LIST_URL = COMMON_PREFIX +
+                "Data/Pop-LoadGroup.php";
+
+        /*获取设备列表*/
+        public static final String API_DEVICE_LIST_URL = COMMON_PREFIX + "DList/Data/DList-Data" +
+                ".php";
+
+        /*用户注册*/
+        public static final String API_ACCOUNT_REGISTER_URL = "API/CreateUser.php";
     }
 
     public static class TMP_DATA {

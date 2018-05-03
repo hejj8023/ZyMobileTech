@@ -25,7 +25,7 @@ public class ApiTestModel extends BaseAdvModel implements ApiTestContract.IApiTe
     public void login(String userName, String pwd, Consumer<ResponseBody> observer) {
         String md5Str = MD5Utils.getMd5(pwd);
         LoggerUtils.loge("md5Str = " + md5Str);
-        mApiServer.login(userName, md5Str).compose(RxUtils.io_main()).subscribe(observer);
+//        mApiServer.login(userName, md5Str).compose(RxUtils.io_main()).subscribe(observer);
     }
 
     @Override

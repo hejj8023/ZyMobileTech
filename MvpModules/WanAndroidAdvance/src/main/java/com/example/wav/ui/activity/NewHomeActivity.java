@@ -33,7 +33,8 @@ import butterknife.BindView;
  * Created by example on 2018/4/28.
  */
 
-public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeContract.INewHomeView> implements TabHost.OnTabChangeListener {
+public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeContract
+        .INewHomeView> implements TabHost.OnTabChangeListener {
 
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
@@ -95,7 +96,8 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
         mFragmentTabHost.setOnTabChangedListener(this);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset, int
+                    positionOffsetPixels) {
 
             }
 
@@ -106,12 +108,14 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
                     case 0:
                         setTitle("设备列表");
                         // TODO: 2018/4/28 显示菜单
-                        menu.findItem(R.id.action_filter).setVisible(true);
+                        if (menu != null)
+                            menu.findItem(R.id.action_filter).setVisible(true);
                         break;
                     case 1:
                         setTitle("设置");
                         // TODO: 2018/4/28 隐藏菜单
-                        menu.findItem(R.id.action_filter).setVisible(false);
+                        if (menu != null)
+                            menu.findItem(R.id.action_filter).setVisible(false);
                         break;
                 }
             }
