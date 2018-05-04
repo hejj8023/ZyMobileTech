@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">DaggerWanAndroid</string>
     <string name="tip_login">登录中,请稍候...</string>
+    <string name="tip_forget_password">忘记密码</string>
+    <string name="tip_no_account">
+        <Data><![CDATA[
+        还没账号哦,请点
+        <font color="#ff0000">这里</font>
+        注册]]></Data>
+        </string>
+    <string name="tip_auto_login">自动登录中...</string>
 </resources>

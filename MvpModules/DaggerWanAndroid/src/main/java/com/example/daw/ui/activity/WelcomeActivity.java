@@ -2,7 +2,9 @@ package com.example.daw.ui.activity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.daw.R;
+import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zhiyangstudio.commonlib.utils.CommonUtils;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.RxTimerUtils;
 
@@ -44,6 +46,22 @@ public class WelcomeActivity extends BaseActivity {
     @BindView(R.id.ten_animation)
     LottieAnimationView mTenAnimationView;
 
+    private PermissionListener mPermissionListener = new PermissionListener() {
+        @Override
+        public void onGrant(int code) {
+            if (code == CommonConst.PERMISSION.REQ_SDCARD_PERMISSION) {
+                goMain();
+            }
+        }
+
+        @Override
+        public void onDeny(int code) {
+//            if (code == CommonConst.PERMISSION.REQ_SDCARD_PERMISSION) {
+//                showPermissionDenyDialog("SD卡权限");
+//            }
+        }
+    };
+
     @Override
     public int getContentId() {
         return R.layout.activity_welcome;
@@ -61,7 +79,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-// TODO: 2018/4/27 逻辑需要修改成登录完成了就自动登录
+        // TODO: 2018/4/27 逻辑需要修改成登录完成了就自动登录
         mOneAnimationView.setAnimation("W.json");
         mOneAnimationView.playAnimation();
         mTwoAnimationView.setAnimation("A.json");
@@ -86,11 +104,29 @@ public class WelcomeActivity extends BaseActivity {
         RxTimerUtils.timer(2200, new RxTimerUtils.IRxNext() {
             @Override
             public void onNext(long number) {
-                IntentUtils.forward(LoginActivity.class);
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                // TODO: 2018/5/4 低版本直接进进入登录界面
+                if (!CommonUtils.hasNeedCheckPermission()) {
+                    goMain();
+                    return;
+                }
+
+                // TODO: 2018/5/4 高版本需要先进行权限检查
+                checkSDCardPermission(mPermissionListener);
             }
         });
+    }
+
+    private void goMain() {
+//        if (Const.ISENABLE_AUTO_LOGIN &&
+//                DataManager.getUserBean() != null &&
+//                DataManager.isLogin()) {
+//            ToastUtils.showShort(UiUtils.getStr(R.string.tip_auto_login));
+        IntentUtils.forward(MainActivity.class);
+//        } else {
+//        IntentUtils.forward(LoginActivity.class);
+//        }
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override
@@ -105,6 +141,6 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected PermissionListener getPermissonCallBack() {
-        return null;
+        return mPermissionListener;
     }
 }

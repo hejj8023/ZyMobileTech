@@ -1,9 +1,10 @@
 package com.example.daw.mvp.contract;
 
+import com.example.daw.bean.UserBean;
+import com.zhiyangstudio.commonlib.bean.BaseBean;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 
 import io.reactivex.Observer;
-import okhttp3.ResponseBody;
 
 /**
  * Created by example on 2018/5/3.
@@ -25,6 +26,6 @@ public interface LoginContract {
     }
 
     interface ILoginModel {
-        void login(String userName, String pwd, Observer<ResponseBody> observer);
+        void login(String userName, String pwd, Observer<BaseBean<UserBean>> observer);
     }
 }

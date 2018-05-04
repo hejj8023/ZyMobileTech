@@ -151,10 +151,8 @@ private void loadMvpModules() {
     def file = new File("MvpModules/")
     include ':MvpModules'
     project(":MvpModules").projectDir = file
-//    include ':MvpModules:WanAndroid'
+    include ':MvpModules:WanAndroid'
     include ':MvpModules:DaggerWanAndroid'
-//    include ':MvpModules:WeiBo'说说啥
-//    include ':MvpModules:BaiLan'
 }
 
 ext {

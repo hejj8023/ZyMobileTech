@@ -28,7 +28,6 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
 
     @Override
     public void initView() {
-
     }
 
     @Override

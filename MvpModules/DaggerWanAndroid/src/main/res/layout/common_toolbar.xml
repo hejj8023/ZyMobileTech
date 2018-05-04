@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/common_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_54"
+    android:background="@color/_0091ea"
+    app:layout_scrollFlags="scroll|enterAlways"
+    app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+    app:title="">
+
+    <TextView
+        android:id="@+id/common_top_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="开发 环境"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_16" />
+</android.support.v7.widget.Toolbar>

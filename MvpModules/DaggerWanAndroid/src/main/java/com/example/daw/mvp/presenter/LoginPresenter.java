@@ -1,19 +1,16 @@
 package com.example.daw.mvp.presenter;
 
 import com.example.daw.R;
+import com.example.daw.bean.UserBean;
+import com.example.daw.manager.DataManager;
 import com.example.daw.mvp.contract.LoginContract;
 import com.example.daw.mvp.model.LoginModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.net.callback.AbsBaseObserver;
+import com.zhiyangstudio.commonlib.net.callback.RxObserver;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
-import java.io.IOException;
-
 import javax.inject.Inject;
-
-import okhttp3.ResponseBody;
 
 /**
  * Created by example on 2018/5/3.
@@ -38,7 +35,11 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
         if (!verifyAccount())
             return;
         mLoginView.showLoading(UiUtils.getStr(R.string.tip_login));
-        mLoginModel.login(mUserName, mPwd, new AbsBaseObserver<ResponseBody>(this, LoginModel
+
+        // {"data":null,"errorCode":-1,"errorMsg":"账号密码不匹配！"}
+        // {"data":{"collectIds":[2835],"email":"","icon":"","id":4642,"password":"12345678",
+        // "type":0,"username":"xfgczzg"},"errorCode":0,"errorMsg":""}
+        /*mLoginModel.login(mUserName, mPwd, new AbsBaseObserver<ResponseBody>(this, LoginModel
                 .class.getName()) {
             @Override
             public void onNext(ResponseBody responseBody) {
@@ -61,7 +62,29 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
                 mLoginView.showFail("登录失败");
                 mLoginView.loginFailure();
             }
-        });
+        });*/
+        mLoginModel.login(mUserName, mPwd,
+                new RxObserver<UserBean>(this, LoginModel.class.getName()) {
+                    @Override
+                    protected void onSucess(UserBean data) {
+                        if (data != null) {
+                            DataManager.saveUserBean(data);
+                            DataManager.saveLogin(true);
+                            // 登录成功
+                            mLoginView.showFail("登录成功");
+                            mLoginView.loginSucess();
+                        } else {
+                            mLoginView.showFail("登录失败");
+                            mLoginView.loginFailure();
+                        }
+                    }
+
+                    @Override
+                    protected void onFailure(int errorCode, String errorMsg) {
+                        mLoginView.showFail(errorMsg);
+                        mLoginView.loginFailure();
+                    }
+                });
     }
 
     private boolean verifyAccount() {

@@ -95,9 +95,8 @@ dependencies {
     implementation rootProject.ext.ext_tools.flowlayout_lib
 
     compile project(':ZySdkLib')
-
-//    compile 'com.github.syusikoku:ZYSdk:v1.0.8'
 }
+
 repositories {
     mavenCentral()
 }

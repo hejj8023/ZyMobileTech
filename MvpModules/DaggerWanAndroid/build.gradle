@@ -114,6 +114,8 @@ dependencies {
 
     compile project(':ZySdkLib')
 
+    implementation "com.github.githubwing:ByeBurger:1.2.3"
+
 //    implementation 'com.github.syusikoku:ZYSdk:v1.0.12'
 }
 
