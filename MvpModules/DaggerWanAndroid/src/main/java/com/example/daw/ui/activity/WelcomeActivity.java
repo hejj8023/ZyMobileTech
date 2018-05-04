@@ -1,12 +1,16 @@
 package com.example.daw.ui.activity;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.blankj.utilcode.util.ToastUtils;
+import com.example.daw.Const;
 import com.example.daw.R;
+import com.example.daw.manager.DataManager;
 import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.corel.BaseActivity;
 import com.zhiyangstudio.commonlib.utils.CommonUtils;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.RxTimerUtils;
+import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import butterknife.BindView;
 
@@ -117,14 +121,14 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void goMain() {
-//        if (Const.ISENABLE_AUTO_LOGIN &&
-//                DataManager.getUserBean() != null &&
-//                DataManager.isLogin()) {
-//            ToastUtils.showShort(UiUtils.getStr(R.string.tip_auto_login));
-        IntentUtils.forward(MainActivity.class);
-//        } else {
-//        IntentUtils.forward(LoginActivity.class);
-//        }
+        if (Const.ISENABLE_AUTO_LOGIN &&
+                DataManager.getUserBean() != null &&
+                DataManager.isLogin()) {
+            ToastUtils.showShort(UiUtils.getStr(R.string.tip_auto_login));
+            IntentUtils.forward(MainActivity.class);
+        } else {
+            IntentUtils.forward(LoginActivity.class);
+        }
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
