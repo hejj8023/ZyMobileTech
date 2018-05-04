@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DaggerWanAndroid</string>
+    <string name="tip_login">登录中,请稍候...</string>
 </resources>

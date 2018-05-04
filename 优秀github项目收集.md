@@ -42,3 +42,21 @@ https://github.com/Carson-Ho
 # RxJava2Examples
 https://github.com/nanchen2251/RxJava2Examples
 
+# tensorflow # 
+## tensorflow
+https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android/
+
+## 在Android上使用Tensorflow
+https://github.com/dongchangzhang/NewFeelings
+
+## tensorflow
+https://github.com/tensorflow/tensorflow
+
+## tensorflow android下载
+http://ci.tensorflow.org/
+http://ci.tensorflow.org/
+
+## 极客学院
+https://github.com/jikexueyuanwiki
+
+

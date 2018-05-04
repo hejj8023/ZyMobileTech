@@ -1,8 +1,9 @@
-package com.example.daw;
+package com.example.daw.ui.activity;
 
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
 
+import com.example.daw.R;
 import com.example.daw.base.BaseAdvActivity;
 import com.example.daw.mvp.contract.LoginContract;
 import com.example.daw.mvp.presenter.LoginPresenter;
@@ -23,6 +24,7 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
 
     @BindView(R.id.et_pwd)
     TextInputEditText etPwd;
+    private boolean isLogining;
 
     @Override
     public void initView() {
@@ -54,15 +56,57 @@ public class LoginActivity extends BaseAdvActivity<LoginPresenter, LoginContract
         return R.layout.activity_login;
     }
 
+    @Override
+    public void addListener() {
+        etUName.setOnEditorActionListener((v, actionId, event) -> {
+            etPwd.requestFocus();
+            return true;
+        });
+        etPwd.setOnEditorActionListener((v, actionId, event) -> {
+            doLogin();
+            return true;
+        });
+    }
+
+    private void doLogin() {
+        if (isLogining)
+            return;
+        isLogining = true;
+        mPresenter.login();
+    }
+
     @OnClick({R.id.btn_login, R.id.btn_account_reg})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
+                doLogin();
                 break;
             case R.id.btn_account_reg:
                 IntentUtils.forward(RegisterActivity.class);
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public String getUserName() {
+        return etUName.getText().toString().trim();
+    }
+
+    @Override
+    public String getUserPassword() {
+        return etPwd.getText().toString().trim();
+    }
+
+    @Override
+    public void loginFailure() {
+        isLogining = false;
+    }
+
+    @Override
+    public void loginSucess() {
+        isLogining = false;
+        IntentUtils.forward(MainActivity.class);
+        finish();
     }
 }

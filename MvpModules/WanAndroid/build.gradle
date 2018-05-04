@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext._android.compileSdkVersion
@@ -32,6 +36,24 @@ android {
         sourceCompatibility 1.8
     }
 
+    flavorDimensions "code"
+    productFlavors {
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+}
+
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'
+    daoPackage 'com.example.daw.dao'
 }
 
 dependencies {
@@ -78,4 +100,17 @@ dependencies {
 }
 repositories {
     mavenCentral()
+}
+
+//解决支持库版本不兼容问题
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                //  不要设置太高，26以上的版本会出现问题
+                details.useVersion '25.3.0'
+            }
+        }
+    }
 }

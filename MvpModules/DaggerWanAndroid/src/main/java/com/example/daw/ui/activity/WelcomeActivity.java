@@ -1,6 +1,7 @@
-package com.example.daw;
+package com.example.daw.ui.activity;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.daw.R;
 import com.zhiyangstudio.commonlib.corel.BaseActivity;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
 import com.zhiyangstudio.commonlib.utils.RxTimerUtils;

@@ -2,8 +2,8 @@ package com.example.daw.di.component;
 
 import android.app.Activity;
 
-import com.example.daw.LoginActivity;
-import com.example.daw.RegisterActivity;
+import com.example.daw.ui.activity.LoginActivity;
+import com.example.daw.ui.activity.RegisterActivity;
 import com.example.daw.di.module.ActivityModule;
 import com.example.daw.di.scope.ActivityScope;
 

@@ -1,7 +1,7 @@
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
-//include ':ZySdkLib', ':ZhyAutoLayout'
+include ':ZySdkLib'
 //project(':ZySdkLib').projectDir = new File('../ZYMobileSdk/SDKLibrary')
-//project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
+project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 
 //loadLibs()
 //loadAppModule()

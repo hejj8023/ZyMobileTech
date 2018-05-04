@@ -1,7 +1,9 @@
-package com.example.daw;
+package com.example.daw.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.daw.R;
 
 public class MainActivity extends AppCompatActivity {
 

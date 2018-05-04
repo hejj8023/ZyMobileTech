@@ -1,5 +1,6 @@
-package com.example.daw;
+package com.example.daw.ui.activity;
 
+import com.example.daw.R;
 import com.example.daw.base.BaseAdvActivity;
 import com.example.daw.mvp.contract.RegisterContract;
 import com.example.daw.mvp.presenter.RegisterPresenter;

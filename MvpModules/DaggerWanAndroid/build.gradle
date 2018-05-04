@@ -112,9 +112,9 @@ dependencies {
     annotationProcessor rootProject.ext.ext_tools.dagger_compiler
     annotationProcessor rootProject.ext.ext_tools.dagger_android_processor
 
-//    compile project(':ZySdkLib')
+    compile project(':ZySdkLib')
 
-    implementation 'com.github.syusikoku:ZYSdk:v1.0.11'
+//    implementation 'com.github.syusikoku:ZYSdk:v1.0.12'
 }
 
 //解决支持库版本不兼容问题
