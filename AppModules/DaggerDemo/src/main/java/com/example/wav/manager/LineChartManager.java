@@ -258,7 +258,13 @@ public class LineChartManager {
         leftAxis.setSpaceMin(0);
         leftAxis.setSpaceMax(Math.round(max / 3));
         leftAxis.setLabelCount(max == 4 ? 4 : labelCount, true);
-
+//        LimitLine line = new LimitLine(max + 30, "y备注");
+//        line.setLineColor(Color.RED);
+//        line.setLineWidth(4f);
+//        line.setTextColor(Color.BLACK);
+//        line.setTextSize(12f);
+//        leftAxis.addLimitLine(line);
+//        leftAxis.setDrawLimitLinesBehindData(true);
         lineChart.invalidate();
     }
 
