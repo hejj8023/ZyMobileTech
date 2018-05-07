@@ -1,7 +1,7 @@
 package com.example.wav.mvp.model;
 
 import com.example.wav.Const;
-import com.example.wav.DataManager;
+import com.example.wav.manager.DataManager;
 import com.example.wav.bean.AccountCustomerInfo;
 import com.example.wav.bean.AccountGroupInfo;
 import com.example.wav.bean.AccountInfo;

@@ -91,6 +91,9 @@ dependencies {
     implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
     implementation rootProject.ext.ext_tools.ringprogressbar
 
+    implementation rootProject.ext.ext_tools.MPAndroidChart
+    implementation rootProject.ext.ext_tools.hwc_chart
+
     implementation rootProject.ext.ext_tools.glide
     annotationProcessor rootProject.ext.ext_tools.glide_compiler
 

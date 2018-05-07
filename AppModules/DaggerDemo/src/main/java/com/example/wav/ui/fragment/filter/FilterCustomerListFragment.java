@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.example.wav.Const;
-import com.example.wav.DataManager;
+import com.example.wav.manager.DataManager;
 import com.example.wav.R;
 import com.example.wav.base.BaseDaggerSupportListFragment;
 import com.example.wav.bean.AccountCustomerInfo;

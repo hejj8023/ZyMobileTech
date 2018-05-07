@@ -1,7 +1,8 @@
-package com.example.wav;
+package com.example.wav.manager;
 
 import android.support.v4.app.Fragment;
 
+import com.example.wav.Const;
 import com.example.wav.bean.MainPagerInfo;
 import com.example.wav.bean.CustomerGroupInfo;
 import com.example.wav.bean.CustomerInfo;

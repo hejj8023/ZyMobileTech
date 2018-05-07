@@ -46,7 +46,8 @@ public class AdvApp extends BaseApp {
 
         CommonConst.NET_CACHE_DIR_NAME = "wanandroid_cache2";
         PreUtils.init("wanandorid_userinfo2");
-        OkHttpUtils.setCookieJar(new CookieJar() {
+        OkHttpUtils.isSupportDataInterceptor(true);
+        OkHttpUtils.getCookieJar(new CookieJar() {
             @Override
             public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
                 String cookieStr = (String) PreUtils.get(url.host(), "");

@@ -1,6 +1,6 @@
 package com.example.wav.mvp.presenter;
 
-import com.example.wav.DataManager;
+import com.example.wav.manager.DataManager;
 import com.example.wav.bean.AccountDeviceInfo;
 import com.example.wav.mvp.contract.HomeFragmentContract;
 import com.example.wav.mvp.model.HomeFragmentModel;

@@ -9,9 +9,11 @@ import com.example.wav.base.BaseDaggerSupportListFragment;
 import com.example.wav.bean.AccountDeviceInfo;
 import com.example.wav.mvp.contract.HomeFragmentContract;
 import com.example.wav.mvp.presenter.HomeFragmentPresenter;
+import com.example.wav.ui.activity.DeviceDetailActivity;
 import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
 import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,8 +24,10 @@ import java.util.List;
  * Created by example on 2018/4/28.
  */
 
-public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPresenter, HomeFragmentContract
-        .IHomeFragmentView, AccountDeviceInfo.DeviceDetailInfo> implements HomeFragmentContract.IHomeFragmentView {
+public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPresenter,
+        HomeFragmentContract
+        .IHomeFragmentView, AccountDeviceInfo.DeviceDetailInfo> implements HomeFragmentContract
+        .IHomeFragmentView {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +76,7 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
 
     @Override
     protected boolean isCanLoadMore() {
-        return false;
+        return true;
     }
 
     @Override
@@ -102,7 +106,8 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
         }
 
         @Override
-        protected void bindDatas(QuickViewHolder holder, AccountDeviceInfo.DeviceDetailInfo bean, int itemViewType, int position) {
+        protected void bindDatas(QuickViewHolder holder, AccountDeviceInfo.DeviceDetailInfo bean,
+                                 int itemViewType, int position) {
             holder.setText(R.id.tv_device_title, bean.getName());
             holder.setText(R.id.tv_device_state, bean.getOnlineText());
             SimpleDateFormat sdfDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssss");
@@ -114,6 +119,12 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            holder.setOnClickListener(v -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("devName", bean.getName());
+                bundle.putString("devID", bean.getID());
+                IntentUtils.forward(DeviceDetailActivity.class, bundle);
+            });
         }
     }
 }

@@ -5,6 +5,7 @@ import com.example.wav.bean.AccountCustomerInfo;
 import com.example.wav.bean.AccountDeviceInfo;
 import com.example.wav.bean.AccountGroupInfo;
 import com.example.wav.bean.AccountInfo;
+import com.example.wav.bean.DevHistoryBean;
 
 import java.util.List;
 
@@ -108,4 +109,6 @@ public interface ApiServer {
                                                 @Query("rows") int rows
     );
 
+    @GET(Const.API_URL_CONFIG.API_DEVICE_HISTORY)
+    Observable<DevHistoryBean> getDevHistory(@Query("ID") String devId);
 }

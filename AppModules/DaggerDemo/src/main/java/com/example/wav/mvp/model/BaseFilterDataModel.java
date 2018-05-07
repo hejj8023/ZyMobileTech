@@ -1,6 +1,6 @@
 package com.example.wav.mvp.model;
 
-import com.example.wav.DataManager;
+import com.example.wav.manager.DataManager;
 import com.example.wav.bean.CustomerGroupInfo;
 import com.example.wav.bean.CustomerInfo;
 import com.example.wav.bean.DeviceInfo;

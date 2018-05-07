@@ -1,6 +1,6 @@
 package com.example.wav.mvp.presenter;
 
-import com.example.wav.DataManager;
+import com.example.wav.manager.DataManager;
 import com.example.wav.bean.AccountGroupInfo;
 import com.example.wav.mvp.contract.FilterCustomerGroupListContract;
 import com.example.wav.mvp.model.FilterCustomerGroupListModel;

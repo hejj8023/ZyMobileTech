@@ -43,6 +43,12 @@ public class Const {
 
         /*用户注册*/
         public static final String API_ACCOUNT_REGISTER_URL = "API/CreateUser.php";
+
+
+        // http://www.frigate-iot.com/MonitoringCentre/Data/DevDataHistory.php?ID=243534
+         /*查询设备最近7天记录*/
+        public static final String API_DEVICE_HISTORY = COMMON_PREFIX +
+                "Data/DevDataHistory.php";
     }
 
     public static class TMP_DATA {

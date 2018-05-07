@@ -6,6 +6,7 @@ import com.example.wav.di.module.ActivityModule;
 import com.example.wav.di.scope.ActivityScope;
 import com.example.wav.ui.activity.AccountRegActivity;
 import com.example.wav.ui.activity.ApiTestActivity;
+import com.example.wav.ui.activity.DeviceDetailActivity;
 import com.example.wav.ui.activity.DeviceListActivity;
 import com.example.wav.ui.activity.DeviceRegActivity;
 import com.example.wav.ui.activity.FilterActivity;
@@ -50,4 +51,6 @@ public interface ActivityComponent {
     void inject(DeviceRegActivity activity);
 
     void inject(AccountRegActivity activity);
+
+    void inject(DeviceDetailActivity activity);
 }

@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.wav.Const;
-import com.example.wav.DataManager;
+import com.example.wav.manager.DataManager;
 import com.example.wav.R;
 import com.example.wav.base.BaseAdvActivity;
 import com.example.wav.mvp.contract.LoginContract;
