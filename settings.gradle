@@ -3,7 +3,7 @@ include ':ZySdkLib'
 //project(':ZySdkLib').projectDir = new File('../ZYMobileSdk/SDKLibrary')
 project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 
-//loadLibs()
+loadLibs()
 loadAppModule()
 //loadComponentLenarnModule()
 //loadDatasturectureModule()

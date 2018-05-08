@@ -4,11 +4,10 @@ private void loadLibModules() {
     def file = new File("LibModules/")
     include ':LibModules'
     project(":LibModules").projectDir = file
-//    include ':LibModules:commonlib'
 //    include ':LibModules:CommonAlgorithmLib'
 //    include ':LibModules:CammeraViewLib'
 //    include ':LibModules:JCameraViewLib'
-//    include ':LibModules:CommonAlertPop'
+    include ':LibModules:CommonAlertPop'
 }
 
 private void loadAppModules() {

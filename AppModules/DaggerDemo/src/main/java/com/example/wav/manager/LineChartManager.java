@@ -3,6 +3,7 @@ package com.example.wav.manager;
 import android.graphics.Color;
 import android.graphics.Matrix;
 
+import com.example.wav.R;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -17,6 +18,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
+import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,14 +91,23 @@ public class LineChartManager {
         //设置缩放
         lineChart.setDragEnabled(true);
         //设置推动
-        lineChart.setScaleEnabled(true);
+        lineChart.setScaleEnabled(false);
         //如果禁用,扩展可以在x轴和y轴分别完成
-        lineChart.setPinchZoom(true);
-
+        lineChart.setPinchZoom(false);
         lineChart.setDragDecelerationFrictionCoef(0.9f);
         lineChart.setHighlightPerDragEnabled(true);
-        lineChart.setBackgroundColor(Color.parseColor("#F3F3F3"));
-        lineChart.setBackgroundColor(Color.LTGRAY);//设置背景颜色
+//        lineChart.setBackgroundColor(Color.parseColor("#F3F3F3"));
+//        lineChart.setBackgroundColor(Color.LTGRAY);//设置背景颜色
+        lineChart.setGridBackgroundColor(R.color.darkgrey);
+        lineChart.setBackgroundColor(UiUtils.getColor(R.color.material_blue_800));
+
+             /*左右滑动样式支持*/
+        Matrix m = new Matrix();
+//        m.postScale(1.5f, 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
+        m.postScale(2f, 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
+        lineChart.getViewPortHandler().refresh(m, lineChart, true);//将图表动画显示之前进行缩放
+        lineChart.animateX(1000); // 立即执行的动画,x轴
+
         /*后补，不需要可删除*/
 
         //折线图例 标签 设置
@@ -119,6 +130,11 @@ public class LineChartManager {
         xAxis.setGranularity(1f);
         xAxis.setAxisLineColor(Color.GRAY);
         xAxis.setAxisLineWidth(1f);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setSpaceMin(5f);
+        xAxis.setSpaceMax(10f);
+        // 如果设置为true，则在绘制时会避免“剪掉”在x轴上的图表或屏幕边缘的第一个和最后一个坐标轴标签项
+//        xAxis.setAvoidFirstLastClipping(true);
 
         //保证Y轴从0开始，不然会上移一点
         leftAxis.setAxisMinimum(0f);
@@ -127,9 +143,14 @@ public class LineChartManager {
         leftAxis.setDrawLimitLinesBehindData(false);
         //重置所有限制线,以避免重叠线
         leftAxis.removeAllLimitLines();
-        leftAxis.setSpaceTop(30);
+        // 间距长度是值长度的100%，即两者相等
+        leftAxis.setSpaceTop(100f);
         leftAxis.setAxisLineColor(Color.GRAY);
         leftAxis.setAxisLineWidth(1f);
+        leftAxis.setDrawAxisLine(true);
+        leftAxis.setDrawLabels(true);
+        leftAxis.setStartAtZero(true);
+
         rightAxis.setAxisMinimum(0f);
         // 右侧坐标轴线
         rightAxis.setDrawAxisLine(false);
@@ -147,16 +168,20 @@ public class LineChartManager {
      * @param mode        折线图是否填充
      */
     private void initLineDataSet(LineDataSet lineDataSet, int color, boolean mode) {
+        // 先重置
+        lineDataSet.resetCircleColors();
         lineDataSet.setColor(color);
         lineDataSet.setCircleColor(color);
-        lineDataSet.setLineWidth(1f);
+        lineDataSet.setLineWidth(2f);
         lineDataSet.setCircleRadius(0f);
         //设置曲线值的圆点是实心还是空心
         lineDataSet.setDrawCircleHole(false);
         lineDataSet.setValueTextSize(9f);
         //设置折线图填充
         lineDataSet.setDrawFilled(mode);
-        lineDataSet.setFormLineWidth(1f);
+        lineDataSet.setFormLineWidth(2f);
+        // 设置填充色
+        lineDataSet.setFillColor(UiUtils.getColor(R.color.material_blue_200));
         lineDataSet.setFormSize(15.f);
         //线模式为圆滑曲线（默认折线）
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
@@ -173,11 +198,6 @@ public class LineChartManager {
     public void showLineChart(List<Float> xAxisValues, List<Float> yAxisValues, Map<Integer, String>
             xLabels, String label, int color) {
         initLineChart();
-            /*左右滑动样式支持*/
-        Matrix m = new Matrix();
-        m.postScale(1.5f, 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
-        lineChart.getViewPortHandler().refresh(m, lineChart, false);//将图表动画显示之前进行缩放
-        lineChart.animateX(1000); // 立即执行的动画,x轴
 
         // 这个时候数据还是从第一条开始显示，左右滑动进行查看。如果希望从最后一个数据查看，使用
         // barChart.moveViewToX(list.size() - 1);
@@ -204,7 +224,7 @@ public class LineChartManager {
             public String getFormattedValue(float value, AxisBase axis) {
                 String s = xLabels.get((int) value);
                 if (EmptyUtils.isEmpty(s)) {
-                    s = "a";
+                    s = " ";
                 }
                 return s;
             }
@@ -217,12 +237,17 @@ public class LineChartManager {
      *
      * @param xAxisValues
      * @param yAxisValues 多条曲线Y轴数据集合的集合
-     * @param labels
      * @param colours
      */
-    public void showLineChart(List<Float> xAxisValues, List<List<Float>> yAxisValues,
-                              List<String> labels, List<Integer> colours) {
+    public void showMultiChart(List<Float> xAxisValues, List<List<Float>> yAxisValues,
+                               Map<Integer, String> xLabels, List<Integer> colours, boolean
+                                       hasDrawGrid) {
         initLineChart();
+        if (hasDrawGrid) {
+            lineChart.setDrawGridBackground(false);
+            xAxis.setDrawGridLines(true);
+            xAxis.setDrawAxisLine(true);
+        }
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         for (int i = 0; i < yAxisValues.size(); i++) {
             ArrayList<Entry> entries = new ArrayList<>();
@@ -232,13 +257,28 @@ public class LineChartManager {
                 }
                 entries.add(new Entry(xAxisValues.get(j), yAxisValues.get(i).get(j)));
             }
-            LineDataSet lineDataSet = new LineDataSet(entries, labels.get(i));
-
-            initLineDataSet(lineDataSet, colours.get(i), false);
+            String s = xLabels.get(i);
+            LineDataSet lineDataSet = new LineDataSet(entries, s);
+            // 不显示圆点
+            lineDataSet.setDrawCircles(false);
+            // 是否填满
+            lineDataSet.setDrawFilled(true);
+            initLineDataSet(lineDataSet, colours.get(i), true);
             dataSets.add(lineDataSet);
         }
         LineData data = new LineData(dataSets);
-        xAxis.setLabelCount(xAxisValues.size(), true);
+        xAxis.setLabelCount(10, true);
+        //设置X轴的刻度数
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                String s = xLabels.get((int) value);
+                if (EmptyUtils.isEmpty(s)) {
+                    s = " ";
+                }
+                return s;
+            }
+        });
         lineChart.setData(data);
     }
 
@@ -258,6 +298,7 @@ public class LineChartManager {
         leftAxis.setSpaceMin(0);
         leftAxis.setSpaceMax(Math.round(max / 3));
         leftAxis.setLabelCount(max == 4 ? 4 : labelCount, true);
+
 //        LimitLine line = new LimitLine(max + 30, "y备注");
 //        line.setLineColor(Color.RED);
 //        line.setLineWidth(4f);

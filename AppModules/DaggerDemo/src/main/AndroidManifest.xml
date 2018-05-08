@@ -34,6 +34,7 @@
         <activity android:name=".ui.activity.AccountRegActivity" />
         <activity android:name=".ui.activity.DeviceDetailActivity" />
         <activity android:name=".ui.activity.sample.SampleMPAndroidChartActivity" />
+        <activity android:name=".ui.activity.FilterTestActivity" />
     </application>
 
 </manifest>

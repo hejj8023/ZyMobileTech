@@ -187,6 +187,9 @@ project.ext {
             /*Android屏幕适配方案*/
             autolayout              : 'com.zhy:autolayout:1.4.5',
             screenadaptation        : 'me.yatoooon:screenadaptation:1.0.9'
+
+
+
     ]
 }
 
