@@ -19,8 +19,16 @@
         android:text="popupwindow" />
 
     <Button
+        android:id="@+id/btn_dialog_fragment1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="dialogfragment1" />
+
+    <Button
+        android:id="@+id/btn_dialog_fragment2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="dialogfragment2" />
 
     <Button
         android:layout_width="match_parent"

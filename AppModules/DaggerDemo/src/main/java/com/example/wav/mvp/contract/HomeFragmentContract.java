@@ -14,6 +14,10 @@ public interface HomeFragmentContract {
         int getStatus();
 
         int getPageSize();
+
+        void setDataCount(int total);
+
+        void showNoMoreData();
     }
 
     interface IHomeFragmentPresenter {

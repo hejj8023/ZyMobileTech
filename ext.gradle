@@ -109,8 +109,6 @@ project.ext {
             MPAndroidChart          : 'com.github.PhilJay:MPAndroidChart:v3.0.3',
             hwc_chart               : 'me.hwc:chart:1.0.2',
 
-
-
             fragmentation           : 'me.yokeyword:fragmentation:0.7.10',
 
             /*json解析*/
@@ -170,7 +168,7 @@ project.ext {
             material_dialogs        : 'com.afollestad.material-dialogs:commons:0.9.0.2',
             NiceDialog              : 'com.github.Othershe:NiceDialog:1.1.4',
 
-            /*agentweb https://github.com/Justson/AgentWeb */
+            /*agentweb https://github.com/Justson/AbutterknifegentWeb */
             agentweb                : 'com.just.agentweb:agentweb:4.0.1',
             agentweb_download       : 'com.just.agentweb:download:4.0.2',
             agentweb_filechooser    : 'com.just.agentweb:filechooser:4.0.2',

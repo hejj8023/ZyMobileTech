@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.example.wav.di.module.ActivityModule;
 import com.example.wav.di.scope.ActivityScope;
+import com.example.wav.sample.SmartRefreshLayoutTestActivity;
 import com.example.wav.ui.activity.AccountRegActivity;
 import com.example.wav.ui.activity.ApiTestActivity;
 import com.example.wav.ui.activity.DeviceDetailActivity;
@@ -53,4 +54,6 @@ public interface ActivityComponent {
     void inject(AccountRegActivity activity);
 
     void inject(DeviceDetailActivity activity);
+
+    void inject(SmartRefreshLayoutTestActivity activity);
 }

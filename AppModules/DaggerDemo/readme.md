@@ -235,3 +235,24 @@ https://github.com/whataa/SuitLines
     setSpaceBottom(float percent): 设置在图表上最低处的值相比轴上最低处值的底部空间（总轴范围的百分比）
     setShowOnlyMinMax(boolean enabled): 如果打开了，这个轴将展示出它的最小值和最大值。这将忽略或者覆盖定义过的label-count。
     setPosition(YAxisLabelPosition pos):设置轴标签应该被绘制的位置。INSIDE_CHART或者OUTSIDE_CHART中的一个。 自定义影响轴的数值范围应该在图表被设置数据之前应用。
+    
+    
+    
+## dialogfragment使用
+    https://www.jianshu.com/p/c9f20ec7277a
+    https://blog.csdn.net/androidstarjack/article/details/73824885
+    
+### 创建 DialogFragment 有两种方式：
+    
+    覆写其 onCreateDialog 方法
+    
+    *应用场景*：一般用于创建替代传统的 Dialog 对话框的场景，UI 简单，功能单一。 
+    方法
+    覆写其 onCreateView 方法
+    
+    *应用场景*： 
+    一般用于创建复杂内容弹窗或全屏展示效果的场景，UI 复杂，功能复杂，一般有网络请求等异步操作。
+    
+### 示例库
+    https://github.com/androidstarjack/MyDialogFragment
+    https://github.com/developerHaoz/DialogFragmentDemos

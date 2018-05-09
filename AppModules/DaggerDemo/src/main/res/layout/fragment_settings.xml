@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/lightgrey"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="10dp"
             android:text="注册设备"
             android:textSize="@dimen/dp_16" />
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/lightgrey"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="10dp"
             android:text="MPAndroidChart控件示例"
             android:textSize="@dimen/dp_16" />
@@ -39,9 +39,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/lightgrey"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="10dp"
             android:text="筛选菜单"
+            android:textSize="@dimen/dp_16" />
+
+        <TextView
+            android:id="@+id/btn_smartrefreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@color/lightgrey"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="smartrefreshlayout"
             android:textSize="@dimen/dp_16" />
 
         <TextView
@@ -49,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:background="@color/lightgrey"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:padding="10dp"
             android:text="修改密码"
             android:textSize="@dimen/dp_16"

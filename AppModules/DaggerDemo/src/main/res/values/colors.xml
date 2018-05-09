@@ -20,4 +20,14 @@
     <color name="_10000000">#10000000</color>
     <color name="c_e0e0e0">#e9e9e9</color>
     <color name="c_ffcccccc">#FFCCCCCC</color>
+    <color name="c_eeeeee">#EEEEEE</color>
+
+    <color name="colorBlue">#69b3e0</color>
+    <color name="textBlueDark">#1379d6</color>
+    <color name="textWhite">#ffffff</color>
+    <color name="textBlack">#333333</color>
+    <color name="textGray">#999999</color>
+    <color name="textLightGray">#bbbbbb</color>
+    <color name="colorTextAssistant">#888888</color>
+
 </resources>

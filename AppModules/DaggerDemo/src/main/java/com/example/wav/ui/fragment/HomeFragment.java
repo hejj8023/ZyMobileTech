@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.wav.R;
 import com.example.wav.base.BaseDaggerSupportListFragment;
 import com.example.wav.bean.AccountDeviceInfo;
@@ -25,9 +26,50 @@ import java.util.List;
  */
 
 public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPresenter,
-        HomeFragmentContract
-        .IHomeFragmentView, AccountDeviceInfo.DeviceDetailInfo> implements HomeFragmentContract
-        .IHomeFragmentView {
+        HomeFragmentContract.IHomeFragmentView, AccountDeviceInfo.DeviceDetailInfo> implements
+        HomeFragmentContract.IHomeFragmentView {
+
+    private int mDataCount;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        state = CommonConst.PAGE_STATE.STATE_REFRESH;
+        loadDatas();
+    }
+
+    @Override
+    public void loadDatas() {
+        if (state == CommonConst.PAGE_STATE.STATE_REFRESH) {
+            isAutoLoadMore = true;
+            page = 1;
+        } else {
+            page++;
+            if (mListAdapter.getItemCount() >= mDataCount) {
+                ToastUtils.showShort("没有更多数据了...");
+                recyclerView.showNoMoreData();
+                isAutoLoadMore = false;
+                return;
+            }
+        }
+
+        mPresenter.loadDeviceList();
+    }
+
+    @Override
+    protected boolean isCanLoadMore() {
+        return true;
+    }
+
+    @Override
+    protected BaseListAdapter getListAdapter() {
+        return new DeviceListAdapter();
+    }
+
+    @Override
+    protected View initHeaderView() {
+        return null;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +87,7 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
 
     @Override
     public void initData() {
-
+        isAutoLoadMore = true;
     }
 
     @Override
@@ -67,36 +109,23 @@ public class HomeFragment extends BaseDaggerSupportListFragment<HomeFragmentPres
     }
 
     @Override
-    public void loadDatas() {
-        if (state == CommonConst.PAGE_STATE.STATE_REFRESH) {
-            page = 1;
-        }
-        mPresenter.loadDeviceList();
-    }
-
-    @Override
-    protected boolean isCanLoadMore() {
-        return true;
-    }
-
-    @Override
-    protected BaseListAdapter getListAdapter() {
-        return new DeviceListAdapter();
-    }
-
-    @Override
-    protected View initHeaderView() {
-        return null;
-    }
-
-    @Override
     public int getStatus() {
         return 0;
     }
 
     @Override
     public int getPageSize() {
-        return 20;
+        return 10;
+    }
+
+    @Override
+    public void setDataCount(int total) {
+        mDataCount = total;
+    }
+
+    @Override
+    public void showNoMoreData() {
+        isAutoLoadMore = false;
     }
 
     private class DeviceListAdapter extends BaseListAdapter<AccountDeviceInfo.DeviceDetailInfo> {

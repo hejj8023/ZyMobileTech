@@ -19,7 +19,7 @@ import com.example.wav.mvp.contract.FilterNewContract;
 import com.example.wav.mvp.presenter.FilterNewPresenter;
 import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickAdapter;
 import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
-import com.zhiyangstudio.commonlib.widget.LoadingLayout;
+import com.zhiyangstudio.commonlib.widget.recyclerview.LoadingLayout;
 
 import java.util.List;
 

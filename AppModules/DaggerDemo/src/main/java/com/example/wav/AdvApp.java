@@ -7,12 +7,16 @@ import com.example.wav.di.component.AppComponent;
 import com.example.wav.di.component.DaggerAppComponent;
 import com.example.wav.di.module.AppModule;
 import com.google.gson.reflect.TypeToken;
+import com.scwang.smartrefresh.header.DeliveryHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.corel.BaseApp;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.GsonUtils;
 import com.zhiyangstudio.commonlib.utils.OkHttpUtils;
 import com.zhiyangstudio.commonlib.utils.PreUtils;
+import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,20 @@ import okhttp3.HttpUrl;
 public class AdvApp extends BaseApp {
 
     private static AppComponent mAppComponent;
+
+    // static 代码可以防止内存泄露，全局设置刷新头部及尾部，优先级最低
+    static {
+        SmartRefreshLayout.setDefaultRefreshHeaderCreater(((context, layout) -> {
+            // TODO: 2018/5/9 全局设置主题 颜色
+            layout.setPrimaryColorsId(R.color._0091ea, android.R.color.white);
+            return new DeliveryHeader(context);
+        }));
+        SmartRefreshLayout.setDefaultRefreshFooterCreater(((context, layout) -> {
+            // TODO: 2018/5/9 全局设置主题 颜色
+            return new BallPulseFooter(context).setAnimatingColor(UiUtils.getColor(R.color
+                    ._0091ea));
+        }));
+    }
 
     public static AppComponent getAppComponent() {
         return mAppComponent;
