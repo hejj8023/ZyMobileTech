@@ -5,11 +5,11 @@ import android.widget.AbsListView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.wav.R;
-import com.example.wav.adapter.BaseRecyclerAdapter;
-import com.example.wav.adapter.SmartViewHolder;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.zhiyangstudio.commonlib.adapter.BaseRecyclerAdapter;
+import com.zhiyangstudio.commonlib.adapter.SmartViewHolder;
 import com.zhiyangstudio.commonlib.mvp.BaseMVPSupportFragment;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 

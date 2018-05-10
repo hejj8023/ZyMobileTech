@@ -9,6 +9,7 @@ import com.example.wav.base.BaseAdvActivity;
 import com.example.wav.mvp.contract.SRLContract;
 import com.example.wav.mvp.presenter.SRLPresenter;
 import com.example.wav.sample.refreshlayout.BasicListFragment;
+import com.example.wav.sample.refreshlayout.EmptyListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +36,19 @@ public class SmartRefreshLayoutTestActivity extends BaseAdvActivity<SRLPresenter
 
     @Override
     public void initData() {
-        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTabLayout.setupWithViewPager(mViewPager);
         List<Fragment> fragments = new ArrayList<>();
+        fragments.add(new RVDevListFragment1());
+        fragments.add(new LVDevListFragment1());
+        fragments.add(new RVDevListFragment());
+        fragments.add(new LVDevListFragment());
+        fragments.add(new EmptyListFragment());
         fragments.add(new BasicListFragment());
         fragments.add(new DevListFragment1());
+        fragments.add(new DevListFragment2());
         fragments.add(new ArmListFragment());
+        fragments.add(new ArmListFragment1());
         fragments.add(new StaicsListFragment());
         InternalFListAdapter adapter = new InternalFListAdapter
                 (getSupportFragmentManager(), fragments);

@@ -17,7 +17,7 @@ import com.example.wav.ui.fragment.filter.FilterCustomerGroupListFragment;
 import com.example.wav.ui.fragment.filter.FilterCustomerListFragment;
 import com.example.wav.ui.fragment.filter.FilterDeviceListFragment;
 import com.zhiyangstudio.commonlib.CommonConst;
-import com.zhiyangstudio.commonlib.mvp.BaseAbsListFragment;
+import com.zhiyangstudio.commonlib.refreshsupport.lmr.BaseAbsListFragment;
 
 import java.util.ArrayList;
 import java.util.List;

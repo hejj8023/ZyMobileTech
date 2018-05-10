@@ -10,9 +10,9 @@ import com.example.wav.di.component.ActivityComponent;
 import com.example.wav.di.component.DaggerActivityComponent;
 import com.example.wav.di.module.ActivityModule;
 import com.gyf.barlibrary.ImmersionBar;
-import com.zhiyangstudio.commonlib.mvp.BaseAbsListActivity;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zhiyangstudio.commonlib.refreshsupport.lmr.BaseAbsListActivity;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import javax.inject.Inject;

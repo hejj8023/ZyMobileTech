@@ -12,9 +12,12 @@ import java.util.List;
 
 public class InternalFListAdapter extends FragmentPagerAdapter {
     private final List<Fragment> mList;
+
     private String[] mTitles = new String[]{
-            "dev", "HaoRecyclerView", "help", "arm", "static"
-    };
+            "RV-DevList-(Swipe+Hao->1)", "LV-DevList-(Swipe+Hao->1)", "RV-DevList-(Swipe+Hao)",
+            "LV-DevList-(Swipe+Hao)", "EmptyList", "BasicList",
+            "DevList-(Swipe+Hao)", "DevList-(Hao->Lib)", "ArmList",
+            "ArmList-框架", "StaicsList-n"};
 
     public InternalFListAdapter(FragmentManager supportFragmentManager, List<Fragment> list) {
         super(supportFragmentManager);

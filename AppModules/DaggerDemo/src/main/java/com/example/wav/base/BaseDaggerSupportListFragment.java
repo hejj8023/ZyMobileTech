@@ -6,9 +6,9 @@ import com.example.wav.AdvApp;
 import com.example.wav.di.component.DaggerFragmentComponent;
 import com.example.wav.di.component.FragmentComponent;
 import com.example.wav.di.module.FragmentModule;
-import com.zhiyangstudio.commonlib.mvp.BaseAbsListFragment;
 import com.zhiyangstudio.commonlib.mvp.inter.IView;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zhiyangstudio.commonlib.refreshsupport.lmr.BaseAbsListFragment;
 
 import javax.inject.Inject;
 

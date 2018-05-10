@@ -130,6 +130,8 @@ dependencies {
 
     compile 'com.github.fangx:haorefresh:1.0'
 
+    compile 'com.github.czy1121:loadinglayout:1.0.1'
+    
     /*mavenCentral()*/
 //    compile 'cn.pedant.sweetalert:library:1.3'
     compile project(':ZySdkLib')
