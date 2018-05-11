@@ -1,6 +1,7 @@
 package com.example.player.mvp.model;
 
-import com.example.player.Const;
+import android.os.Environment;
+
 import com.example.player.bean.VideoBean;
 import com.example.player.mvp.inter.VideoListContract;
 import com.zhiyangstudio.commonlib.utils.FileUtils;
@@ -27,8 +28,10 @@ public class VideoListModel implements VideoListContract.IVideoListModel {
             public void subscribe(ObservableEmitter<List<VideoBean>> e) throws Exception {
                 // TODO: 2018/5/11 先获取指定目录下的所有的视频，以后再做扫描整个手机的视频
                 List<VideoBean> videoBeans = new ArrayList<>();
-                File file = new File(Const.VIDEO_DIR_PATH);
+                String sdcardDirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+                File file = new File(sdcardDirPath, "videos");
                 if (file != null && file.exists()) {
+                    // TODO: 2018/5/11 需要6.0的运行时权限，读文件也需要权限，直接添加写的权限即可
                     File[] files = file.listFiles();
                     if (files != null && files.length > 0) {
                         VideoBean videoBean = null;
