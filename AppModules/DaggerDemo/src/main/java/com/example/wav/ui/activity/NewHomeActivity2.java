@@ -11,7 +11,7 @@ import com.zhiyangstudio.commonlib.corel.BaseActivity;
 import butterknife.BindView;
 
 /**
- * Created by ubt on 2018/5/11.
+ * Created by example on 2018/5/11.
  */
 
 public class NewHomeActivity2 extends BaseActivity {

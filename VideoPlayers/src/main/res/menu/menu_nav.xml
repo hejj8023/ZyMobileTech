@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group_test1">
+        <item
+            android:id="@+id/action_test1"
+            android:title="本地视频" />
+    </group>
+
+
+    <group android:id="@+id/group_test2">
+
+        <item
+            android:id="@+id/action_test2"
+            android:title="在线视频" />
+    </group>
+
+    <group android:id="@+id/group_test3">
+        <item
+            android:id="@+id/action_test3"
+            android:title="列表播放-list" />
+    </group>
+
+    <group android:id="@+id/group_test4">
+        <item
+            android:id="@+id/action_test4"
+            android:title="列表播放-grid" />
+    </group>
+</menu>

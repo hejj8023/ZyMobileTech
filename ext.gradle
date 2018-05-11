@@ -165,6 +165,32 @@ project.ext {
             jiecaovideoplayer       : 'fm.jiecao:jiecaovideoplayer:5.8.1',
             vitamio                 : 'com.charonchui.vitamio:vitamio:4.2.2',
 
+            /*exoplayer*/
+            exoplayer_core          : 'com.google.android.exoplayer:exoplayer-core:2.7.3',
+            exoplayer_dash          : 'com.google.android.exoplayer:exoplayer-dash:2.7.3',
+            exoplayer_ui            : 'com.google.android.exoplayer:exoplayer-ui:2.2.7.3',
+
+            exoplayer               : 'com.google.android.exoplayer:exoplayer:2.7.3',
+
+
+            /*GSYVideoPlayer*/
+            /*完整版引入*/
+            GSYVideoPlayer :'com.shuyu:GSYVideoPlayer:4.1.2',
+
+            /*添加java和你想要的so支持：*/
+            gsyVideoPlayer_java :'com.shuyu:gsyVideoPlayer-java:4.1.2',
+
+            gsyVideoPlayer_armv5 :'com.shuyu:gsyVideoPlayer-armv5:4.1.2',
+            gsyVideoPlayer_armv7a :'com.shuyu:gsyVideoPlayer-armv7a:4.1.2',
+            gsyVideoPlayer_arm64 :'com.shuyu:gsyVideoPlayer-arm64:4.1.2',
+            gsyVideoPlayer_x64 :'com.shuyu:gsyVideoPlayer-x64:4.1.2',
+            gsyVideoPlayer_x86 :'com.shuyu:gsyVideoPlayer-x86:4.1.2',
+
+            /*支持其他格式协议的（mpeg，rtsp, concat、crypto协议）*/
+            /*A、B普通版本支持263/264/265等，对于mpeg编码会有声音无画面情况。 C 引入的so支持mpeg编码和其他补充协议，但是so包相对变大。*/
+            gsyVideoPlayer_java :'com.shuyu:gsyVideoPlayer-java:4.1.2',
+            gsyVideoPlayer_ex_so: 'com.shuyu:gsyVideoPlayer-ex_so:4.1.2',
+
             material_dialogs        : 'com.afollestad.material-dialogs:commons:0.9.0.2',
             NiceDialog              : 'com.github.Othershe:NiceDialog:1.1.4',
 
@@ -185,7 +211,6 @@ project.ext {
             /*Android屏幕适配方案*/
             autolayout              : 'com.zhy:autolayout:1.4.5',
             screenadaptation        : 'me.yatoooon:screenadaptation:1.0.9'
-
 
 
     ]
