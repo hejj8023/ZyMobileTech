@@ -3,4 +3,6 @@
     <string name="tip_no_more_data">没有更多数据</string>
     <string name="item_example_number_title">Item %02d</string>
     <string name="item_example_number_abstract">This is the abstract item %02d</string>
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
 </resources>

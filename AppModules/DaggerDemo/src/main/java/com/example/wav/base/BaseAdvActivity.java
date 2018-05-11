@@ -43,16 +43,15 @@ public abstract class BaseAdvActivity<P extends BasePresenter<V>, V extends IVie
             setSupportActionBar(toolbar);
             if (hasShowHome()) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                toolbar.setNavigationOnClickListener(v -> {
-                    onNavigationClick();
-                });
+                getSupportActionBar().setHomeButtonEnabled(true);
             }
         } else {
             toolbar.setVisibility(View.GONE);
         }
 
         if (getContentLayoutId() != 0) {
-            View contentView = LayoutInflater.from(mContext).inflate(getContentLayoutId(), containerLayout,
+            View contentView = LayoutInflater.from(mContext).inflate(getContentLayoutId(),
+                    containerLayout,
                     false);
             containerLayout.addView(contentView);
             // TODO: 2018/4/10 重新绑定view,不重新绑定会无法使用
@@ -75,17 +74,6 @@ public abstract class BaseAdvActivity<P extends BasePresenter<V>, V extends IVie
     protected abstract int getContentLayoutId();
 
     @Override
-    protected void onDestroy() {
-        mH.destory();
-        super.onDestroy();
-
-        //必须调用该方法，防止内存泄漏
-        if (mImmersionBar != null) {
-            mImmersionBar.destroy();
-        }
-    }
-
-    @Override
     public int getContentId() {
         return R.layout.activity_base_wan_android;
     }
@@ -100,5 +88,16 @@ public abstract class BaseAdvActivity<P extends BasePresenter<V>, V extends IVie
         mImmersionBar = ImmersionBar.with(this);
         mImmersionBar.statusBarColor(R.color._0091ea);
         mImmersionBar.init();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mH.destory();
+        super.onDestroy();
+
+        //必须调用该方法，防止内存泄漏
+        if (mImmersionBar != null) {
+            mImmersionBar.destroy();
+        }
     }
 }

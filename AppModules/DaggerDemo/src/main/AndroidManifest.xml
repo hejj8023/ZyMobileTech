@@ -28,6 +28,7 @@
         <activity android:name=".ui.activity.ApiTestActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.NewHomeActivity" />
+        <activity android:name=".ui.activity.NewHomeActivity2" />
         <activity android:name=".ui.activity.FilterNewActivity" />
         <activity android:name=".ui.activity.NewFilterActivity" />
         <activity android:name=".ui.activity.DeviceRegActivity" />

@@ -1,11 +1,11 @@
 package com.example.wav.sample;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.wav.R;
 import com.example.wav.bean.AccountDeviceInfo;
 import com.example.wav.mvp.contract.DevListCotract2;
 import com.example.wav.mvp.presenter.DevListPresenter2;
-import com.zhiyangstudio.commonlib.adapter.BaseRecyclerAdapter;
-import com.zhiyangstudio.commonlib.adapter.SmartViewHolder;
 import com.zhiyangstudio.commonlib.refreshsupport.smartrefresh.BaseMVPSRRListFragment;
 
 import java.text.ParseException;
@@ -30,20 +30,20 @@ public class RVDevListFragment1 extends BaseMVPSRRListFragment<DevListPresenter2
     }
 
     @Override
-    protected BaseRecyclerAdapter<AccountDeviceInfo.DeviceDetailInfo> getListAdapter() {
-        return new BaseRecyclerAdapter<AccountDeviceInfo.DeviceDetailInfo>(mList, R
-                .layout.layout_item_device_list_online) {
+    protected BaseQuickAdapter<AccountDeviceInfo.DeviceDetailInfo, BaseViewHolder> getListAdapter
+            () {
+        return new BaseQuickAdapter<AccountDeviceInfo.DeviceDetailInfo, BaseViewHolder>(R.layout
+                .layout_item_device_list_online, mList) {
             @Override
-            protected void onBindViewHolder(SmartViewHolder holder, AccountDeviceInfo
-                    .DeviceDetailInfo model, int position) {
-                holder.text(R.id.tv_device_title, model.getName());
-                holder.text(R.id.tv_device_state, model.getOnlineText());
+            protected void convert(BaseViewHolder helper, AccountDeviceInfo.DeviceDetailInfo item) {
+                helper.setText(R.id.tv_device_title, item.getName());
+                helper.setText(R.id.tv_device_state, item.getOnlineText());
                 SimpleDateFormat sdfDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssss");
                 try {
-                    Date date = sdfDateFormat.parse(model.getUpdataDate());
+                    Date date = sdfDateFormat.parse(item.getUpdataDate());
                     SimpleDateFormat sdfDateFormat1 = new SimpleDateFormat("HH:mm");
                     String timeStr = sdfDateFormat1.format(date);
-                    holder.text(R.id.tv_device_time, timeStr);
+                    helper.setText(R.id.tv_device_time, timeStr);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

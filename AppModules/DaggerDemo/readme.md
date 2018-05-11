@@ -256,3 +256,14 @@ https://github.com/whataa/SuitLines
 ### 示例库
     https://github.com/androidstarjack/MyDialogFragment
     https://github.com/developerHaoz/DialogFragmentDemos
+    
+## NavigationView为条目添加分割线的实现 
+     <group android:id="@+id/group_test1">
+            <item
+                android:id="@+id/action_test1"
+                android:title="test1" />
+        </group>
+
+## drawerlayout 点击事件穿透解决办法
+    解决方法： 
+    给控件添加属性：android:clickable="true" 
