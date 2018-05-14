@@ -1,7 +1,6 @@
 package com.example.wav.adapter;
 
 import android.content.Context;
-import android.widget.CheckBox;
 
 import com.example.wav.R;
 import com.example.wav.bean.CustomerGroupInfo;
@@ -54,55 +53,55 @@ public class CustomerGroupAdapter extends QuickAdapter<CustomerGroupInfo> {
 
     @Override
     protected void convert(QuickViewHolder holder, CustomerGroupInfo data, int position) {
-        int itemViewType = getItemViewType(position);
-        CheckBox checkBox = holder.getView(R.id.cb_customer_group);
-        switch (itemViewType) {
-            case VIEW_TYPE_DATA:
-                holder.setText(R.id.tv_group_title, data.getGroupName());
-                // 第二种方式的使用
-                if (data.isAllCheckd()) {
-                    checkBox.setChecked(true);
-                } else {
-                    checkBox.setChecked(false);
-                }
-
-                holder.setOnClickListener(v -> {
-                    List<CustomerInfo> customerList = data.getCustomerList();
-                    // 方式二，在选择和取消选择的时候操作客户列表数据
-                    if (data.isAllCheckd()) {
-                        checkBox.setChecked(false);
-                        data.unSelectAll();
-                        changeCustomerState(false, customerList);
-                    } else {
-                        checkBox.setChecked(true);
-                        data.selectAll();
-                        changeCustomerState(true, customerList);
-                    }
-                    set(position, data);
-                });
-                break;
-            case VIEW_TYPE_HEADER:
-                holder.setText(R.id.tv_group_title, data.getGroupName());
-                holder.setTextColor(R.id.tv_dev_name, R.color.red);
-
-                if (isAllChecked()) {
-                    checkBox.setChecked(true);
-                } else {
-                    checkBox.setChecked(false);
-                }
-                holder.setOnClickListener(v -> {
-                    // 全选,取消全选 所有
-                    if (isAllChecked()) {
-                        checkBox.setChecked(false);
-                        unSelectAllCustomerGroup();
-                    } else {
-                        checkBox.setChecked(true);
-                        selectAllCustomerGroup();
-                    }
-                    notifyDataSetChanged();
-                });
-                break;
-        }
+//        int itemViewType = getItemViewType(position);
+//        CheckBox checkBox = holder.getView(R.id.cb_customer_group);
+//        switch (itemViewType) {
+//            case VIEW_TYPE_DATA:
+//                holder.setText(R.id.tv_group_title, data.getGroupName());
+//                // 第二种方式的使用
+//                if (data.isAllCheckd()) {
+//                    checkBox.setChecked(true);
+//                } else {
+//                    checkBox.setChecked(false);
+//                }
+//
+//                holder.setOnClickListener(v -> {
+//                    List<CustomerInfo> customerList = data.getCustomerList();
+//                    // 方式二，在选择和取消选择的时候操作客户列表数据
+//                    if (data.isAllCheckd()) {
+//                        checkBox.setChecked(false);
+//                        data.unSelectAll();
+//                        changeCustomerState(false, customerList);
+//                    } else {
+//                        checkBox.setChecked(true);
+//                        data.selectAll();
+//                        changeCustomerState(true, customerList);
+//                    }
+//                    set(position, data);
+//                });
+//                break;
+//            case VIEW_TYPE_HEADER:
+//                holder.setText(R.id.tv_group_title, data.getGroupName());
+//                holder.setTextColor(R.id.tv_dev_name, R.color.red);
+//
+//                if (isAllChecked()) {
+//                    checkBox.setChecked(true);
+//                } else {
+//                    checkBox.setChecked(false);
+//                }
+//                holder.setOnClickListener(v -> {
+//                    // 全选,取消全选 所有
+//                    if (isAllChecked()) {
+//                        checkBox.setChecked(false);
+//                        unSelectAllCustomerGroup();
+//                    } else {
+//                        checkBox.setChecked(true);
+//                        selectAllCustomerGroup();
+//                    }
+//                    notifyDataSetChanged();
+//                });
+//                break;
+//        }
     }
 
     /**

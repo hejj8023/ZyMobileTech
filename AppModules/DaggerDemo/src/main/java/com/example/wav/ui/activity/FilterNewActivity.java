@@ -5,16 +5,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.wav.Const;
-import com.example.wav.manager.DataManager;
 import com.example.wav.R;
 import com.example.wav.base.BaseAdvActivity;
 import com.example.wav.bean.AccountCustomerInfo;
 import com.example.wav.bean.AccountDeviceInfo;
 import com.example.wav.bean.AccountGroupInfo;
+import com.example.wav.manager.DataManager;
 import com.example.wav.mvp.contract.FilterNewContract;
 import com.example.wav.mvp.presenter.FilterNewPresenter;
 import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickAdapter;
@@ -48,7 +50,8 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
 
     // 是否有数据在请求中，只对tab切换有效
     private boolean hasReqDataing = false;
-    VerticalTabLayout.OnTabSelectedListener onTabSelectedListener = new VerticalTabLayout.OnTabSelectedListener() {
+    VerticalTabLayout.OnTabSelectedListener onTabSelectedListener = new VerticalTabLayout
+            .OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabView tab, int position) {
             if (hasReqDataing)
@@ -143,7 +146,8 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
     @Override
     public void initView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration
+                .VERTICAL));
 
         mVerticalTabLayout.setTabAdapter(simpleTabAdapter);
         mVerticalTabLayout.addOnTabSelectedListener(onTabSelectedListener);
@@ -232,11 +236,14 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
         @Override
         protected void convert(QuickViewHolder holder, AccountCustomerInfo data, int position) {
             holder.setText(R.id.tv_title, data.getText());
-            CheckBox checkBox = holder.getView(R.id.cb_customer);
+//            CheckBox checkBox = holder.getView(R.id.cb_customer);
+            ImageView chView = holder.getView(R.id.iv_check);
             if (data.isChecked()) {
-                checkBox.setChecked(true);
+//                checkBox.setChecked(true);
+                chView.setVisibility(View.VISIBLE);
             } else {
-                checkBox.setChecked(false);
+//                checkBox.setChecked(false);
+                chView.setVisibility(View.INVISIBLE);
             }
             holder.setOnClickListener(v -> {
                 // 取消所有的选择
@@ -247,11 +254,13 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
                 if (data.isChecked()) {
                     data.setChecked(false);
                     Const.TMP_DATA.FILTER_CUSTOMER_ID = "";
+                    chView.setVisibility(View.VISIBLE);
                 } else {
                     data.setChecked(true);
                     Const.TMP_DATA.FILTER_CUSTOMER_ID = data.getId() + "";
+                    chView.setVisibility(View.INVISIBLE);
                 }
-                checkBox.setChecked(data.isChecked());
+//                checkBox.setChecked(data.isChecked());
                 notifyDataSetChanged();
             });
         }
@@ -271,6 +280,16 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
             } else {
                 checkBox.setChecked(false);
             }
+
+            ImageView chView = holder.getView(R.id.iv_check);
+            if (data.isChecked()) {
+                checkBox.setChecked(true);
+//                chView.setVisibility(View.VISIBLE);
+            } else {
+                checkBox.setChecked(false);
+//                chView.setVisibility(View.INVISIBLE);
+            }
+
             holder.setOnClickListener(v -> {
                 // 取消所有的选择
                 for (AccountGroupInfo datum : mData) {
@@ -280,9 +299,11 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
                 if (data.isChecked()) {
                     data.setChecked(false);
                     Const.TMP_DATA.FILTER_CUSTOMER_GROUP_ID = "";
+//                    chView.setVisibility(View.VISIBLE);
                 } else {
                     data.setChecked(true);
                     Const.TMP_DATA.FILTER_CUSTOMER_GROUP_ID = data.getId();
+//                    chView.setVisibility(View.INVISIBLE);
                 }
                 checkBox.setChecked(data.isChecked());
                 notifyDataSetChanged();
@@ -296,7 +317,8 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
         }
 
         @Override
-        protected void convert(QuickViewHolder holder, AccountDeviceInfo.DeviceDetailInfo data, int position) {
+        protected void convert(QuickViewHolder holder, AccountDeviceInfo.DeviceDetailInfo data,
+                               int position) {
             holder.setText(R.id.tv_dev_name, data.getName());
             holder.setText(R.id.tv_dev_group_id, data.getGroupName());
             holder.setText(R.id.tv_dev_customer_id, data.getCustomerName());

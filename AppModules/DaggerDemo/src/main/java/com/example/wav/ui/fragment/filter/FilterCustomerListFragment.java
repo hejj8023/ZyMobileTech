@@ -2,13 +2,12 @@ package com.example.wav.ui.fragment.filter;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 
 import com.example.wav.Const;
-import com.example.wav.manager.DataManager;
 import com.example.wav.R;
 import com.example.wav.base.BaseDaggerSupportListFragment;
 import com.example.wav.bean.AccountCustomerInfo;
+import com.example.wav.manager.DataManager;
 import com.example.wav.mvp.contract.FilterCustomerListContract;
 import com.example.wav.mvp.presenter.FilterCustomerListPresenter;
 import com.zhiyangstudio.commonlib.CommonConst;
@@ -94,12 +93,12 @@ public class FilterCustomerListFragment extends
         @Override
         protected void bindDatas(QuickViewHolder holder, AccountCustomerInfo bean, int itemViewType, int position) {
             holder.setText(R.id.tv_title, bean.getText());
-            CheckBox checkBox = holder.getView(R.id.cb_customer);
-            if (bean.isChecked()) {
-                checkBox.setChecked(true);
-            } else {
-                checkBox.setChecked(false);
-            }
+//            CheckBox checkBox = holder.getView(R.id.cb_customer);
+//            if (bean.isChecked()) {
+//                checkBox.setChecked(true);
+//            } else {
+//                checkBox.setChecked(false);
+//            }
             holder.setOnClickListener(v -> {
                 // 取消所有的选择
                 for (AccountCustomerInfo datum : mListData) {
@@ -115,7 +114,7 @@ public class FilterCustomerListFragment extends
                     Const.TMP_DATA.FILTER_CUSTOMER_ID = bean.getId() + "";
                     DataManager.saveDefaultUserId(bean.getId() + "");
                 }
-                checkBox.setChecked(bean.isChecked());
+//                checkBox.setChecked(bean.isChecked());
                 notifyAllDatas(mListData,recyclerView);
             });
         }

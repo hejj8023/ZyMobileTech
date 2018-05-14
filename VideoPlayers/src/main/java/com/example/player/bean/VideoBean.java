@@ -1,13 +1,17 @@
 package com.example.player.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by example on 2018/5/11.
  */
 
-public class VideoBean {
+public class VideoBean implements Serializable{
+    private static final long serialVersionUID = 3011341751307897125L;
     private String fileName;
     private String filePath;
-    private long length;
+    private String length;
+    private String duration;
 
     public String getFileName() {
         return fileName;
@@ -25,12 +29,20 @@ public class VideoBean {
         this.filePath = filePath;
     }
 
-    public long getLength() {
+    public String getLength() {
         return length;
     }
 
-    public void setLength(long length) {
+    public void setLength(String length) {
         this.length = length;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     @Override

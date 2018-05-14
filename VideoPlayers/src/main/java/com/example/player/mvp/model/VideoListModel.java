@@ -4,6 +4,7 @@ import android.os.Environment;
 
 import com.example.player.bean.VideoBean;
 import com.example.player.mvp.inter.VideoListContract;
+import com.zhiyangstudio.commonlib.utils.DateUtils;
 import com.zhiyangstudio.commonlib.utils.FileUtils;
 import com.zhiyangstudio.commonlib.utils.RxUtils;
 
@@ -29,7 +30,7 @@ public class VideoListModel implements VideoListContract.IVideoListModel {
                 // TODO: 2018/5/11 先获取指定目录下的所有的视频，以后再做扫描整个手机的视频
                 List<VideoBean> videoBeans = new ArrayList<>();
                 String sdcardDirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-                File file = new File(sdcardDirPath, "videos");
+                File file = new File(sdcardDirPath, "Movies");
                 if (file != null && file.exists()) {
                     // TODO: 2018/5/11 需要6.0的运行时权限，读文件也需要权限，直接添加写的权限即可
                     File[] files = file.listFiles();
@@ -40,9 +41,14 @@ public class VideoListModel implements VideoListContract.IVideoListModel {
                             videoBean = new VideoBean();
                             String filePath = tF.getAbsolutePath();
                             videoBean.setFilePath(filePath);
-                            String fileName = file.getName();
+                            String fileName = filePath.substring(filePath.lastIndexOf("/") + 1,
+                                    filePath.length());
                             videoBean.setFileName(fileName);
-                            videoBean.setLength(FileUtils.getFileSize(tF));
+                            videoBean.setLength(FileUtils.formatFileSizeToString(FileUtils
+                                    .getFileSize(tF)));
+                            Double fileDuratoin = FileUtils.getMediaFileDuratoin(filePath);
+                            long duration = fileDuratoin.longValue();
+                            videoBean.setDuration(DateUtils.formatTime(duration));
                             videoBeans.add(videoBean);
                         }
                     }

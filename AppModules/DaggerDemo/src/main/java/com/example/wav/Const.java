@@ -49,6 +49,9 @@ public class Const {
          /*查询设备最近7天记录*/
         public static final String API_DEVICE_HISTORY = COMMON_PREFIX +
                 "Data/DevDataHistory.php";
+        /*资讯列表*/
+        public static final String API_INFORMATION_LIST = COMMON_PREFIX +
+                "MsgCenter/InformationList.php";
     }
 
     public static class TMP_DATA {

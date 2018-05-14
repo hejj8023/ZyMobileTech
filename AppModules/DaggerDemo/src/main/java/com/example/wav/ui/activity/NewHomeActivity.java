@@ -26,6 +26,7 @@ import com.example.wav.mvp.presenter.NewHomePresenter;
 import com.example.wav.ui.fragment.HomeFragment;
 import com.example.wav.widget.TabIndicator;
 import com.zhiyangstudio.commonlib.CommonConst;
+import com.zhiyangstudio.commonlib.utils.IntentUtils;
 
 import java.util.List;
 
@@ -192,11 +193,13 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
                 break;
             case R.id.action_filter:
                 ToastUtils.showShort("筛选");
-                if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                    mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                } else {
-                    mDrawerLayout.openDrawer(Gravity.RIGHT);
-                }
+//                if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+//                    mDrawerLayout.closeDrawer(Gravity.RIGHT);
+//                } else {
+//                    mDrawerLayout.openDrawer(Gravity.RIGHT);
+//                }
+
+                IntentUtils.forward(FilterNewActivity.class);
                 break;
         }
         return true;

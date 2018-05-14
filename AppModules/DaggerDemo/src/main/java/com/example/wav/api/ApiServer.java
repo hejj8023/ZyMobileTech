@@ -111,4 +111,7 @@ public interface ApiServer {
 
     @GET(Const.API_URL_CONFIG.API_DEVICE_HISTORY)
     Observable<DevHistoryBean> getDevHistory(@Query("ID") String devId);
+
+    @GET(Const.API_URL_CONFIG.API_INFORMATION_LIST)
+    Observable<ResponseBody> getInformation();
 }

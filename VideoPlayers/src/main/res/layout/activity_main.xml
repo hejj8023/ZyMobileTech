@@ -31,9 +31,10 @@
                     app:titleTextColor="@color/white" />
             </android.support.design.widget.AppBarLayout>
 
-            <TextView
+            <Button
+                android:id="@+id/btn_test"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="aaa" />
         </LinearLayout>
 
@@ -50,13 +51,13 @@
             android:layout_width="@dimen/dp_300"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:background="@color/sr_color_primary"
+            android:background="@color/colorPrimary"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="@dimen/dp_300"
                 android:layout_height="?actionBarSize"
-                android:background="@color/sr_color_primary_dark">
+                android:background="@color/colorPrimary">
 
                 <ImageView
                     android:id="@+id/iv_ti_icon"

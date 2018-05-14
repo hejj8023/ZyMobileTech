@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ADTextView">
+        <attr name="ad_text_view_speed" format="integer" />
+        <attr name="ad_text_view_interval" format="integer" />
+        <attr name="ad_text_front_color" format="color|reference" />
+        <attr name="ad_text_content_color" format="color|reference" />
+        <attr name="ad_text_front_size" format="dimension" />
+        <attr name="ad_text_content_size" format="dimension" />
+    </declare-styleable>
+</resources>

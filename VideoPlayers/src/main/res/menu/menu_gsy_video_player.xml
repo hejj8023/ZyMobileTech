@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_standard"
+        android:title="标准播放" />
+
+    <item
+        android:id="@+id/action_standard_sample"
+        android:title="标准Sample播放" />
+
+    <item
+        android:id="@+id/action_normal"
+        android:title="默认播放" />
+
+    <item
+        android:id="@+id/action_list"
+        android:title="列表播放" />
+
+    <item
+        android:id="@+id/action_adv"
+        android:title="adv播放" />
+
+    <item
+        android:id="@+id/action_customer"
+        android:title="自定义播放" />
+
+</menu>

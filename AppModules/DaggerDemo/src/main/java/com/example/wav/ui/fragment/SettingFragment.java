@@ -7,6 +7,7 @@ import com.example.wav.R;
 import com.example.wav.sample.SmartRefreshLayoutTestActivity;
 import com.example.wav.ui.activity.DeviceRegActivity;
 import com.example.wav.ui.activity.FilterTestActivity;
+import com.example.wav.ui.activity.InformationListActivity;
 import com.example.wav.ui.activity.sample.SampleMPAndroidChartActivity;
 import com.zhiyangstudio.commonlib.corel.BaseFragment;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
@@ -55,7 +56,8 @@ public class SettingFragment extends BaseFragment {
 
     @OnClick({
             R.id.btn_device_reg, R.id.btn_mp_android_chart,
-            R.id.btn_filter_menu, R.id.btn_smartrefreshlayout
+            R.id.btn_filter_menu, R.id.btn_smartrefreshlayout,
+            R.id.btn_information_list
     })
     public void onViewClick(View view) {
         switch (view.getId()) {
@@ -71,6 +73,9 @@ public class SettingFragment extends BaseFragment {
                 break;
             case R.id.btn_smartrefreshlayout:
                 IntentUtils.forward(SmartRefreshLayoutTestActivity.class);
+                break;
+            case R.id.btn_information_list:
+                IntentUtils.forward(InformationListActivity.class);
                 break;
         }
     }
