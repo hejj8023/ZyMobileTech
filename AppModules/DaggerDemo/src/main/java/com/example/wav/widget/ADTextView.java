@@ -165,7 +165,29 @@ public class ADTextView extends View {
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        setMeasuredDimension(DensityUtil.dp2px(500), DensityUtil.dp2px(40));
+        setMeasuredDimension(widthSize, DensityUtil.dp2px(40));
+//        setMeasuredDimension(measureWidth(MeasureSpec.makeMeasureSpec(widthSize, widthMode)),
+//                measureHeight(MeasureSpec.makeMeasureSpec(heightSize, heightMode)));
+    }
+
+    //测量高度
+    private int measureWidth(int widthMeasureSpec) {
+        int result = 0;
+        int mode = MeasureSpec.getMode(widthMeasureSpec);
+        int size = MeasureSpec.getSize(widthMeasureSpec);
+        if (mode == MeasureSpec.EXACTLY) {
+            result = size;
+        } else { //宽度最小十个字的宽度
+            String text = "十个字十个字十个字字";
+            Rect rect = new Rect();
+            // TODO: 2018/5/14  支持200个字
+            mPaintContent.getTextBounds(text, 0, 200, rect);
+            result = rect.right - rect.left;
+            if (mode == MeasureSpec.AT_MOST) {
+                result = Math.min(result, size);
+            }
+        }
+        return result;
     }
 
     //测量宽度
@@ -182,25 +204,6 @@ public class ADTextView extends View {
             //内容文字字高
             result = Math.max(mfronTextHeight, mContentTextHeight) * 2;
 
-            if (mode == MeasureSpec.AT_MOST) {
-                result = Math.min(result, size);
-            }
-        }
-        return result;
-    }
-
-    //测量高度
-    private int measureWidth(int widthMeasureSpec) {
-        int result = 0;
-        int mode = MeasureSpec.getMode(widthMeasureSpec);
-        int size = MeasureSpec.getSize(widthMeasureSpec);
-        if (mode == MeasureSpec.EXACTLY) {
-            result = size;
-        } else { //宽度最小十个字的宽度
-            String text = "十个字十个字十个字字";
-            Rect rect = new Rect();
-            mPaintContent.getTextBounds(text, 0, text.length(), rect);
-            result = rect.right - rect.left;
             if (mode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, size);
             }

@@ -6,6 +6,7 @@ import com.example.wav.bean.AccountDeviceInfo;
 import com.example.wav.bean.AccountGroupInfo;
 import com.example.wav.bean.AccountInfo;
 import com.example.wav.bean.DevHistoryBean;
+import com.example.wav.bean.InformationBean;
 
 import java.util.List;
 
@@ -113,5 +114,5 @@ public interface ApiServer {
     Observable<DevHistoryBean> getDevHistory(@Query("ID") String devId);
 
     @GET(Const.API_URL_CONFIG.API_INFORMATION_LIST)
-    Observable<ResponseBody> getInformation();
+    Observable<List<InformationBean>> getInformation();
 }
