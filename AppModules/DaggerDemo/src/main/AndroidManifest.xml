@@ -25,6 +25,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
 
+    <!--686ebec8a0f7f0a64e1dc92f3736324a-->
     <meta-data
         android:name="com.tencent.rdm.uuid"
         android:value="39804993-ca65-409c-abd0-000ef2812090" />
@@ -131,6 +132,10 @@
             android:value="YOUR_ACCESS_KEY" />
 
         <activity android:name=".ui.activity.InformationListActivity" />
+
+        <activity android:name=".ui.activity.NotificationTestActivity" />
+
+        <activity android:name=".ui.activity.NotifyDetailActivt" />
     </application>
 
 </manifest>

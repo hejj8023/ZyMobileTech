@@ -1,8 +1,13 @@
 package com.example.wav.ui.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,13 +26,29 @@ import com.example.wav.R;
 import com.example.wav.base.BaseAdvActivity;
 import com.example.wav.bean.MainPagerInfo;
 import com.example.wav.manager.DataManager;
+import com.example.wav.manager.XGNotificationManager;
 import com.example.wav.mvp.contract.NewHomeContract;
 import com.example.wav.mvp.presenter.NewHomePresenter;
+import com.example.wav.ui.fragment.FilterDeviceStatusFragment;
 import com.example.wav.ui.fragment.HomeFragment;
+import com.example.wav.ui.fragment.filter.FilterAlarmTypeFragment;
+import com.example.wav.ui.fragment.filter.FilterCustomerGroupListFragment;
+import com.example.wav.ui.fragment.filter.FilterCustomerListFragment;
+import com.example.wav.ui.fragment.filter.FilterDateRangeFragment;
+import com.example.wav.ui.fragment.filter.FilterDeviceNamesFragment;
 import com.example.wav.widget.TabIndicator;
+import com.tencent.android.tpush.XGCustomPushNotificationBuilder;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushClickedResult;
+import com.tencent.android.tpush.XGPushConfig;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.rpc.XGRemoteService;
+import com.tencent.android.tpush.service.XGPushServiceV3;
 import com.zhiyangstudio.commonlib.CommonConst;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,6 +64,8 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
     DrawerLayout mDrawerLayout;
     @BindView(R.id.navgation_view)
     NavigationView mNavigationView;
+    @BindView(R.id.nav_filter_view)
+    NavigationView mFilterNavigationView;
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
     @BindView(android.R.id.tabhost)
@@ -50,6 +73,90 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
     private List<MainPagerInfo> mMainPagerInfos;
     private MainPagerAdapter mPagerAdapter;
     private Menu menu;
+    private List<Fragment> mFilterFragments;
+    private MsgReceiver updateListViewReceiver;
+    private Message m;
+
+    @Override
+    public void beforeSubContentInit() {
+        super.beforeSubContentInit();
+        initXg();
+        initCustomPushNotificationBuilder(this);
+    }
+
+    private void initXg() {
+        //清除通知栏消息
+        //XGPushManager.cancelAllNotifaction();
+
+        //代码内动态注册access ID
+        //XGPushConfig.setAccessId(this,2100250470);
+
+        XGPushConfig.enableDebug(this, true);
+        startService(new Intent(mContext, XGPushServiceV3.class));
+        startService(new Intent(mContext, XGRemoteService.class));
+
+        //开启信鸽的日志输出，线上版本不建议调用
+        XGPushConfig.enableDebug(this, true);
+        XGPushConfig.getToken(this);
+        //注册数据更新监听器
+        updateListViewReceiver = new MsgReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.example.wav.activity.UPDATE_LISTVIEW");
+        registerReceiver(updateListViewReceiver, intentFilter);
+        // 1.获取设备Token
+        Handler handler = new HandlerExtension(this);
+        m = handler.obtainMessage();
+        /*
+        注册信鸽服务的接口
+        如果仅仅需要发推送消息调用这段代码即可
+        */
+        XGPushManager.registerPush(getApplicationContext(),
+                new XGIOperateCallback() {
+                    @Override
+                    public void onSuccess(Object data, int flag) {
+                        LoggerUtils.loge("+++ register push sucess. token:" + data +
+                                "flag" + flag);
+
+                        m.obj = "+++ register push sucess. token:" + data;
+                        m.sendToTarget();
+                    }
+
+                    @Override
+                    public void onFail(Object data, int errCode, String msg) {
+                        LoggerUtils.loge(
+                                "+++ register push fail. token:" + data
+                                        + ", errCode:" + errCode + ",msg:"
+                                        + msg);
+                        m.obj = "+++ register push fail. token:" + data
+                                + ", errCode:" + errCode + ",msg:" + msg;
+                        m.sendToTarget();
+                    }
+                });
+
+        // 获取token
+        XGPushConfig.getToken(this);
+
+    }
+
+    /**
+     * 设置通知自定义View，这样在下发通知时可以指定build_id。编号由开发者自己维护,build_id=0为默认设置
+     *
+     * @param context
+     */
+    @SuppressWarnings("unused")
+    private void initCustomPushNotificationBuilder(Context context) {
+
+
+        XGCustomPushNotificationBuilder commonBuilder = XGNotificationManager.createCommonBuilder();
+        // 客户端保存build_id
+        XGPushManager.setPushNotificationBuilder(this, 1, commonBuilder);
+        XGPushManager.setDefaultNotificationBuilder(this, commonBuilder);
+    }
+
+    @Override
+    protected void initInject() {
+        getActivityComponent().inject(this);
+    }
 
     @Override
     public void initView() {
@@ -80,16 +187,19 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
             mViewPager.setCurrentItem(0, false);
         }
         mFragmentTabHost.getTabWidget().setDividerDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        mFilterFragments = new ArrayList<>();
+        mFilterFragments.add(new FilterCustomerListFragment());
+        mFilterFragments.add(new FilterCustomerGroupListFragment());
+        mFilterFragments.add(new FilterDeviceNamesFragment());
+        mFilterFragments.add(new FilterDeviceStatusFragment());
+        mFilterFragments.add(new FilterAlarmTypeFragment());
+        mFilterFragments.add(new FilterDateRangeFragment());
     }
 
     @Override
     public void refreshUi() {
 
-    }
-
-    @Override
-    protected void initInject() {
-        getActivityComponent().inject(this);
     }
 
     @Override
@@ -171,13 +281,67 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
             }
             return true;
         });
+
+
+        mFilterNavigationView.setNavigationItemSelectedListener(item -> {
+            int index = 0;
+            switch (item.getItemId()) {
+                case R.id.action_filter_customer_list:
+                    index = 0;
+                    break;
+                case R.id.action_filter_customer_group_list:
+                    index = 1;
+                    break;
+                case R.id.action_filter_dev_names:
+                    index = 2;
+                    break;
+                case R.id.action_filter_dev_status:
+                    index = 3;
+                    break;
+                case R.id.action_filter_alarm_types:
+                    index = 4;
+                    break;
+                case R.id.action_filter_date_range:
+                    index = 5;
+                    break;
+            }
+            showTargetFilterFragment(mFilterFragments.get(index));
+            return true;
+        });
+    }
+
+    public void showTargetFilterFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.rl_right_root, fragment)
+                .commit();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_device, menu);
-        this.menu = menu;
-        return true;
+    protected void onDestroy() {
+        unregisterReceiver(updateListViewReceiver);
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        XGPushManager.onActivityStoped(this);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        XGPushClickedResult click = XGPushManager.onActivityStarted(this);
+        // click.getCustomContent()
+        LoggerUtils.loge("onResumeXGPushClickedResult:" + click);
+        if (click != null) { // 判断是否来自信鸽的打开方式
+            ToastUtils.showShort("通知被点击:" + click.toString());
+        }
     }
 
     @Override
@@ -193,15 +357,21 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
                 break;
             case R.id.action_filter:
                 ToastUtils.showShort("筛选");
-//                if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-//                    mDrawerLayout.closeDrawer(Gravity.RIGHT);
-//                } else {
-//                    mDrawerLayout.openDrawer(Gravity.RIGHT);
-//                }
-
-                IntentUtils.forward(FilterNewActivity.class);
+                showTargetFilterFragment(mFilterFragments.get(0));
+                if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                    mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                } else {
+                    mDrawerLayout.openDrawer(Gravity.RIGHT);
+                }
                 break;
         }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_device, menu);
+        this.menu = menu;
         return true;
     }
 
@@ -224,6 +394,26 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
         mViewPager.setCurrentItem(currentTab, false);
     }
 
+    private static class HandlerExtension extends Handler {
+        WeakReference<NewHomeActivity> mActivity;
+
+        HandlerExtension(NewHomeActivity activity) {
+            mActivity = new WeakReference<NewHomeActivity>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            NewHomeActivity theActivity = mActivity.get();
+            if (theActivity == null) {
+                theActivity = new NewHomeActivity();
+            }
+            if (msg != null) {
+                LoggerUtils.loge(XGPushConfig.getToken(theActivity));
+            }
+        }
+    }
+
     private class MainPagerAdapter extends FragmentPagerAdapter {
         private List<MainPagerInfo> mList;
 
@@ -240,6 +430,16 @@ public class NewHomeActivity extends BaseAdvActivity<NewHomePresenter, NewHomeCo
         @Override
         public int getCount() {
             return mList.size();
+        }
+    }
+
+    public class MsgReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // TODO Auto-generated method stub
+
+            LoggerUtils.loge("MsgReceiver onReceive");
         }
     }
 }

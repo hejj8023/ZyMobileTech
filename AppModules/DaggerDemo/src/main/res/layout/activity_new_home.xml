@@ -80,53 +80,17 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <android.support.design.widget.NavigationView
+                android:id="@+id/nav_filter_view"
                 android:layout_width="@dimen/dp_100"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:background="@color/_0091ea"
+                app:menu="@menu/menu_filter_nav" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_45"
-                    android:gravity="center"
-                    android:text="客户列表" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_45"
-                    android:gravity="center"
-                    android:text="客户分组" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_45"
-                    android:gravity="center"
-                    android:text="设备名称" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_45"
-                    android:gravity="center"
-                    android:text="设备状态" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_45"
-                    android:gravity="center"
-                    android:text="报警类型" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_45"
-                    android:gravity="center"
-                    android:text="日期范围" />
-            </LinearLayout>
-
-            <me.fangx.haorefresh.HaoRecyclerView
-                android:id="@+id/hao_recyclerview"
-                android:layout_width="@dimen/dp_200"
-                android:layout_height="match_parent"
-                android:background="@color/gray" />
+            <RelativeLayout
+                android:id="@+id/rl_right_root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </LinearLayout>
 

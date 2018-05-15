@@ -10,14 +10,10 @@ import com.google.gson.reflect.TypeToken;
 import com.scwang.smartrefresh.header.DeliveryHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
-import com.tencent.android.tpush.XGIOperateCallback;
-import com.tencent.android.tpush.XGPushConfig;
-import com.tencent.android.tpush.XGPushManager;
 import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.corel.BaseApp;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.GsonUtils;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 import com.zhiyangstudio.commonlib.utils.OkHttpUtils;
 import com.zhiyangstudio.commonlib.utils.PreUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
@@ -92,22 +88,21 @@ public class AdvApp extends BaseApp {
             }
         });
 
-        /*推送*/
-        XGPushConfig.enableDebug(this, true);
-        XGPushManager.registerPush(this, new XGIOperateCallback() {
-            @Override
-            public void onSuccess(Object data, int flag) {
-                //token在设备卸载重装的时候有可能会变
-                LoggerUtils.loge("XGPushManager registerPush 注册成功，设备token为：" + data);
-            }
-
-            @Override
-            public void onFail(Object data, int errCode, String msg) {
-                LoggerUtils.loge("XGPushManager registerPush  注册失败，错误码：" + errCode + ",错误信息：" +
-                        msg);
-            }
-        });
-//        XGPushManager.bindAccount(getApplicationContext(), "XINGE");
+//        /*推送*/
+//        XGPushConfig.enableDebug(this, true);
+//        XGPushManager.registerPush(this, new XGIOperateCallback() {
+//            @Override
+//            public void onSuccess(Object data, int flag) {
+//                //token在设备卸载重装的时候有可能会变
+//                LoggerUtils.loge("XGPushManager registerPush 注册成功，设备token为：" + data);
+//            }
+//
+//            @Override
+//            public void onFail(Object data, int errCode, String msg) {
+//                LoggerUtils.loge("XGPushManager registerPush  注册失败，错误码：" + errCode + ",错误信息：" +
+//                        msg);
+//            }
+//        });
     }
 
     private void initComponent() {

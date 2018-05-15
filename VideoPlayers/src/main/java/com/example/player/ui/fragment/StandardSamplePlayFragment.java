@@ -1,5 +1,7 @@
 package com.example.player.ui.fragment;
 
+import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -7,8 +9,10 @@ import android.widget.ImageView;
 import com.example.player.R;
 import com.example.player.bean.SwitchVideoModel;
 import com.example.player.player.SampleVideo;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.zhiyangstudio.commonlib.corel.BaseFragment;
+import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,8 @@ import butterknife.BindView;
 public class StandardSamplePlayFragment extends BaseFragment {
     @BindView(R.id.video_player)
     SampleVideo sampleVideo;
+    private OrientationUtils mOrientationUtils;
+    private boolean isTransition;
 
     @Override
     public int getContentId() {
@@ -66,19 +72,51 @@ public class StandardSamplePlayFragment extends BaseFragment {
         sampleVideo.getBackButton().setVisibility(View.VISIBLE);
 
         // 设置旋转
-        OrientationUtils orientationUtils = new OrientationUtils(getActivity(), sampleVideo);
+        mOrientationUtils = new OrientationUtils(getActivity(), sampleVideo);
         sampleVideo.getFullscreenButton().setOnClickListener(v -> {
             // TODO: 2018/5/14 如何全屏播放
             // sampleVideo.setIfCurrentIsFullscreen(true);
-            orientationUtils.resolveByClick();
+            mOrientationUtils.resolveByClick();
         });
 
-        sampleVideo.setBottomProgressBarDrawable(getResources().getDrawable(R.drawable.video_new_progress));
-        sampleVideo.setDialogVolumeProgressBar(getResources().getDrawable(R.drawable.video_new_volume_progress_bg));
+        sampleVideo.setBottomProgressBarDrawable(getResources().getDrawable(R.drawable
+                .video_new_progress));
+        sampleVideo.setDialogVolumeProgressBar(getResources().getDrawable(R.drawable
+                .video_new_volume_progress_bg));
         sampleVideo.setDialogProgressBar(getResources().getDrawable(R.drawable.video_new_progress));
-        sampleVideo.setBottomShowProgressBarDrawable(getResources().getDrawable(R.drawable.video_new_seekbar_progress),
-        getResources().getDrawable(R.drawable.video_new_seekbar_thumb));
+        sampleVideo.setBottomShowProgressBarDrawable(getResources().getDrawable(R.drawable
+                        .video_new_seekbar_progress),
+                getResources().getDrawable(R.drawable.video_new_seekbar_thumb));
         sampleVideo.setDialogProgressColor(getResources().getColor(R.color.colorAccent), -11);
+
+        // 是否可以滑动调整
+        sampleVideo.setIsTouchWiget(true);
+        sampleVideo.getBackButton().setOnClickListener(v -> {
+            onBack();
+        });
+    }
+
+    private void onBack() {
+        // 先返回正常状态
+        if (mOrientationUtils.getScreenType() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            sampleVideo.getFullscreenButton().performClick();
+            return;
+        }
+
+        // 释放所有
+        sampleVideo.setVideoAllCallBack(null);
+        GSYVideoManager.releaseAllVideos();
+        if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mActivity.onBackPressed();
+        } else {
+            UiUtils.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                        mActivity.finish();
+                        mActivity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                }
+            }, 500);
+        }
     }
 
     @Override
@@ -92,7 +130,27 @@ public class StandardSamplePlayFragment extends BaseFragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        sampleVideo.onVideoPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sampleVideo.onVideoResume();
+    }
+
+    @Override
     protected void initArguments(Bundle bundle) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mOrientationUtils != null) {
+            mOrientationUtils.releaseListener();
+        }
     }
 }

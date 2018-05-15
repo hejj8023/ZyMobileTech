@@ -5,9 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.wav.Const;
@@ -236,14 +234,14 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
         @Override
         protected void convert(QuickViewHolder holder, AccountCustomerInfo data, int position) {
             holder.setText(R.id.tv_title, data.getText());
-//            CheckBox checkBox = holder.getView(R.id.cb_customer);
-            ImageView chView = holder.getView(R.id.iv_check);
+            CheckBox checkBox = holder.getView(R.id.cb_customer);
+//            ImageView chView = holder.getView(R.id.iv_check);
             if (data.isChecked()) {
-//                checkBox.setChecked(true);
-                chView.setVisibility(View.VISIBLE);
+                checkBox.setChecked(true);
+//                chView.setVisibility(View.VISIBLE);
             } else {
-//                checkBox.setChecked(false);
-                chView.setVisibility(View.INVISIBLE);
+                checkBox.setChecked(false);
+//                chView.setVisibility(View.INVISIBLE);
             }
             holder.setOnClickListener(v -> {
                 // 取消所有的选择
@@ -254,13 +252,13 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
                 if (data.isChecked()) {
                     data.setChecked(false);
                     Const.TMP_DATA.FILTER_CUSTOMER_ID = "";
-                    chView.setVisibility(View.VISIBLE);
+//                    chView.setVisibility(View.VISIBLE);
                 } else {
                     data.setChecked(true);
                     Const.TMP_DATA.FILTER_CUSTOMER_ID = data.getId() + "";
-                    chView.setVisibility(View.INVISIBLE);
+//                    chView.setVisibility(View.INVISIBLE);
                 }
-//                checkBox.setChecked(data.isChecked());
+                checkBox.setChecked(data.isChecked());
                 notifyDataSetChanged();
             });
         }
@@ -281,7 +279,7 @@ public class FilterNewActivity extends BaseAdvActivity<FilterNewPresenter,
                 checkBox.setChecked(false);
             }
 
-            ImageView chView = holder.getView(R.id.iv_check);
+//            ImageView chView = holder.getView(R.id.iv_check);
             if (data.isChecked()) {
                 checkBox.setChecked(true);
 //                chView.setVisibility(View.VISIBLE);

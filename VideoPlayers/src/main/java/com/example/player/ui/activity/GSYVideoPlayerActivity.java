@@ -96,4 +96,5 @@ public class GSYVideoPlayerActivity extends BaseToolbarSupportActivity {
         showTargetFragment(mFragments.get(index));
         return true;
     }
+
 }

@@ -1,8 +1,7 @@
 package com.example.wav.adapter;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.CheckBox;
 
 import com.example.wav.R;
 import com.example.wav.bean.CustomerGroupInfo;
@@ -18,7 +17,8 @@ import java.util.List;
 public class CustomerInfoAdapter extends QuickAdapter<CustomerInfo> {
     private List<CustomerGroupInfo> mCustomerGroupInfoList;
 
-    public CustomerInfoAdapter(Context context, List<CustomerInfo> list, List<CustomerGroupInfo> customerGroupInfoList) {
+    public CustomerInfoAdapter(Context context, List<CustomerInfo> list, List<CustomerGroupInfo>
+            customerGroupInfoList) {
         super(context, list, R.layout.layout_item_customer_list);
         this.mCustomerGroupInfoList = customerGroupInfoList;
     }
@@ -26,23 +26,23 @@ public class CustomerInfoAdapter extends QuickAdapter<CustomerInfo> {
     @Override
     protected void convert(QuickViewHolder holder, CustomerInfo data, int position) {
         holder.setText(R.id.tv_title, data.getName());
-//        CheckBox checkBox = holder.getView(R.id.cb_customer);
-        ImageView chView = holder.getView(R.id.iv_check);
+        CheckBox checkBox = holder.getView(R.id.cb_customer);
+//        ImageView chView = holder.getView(R.id.iv_check);
         if (data.isChecked()) {
-//                checkBox.setChecked(true);
-            chView.setVisibility(View.VISIBLE);
+            checkBox.setChecked(true);
+//            chView.setVisibility(View.VISIBLE);
         } else {
-//                checkBox.setChecked(false);
-            chView.setVisibility(View.INVISIBLE);
+            checkBox.setChecked(false);
+//            chView.setVisibility(View.INVISIBLE);
         }
         holder.setOnClickListener(v -> {
-//            if (checkBox.isChecked()) {
-//                checkBox.setChecked(false);
-//                data.setChecked(false);
-//            } else {
-//                checkBox.setChecked(true);
-//                data.setChecked(true);
-//            }
+            if (checkBox.isChecked()) {
+                checkBox.setChecked(false);
+                data.setChecked(false);
+            } else {
+                checkBox.setChecked(true);
+                data.setChecked(true);
+            }
             // 考虑到数据联动，第一种方式，在操作的时候操作客户分组数据
             changeGroupSubDataState(data);
             set(position, data);

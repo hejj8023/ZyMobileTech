@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_filter_customer_list"
+        android:title="客户列表" />
+    <item
+        android:id="@+id/action_filter_customer_group_list"
+        android:title="客户分组" />
+    <item
+        android:id="@+id/action_filter_dev_names"
+        android:title="设备名称" />
+    <item
+        android:id="@+id/action_filter_dev_status"
+        android:title="设备状态" />
+    <item
+        android:id="@+id/action_filter_alarm_types"
+        android:title="报警类型" />
+    <item
+        android:id="@+id/action_filter_date_range"
+        android:title="日期范围" />
+</menu>
