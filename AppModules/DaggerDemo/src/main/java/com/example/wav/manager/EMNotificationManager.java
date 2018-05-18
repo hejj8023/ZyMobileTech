@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import com.blankj.utilcode.util.AppUtils;
+import com.example.wav.R;
 
 /**
  * Created by zhangsong on 17-9-27.
@@ -61,7 +62,7 @@ public class EMNotificationManager {
 
                 // create and send notification
                 Notification notification = new NotificationCompat.Builder(context)
-                        .setSmallIcon(context.getApplicationInfo().icon)
+                        .setSmallIcon(R.drawable.ic_notification_app_logo)
                         .setSound(defaultSoundUri)
                         .setWhen(System.currentTimeMillis())
                         .setAutoCancel(true)
