@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="10dp"
+	tools:context="com.example.testvideo.MainActivity">
+	
+	<Button
+		android:id="@+id/play"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="单个播放" />
+	
+	<Button
+		android:id="@+id/playbymode"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="单个播放+模式" />
+	
+	<Button
+		android:id="@+id/playmore"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="多个播放" />
+	
+	<Button
+		android:id="@+id/playmorebymode"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="多个播放+模式" />
+
+</LinearLayout>
