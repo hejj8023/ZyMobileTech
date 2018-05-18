@@ -52,24 +52,24 @@ public class XGNotificationManager {
         String uri = "android.resource://"
                 + context.getPackageName() + "/" + id;
         build.setSound(Uri.parse(uri));
-        // 设置自定义通知layout,通知背景等可以在layout里设置
-        build.setLayoutId(R.layout.notification);
-        // 设置自定义通知内容id
-        build.setLayoutTextId(R.id.content);
-        // 设置自定义通知标题id
-        build.setLayoutTitleId(R.id.title);
-        // 设置自定义通知图片id
-        build.setLayoutIconId(R.id.icon);
-        // 设置自定义通知图片资源
-        build.setLayoutIconDrawableId(R.drawable.android_bigicon);
-        // 设置状态栏的通知小图标
-        //build.setbigContentView()
-        build.setIcon(R.drawable.android_bigicon);
-        // 设置时间id
-        build.setLayoutTimeId(R.id.time);
+//        // 设置自定义通知layout,通知背景等可以在layout里设置
+//        build.setLayoutId(R.layout.notification);
+//        // 设置自定义通知内容id
+//        build.setLayoutTextId(R.id.content);
+//        // 设置自定义通知标题id
+//        build.setLayoutTitleId(R.id.title);
+//        // 设置自定义通知图片id
+//        build.setLayoutIconId(R.id.icon);
+//        // 设置自定义通知图片资源
+//        build.setLayoutIconDrawableId(R.mipmap.ic_launcher);
+//        // 设置状态栏的通知小图标
+//        //build.setbigContentView()
+        build.setIcon(R.mipmap.ic_launcher);
+//        // 设置时间id
+//        build.setLayoutTimeId(R.id.time);
 
         // 若不设定以上自定义layout，又想简单指定通知栏图片资源
-        //build.setNotificationLargeIcon(R.drawable.ic_action_search);
+        build.setNotificationLargeIcon(R.mipmap.ic_launcher);
         return build;
     }
 }
