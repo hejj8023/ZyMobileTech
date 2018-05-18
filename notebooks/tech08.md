@@ -237,3 +237,14 @@
          
 ## 腾讯信鸽自定义推送通知
    https://blog.csdn.net/u010844304/article/details/51986035
+   
+## gradle生成jar包
+   task createJar(type: Copy){
+       from('build/intermediates/bundles/release/')
+       into('libs/')
+       include('classes.jar')
+       rename('classes.jar','library.jar')
+   }
+   createJar.dependsOn(deleteJar, build)
+   
+   libs目录需要创建
