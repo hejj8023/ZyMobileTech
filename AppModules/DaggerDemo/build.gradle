@@ -142,7 +142,7 @@ dependencies {
     /*mavenCentral()*/
 //    compile 'cn.pedant.sweetalert:library:1.3'
     compile project(':ZySdkLib')
-    compile project(':LibModules:CommonAlertPop')
+//    compile project(':LibModules:CommonAlertPop')
 
     //信鸽推送
     compile 'com.tencent.xinge:xinge:3.1.2-beta'
