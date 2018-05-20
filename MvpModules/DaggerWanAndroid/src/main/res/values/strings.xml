@@ -9,4 +9,6 @@
         注册]]></Data>
         </string>
     <string name="tip_auto_login">自动登录中...</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
 </resources>
