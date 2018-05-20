@@ -5,7 +5,7 @@ include ':ZySdkLib'
 project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 
 //loadLibs()
-loadAppModule()
+//loadAppModule()
 //loadComponentLenarnModule()
 //loadDatasturectureModule()
 //loadDesignpatternModule()
