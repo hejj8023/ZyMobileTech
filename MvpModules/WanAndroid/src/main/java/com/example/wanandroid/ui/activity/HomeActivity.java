@@ -136,9 +136,9 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
     }
 
     private void initMainMenus() {
-        buttons[0] = findViewById(R.id.btn_home);
+        buttons[0] = (Button) findViewById(R.id.btn_home);
         buttons[0].setSelected(true);
-        buttons[1] = findViewById(R.id.btn_knowtechs);
+        buttons[1] = (Button) findViewById(R.id.btn_knowtechs);
 
         for (int i = 0; i < buttons.length; i++) {
             if (i != currentPosition) {
