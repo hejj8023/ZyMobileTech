@@ -55,7 +55,7 @@ public class TreeFragment extends BaseAbsListFragment<TreePresenter, TreeContrac
     }
 
     @Override
-    protected void loadDatas() {
+    public void loadDatas() {
         mPresenter.loadTreeList();
     }
 
