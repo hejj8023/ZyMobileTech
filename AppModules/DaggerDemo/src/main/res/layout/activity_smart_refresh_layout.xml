@@ -26,8 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/selector_list_item"
-            app:tabIndicatorColor="@color/common_dialog_title_bg_risk_yellow"
-            app:tabSelectedTextColor="@color/common_dialog_title_bg_risk_yellow"
+            app:tabIndicatorColor="@color/orange"
+            app:tabSelectedTextColor="@color/orange"
             app:tabTextColor="@color/white" />
     </android.support.design.widget.AppBarLayout>
 
