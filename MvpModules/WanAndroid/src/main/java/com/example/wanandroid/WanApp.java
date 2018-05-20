@@ -26,7 +26,8 @@ public class WanApp extends BaseApp {
         CommonConst.NET_CACHE_DIR_NAME = "wanandroid_cache";
         PreUtils.init("wanandorid_userinfo");
         // TODO: 2018/4/19 收藏和取消收藏的时候是需要cookie的，没有cookie会不成功
-        OkHttpUtils.setCookieJar(new CookieJar() {
+        OkHttpUtils.isSupportDataInterceptor(true);
+        OkHttpUtils.getCookieJar(new CookieJar() {
             @Override
             public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
                 String cookieStr = (String) PreUtils.get(url.host(), "");
