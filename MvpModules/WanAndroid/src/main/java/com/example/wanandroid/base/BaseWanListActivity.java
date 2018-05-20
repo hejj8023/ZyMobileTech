@@ -34,8 +34,8 @@ public abstract class BaseWanListActivity<P extends BasePresenter<V>, V extends 
 
     @Override
     public void initView() {
-        toolbar = findViewById(R.id.toolbar);
-        containerLayout = findViewById(R.id.frameLayout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        containerLayout = (LinearLayout) findViewById(R.id.frameLayout);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
