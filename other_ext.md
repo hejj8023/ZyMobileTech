@@ -85,9 +85,7 @@ LifeHelper项目
 compile 'com.squareup.picasso:picasso:2.5.2'
 compile 'com.github.bumptech.glide:glide:3.7.0'
 compile 'jp.wasabeef:glide-transformations:2.0.1'
-//takePhoto框架
-compile 'com.jph.takephoto:takephoto_library:4.0.3'
-compile 'com.lzy.widget:imagepicker:0.5.0'
+
 //导航栏
 compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar'
 //快速索引
