@@ -4,7 +4,7 @@
     android:id="@+id/common_toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_54"
-    android:background="@color/_0091ea"
+    android:background="@drawable/blue_gradient_bg"
     app:layout_scrollFlags="scroll|enterAlways"
     app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
     app:title="">
