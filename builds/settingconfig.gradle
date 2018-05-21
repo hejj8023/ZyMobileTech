@@ -131,8 +131,8 @@ private void loadKotlinModules() {
     include ':KotlinAppModules'
     project(":KotlinAppModules").projectDir = file
 //    include ':KotlinAppModules:HelloKt'
-//    include ':KotlinAppModules:Fasthub'
-    include ':KotlinAppModules:wanandroidclient'
+    include ':KotlinAppModules:Fasthub'
+//    include ':KotlinAppModules:wanandroidclient'
 }
 
 private void loadGithubLibs() {

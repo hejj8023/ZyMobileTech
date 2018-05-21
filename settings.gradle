@@ -1,7 +1,5 @@
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
 include ':ZySdkLib'
-//, ':VideoPlayers'
-//project(':ZySdkLib').projectDir = new File('../ZYMobileSdk/SDKLibrary')
 project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 
 //loadLibs()
@@ -15,7 +13,7 @@ project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 //loadInteriewModule()
 //loadAlgorithmsModule()
 //loadGoogleSampleModule()
-//loadKotlinModule()
+loadKotlinModule()
 //loadGithubLib()
 //loadToolAppModule()
 //loadMvpModule()
