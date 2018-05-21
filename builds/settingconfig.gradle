@@ -31,7 +31,6 @@ private void loadAppModules() {
 //    include ':AppModules:JDStore'
 //    include ':AppModules:TakeWay'
 //    include ':AppModules:FaceApp'
-    include ':AppModules:DaggerDemo'
 //    include ':AppModules:FaceHelper'
 }
 
