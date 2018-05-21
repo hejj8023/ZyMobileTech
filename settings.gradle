@@ -1,7 +1,6 @@
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
-include ':ZySdkLib', ':SmartHome'
+include ':ZySdkLib'
 //, ':VideoPlayers'
-//project(':ZySdkLib').projectDir = new File('../ZYMobileSdk/SDKLibrary')
 project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 
 //loadLibs()

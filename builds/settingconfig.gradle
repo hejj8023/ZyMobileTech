@@ -32,6 +32,7 @@ private void loadAppModules() {
 //    include ':AppModules:TakeWay'
 //    include ':AppModules:FaceApp'
 //    include ':AppModules:FaceHelper'
+    include ':AppModules:SmartHome'
 }
 
 private void loadComponentLenarnModules() {
