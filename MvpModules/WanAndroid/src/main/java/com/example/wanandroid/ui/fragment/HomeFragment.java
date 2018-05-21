@@ -64,7 +64,7 @@ public class HomeFragment extends BaseAbsListFragment<HomeListPresenter, HomeLis
     }
 
     @Override
-    protected void loadDatas() {
+    public void loadDatas() {
         mPresenter.getHomeList();
     }
 

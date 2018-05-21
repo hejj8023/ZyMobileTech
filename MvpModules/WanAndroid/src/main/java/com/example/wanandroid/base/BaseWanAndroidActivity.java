@@ -37,8 +37,8 @@ public abstract class BaseWanAndroidActivity<P extends BasePresenter<V>, V exten
         super.setContentView(layoutResID);
 
         // TODO: 2018/4/10 在这里处理注解无法使用的问题
-        toolbar = findViewById(R.id.toolbar);
-        containerLayout = findViewById(R.id.frameLayout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        containerLayout = (LinearLayout) findViewById(R.id.frameLayout);
         if (initToolBar()) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
