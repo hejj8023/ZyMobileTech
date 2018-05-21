@@ -90,7 +90,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.51"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.51"
+    implementation rootProject.ext.ext_tools.multidex
 
     /*butternife*/
     implementation rootProject.ext.ext_tools.butterknife
@@ -143,12 +144,10 @@ dependencies {
 
     implementation rootProject.ext.ext_tools.loadinglayout
 
-    implementation rootProject.ext.ext_tools.lottie
+//    implementation rootProject.ext.ext_tools.lottie
 
-    implementation rootProject.ext.ext_tools.multidex
-
-    implementation rootProject.ext.ext_tools.sak
-
+//    implementation rootProject.ext.ext_tools.sak
+//
 //    debugImplementation rootProject.ext.ext_tools.uetool
 //    releaseImplementation rootProject.ext.ext_tools.uetool_no_op
 //    debugImplementation rootProject.ext.ext_tools.uetool_fresco
@@ -160,7 +159,7 @@ dependencies {
 //    releaseImplementation rootProject.ext.ext_tools.release_leakcanary_android_no_op
 //    testImplementation rootProject.ext.ext_tools.test_leakcanary_android_no_op
 
-    implementation rootProject.ext.ext_tools.vlayout
+//    implementation rootProject.ext.ext_tools.vlayout
     implementation rootProject.ext.ext_tools.agentweb
     implementation rootProject.ext.ext_tools.flowlayout_lib
     implementation rootProject.ext.ext_tools.VerticalTabLayout
@@ -169,14 +168,14 @@ dependencies {
 }
 
 //解决支持库版本不兼容问题
-configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == 'com.android.support') {
-            if (!requested.name.startsWith("multidex")) {
-                //  不要设置太高，26以上的版本会出现问题
-                details.useVersion '25.3.0'
-            }
-        }
-    }
-}
+//configurations.all {
+//    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//        def requested = details.requested
+//        if (requested.group == 'com.android.support') {
+//            if (!requested.name.startsWith("multidex")) {
+//                //  不要设置太高，26以上的版本会出现问题
+//                details.useVersion '25.3.0'
+//            }
+//        }
+//    }
+//}
