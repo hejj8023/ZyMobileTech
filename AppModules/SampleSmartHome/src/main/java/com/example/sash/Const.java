@@ -5,5 +5,7 @@ package com.example.sash;
  */
 
 public class Const {
-    public static final int REQ_ENABLE_BT = 10010;
+    public static final int REQ_ENABLE_BT = 112;
+    public static final int PERMISSION_REQ_BT = 104;
+    public static final int ACCESS_LOCATION = 103;
 }
