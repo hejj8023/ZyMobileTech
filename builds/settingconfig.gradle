@@ -24,15 +24,13 @@ private void loadAppModules() {
 //    include ':AppModules:MSocketClient'
 //    include ':AppModules:MSocketServer'
 //    include ':AppModules:KuaiChuan'
-//    include ':AppModules:SpeechAssistant'
 //    include ':AppModules:TodayStepCounter'
 //    include ':AppModules:vvlive'
-//    include ':AppModules:SharingBike'
-//    include ':AppModules:JDStore'
-//    include ':AppModules:TakeWay'
 //    include ':AppModules:FaceApp'
 //    include ':AppModules:FaceHelper'
+    include ':AppModules:Mobike'
     include ':AppModules:SmartHome'
+    include ':AppModules:SampleSmartHome'
 }
 
 private void loadComponentLenarnModules() {
