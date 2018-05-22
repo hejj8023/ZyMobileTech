@@ -29,7 +29,7 @@ public class MainPrsenter extends BasePresenter<MainContract.IMainView> implemen
                 (this, MainModel.class.getName()) {
             @Override
             public void onNext(List<BluetoothBean> bluetoothBeans) {
-
+                mIMainView.setData(bluetoothBeans);
             }
         });
     }
