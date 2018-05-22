@@ -3,6 +3,7 @@ package com.example.sash;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,11 +32,14 @@ import com.orhanobut.logger.Logger;
 import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.refreshsupport.smartrefresh.BaseMVPSRRListActivity;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zhiyangstudio.commonlib.utils.ThreadUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 import com.zhiyangstudio.commonlib.widget.dialog.LoadingDialog;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class MainActivity extends BaseMVPSRRListActivity<MainPrsenter, MainContract.IMainView,
@@ -46,7 +50,8 @@ public class MainActivity extends BaseMVPSRRListActivity<MainPrsenter, MainContr
      * 蓝牙扫描广播
      */
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        boolean isStop = false;
+        boolean isPairAction = true;
+        BluetoothDevice device = null;
 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -56,10 +61,11 @@ public class MainActivity extends BaseMVPSRRListActivity<MainPrsenter, MainContr
                 tipStr = "蓝牙扫描过程开始...";
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 tipStr = "蓝牙扫描过程结束...";
-                isStop = true;
+                // TODO: 2018/5/22 展示扫描的结果。不要直接使用mList
+                setData(mBluetoothBeans);
             } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice
+                device = intent.getParcelableExtra(BluetoothDevice
                         .EXTRA_DEVICE);
                 tipStr = "发现设备" + device.getName() + "," + device.getAddress();
 
@@ -72,13 +78,26 @@ public class MainActivity extends BaseMVPSRRListActivity<MainPrsenter, MainContr
                 ParcelUuid[] uuids = device.getUuids();
                 bluetoothBean.setUuid(uuids);
                 mBluetoothBeans.add(bluetoothBean);
+            } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
+                isPairAction = true;
+                // 状态改变的广播
+                device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                switch (device.getBondState()) {
+                    case BluetoothDevice.BOND_BONDING://正在配对
+                        LoggerUtils.loge("正在配对......");
+                        break;
+                    case BluetoothDevice.BOND_BONDED://配对结束
+                        LoggerUtils.loge("完成配对");
+                        connect(device);
+                        break;
+                    case BluetoothDevice.BOND_NONE://取消配对/未配对
+                        LoggerUtils.loge("取消配对");
+                    default:
+                        break;
+                }
             }
             LoggerUtils.loge(tipStr);
             mLoadingLayout.setTips(tipStr);
-            if (isStop) {
-                // TODO: 2018/5/22 展示扫描的结果。不要直接使用mList
-                setData(mBluetoothBeans);
-            }
         }
     };
 
@@ -145,8 +164,6 @@ public class MainActivity extends BaseMVPSRRListActivity<MainPrsenter, MainContr
                     helper.setText(R.id.tv_uuid, "UUIDs \r\n [ " + sb.toString() + " ]");
                 }
                 helper.setOnClickListener(R.id.root_item, v -> {
-                    // TODO: 2018/5/22 连接设备
-//                    showWatingDialog("正在与设备:" + itemName + "建立连接,请稍候...");
                     if (!BluetoothAdapter.checkBluetoothAddress(itemAddress)) {
                         ToastUtils.showShort("蓝牙设备地址无效");
                         return;
@@ -154,24 +171,66 @@ public class MainActivity extends BaseMVPSRRListActivity<MainPrsenter, MainContr
 
                     BluetoothDevice remoteDevice = mBluetoothAdapter.getRemoteDevice(itemAddress);
                     if (remoteDevice != null) {
-                        // TODO: 2018/5/22 连接设备
-                        Boolean result = null;
-                        try {
-                            result = ClsUtils.createBond(BluetoothDevice.class, remoteDevice);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+
+                        int bondState = remoteDevice.getBondState();
+                        switch (bondState) {
+                            case BluetoothDevice.BOND_NONE:
+                                // 未配对,设备配对
+                                Boolean result = null;
+                                try {
+                                    result = ClsUtils.createBond(BluetoothDevice.class,
+                                            remoteDevice);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                                LoggerUtils.loge("result = " + result);
+                                if (result) {
+                                    // 发起配对成功，并不代表配对成功,因为可能被拒绝
+                                    return;
+                                }
+                                break;
+                            case BluetoothDevice.BOND_BONDED:
+                                // 已配对,进行连接
+                                connect(remoteDevice);
+                                break;
                         }
 
-                        LoggerUtils.loge("result = " + result);
-                        if (result) {
-                            // 发起配对成功，并不代表配对成功,因为可能被拒绝
-                            return;
-                        }
                     }
                 });
 
             }
         };
+    }
+
+    /**
+     * 蓝牙设备连接
+     *
+     * @param device
+     */
+    private void connect(BluetoothDevice device) {
+        // 固定uuid
+        String SPP_UUID = "00001101-0000-1000-8000-00805F9B34FB";
+        UUID uuid = UUID.fromString(SPP_UUID);
+        BluetoothSocket socket = null;
+        try {
+            socket = device.createRfcommSocketToServiceRecord(uuid);
+
+            // 连接需要放到子线程中
+            BluetoothSocket finalSocket = socket;
+            ThreadUtils.executeBySingleThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        finalSocket.connect();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showWatingDialog(String s) {
