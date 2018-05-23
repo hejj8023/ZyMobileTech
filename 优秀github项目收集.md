@@ -63,3 +63,30 @@ https://github.com/jikexueyuanwiki
 #  优雅的干货客户端
 https://github.com/leonHua/LGank
 
+# 医学考试APP 模拟考试 随机抽题 错题练习 视频播放 题库导入
+https://github.com/luojie1024/Answer
+
+# 超级课程表 课程格子 教务系统抓取 SQLite Android Studio HttpWatch Jsoup解析网页
+https://github.com/luojie1024/WeiFur
+
+#物联网
+## 一个物联网(IoT)开发的入门教程
+https://github.com/nladuo/IoT-Firstep
+
+## 中国移动物联网开放平台 AndroidSDK
+https://github.com/cm-heclouds/AndroidSDK
+
+## 基于xmpp的android客户端，实现与物联网节点的交互。
+https://github.com/tiandawu/IotXmpp
+
+## 汽车-androidAPP-物联网-蓝牙
+https://github.com/tangqianfeng/BlueToothProject
+
+## 基于物联网的智能厨房android客户端
+https://github.com/Eccolala/BCCookIt
+
+## 智能家居 控制 物联网 摄像头 开关
+https://github.com/luojie1024/HuanTaiSmartHome
+
+## 环泰智慧社区 智能家居 物联网
+https://github.com/luojie1024/SmartCommunity

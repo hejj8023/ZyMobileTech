@@ -239,6 +239,7 @@
    https://blog.csdn.net/u010844304/article/details/51986035
    
 ## gradle生成jar包
+
    task createJar(type: Copy){
        from('build/intermediates/bundles/release/')
        into('libs/')
@@ -248,3 +249,17 @@
    createJar.dependsOn(deleteJar, build)
    
    libs目录需要创建
+   
+## 代码中通过设置toolbar popuptheme设置men分割线
+   
+       toolbar.setPopupTheme(R.style.AppToolbarPopupTheme);
+       
+       <style name="AppToolbarPopupTheme" parent="Widget.AppCompat.PopupMenu.Overflow">
+       <item name="android:dropDownListViewStyle">@style/AppDropDownListViewStyle</item>
+       </style>
+       
+       <style name="AppDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
+       <item name="android:showDividers">middle</item>
+       <item name="android:divider">@color/gray</item>
+       <item name="android:dividerHeight">1px</item>
+       </style>   
