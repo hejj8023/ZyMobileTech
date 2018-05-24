@@ -4,10 +4,13 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.p2p.WifiP2pManager;
-import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -51,11 +54,22 @@ public class SampleWifiActivity extends BaseMVPToolbarSupportSRListActivity<Wifi
     public void beforeCreate() {
         super.beforeCreate();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_WIFI_STATE, Manifest
                     .permission
                     .CHANGE_WIFI_MULTICAST_STATE, Manifest.permission.CHANGE_WIFI_STATE}, Const
                     .PERMISSION_REQ_WIFI);
+        }*/
+
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+// 获取wifi连接需要定位权限,没有获取权限
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_WIFI_STATE,
+            }, Const.PERMISSION_REQ_WIFI);
         }
     }
 
@@ -72,6 +86,20 @@ public class SampleWifiActivity extends BaseMVPToolbarSupportSRListActivity<Wifi
     protected void onResume() {
         super.onResume();
         registerReceiver(mReceiver, mIntentFilter);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case Const.PERMISSION_REQ_WIFI:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager
+                        .PERMISSION_GRANTED) {// 允许
+                } else {
+                }
+                break;
+        }
     }
 
     @Override
