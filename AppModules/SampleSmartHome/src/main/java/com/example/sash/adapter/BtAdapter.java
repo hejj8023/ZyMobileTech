@@ -13,14 +13,16 @@ import com.example.sash.Const;
 import com.example.sash.R;
 import com.example.sash.bean.BluetoothBean;
 import com.example.sash.ui.activity.SampleBluetoothActivity;
-import com.example.sash.utils.ClsUtils;
+import com.zhiyangstudio.commonlib.utils.BluetoothUtils;
+import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.StreamUtils;
 import com.zhiyangstudio.commonlib.utils.ThreadUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -56,9 +58,10 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
         View vd03 = helper.getView(R.id.v_d_03);
 
         String itemName = item.getName();
-        helper.setText(R.id.tv_devname, "设备名称:" + itemName);
+        helper.setText(R.id.tv_devname, UiUtils.getStr(R.string.tip_dev_name) + itemName);
         String itemAddress = item.getAddress();
-        helper.setText(R.id.tv_devmac, "Mac地址:" + itemAddress);
+        helper.setText(R.id.tv_devmac, UiUtils.getStr(R.string.tip_mac_addr) +
+                itemAddress);
 
         BluetoothDevice remoteDev = btAdapter.getRemoteDevice(itemAddress);
         if (remoteDev != null) {
@@ -66,13 +69,13 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
             switch (bondState) {
                 case BluetoothDevice.BOND_NONE:
                     // 未配对,设备配对
-                    helper.setText(R.id.tv_devtype, "未配对");
+                    helper.setText(R.id.tv_devtype, UiUtils.getStr(R.string.tip_un_pair));
                     if (pairView.getVisibility() != View.VISIBLE)
                         pairView.setVisibility(View.VISIBLE);
                     break;
                 case BluetoothDevice.BOND_BONDED:
                     // 已配对,进行连接
-                    helper.setText(R.id.tv_devtype, "已配对");
+                    helper.setText(R.id.tv_devtype, UiUtils.getStr(R.string.tip_paired));
                     if (pairView.getVisibility() != View.GONE)
                         pairView.setVisibility(View.GONE);
                     if (vd01.getVisibility() != View.GONE)
@@ -114,7 +117,7 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
             // 未配对,设备配对
             Boolean result = null;
             try {
-                result = ClsUtils.createBond(BluetoothDevice.class, btAdapter
+                result = BluetoothUtils.createBond(BluetoothDevice.class, btAdapter
                         .getRemoteDevice(itemAddress));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -132,7 +135,7 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
             // 取消配对
             Boolean result = null;
             try {
-                result = ClsUtils.removeBond(BluetoothDevice.class, btAdapter
+                result = BluetoothUtils.removeBond(BluetoothDevice.class, btAdapter
                         .getRemoteDevice(itemAddress));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -152,17 +155,15 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
         testView.setOnClickListener(v -> {
             // 发送测试数据
             try {
-                if (socket != null && socket.isConnected()) {
-                    if (mOutputStream != null) {
-                        mOutputStream.write("test sample data".getBytes());
-                    } else {
-                        ToastUtils.showShort("输出流为空不能发送数据");
-                    }
+                if (mOutputStream != null) {
+                    mOutputStream.write("test sample data\r\n".getBytes());
+                    mOutputStream.flush();
                 } else {
-                    ToastUtils.showShort("链接已断开请重新连接后再发送数据");
+                    ToastUtils.showShort("输出流为空不能发送数据");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                LoggerUtils.loge("bt send data error msg = " + e.getMessage());
             }
         });
     }
@@ -175,31 +176,49 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
     private void connect(BluetoothDevice device) {
         // 固定uuid
 
+        BluetoothSocket tmp = null;
         try {
-            socket = device.createRfcommSocketToServiceRecord(Const.UUID_DATA);
-            // 连接需要放到子线程中
-            BluetoothSocket finalSocket = socket;
-            ThreadUtils.executeBySingleThread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        finalSocket.connect();
-                        mOutputStream = finalSocket.getOutputStream();
-                        if (mOutputStream != null) {
-                            UiUtils.showToastSafe("设备连接成功");
-                        }
-
-                        InputStream inputStream = finalSocket.getInputStream();
-                        String result = StreamUtils.convertStr4Is1(inputStream);
-                        UiUtils.showToastSafe("收到来自服务器端的数据:" + result);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            tmp = device.createRfcommSocketToServiceRecord(Const.UUID_DATA);
         } catch (IOException e) {
             e.printStackTrace();
+            LoggerUtils.loge("bt createRfcommSocketToServiceRecord error msg = " + e.getMessage());
         }
+
+        socket = tmp;
+
+        // 连接需要放到子线程中
+        ThreadUtils.executeBySingleThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    socket.connect();
+                    mOutputStream = socket.getOutputStream();
+                    if (mOutputStream != null) {
+                        UiUtils.showToastSafe(UiUtils.getStr(R.string.tip_connect_sucess));
+                    }
+
+                    InputStream inputStream = socket.getInputStream();
+                    if (inputStream != null) {
+                        BufferedReader br = new BufferedReader(new
+                                InputStreamReader(inputStream));
+                        String line = "";
+                        // TODO: 2018/5/24 连接未断开是收不到服务器发送过来的数据的。
+                        while ((line = br.readLine()) != null) {
+                            String text = UiUtils.getStr(R.string.tip_rec_from_server_msg) + line;
+                            LoggerUtils.loge(text);
+                            ToastUtils.showShort(text);
+                        }
+
+                        if (EmptyUtils.isEmpty(line)) {
+                            LoggerUtils.loge("与服务器判断了连接...");
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    LoggerUtils.loge("bt connect error msg = " + e.getMessage());
+                }
+            }
+        });
     }
 
 }

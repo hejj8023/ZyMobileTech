@@ -5,7 +5,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.sash"
-        minSdkVersion rootProject.ext._android.minSdkVersion
+        minSdkVersion 16
         targetSdkVersion rootProject.ext._android.targetSdkVersion
         versionCode rootProject.ext._android.versionCode
         versionName rootProject.ext._android.versionName

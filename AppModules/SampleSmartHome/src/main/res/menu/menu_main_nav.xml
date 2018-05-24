@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<group
+		android:id="@+id/g_01"
+		android:checkableBehavior="single">
+		
+		<item
+			android:id="@+id/nav_menu_1"
+			android:title="t01" />
+	
+	</group>
+	<group
+		android:id="@+id/g_02"
+		android:checkableBehavior="single">
+		
+		<item
+			android:id="@+id/nav_menu_2"
+			android:title="t02" />
+	
+	</group>
+	<group
+		android:id="@+id/g_03"
+		android:checkableBehavior="single">
+		
+		<item
+			android:id="@+id/nav_menu_3"
+			android:title="t03" />
+	
+	</group>
+	<group
+		android:id="@+id/g_04"
+		android:checkableBehavior="single">
+		
+		<item
+			android:id="@+id/nav_menu_4"
+			android:title="t04" />
+	
+	</group>
+	<group
+		android:id="@+id/g_05"
+		android:checkableBehavior="single">
+		
+		<item
+			android:id="@+id/nav_menu_5"
+			android:title="t05" />
+	
+	</group>
+	
+	<group
+		android:id="@+id/g_ex_01"
+		android:checkableBehavior="single">
+		
+		<item
+			android:id="@+id/nav_menu_ex_1"
+			android:title="ext01" />
+		<item
+			android:id="@+id/nav_menu_ex_2"
+			android:title="ext02" />
+		<item
+			android:id="@+id/nav_menu_ex_3"
+			android:title="ext03" />
+		<item
+			android:id="@+id/nav_menu_ex_4"
+			android:title="ext04" />
+		<item
+			android:id="@+id/nav_menu_ex_5"
+			android:title="ext05" />
+	</group>
+
+</menu>

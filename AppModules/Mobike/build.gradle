@@ -5,13 +5,14 @@ android {
 
     defaultConfig {
         applicationId "com.example.mobike"
-        minSdkVersion rootProject.ext._android.minSdkVersion
+        minSdkVersion 16
         targetSdkVersion rootProject.ext._android.targetSdkVersion
         versionCode rootProject.ext._android.versionCode
         versionName rootProject.ext._android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -66,8 +67,6 @@ dependencies {
 
     implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
 
-    implementation rootProject.ext.ext_tools.glide
-    annotationProcessor rootProject.ext.ext_tools.glide_compiler
 
     implementation rootProject.ext.ext_tools.rxjava
     implementation rootProject.ext.ext_tools.rxandroid
