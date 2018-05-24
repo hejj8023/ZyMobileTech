@@ -15,4 +15,5 @@ public class Const {
      */
     public static final java.util.UUID UUID_DATA = java.util.UUID.fromString
             ("00001101-0000-1000-8000-00805F9B34FB");
+    public static final int PERMISSION_REQ_WIFI = 1004;
 }

@@ -248,8 +248,12 @@ https://blog.csdn.net/qq_24531461/article/details/53466906
         
 2. wifi
 
+https://www.jianshu.com/p/c415691b282c
 
 
+### 好的案例
+http://www.demodashi.com/demo/10660.html
+https://blog.csdn.net/VNanyesheshou/article/details/50771698
 
 # recyclerview 万能分割线
 https://github.com/YuJunKui1995/UniversalItemDecoration
@@ -270,3 +274,67 @@ https://blog.csdn.net/soslinken/article/details/53125935
     <item name="android:divider">@color/gray</item>
     <item name="android:dividerHeight">1px</item>
     </style>
+
+    
+    public class ArrayListRemove {
+        public static void main(String[] args) {
+            ArrayList<String> list = new ArrayList<String>();
+            list.add("beijing");
+            list.add("shanghai");
+            list.add("shanghai");
+            list.add("guangzhou");
+            list.add("shenzhen");
+            list.add("hangzhou");
+            remove11(list, "shanghai");
+    
+        }
+    
+        private static void print(List<String> list){
+            for (String item : list) {
+                System.out.println("元素值：" + item);
+            }
+        }
+        
+## Java编程：删除 List 元素的三种正确方法   
+
+    /*
+     * 正确
+     */
+    public static void remove14(List<String> list, String target){
+        for(int i = list.size() - 1; i >= 0; i--){
+            String item = list.get(i);
+            if(target.equals(item)){
+                list.remove(item);
+            }
+        }
+        print(list);
+    }
+    
+    /*
+     * 正确
+     */
+    public static void remove22(ArrayList<String> list, String target) {
+        final CopyOnWriteArrayList<String> cowList = new CopyOnWriteArrayList<String>(list);
+        for (String item : cowList) {
+            if (item.equals(target)) {
+                cowList.remove(item);
+            }
+        }
+        print(cowList);
+    }
+    
+    /*
+     * 正确
+     */
+    public static void remove32(List<String> list, String target){
+        Iterator<String> iter = list.iterator();
+        while (iter.hasNext()) {
+            String item = iter.next();
+            if (item.equals(target)) {
+                iter.remove();
+            }
+        }
+        print(list);
+    }
+    
+    }

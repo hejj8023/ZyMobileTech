@@ -12,22 +12,6 @@ public class BluetoothBean {
     private int tupe;
     private ParcelUuid[] uuid;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public int getTupe() {
         return tupe;
     }
@@ -42,5 +26,33 @@ public class BluetoothBean {
 
     public void setUuid(ParcelUuid[] uuid) {
         this.uuid = uuid;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof BluetoothBean) {
+            BluetoothBean tb = (BluetoothBean) obj;
+            if (this.getName().equals(tb.getName()))
+                return true;
+            if (this.getAddress().equals(tb.getAddress()))
+                return true;
+        }
+        return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

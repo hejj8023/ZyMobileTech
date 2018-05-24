@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.ParcelUuid;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -31,11 +32,13 @@ import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.refreshsupport.extsupport.BaseMVPToolbarSupportSRListActivity;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.StreamUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +61,8 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+
+            LoggerUtils.loge("action = " + action);
             String tipStr = "";
             // When discovery finds a device
             if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
@@ -66,7 +71,6 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
                 ensureDiscoverable();
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 tipStr = "蓝牙扫描过程结束...";
-                // TODO: 2018/5/22 展示扫描的结果。不要直接使用mList
                 setData(mBluetoothBeans);
             } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
@@ -81,12 +85,16 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
                     BluetoothBean bluetoothBean = new BluetoothBean();
                     bluetoothBean.setName(name);
                     bluetoothBean.setAddress(device.getAddress());
-                    bluetoothBean.setTupe(device.getType());
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                        bluetoothBean.setTupe(device.getType());
+                    }
                     ParcelUuid[] uuids = device.getUuids();
                     bluetoothBean.setUuid(uuids);
-                    mBluetoothBeans.add(bluetoothBean);
+                    if (!mBluetoothBeans.contains(bluetoothBean)) {
+                        mBluetoothBeans.add(bluetoothBean);
+                    }
                 }
-            } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
+            } else if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
                 int blueState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, 0);
                 switch (blueState) {
                     case BluetoothAdapter.STATE_TURNING_ON:
@@ -96,28 +104,42 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
                         mTextView.append("蓝牙已打开");
                         LoggerUtils.loge("STATE_ON");
 
+                        // TODO: 2018/5/24 可以在这里执行扫描的操作
                         isPairAction = true;
                         // 状态改变的广播
                         device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                        switch (device.getBondState()) {
-                            case BluetoothDevice.BOND_BONDING://正在配对
-                                LoggerUtils.loge("正在配对......");
-                                break;
-                            case BluetoothDevice.BOND_BONDED://配对结束
-                                LoggerUtils.loge("完成配对");
-                                updateListItemBondState(0, "已配对");
-                                ToastUtils.showShort("完成配对");
-                                break;
-                            case BluetoothDevice.BOND_NONE://取消配对/未配对
-                                LoggerUtils.loge("取消配对完成");
-                                updateListItemBondState(1, "未配对");
-                                ToastUtils.showShort("取消配对完成");
-                            default:
-                                break;
+                        if (device != null) {
+                            switch (device.getBondState()) {
+                                case BluetoothDevice.BOND_BONDING://正在配对
+                                    LoggerUtils.loge("正在配对......");
+                                    break;
+                                case BluetoothDevice.BOND_BONDED://配对结束
+                                    LoggerUtils.loge("完成配对");
+                                    updateListItemBondState(0, "已配对");
+                                    ToastUtils.showShort("完成配对");
+                                    break;
+                                case BluetoothDevice.BOND_NONE://取消配对/未配对
+                                    LoggerUtils.loge("取消配对完成");
+                                    updateListItemBondState(1, "未配对");
+                                    ToastUtils.showShort("取消配对完成");
+                                default:
+                                    break;
+                            }
                         }
 
                         if (isServerModel) {
-                            mServerBtThread.start();
+                            if (mServerBtThread != null) {
+                                mServerBtThread.cancel();
+                                mServerBtThread.interrupt();
+                            }
+
+                            UiUtils.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mServerBtThread = new ServerBtThread();
+                                    mServerBtThread.start();
+                                }
+                            }, 30);
                         }
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
@@ -193,13 +215,11 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.rb_bt_client:
-//                    resetServerThread();
                     isServerModel = false;
                     break;
                 case R.id.rb_bt_server:
                     // 开启server服务
                     isServerModel = true;
-//                    mServerBtThread.start();
                     break;
             }
         });
@@ -241,9 +261,6 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
         intent.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
         intent.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(mReceiver, intent);
-
-        mServerBtThread = new ServerBtThread();
-
     }
 
     @Override
@@ -254,13 +271,23 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // TODO: 2018/5/24 如果在扫描设备就取消设备的扫描
+        if (mBluetoothAdapter.isDiscovering()) {
+            mBluetoothAdapter.cancelDiscovery();
+        }
         unregisterReceiver(mReceiver);
-        resetServerThread();
+        if (isServerModel)
+            resetServerThread();
+        if (mBluetoothAdapter.isEnabled()) {
+            mBluetoothAdapter.disable();
+        }
     }
 
     private void resetServerThread() {
-        mServerBtThread.cancel();
-        mServerBtThread.interrupt();
+        if (mServerBtThread != null) {
+            mServerBtThread.cancel();
+            mServerBtThread.interrupt();
+        }
     }
 
     @Override
@@ -406,16 +433,8 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_bt_main, menu);
         return true;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Const.REQ_ENABLE_BT) {
-            LoggerUtils.loge("蓝牙开启成功");
-        }
     }
 
     @Override
@@ -425,7 +444,7 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
 
     @Override
     protected String getCurrentTitle() {
-        return "蓝牙功能管理";
+        return "蓝牙管理";
     }
 
 
@@ -442,6 +461,7 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
                                 .UUID_DATA);
             } catch (IOException e) {
                 e.printStackTrace();
+                LoggerUtils.loge("listenUsingRfcommWithServiceRecord err msg = " + e.getMessage());
             }
             mmServerSocket = tmp;
         }
@@ -449,15 +469,15 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
         @Override
         public void run() {
             BluetoothSocket socket = null;
-            // Keep listening until exception occurs or a socket is returned
             while (true) {
                 if (Thread.currentThread().isInterrupted())
                     return;
 
                 try {
-                    if (mmServerSocket != null)
-                        socket = mmServerSocket.accept();
+                    socket = mmServerSocket.accept();
+                    LoggerUtils.loge("连接的设备的:" + socket.getRemoteDevice().getName());
                 } catch (IOException e) {
+                    LoggerUtils.loge("accept exception = " + e.getMessage());
                     break;
                 }
                 // If a connection was accepted
@@ -465,12 +485,35 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
                     // Do work to manage the connection (in a separate thread)
 
                     try {
-                        InputStream inputStream = socket.getInputStream();
-                        String str = StreamUtils.convertStr4Is1(inputStream);
-                        ToastUtils.showShort("接收到客户端发送过来的消息:" + str);
+                        OutputStream outputStream = socket.getOutputStream();
+                        outputStream.write("hello\r\n".getBytes());
+                        outputStream.flush();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
+                    try {
+                        InputStream inputStream = socket.getInputStream();
+                        if (inputStream != null) {
+                            BufferedReader br = new BufferedReader(new
+                                    InputStreamReader(inputStream));
+                            String line = "";
+                            while ((line = br.readLine()) != null) {
+                                String text = UiUtils.getStr(R.string.tip_rec_from_client_msg) +
+                                        line;
+                                LoggerUtils.loge(text);
+                                ToastUtils.showShort(text);
+                            }
+
+                            if (EmptyUtils.isEmpty(line)) {
+                                LoggerUtils.loge("与客户端判断了连接...");
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
                     break;
                 }
 

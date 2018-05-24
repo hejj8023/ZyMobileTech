@@ -1,3 +1,10 @@
 <resources>
 	<string name="app_name">SampleSamrtHome</string>
+	<string name="tip_rec_from_server_msg">接收到服务器发送过来的消息:</string>
+	<string name="tip_connect_sucess">设备连接成功</string>
+	<string name="tip_rec_from_client_msg">接收到客户端发送过来的消息:</string>
+	<string name="tip_dev_name">设备名称:</string>
+	<string name="tip_mac_addr">Mac地址:</string>
+	<string name="tip_un_pair">未配对</string>
+	<string name="tip_paired">已配对</string>
 </resources>

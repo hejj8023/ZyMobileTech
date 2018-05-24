@@ -1,12 +1,16 @@
 package com.example.sash.ui.activity;
 
+import android.support.design.widget.NavigationView;
 import android.view.View;
 
 import com.example.sash.R;
 import com.zhiyangstudio.commonlib.corel.BaseActivity;
 import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
+import com.zhiyangstudio.commonlib.utils.CommonUtils;
 import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zhiyangstudio.commonlib.utils.UiUtils;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -14,6 +18,10 @@ import butterknife.OnClick;
  */
 
 public class AppMainActivity extends BaseToolbarSupportActivity {
+
+    @BindView(R.id.navi_app_man)
+    NavigationView mNavigationView;
+
     @Override
     protected boolean initToolBar() {
         return true;
@@ -29,6 +37,11 @@ public class AppMainActivity extends BaseToolbarSupportActivity {
         return R.layout.activity_app_main;
     }
 
+    @Override
+    public void initView() {
+        CommonUtils.setNavigationMenuLineStyle(mNavigationView, UiUtils.getColor(R.color.lightgray),
+                1);
+    }
 
     @OnClick({R.id.btn_manage_bt, R.id.btn_manage_wifi})
     public void onViewClick(View view) {

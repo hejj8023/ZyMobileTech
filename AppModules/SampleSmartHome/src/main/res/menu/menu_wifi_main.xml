@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<group
+		android:id="@+id/group_1"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/action_open_wifi"
+			android:title="打开wifi" />
+		<item
+			android:id="@+id/action_start_scan"
+			android:title="开始扫描可用wifi" />
+		<item
+			android:id="@+id/action_stop_scan"
+			android:title="停止扫描wifi" />
+		<item
+			android:id="@+id/action_close_wifi"
+			android:title="关闭wifi" />
+	</group>
+	
+	<group
+		android:id="@+id/group2"
+		android:checkableBehavior="single">
+		<item
+			android:id="@+id/action_create_hot"
+			android:title="创建热点" />
+		<item
+			android:id="@+id/action_del_hot"
+			android:title="关闭热点" />
+	</group>
+</menu>
