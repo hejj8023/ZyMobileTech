@@ -61,10 +61,10 @@ public class SampleWifiActivity extends BaseMVPToolbarSupportSRListActivity<Wifi
                     .PERMISSION_REQ_WIFI);
         }*/
 
-
+        // TODO: 2018/5/24 6.0以上的手机，要想获取可用的wifi列表，必权限必须要加，要不然就获取不到，真他娘的坑
         if (ContextCompat.checkSelfPermission(this, Manifest.permission_group.LOCATION) !=
                 PackageManager.PERMISSION_GRANTED) {
-// 获取wifi连接需要定位权限,没有获取权限
+            // 获取wifi连接需要定位权限,没有获取权限
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION,
