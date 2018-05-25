@@ -8,6 +8,8 @@
 		android:layout_width="@dimen/dp_320"
 		android:layout_height="wrap_content"
 		android:background="@drawable/shape_white"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
 		android:orientation="vertical"
 		android:paddingBottom="@dimen/dp_15"
 		android:paddingLeft="@dimen/dp_10"
@@ -18,67 +20,38 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:text="Wifi连接"
+			android:text="@string/tip_create_ap"
 			android:textColor="@color/material_red_accent_200"
 			android:textSize="@dimen/dp_18" />
 		
-		<LinearLayout
+		<EditText
+			android:id="@+id/et_ap_name"
 			android:layout_width="match_parent"
 			android:layout_height="@dimen/dp_45"
+			android:layout_marginLeft="@dimen/dp_10"
+			android:layout_marginRight="@dimen/dp_10"
 			android:layout_marginTop="@dimen/dp_5"
-			android:gravity="center_vertical"
-			android:orientation="horizontal">
-			
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="SSID"
-				android:textColor="@color/gray"
-				android:textSize="@dimen/dp_16" />
-			
-			<TextView
-				android:id="@+id/tv_ssid_name"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="@dimen/dp_5"
-				android:layout_weight="1"
-				android:text="test"
-				android:textColor="@color/sr_color_primary_dark"
-				android:textSize="@dimen/dp_16" />
-		</LinearLayout>
+			android:hint="@string/tip_input_ap_name"
+			android:textColor="@color/black"
+			android:textSize="@dimen/dp_16"
+			android:theme="@style/SampleEditText" />
 		
-		<LinearLayout
+		<EditText
+			android:id="@+id/et_ap_pwd"
 			android:layout_width="match_parent"
 			android:layout_height="@dimen/dp_45"
-			android:layout_marginTop="@dimen/dp_5"
-			android:focusable="true"
-			android:focusableInTouchMode="true"
-			android:gravity="center_vertical"
-			android:orientation="horizontal">
-			
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="密码"
-				android:textColor="@color/gray"
-				android:textSize="@dimen/dp_16" />
-			
-			<EditText
-				android:id="@+id/et_wifi_pwd"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_marginLeft="@dimen/dp_5"
-				android:background="@null"
-				android:hint="请输入wifi密码"
-				android:textColor="@color/black"
-				android:textSize="@dimen/dp_16"
-				android:theme="@style/SampleEditText" />
-		</LinearLayout>
+			android:layout_marginLeft="@dimen/dp_10"
+			android:layout_marginRight="@dimen/dp_10"
+			android:layout_marginTop="@dimen/dp_10"
+			android:hint="@string/tip_input_ap_pwd"
+			android:textColor="@color/black"
+			android:textSize="@dimen/dp_16"
+			android:theme="@style/SampleEditText" />
 		
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="@dimen/dp_5">
+			android:layout_marginTop="@dimen/dp_10">
 			
 			<LinearLayout
 				android:layout_width="wrap_content"
@@ -97,7 +70,7 @@
 					android:paddingLeft="@dimen/dp_15"
 					android:paddingRight="@dimen/dp_15"
 					android:paddingTop="@dimen/dp_5"
-					android:text="确定"
+					android:text="连接"
 					android:textColor="@color/white" />
 				
 				<Button

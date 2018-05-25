@@ -41,6 +41,7 @@ public class AppMainActivity extends BaseToolbarSupportActivity {
     public void initView() {
         CommonUtils.setNavigationMenuLineStyle(mNavigationView, UiUtils.getColor(R.color.lightgray),
                 1);
+        CommonUtils.disableNavigationViewScrollbars(mNavigationView);
     }
 
     @OnClick({R.id.btn_manage_bt, R.id.btn_manage_wifi})

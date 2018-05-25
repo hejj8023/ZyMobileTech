@@ -115,6 +115,9 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
                                     break;
                                 case BluetoothDevice.BOND_BONDED://配对结束
                                     LoggerUtils.loge("完成配对");
+                                    // TODO: 2018/5/25 这里只是列出了一种更新列表状态的方式，有一种简单的
+                                    // TODO: 2018/5/25 就是根据蓝牙的名称，从界面列表中进行匹配，然后修改对象的属性，adapter刷新
+                                    // TODO: 2018/5/25 可参照wifi连接的刷新
                                     updateListItemBondState(0, "已配对");
                                     ToastUtils.showShort("完成配对");
                                     break;

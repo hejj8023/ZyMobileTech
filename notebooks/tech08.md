@@ -263,3 +263,21 @@
        <item name="android:divider">@color/gray</item>
        <item name="android:dividerHeight">1px</item>
        </style>   
+       
+## Edittext下划线颜色修改
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+        <item name="colorControlActivated">@android:color/holo_orange_dark</item>
+    </style>
+    
+    <EditText
+        android:id="@+id/et_ap_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:hint="@string/tip_input_ap_pwd"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_16"
+        android:theme="@style/MyEditText" />
