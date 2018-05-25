@@ -1,7 +1,6 @@
 package com.example.sash.mvp;
 
-import android.net.wifi.ScanResult;
-
+import com.example.sash.bean.WifiInfo;
 import com.zhiyangstudio.commonlib.mvp.inter.ISampleRefreshView;
 
 /**
@@ -9,6 +8,6 @@ import com.zhiyangstudio.commonlib.mvp.inter.ISampleRefreshView;
  */
 
 public interface WifiContract {
-    public interface IWifiView extends ISampleRefreshView<ScanResult> {
+    public interface IWifiView extends ISampleRefreshView<WifiInfo> {
     }
 }

@@ -11,8 +11,8 @@
 			android:id="@+id/action_start_scan"
 			android:title="开始扫描可用wifi" />
 		<item
-			android:id="@+id/action_stop_scan"
-			android:title="停止扫描wifi" />
+			android:id="@+id/action_clear_wifi_list"
+			android:title="清除保存过的wifi列表" />
 		<item
 			android:id="@+id/action_close_wifi"
 			android:title="关闭wifi" />
@@ -24,6 +24,9 @@
 		<item
 			android:id="@+id/action_create_hot"
 			android:title="创建热点" />
+		<item
+			android:id="@+id/action_connect_hot"
+			android:title="连接wifi热点" />
 		<item
 			android:id="@+id/action_del_hot"
 			android:title="关闭热点" />

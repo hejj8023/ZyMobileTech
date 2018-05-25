@@ -7,4 +7,11 @@
 	<string name="tip_mac_addr">Mac地址:</string>
 	<string name="tip_un_pair">未配对</string>
 	<string name="tip_paired">已配对</string>
+	<string name="tip_no_repeit_connect_wifi">目标wifi处于连接状态，不可重复连接</string>
+	<string name="tip_wifi_pwd_error">wifi密码不能为空</string>
+	<string name="tip_create_ap">创建热点</string>
+	<string name="tip_input_ap_name">请输入热点名称</string>
+	<string name="tip_input_ap_pwd">请输入热点密码</string>
+	<string name="tip_ap_create_sucess">热点创建成功</string>
+	<string name="tip_ap_create_fail">热点创建失败</string>
 </resources>

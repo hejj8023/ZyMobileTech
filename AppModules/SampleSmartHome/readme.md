@@ -255,6 +255,63 @@ https://www.jianshu.com/p/c415691b282c
 http://www.demodashi.com/demo/10660.html
 https://blog.csdn.net/VNanyesheshou/article/details/50771698
 
+
+6.0以下连接成功
+
+
+## ACTION_MANAGE_WRITE_SETTINGS权限申请的坑
+    
+    if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission
+        (SampleWifiActivity.this, Manifest.permission.CHANGE_NETWORK_STATE)) {
+        LoggerUtils.loge("action_create_hot PERMISSION_GRANTED = CHANGE_NETWORK_STATE");
+        if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission
+                (SampleWifiActivity.this, Manifest.permission.WRITE_SETTINGS)) {
+            LoggerUtils.loge("action_create_hot PERMISSION_GRANTED = WRITE_SETTINGS " +
+                    "，创建ap热点");
+            WifiUtils.createHotAp("zzg", "123456");
+        } else {
+            LoggerUtils.loge("action_create_hot PERMISSION_GRANTED != WRITE_SETTINGS");
+            if (ActivityCompat.shouldShowRequestPermissionRationale
+                    (SampleWifiActivity.this,
+                            Manifest.permission.WRITE_SETTINGS)) {
+                LoggerUtils.loge("action_create_hot PERMISSION_GRANTED != " +
+                        "WRITE_SETTINGS 以前拒绝过");
+            } else {
+                LoggerUtils.loge("action_create_hot PERMISSION_GRANTED != " +
+                        "WRITE_SETTINGS 以前未拒绝过，申请权限");
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(SampleWifiActivity.this,
+                        new String[]{Manifest.permission.WRITE_SETTINGS},
+                        Const.PERMISSION_REQ_WIFI);
+            }
+        }
+    } else {
+        LoggerUtils.loge("action_create_hot PERMISSION_GRANTED != " +
+                "CHANGE_NETWORK_STATE");
+        //申请
+        if (ActivityCompat.shouldShowRequestPermissionRationale(SampleWifiActivity.this,
+                Manifest.permission.CHANGE_NETWORK_STATE)) {
+            LoggerUtils.loge("action_create_hot PERMISSION_GRANTED != " +
+                    "CHANGE_NETWORK_STATE 以前拒绝过");
+        } else {
+            LoggerUtils.loge("action_create_hot PERMISSION_GRANTED != " +
+                    "CHANGE_NETWORK_STATE 以前未拒绝过，申请权限");
+            // No explanation needed, we can request the permission.
+            ActivityCompat.requestPermissions(SampleWifiActivity.this,
+                    new String[]{Manifest.permission.CHANGE_NETWORK_STATE},
+                    Const.PERMISSION_REQ_WIFI);
+        }
+    }
+    
+    // 动态申请权限不弹出对话框，太他娘的坑了
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (!Settings.System.canWrite(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+            intent.setData(Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, REQUEST_CODE_WRITE_SETTINGS);
+        }
+    }
+    
 # recyclerview 万能分割线
 https://github.com/YuJunKui1995/UniversalItemDecoration
 
