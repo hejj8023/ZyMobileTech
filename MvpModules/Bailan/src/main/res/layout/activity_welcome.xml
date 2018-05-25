@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/splash_root"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/s_fcfcfc">
+	
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/dp_112"
+		android:layout_centerInParent="true"
+		android:src="@drawable/img_banner_essential_vertical" />
+	
+	<Button
+		android:id="@+id/btn_login"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/dp_40"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="@dimen/dp_16"
+		android:layout_marginLeft="@dimen/dp_16"
+		android:layout_marginRight="@dimen/dp_16"
+		android:background="@drawable/dialog_btn_selector"
+		android:text="@string/tip_go_main"
+		android:textAllCaps="true"
+		android:textColor="@color/c_ff007dff"
+		android:textSize="@dimen/dp_14" />
+
+</RelativeLayout>

@@ -281,3 +281,17 @@
         android:textColor="@color/black"
         android:textSize="@dimen/dp_16"
         android:theme="@style/MyEditText" />
+        
+## tablayout使用
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/selector_list_item"
+        app:tabIndicatorColor="@color/orange"
+        app:tabSelectedTextColor="@color/orange"
+        app:tabTextColor="@color/white" />
+        
+    mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+    mTabLayout.setupWithViewPager(mViewPager);

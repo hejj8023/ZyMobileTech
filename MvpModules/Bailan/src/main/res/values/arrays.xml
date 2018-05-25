@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="main_top_list">
+		<item>推荐</item>
+		<item>分类</item>
+		<item>排行</item>
+		<item>管理</item>
+		<item>我</item>
+	</string-array>
+</resources>
