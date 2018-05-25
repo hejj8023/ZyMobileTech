@@ -13,7 +13,6 @@ public class RankListFragment extends com.zhiyangstudio.commonlib.corel.BaseFrag
     public int getContentId() {
         return R.layout.fragment_rank_list;
     }
-    }
 
     @Override
     public void initView() {

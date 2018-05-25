@@ -43,7 +43,7 @@ public class MainActivity extends BaseBLActivity {
         fragments.add(new RankListFragment());
         fragments.add(new ManagerFragment());
         fragments.add(new MimeFragment());
-        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mTabLayout.setupWithViewPager(mViewPager);
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(),
                 fragments, titles);
