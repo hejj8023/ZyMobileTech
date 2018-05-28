@@ -6,9 +6,9 @@ import com.example.bailan.BLApp;
 import com.example.bailan.di.component.DaggerFragmentComponent;
 import com.example.bailan.di.component.FragmentComponent;
 import com.example.bailan.di.module.FragmentModule;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
+import com.zhiyangstudio.commonlib.mvp.inter.ISampleRefreshView;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.refreshsupport.lmr.BaseAbsListFragment;
+import com.zhiyangstudio.commonlib.refreshsupport.smartrefresh.BaseMVPSRRListFragment;
 
 import javax.inject.Inject;
 
@@ -16,8 +16,8 @@ import javax.inject.Inject;
  * Created by example on 2018/4/28.
  */
 
-public abstract class BaseDaggerSupportListFragment<P extends BasePresenter<V>, V extends IView, T>
-        extends BaseAbsListFragment<P, V, T> {
+public abstract class BaseDaggerSupportListFragment<P extends BasePresenter<V>, V extends ISampleRefreshView, T>
+        extends BaseMVPSRRListFragment<P, V, T> {
 
     @Inject
     P tPresenter;

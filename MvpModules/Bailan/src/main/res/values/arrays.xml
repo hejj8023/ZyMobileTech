@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="main_top_list">
-		<item>推荐</item>
-		<item>分类</item>
-		<item>排行</item>
-		<item>管理</item>
-		<item>我</item>
-	</string-array>
+    <string-array name="main_top_list">
+        <item>推荐</item>
+        <item>分类</item>
+        <item>排行</item>
+        <item>管理</item>
+        <item>我</item>
+    </string-array>
+    <string-array name="arrs_menu_name_mime">
+        <item>奖品</item>
+        <item>礼包</item>
+        <item>评论</item>
+        <item>消息</item>
+    </string-array>
+    <integer-array name="arrs_menu_icon_mime">
+        <item>@drawable/icon_market_lucky_draw</item>
+        <item>@drawable/ic_mine_package_normal</item>
+        <item>@drawable/icon_market_comment</item>
+        <item>@drawable/icon_market_message</item>
+    </integer-array>
 </resources>

@@ -8,11 +8,13 @@ import android.support.v4.view.ViewPager;
 
 import com.example.bailan.R;
 import com.example.bailan.base.BaseBLActivity;
-import com.example.bailan.ui.fragment.CategoryListFragment;
+import com.example.bailan.mvp.contract.MainContract;
+import com.example.bailan.mvp.presenter.MainPresenter;
+import com.example.bailan.ui.fragment.CategoryFragment;
 import com.example.bailan.ui.fragment.ManagerFragment;
 import com.example.bailan.ui.fragment.MimeFragment;
-import com.example.bailan.ui.fragment.RankListFragment;
-import com.example.bailan.ui.fragment.RecommendListFragment;
+import com.example.bailan.ui.fragment.RankFragment;
+import com.example.bailan.ui.fragment.RecommendFragment;
 import com.zhiyangstudio.commonlib.corel.BaseFragment;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
@@ -21,7 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseBLActivity {
+public class MainActivity extends BaseBLActivity<MainPresenter,MainContract.IMainView> implements MainContract.IMainView {
 
     @BindView(R.id.tl_main)
     TabLayout mTabLayout;
@@ -38,9 +40,9 @@ public class MainActivity extends BaseBLActivity {
     public void initData() {
         String[] titles = UiUtils.getStrArrs(R.array.main_top_list);
         List<BaseFragment> fragments = new ArrayList<>();
-        fragments.add(new RecommendListFragment());
-        fragments.add(new CategoryListFragment());
-        fragments.add(new RankListFragment());
+        fragments.add(new RecommendFragment());
+        fragments.add(new CategoryFragment());
+        fragments.add(new RankFragment());
         fragments.add(new ManagerFragment());
         fragments.add(new MimeFragment());
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
@@ -57,7 +59,7 @@ public class MainActivity extends BaseBLActivity {
 
     @Override
     protected void initInject() {
-
+        getActivityComponent().inject(this);
     }
 
     @Override

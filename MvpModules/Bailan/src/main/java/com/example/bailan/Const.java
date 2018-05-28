@@ -11,4 +11,13 @@ public class Const {
     public class SP_KEY_CONFIG {
         public static final String KEY_LOGIN_STATE = "key_login_state";
     }
+
+    public class NET_API_CONFIG {
+        public static final String BASE_URL = "http://112.124.22.238:8081/";
+
+        /**
+         * 推荐数据
+         */
+        public static final String RECOMMEND_LIST = "appstore/recommend";
+    }
 }

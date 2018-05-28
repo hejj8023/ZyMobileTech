@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:gravity="center"
-	android:orientation="vertical">
-	
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="管理" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_ececec"
+    android:orientation="vertical">
+
+    <com.example.bailan.widget.MenuWidget
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_65"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        app:SubTitle="保持最新版本,抢先体验最新功能"
+        app:Title="更新管理" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10" />
+
+    <com.example.bailan.widget.MenuWidget
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_65"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        app:SubTitle="管理安装任务"
+        app:Title="安装管理" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1" />
+
+    <com.example.bailan.widget.MenuWidget
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_65"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        app:SubTitle="可删除安装包"
+        app:Title="安装包管理" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1" />
+
+    <com.example.bailan.widget.MenuWidget
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_65"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        app:SubTitle="清理以释放空间"
+        app:Title="空间清理" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1" />
+
+    <com.example.bailan.widget.MenuWidget
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_65"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        app:SubTitle="通过电脑管理设备、传输文件、安装应用"
+        app:Title="连接电脑" />
+
+
 </LinearLayout>

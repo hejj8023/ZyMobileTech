@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.example.bailan.di.module.ActivityModule;
 import com.example.bailan.di.scope.ActivityScope;
+import com.example.bailan.ui.activity.MainActivity;
 
 import dagger.Component;
 
@@ -14,4 +15,6 @@ import dagger.Component;
 @Component(dependencies = AppComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
     Activity getActivity();
+
+    void inject(MainActivity activity);
 }
