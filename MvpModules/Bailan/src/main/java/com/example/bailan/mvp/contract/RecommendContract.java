@@ -10,7 +10,7 @@ import io.reactivex.Observer;
  */
 
 public class RecommendContract {
-    public interface IListView extends ISampleRefreshView<RecommendBean> {
+    public interface IListView extends ISampleRefreshView<RecommendBean.LayoutDataBean> {
     }
 
     public interface IListPresenter {

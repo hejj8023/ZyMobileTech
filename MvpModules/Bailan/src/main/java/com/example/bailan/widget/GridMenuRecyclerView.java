@@ -5,11 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.bailan.R;
 import com.example.bailan.bean.MenuItemInfo;
+import com.zhiyangstudio.commonlib.glide.GlideApp;
+import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 
 import java.util.List;
 
@@ -43,20 +46,25 @@ public class GridMenuRecyclerView extends RecyclerView {
         this.mSpanCount = spanCount;
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(int pos, MenuItemInfo itemInfo);
-    }
-
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener;
     }
 
     public void setData(List<MenuItemInfo> list) {
         this.setLayoutManager(new GridLayoutManager(getContext(), mSpanCount));
-        setAdapter(new BaseQuickAdapter<MenuItemInfo, BaseViewHolder>(R.layout.layout_item_menu, list) {
+        setAdapter(new BaseQuickAdapter<MenuItemInfo, BaseViewHolder>(R.layout.layout_item_menu,
+                list) {
             @Override
             protected void convert(BaseViewHolder helper, MenuItemInfo item) {
-                helper.setImageResource(R.id.iv_icon_menu, item.getIconId());
+                if (item.getIconId() != 0)
+                    helper.setImageResource(R.id.iv_icon_menu, item.getIconId());
+
+                String iconUrl = item.getIconUrl();
+                if (EmptyUtils.isNotEmpty(iconUrl)) {
+                    ImageView view = helper.getView(R.id.iv_icon_menu);
+                    GlideApp.with(getContext()).load(iconUrl).into(view);
+                }
+
                 helper.setText(R.id.tv_name_menu, item.getName());
                 helper.setOnClickListener(R.id.ll_root_menu, v -> {
                     if (mListener != null) {
@@ -65,5 +73,9 @@ public class GridMenuRecyclerView extends RecyclerView {
                 });
             }
         });
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int pos, MenuItemInfo itemInfo);
     }
 }

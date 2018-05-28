@@ -6,13 +6,16 @@ import com.example.bailan.mvp.model.RecommendModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
 import com.zhiyangstudio.commonlib.net.callback.AbsBaseObserver;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
  * Created by zzg on 2018/5/27.
  */
 
-public class RecommendPresenter extends BasePresenter<RecommendContract.IListView> implements RecommendContract.IListPresenter {
+public class RecommendPresenter extends BasePresenter<RecommendContract.IListView> implements
+        RecommendContract.IListPresenter {
 
     private final RecommendModel mRecommendModel;
     private RecommendContract.IListView mListView;
@@ -25,12 +28,12 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.IListVie
     @Override
     public void loadListData() {
         mListView = getView();
-        mRecommendModel.loadData(new AbsBaseObserver<RecommendBean>(this, RecommendModel.class.getName()) {
+        mRecommendModel.loadData(new AbsBaseObserver<RecommendBean>(this, RecommendModel.class
+                .getName()) {
             @Override
             public void onNext(RecommendBean responseBody) {
-                if (responseBody != null) {
-
-                }
+                List<RecommendBean.LayoutDataBean> list = responseBody.getLayoutData();
+                mListView.setData(list);
             }
         });
     }

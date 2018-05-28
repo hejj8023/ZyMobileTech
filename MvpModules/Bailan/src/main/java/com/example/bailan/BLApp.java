@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import com.scwang.smartrefresh.header.DeliveryHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zhiyangstudio.commonlib.CommonConst;
 import com.zhiyangstudio.commonlib.corel.BaseApp;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
@@ -59,8 +60,9 @@ public class BLApp extends BaseApp {
     @Override
     public void onCreate() {
         super.onCreate();
-        initComponent();
+        CrashReport.initCrashReport(getApplicationContext(), "fd0f6d1eae", true);
 
+        initComponent();
         CommonConst.NET_CACHE_DIR_NAME = "bail";
         PreUtils.init("bail_config");
         OkHttpUtils.isSupportDataInterceptor(true);

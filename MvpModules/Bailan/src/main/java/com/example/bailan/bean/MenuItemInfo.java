@@ -8,6 +8,7 @@ public class MenuItemInfo {
     private String name;
     private int iconId;
     private boolean checked;
+    private String iconUrl;
 
     public String getName() {
         return name;
@@ -31,5 +32,13 @@ public class MenuItemInfo {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 }
