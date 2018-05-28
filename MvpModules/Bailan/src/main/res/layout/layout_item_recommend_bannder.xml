@@ -3,8 +3,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="@dimen/dp_112">
 	
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/rcv_banner"
+	<com.example.bailan.widget.RecyclerBanner
+		android:id="@+id/rb_banner"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent" />
+		android:layout_height="@dimen/dp_120" />
 </FrameLayout>

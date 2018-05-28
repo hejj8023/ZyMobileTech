@@ -1,10 +1,5 @@
 package com.example.bailan.ui.fragment;
 
-import android.graphics.drawable.GradientDrawable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -18,9 +13,9 @@ import com.example.bailan.bean.RecommendBean;
 import com.example.bailan.mvp.contract.RecommendContract;
 import com.example.bailan.mvp.presenter.RecommendPresenter;
 import com.example.bailan.widget.GridMenuRecyclerView;
+import com.example.bailan.widget.RecyclerBanner;
 import com.zhiyangstudio.commonlib.glide.GlideApp;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,29 +55,8 @@ public class RecommendFragment extends BaseDaggerSupportListFragment<RecommendPr
         return listAdapter;
     }
 
-
-    private class PagerSnapHelper extends LinearSnapHelper {
-
-        @Override
-        public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
-            int targetPos = super.findTargetSnapPosition(layoutManager, velocityX, velocityY);
-            final View currentView = findSnapView(layoutManager);
-            if(targetPos != RecyclerView.NO_POSITION && currentView != null){
-                int currentPostion = layoutManager.getPosition(currentView);
-                int first = ((LinearLayoutManager)layoutManager).findFirstVisibleItemPosition();
-                int last = ((LinearLayoutManager)layoutManager).findLastVisibleItemPosition();
-                currentPostion = targetPos < currentPostion ? last : (targetPos > currentPostion ? first : currentPostion);
-                targetPos = targetPos < currentPostion ? currentPostion - 1 : (targetPos > currentPostion ? currentPostion + 1 : currentPostion);
-            }
-            return targetPos;
-        }
-    }
-
     public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommendBean
             .LayoutDataBean, BaseViewHolder> {
-
-        GradientDrawable defaultDrawable, selectedDrawable;
-        int size = 0;
 
         public RecommendListAdapter(List<RecommendBean.LayoutDataBean> data) {
             super(data);
@@ -123,35 +97,51 @@ public class RecommendFragment extends BaseDaggerSupportListFragment<RecommendPr
             switch (itemViewType) {
                 // 轮播图
                 case Const.LIST_ITEM_COLLECTS.ITEM_RECOMMON_LIST.ITEM_TYPE_BANNER:
-                    RecyclerView recyclerView = helper.getView(R.id.rcv_banner);
-                    size = UiUtils.dp2px(112);
+                    RecyclerBanner recyclerView = helper.getView(R.id.rb_banner);
 
-                    defaultDrawable = new GradientDrawable();
-                    defaultDrawable.setSize(size, size);
-                    defaultDrawable.setCornerRadius(size);
-                    defaultDrawable.setColor(0xffffffff);
-                    selectedDrawable = new GradientDrawable();
-                    selectedDrawable.setSize(size, size);
-                    selectedDrawable.setCornerRadius(size);
-                    selectedDrawable.setColor(0xff0094ff);
+                    List<RecyclerBanner.BannerEntity> tList = new ArrayList<>();
+                    RecyclerBanner.BannerEntity dataListBean = new RecommendBean
+                            .LayoutDataBean.DataListBean();
+                    dataListBean.setUrl("http://f.hiphotos.baidu" +
+                            ".com/image/h%3D300/sign=4a6f284cb88f8c54fcd3c32f0a282dee" +
+                            "/c9fcc3cec3fdfc03777b0d1ad83f8794a4c22615.jpg");
+                    tList.add(dataListBean);
 
-                    new PagerSnapHelper().attachToRecyclerView(recyclerView);
+                    dataListBean = new RecommendBean
+                            .LayoutDataBean.DataListBean();
+                    dataListBean.setUrl("https://ss0.bdstatic" +
+                            ".com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1436948145," +
+                            "4270509323&fm=200&gp=0.jpg");
+                    tList.add(dataListBean);
 
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
-                            LinearLayoutManager.HORIZONTAL, false));
+                    dataListBean = new RecommendBean
+                            .LayoutDataBean.DataListBean();
+                    dataListBean.setUrl("http://d.hiphotos.baidu" +
+                            ".com/image/h%3D300/sign=181318733ad12f2ed105a8607fc0d5ff" +
+                            "/94cad1c8a786c9171cc12b9dc53d70cf3ac75757.jpg");
+                    tList.add(dataListBean);
 
-                    recyclerView.setAdapter(new BaseQuickAdapter<RecommendBean.LayoutDataBean
-                            .DataListBean, BaseViewHolder>(R.layout.layout_item_recomend_banner,
-                            dataList) {
-                        @Override
-                        protected void convert(BaseViewHolder helper, RecommendBean
-                                .LayoutDataBean.DataListBean listBean) {
-                            ImageView view = helper.getView(R.id.iv_banner);
-                            String iconUrl = listBean.getIcon();
-                            LoggerUtils.loge("iconUrl = " + iconUrl);
-                            GlideApp.with(getContext()).load(iconUrl).into(view);
-                        }
-                    });
+                    dataListBean = new RecommendBean
+                            .LayoutDataBean.DataListBean();
+                    dataListBean.setUrl("https://ss1.bdstatic" +
+                            ".com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=994139724," +
+                            "1381627717&fm=200&gp=0.jpg");
+                    tList.add(dataListBean);
+
+                    dataListBean = new RecommendBean
+                            .LayoutDataBean.DataListBean();
+                    dataListBean.setUrl("https://ss2.bdstatic" +
+                            ".com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2546717774," +
+                            "3910079056&fm=200&gp=0.jpg");
+                    tList.add(dataListBean);
+
+                    dataListBean = new RecommendBean
+                            .LayoutDataBean.DataListBean();
+                    dataListBean.setUrl("https://ss0.bdstatic" +
+                            ".com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3491324078," +
+                            "3983383560&fm=200&gp=0.jpg");
+                    tList.add(dataListBean);
+                    recyclerView.setDatas(tList);
 
                     break;
                 // 两个图片的广告

@@ -2,6 +2,7 @@ package com.example.bailan.bean;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.bailan.Const;
+import com.example.bailan.widget.RecyclerBanner;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -1601,7 +1602,7 @@ public class RecommendBean {
             return itemType;
         }
 
-        public static class DataListBean {
+        public static class DataListBean implements RecyclerBanner.BannerEntity {
             /**
              * icon : http://appimg.hicloud
              * .com/hwmarket/files/entranceIcon/e3f300d859b4435cbcb6ecae00e9a042
@@ -1661,6 +1662,10 @@ public class RecommendBean {
                 this.detailId = detailId;
             }
 
+            @Override
+            public String getUrl() {
+                return icon;
+            }
         }
     }
 
