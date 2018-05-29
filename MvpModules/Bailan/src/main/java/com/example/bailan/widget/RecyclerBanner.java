@@ -211,7 +211,7 @@ public class RecyclerBanner extends FrameLayout {
         void onClick(BannerEntity entity);
     }
 
-    public class BannerEntity {
+    public static class BannerEntity {
         private String url;
 
         public String getUrl() {

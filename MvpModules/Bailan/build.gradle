@@ -89,7 +89,11 @@ dependencies {
     annotationProcessor rootProject.ext.ext_tools.butterknife_compiler
 
     implementation rootProject.ext.ext_tools.utilcode
+
     implementation rootProject.ext.ext_tools.gson
+    implementation rootProject.ext.ext_tools.fastjson
+    implementation rootProject.ext.ext_tools.fastjson_android
+
     implementation rootProject.ext.ext_tools.systembartint
     implementation rootProject.ext.ext_tools.barlibrary
 

@@ -47,19 +47,19 @@ public class MimeFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment
 
         mItemInfos = new ArrayList<>();
         MenuItemInfo menuItemInfo = null;
-        for (int i = 0; i < names.length; i++) {
+        for (int i = 0; i < 10; i++) {
             menuItemInfo = new MenuItemInfo();
-            menuItemInfo.setName(names[i]);
+            menuItemInfo.setName("TEST " + i);
             int imgResId = 0;
-            if (i == 0) {
-                imgResId = R.drawable.icon_market_lucky_draw;
-            } else if (i == 1) {
-                imgResId = R.drawable.ic_mine_package_normal;
-            } else if (i == 2) {
-                imgResId = R.drawable.icon_market_comment;
-            } else {
-                imgResId = R.drawable.icon_market_message;
-            }
+//            if (i == 0) {
+            imgResId = R.drawable.icon_market_lucky_draw;
+//            } else if (i == 1) {
+//                imgResId = R.drawable.ic_mine_package_normal;
+//            } else if (i == 2) {
+//                imgResId = R.drawable.icon_market_comment;
+//            } else {
+//                imgResId = R.drawable.icon_market_message;
+//            }
             menuItemInfo.setIconId(imgResId);
             mItemInfos.add(menuItemInfo);
         }

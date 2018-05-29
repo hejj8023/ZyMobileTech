@@ -78,7 +78,7 @@
     <com.example.bailan.widget.GridMenuRecyclerView
         android:id="@+id/rv_menu"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_85"
+        android:layout_height="@dimen/dp_95"
         android:background="@color/white"
         android:fadeScrollbars="false"
         android:fadingEdge="none"
