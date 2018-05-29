@@ -16,7 +16,6 @@ import com.example.bailan.widget.GridMenuRecyclerView;
 import com.example.bailan.widget.RecyclerBanner;
 import com.zhiyangstudio.commonlib.glide.GlideApp;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +34,8 @@ public class RecommendFragment extends BaseDaggerSupportListFragment<RecommendPr
     }
 
     @Override
-    protected int getDividerColor() {
-        return UiUtils.getColor(R.color.lightgray);
+    protected boolean hasSupportItemDivider() {
+        return false;
     }
 
     @Override
