@@ -17,7 +17,6 @@ import com.example.bailan.bean.MenuItemInfo;
 import com.zhiyangstudio.commonlib.glide.GlideApp;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
 
 import java.util.List;
 
@@ -65,7 +64,6 @@ public class GridMenuRecyclerView extends RecyclerView {
         mPaddingRight = getPaddingRight();
         mScreenWidth = ScreenUtils.getScreenWidth();
         LoggerUtils.loge("mScreenWidth = " + mScreenWidth + ",mPaddingLeft = " + mPaddingLeft + ",mPaddingRight= " + mPaddingRight);
-        setBackgroundColor(UiUtils.getColor(R.color.palegoldenrod));
         setAdapter(new BaseQuickAdapter<MenuItemInfo, BaseViewHolder>(R.layout.layout_item_menu,
                 list) {
             @Override
