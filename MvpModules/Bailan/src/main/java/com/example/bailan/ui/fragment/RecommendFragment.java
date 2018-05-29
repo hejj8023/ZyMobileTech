@@ -143,7 +143,7 @@ public class RecommendFragment extends BaseDaggerSupportListFragment<RecommendPr
                         if (itemSubBeans != null && itemSubBeans.size() > 0) {
                             List<MenuItemInfo> menuItemInfos = new ArrayList<>();
                             MenuItemInfo info = null;
-                            for (int i = 0; i < 6; i++) {
+                            for (int i = 0; i < itemSubBeans.size(); i++) {
                                 RecommonFinalBean.LayoutItemSubBean layoutItemSubBean = itemSubBeans.get(i);
                                 info = new MenuItemInfo();
                                 info.setName(layoutItemSubBean.getName());
