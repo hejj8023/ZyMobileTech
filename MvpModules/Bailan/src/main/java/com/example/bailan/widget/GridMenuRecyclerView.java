@@ -26,7 +26,8 @@ import java.util.List;
  */
 
 public class GridMenuRecyclerView extends RecyclerView {
-    private int mSpanCount;
+    // 默认支持4个
+    private int mSpanCount = 4;
     private OnItemClickListener mListener;
     private int mPaddingLeft;
     private int mPaddingRight;

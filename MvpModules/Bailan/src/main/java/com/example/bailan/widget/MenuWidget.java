@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.bailan.R;
+import com.zhiyangstudio.commonlib.glide.GlideUtils;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
@@ -135,5 +136,9 @@ public class MenuWidget extends RelativeLayout {
 
     public void setRightIconBgColor(Drawable resId) {
         mRightIcon.setBackground(resId);
+    }
+
+    public void setLeftIcon(String iconUrl) {
+        GlideUtils.loadPic(getContext(), iconUrl, mLeftIcon);
     }
 }
