@@ -1,0 +1,241 @@
+{
+  "hasNextPage": 0,
+  "count": 22,
+  "marginTop": 1,
+  "layout": [
+    {
+      "layoutName": "naviblankcard",
+      "maxRows": 1,
+      "layoutId": 806839
+    },
+    {
+      "layoutName": "navispylinecard",
+      "maxRows": 1,
+      "layoutId": 806840
+    },
+    {
+      "layoutName": "smalllanterncard",
+      "maxRows": 1,
+      "layoutId": 7051
+    },
+    {
+      "layoutName": "titlecard",
+      "maxRows": 1,
+      "layoutId": 708819
+    },
+    {
+      "layoutName": "combinetagcard",
+      "maxRows": -1,
+      "layoutId": 806899
+    }
+  ],
+  "name": "分类",
+  "isSupSearch": 0,
+  "contentType": 1,
+  "statKey": "A03000",
+  "sortInfo": [],
+  "totalPages": 1,
+  "layoutData": [
+    {
+      "dataList": [
+        {
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "size": 4
+        }
+      ],
+      "dataList-type": 0,
+      "listId": "11",
+      "isUpdatableFilter": 0,
+      "layoutName": "naviblankcard",
+      "layoutId": 806839,
+      "isInstalledFilter": 0
+    },
+    {
+      "dataList": [
+        {
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "size": 4
+        }
+      ],
+      "dataList-type": 0,
+      "listId": "11",
+      "isUpdatableFilter": 0,
+      "layoutName": "navispylinecard",
+      "layoutId": 806840,
+      "isInstalledFilter": 0
+    },
+    {
+      "dataList": [
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/7e5a183865324dd181f6f1e9a2a90839/1472106173771_126x126.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3;__entrance7;__7e5a183865324dd181f6f1e9a2a90839",
+          "name": "预约",
+          "commendIcon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/7e5a183865324dd181f6f1e9a2a90839/1472106173771_126x126.png",
+          "detailId": "orderAppMore|1495097563050"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/31a448e16248442f92951b263822da54/1470835263902_126x126.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3;__entrance7;__31a448e16248442f92951b263822da54",
+          "name": "必备",
+          "commendIcon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/31a448e16248442f92951b263822da54/1470835263902_126x126.png",
+          "detailId": "waplinkdetail|a84bfd8b2bf94b4fbedb2c299d213c17|1495097563050"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/5bcda28ad7bc43d1bf0459be6fce03e6/1470834886532_126x126.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3;__entrance7;__5bcda28ad7bc43d1bf0459be6fce03e6",
+          "name": "首发",
+          "commendIcon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/5bcda28ad7bc43d1bf0459be6fce03e6/1470834886532_126x126.png",
+          "detailId": "waplinkdetail|909d4596f27f4ec1abff07c32591ae10|1495097563050"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/de90864b5f95475cabc6498181f48f99/1470835190458_126x126.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3;__entrance7;__de90864b5f95475cabc6498181f48f99",
+          "name": "专题",
+          "commendIcon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/de90864b5f95475cabc6498181f48f99/1470835190458_126x126.png",
+          "detailId": "waplinklist|0|1495097563050"
+        }
+      ],
+      "dataList-type": 2,
+      "listId": "1",
+      "isUpdatableFilter": 0,
+      "layoutName": "smalllanterncard",
+      "layoutId": 7051,
+      "isInstalledFilter": 0
+    },
+    {
+      "dataList": [
+        {
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "所有分类"
+        }
+      ],
+      "dataList-type": 1,
+      "listId": "1",
+      "isUpdatableFilter": 0,
+      "name": "所有分类",
+      "layoutName": "titlecard",
+      "layoutId": 708819,
+      "isInstalledFilter": 0
+    },
+    {
+      "dataList": [
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/2/161017-171623.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "游戏",
+          "detailId": "gamesecondcatdetail|游戏"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/23/161017-175422.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "影音娱乐",
+          "detailId": "secondcatdetail|23"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/24/161017-175442.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "实用工具",
+          "detailId": "secondcatdetail|24"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/26/161017-175625.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "社交通讯",
+          "detailId": "secondcatdetail|26"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/30/161017-175634.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "教育",
+          "detailId": "secondcatdetail|30"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/345/161017-175643.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "新闻阅读",
+          "detailId": "secondcatdetail|345"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/33/161017-175651.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "拍摄美化",
+          "detailId": "secondcatdetail|33"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/359/170227-170506.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "美食",
+          "detailId": "secondcatdetail|359"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/28/161017-175702.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "出行导航",
+          "detailId": "secondcatdetail|28"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/361/170227-170907.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "旅游住宿",
+          "detailId": "secondcatdetail|361"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/358/161017-175723.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "购物比价",
+          "detailId": "secondcatdetail|358"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/362/170227-170954.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "商务",
+          "detailId": "secondcatdetail|362"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/363/170227-171038.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "儿童",
+          "detailId": "secondcatdetail|363"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/25/170227-164814.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "金融理财",
+          "detailId": "secondcatdetail|25"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/31/170227-171223.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "运动健康",
+          "detailId": "secondcatdetail|31"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/27/170227-165030.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "便捷生活",
+          "detailId": "secondcatdetail|27"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/360/170227-170733.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "汽车",
+          "detailId": "secondcatdetail|360"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/applicationkind/29/161017-175830.png",
+          "trace": "f6d1c1e1b60e433ca51cc22a22668ef3",
+          "name": "主题个性",
+          "detailId": "secondcatdetail|29"
+        }
+      ],
+      "dataList-type": 39,
+      "listId": "1",
+      "isUpdatableFilter": 0,
+      "layoutName": "combinetagcard",
+      "layoutId": 806899,
+      "isInstalledFilter": 0
+    }
+  ],
+  "salt": "226169463786827840",
+  "rspKey": "wBk2Jrxhwd5iBdM7y/P+nYK3YjA="
+}

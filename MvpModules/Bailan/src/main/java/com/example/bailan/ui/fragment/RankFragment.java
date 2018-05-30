@@ -11,7 +11,8 @@ import com.example.bailan.mvp.presenter.RankPrsenter;
  * Created by example on 2018/5/25.
  */
 
-public class RankFragment extends BaseDaggerSupportListFragment<RankPrsenter,RankContract.IRankView,RankBean> implements RankContract.IRankView{
+public class RankFragment extends BaseDaggerSupportListFragment<RankPrsenter, RankContract.IRankView, RankBean>
+        implements RankContract.IRankView {
     @Override
     protected void inject() {
         getFragmentComponent().inject(this);
@@ -19,7 +20,7 @@ public class RankFragment extends BaseDaggerSupportListFragment<RankPrsenter,Ran
 
     @Override
     protected void loadRemoteData() {
-
+        mPresenter.loadData();
     }
 
     @Override

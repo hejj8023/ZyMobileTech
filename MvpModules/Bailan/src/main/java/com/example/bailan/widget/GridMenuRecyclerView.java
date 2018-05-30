@@ -14,7 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.bailan.R;
 import com.example.bailan.bean.MenuItemInfo;
-import com.zhiyangstudio.commonlib.glide.GlideApp;
+import com.zhiyangstudio.commonlib.glide.GlideUtils;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 
@@ -58,12 +58,14 @@ public class GridMenuRecyclerView extends RecyclerView {
     }
 
     public void setData(List<MenuItemInfo> list) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,
+                false);
         this.setLayoutManager(layoutManager);
         mPaddingLeft = getPaddingLeft();
         mPaddingRight = getPaddingRight();
         mScreenWidth = ScreenUtils.getScreenWidth();
-        LoggerUtils.loge("mScreenWidth = " + mScreenWidth + ",mPaddingLeft = " + mPaddingLeft + ",mPaddingRight= " + mPaddingRight);
+        LoggerUtils.loge("mScreenWidth = " + mScreenWidth + ",mPaddingLeft = " + mPaddingLeft + ",mPaddingRight= " +
+                mPaddingRight);
         setAdapter(new BaseQuickAdapter<MenuItemInfo, BaseViewHolder>(R.layout.layout_item_menu,
                 list) {
             @Override
@@ -74,7 +76,8 @@ public class GridMenuRecyclerView extends RecyclerView {
                 String iconUrl = item.getIconUrl();
                 if (EmptyUtils.isNotEmpty(iconUrl)) {
                     ImageView view = helper.getView(R.id.iv_icon_menu);
-                    GlideApp.with(getContext()).load(iconUrl).into(view);
+                    // GlideApp.with(getContext()).load(iconUrl).into(view);
+                    GlideUtils.loadPic(getContext(), iconUrl, view);
                 }
 
                 RelativeLayout linearLayout = helper.getView(R.id.ll_root_menu);

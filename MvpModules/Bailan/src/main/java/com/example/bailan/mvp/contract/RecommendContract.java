@@ -4,7 +4,6 @@ import com.example.bailan.bean.RecommonFinalBean;
 import com.zhiyangstudio.commonlib.mvp.inter.ISampleRefreshView;
 
 import io.reactivex.Observer;
-import okhttp3.ResponseBody;
 
 /**
  * Created by zzg on 2018/5/27.
@@ -15,10 +14,10 @@ public class RecommendContract {
     }
 
     public interface IListPresenter {
-        void loadListData2();
+        void loadListData();
     }
 
     public interface IListModel {
-        void loadData2(Observer<ResponseBody> observer);
+        void loadData2(Observer<RecommonFinalBean> observer);
     }
 }

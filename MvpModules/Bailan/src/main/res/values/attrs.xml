@@ -2,13 +2,14 @@
 <resources>
 
     <declare-styleable name="MenuWidget">
-        <attr name="Title" format="string" />
-        <attr name="TitleTextColor" format="color|reference" />
-        <attr name="TitleTextSize" format="dimension|integer" />
-        <attr name="SubTitle" format="string" />
-        <attr name="SubTitleTextColor" format="color|reference" />
-        <attr name="SubTitleTextSize" format="dimension|integer" />
-        <attr name="showLeftIcon" format="boolean" />
-        <attr name="hideSubTitle" format="boolean" />
+        <attr name="Title" format="string"/>
+        <attr name="TitleTextColor" format="color|reference"/>
+        <attr name="TitleTextSize" format="dimension|integer"/>
+        <attr name="SubTitle" format="string"/>
+        <attr name="SubTitleTextColor" format="color|reference"/>
+        <attr name="SubTitleTextSize" format="dimension|integer"/>
+        <attr name="showLeftIcon" format="boolean"/>
+        <attr name="hideSubTitle" format="boolean"/>
+        <attr name="showDivider2" format="boolean"/>
     </declare-styleable>
 </resources>

@@ -1,0 +1,417 @@
+{
+  "hasNextPage": 0,
+  "count": 23,
+  "marginTop": 4,
+  "layout": [
+    {
+      "layoutName": "naviblankcard",
+      "maxRows": 1,
+      "layoutId": 806839
+    },
+    {
+      "layoutName": "navispylinecard",
+      "maxRows": 1,
+      "layoutId": 806840
+    },
+    {
+      "layoutName": "smalllanterncard",
+      "maxRows": 1,
+      "layoutId": 7051
+    },
+    {
+      "layoutName": "titlecard",
+      "maxRows": 1,
+      "layoutId": 7054
+    },
+    {
+      "layoutName": "normalcard",
+      "maxRows": -1,
+      "layoutId": 806900
+    },
+    {
+      "layoutName": "titlecard",
+      "maxRows": -1,
+      "layoutId": 807002
+    },
+    {
+      "layoutName": "normalcard",
+      "maxRows": -1,
+      "layoutId": 807003
+    },
+    {
+      "layoutName": "titlecard",
+      "maxRows": -1,
+      "layoutId": 806928
+    },
+    {
+      "layoutName": "normalcard",
+      "maxRows": -1,
+      "layoutId": 806929
+    },
+    {
+      "layoutName": "titlecard",
+      "maxRows": -1,
+      "layoutId": 807029
+    },
+    {
+      "layoutName": "normalcard",
+      "maxRows": -1,
+      "layoutId": 807030
+    },
+    {
+      "layoutName": "titlecard",
+      "maxRows": -1,
+      "layoutId": 806992
+    },
+    {
+      "layoutName": "normalcard",
+      "maxRows": -1,
+      "layoutId": 806993
+    }
+  ],
+  "name": "排行",
+  "isSupSearch": 0,
+  "contentType": 1,
+  "statKey": "A02000",
+  "sortInfo": [],
+  "totalPages": 1,
+  "layoutData": [
+    {
+      "dataList": [
+        {
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b",
+          "size": 4
+        }
+      ],
+      "dataList-type": 0,
+      "listId": "11",
+      "isUpdatableFilter": 0,
+      "layoutName": "naviblankcard",
+      "layoutId": 806839,
+      "isInstalledFilter": 0
+    },
+    {
+      "dataList": [
+        {
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b",
+          "size": 4
+        }
+      ],
+      "dataList-type": 0,
+      "listId": "11",
+      "isUpdatableFilter": 0,
+      "layoutName": "navispylinecard",
+      "layoutId": 806840,
+      "isInstalledFilter": 0
+    },
+    {
+      "dataList": [
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/94fd2f489b21497ebf672aec4a0fbca9/1470840077843_126x126.png",
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b;__entrance7;__94fd2f489b21497ebf672aec4a0fbca9",
+          "name": "应用",
+          "commendIcon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/94fd2f489b21497ebf672aec4a0fbca9/1470840077843_126x126.png",
+          "detailId": "ebd0b9be461b4f38a2f1971312fd0c8a|1495110914866"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/aec26bd2044040079869e2f54f0adb49/1470840189929_126x126.png",
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b;__entrance7;__aec26bd2044040079869e2f54f0adb49",
+          "name": "游戏",
+          "commendIcon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/aec26bd2044040079869e2f54f0adb49/1470840189929_126x126.png",
+          "detailId": "f28344262a2c4e26ba957ef073807b89|1495110914866"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/0d13a64914e642dba63e61c4961fbacb/1484554247507_126x126.png",
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b;__entrance7;__0d13a64914e642dba63e61c4961fbacb",
+          "name": "付费",
+          "commendIcon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/0d13a64914e642dba63e61c4961fbacb/1484554247507_126x126.png",
+          "detailId": "1b295dcff32e45eeaa61a8eda7391fe5|1495110914866"
+        },
+        {
+          "icon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/63596fff6cd84933a00bf64ec20f2748/1470840223039_126x126.png",
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b;__entrance7;__63596fff6cd84933a00bf64ec20f2748",
+          "name": "其他",
+          "commendIcon": "http://appimg.hicloud.com/hwmarket/files/entranceIcon/63596fff6cd84933a00bf64ec20f2748/1470840223039_126x126.png",
+          "detailId": "ee35d27ac61c4a9d8cf7b02897d79588|1495110914866"
+        }
+      ],
+      "dataList-type": 2,
+      "listId": "1",
+      "isUpdatableFilter": 0,
+      "layoutName": "smalllanterncard",
+      "layoutId": 7051,
+      "isInstalledFilter": 0
+    },
+    {
+      "dataList": [
+        {
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b",
+          "name": "总榜",
+          "detailId": "ae7366a2432941278885c68775ea8d78"
+        }
+      ],
+      "dataList-type": 1,
+      "listId": "1",
+      "isUpdatableFilter": 0,
+      "name": "总榜",
+      "layoutName": "titlecard",
+      "layoutId": 7054,
+      "isInstalledFilter": 0,
+      "detailId": "ae7366a2432941278885c68775ea8d78"
+    },
+    {
+      "dataList": [
+        {
+          "appVersionName": "6.7.2",
+          "dependentedApps": [],
+          "memo": "快来开启AR首款奇妙之行",
+          "operaType": null,
+          "score": "4.0",
+          "package": "com.taobao.taobao",
+          "versionCode": "154",
+          "appid": "C34075",
+          "exIcons": {},
+          "downCountDesc": "15.2亿次安装",
+          "btnDisable": 0,
+          "name": "手机淘宝",
+          "ID": "779e0462ecbb4b6caef112eecf859ac0",
+          "downurl": "http://appdlc.hicloud.com/dl/appdl/application/apk/77/779e0462ecbb4b6caef112eecf859ac0/com.taobao.taobao.1705101702.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=HiAd&listId=45&position=1&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=e8396fd642fcd1955cc247fb580a09ba%3BcdrInfo%3A20170518203514aps09187626%5E%7BopType%7D%5E15008%5EC34075%5E45%5E1%5E7f27f4e71b0c11e6bc3800163e0b0f53%5E17403%5E2ebedf0c575dcc3ab1a21c274a1962bc712bfec6e6dd1988e083c804328b7a95%5E%5EU0NFOn5TUkM6NDU%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.002179%5E0%5E1.0%5E1.0%5E0.8%5E900086000000000380%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A806900&encryptType=1",
+          "icon": "http://appimg.hicloud.com/hwmarket/files/application/icon144/779e0462ecbb4b6caef112eecf859ac0.png",
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b",
+          "ctype": 0,
+          "sizeDesc": "76.6M",
+          "intro": "76.6M",
+          "size": 80301380,
+          "describeType": "2",
+          "aliasName": "1. 手机淘宝",
+          "price": "0",
+          "exIcon": null,
+          "listId": "45",
+          "stars": "4.0",
+          "videoFlag": 0,
+          "md5": "97011D8684211BFF19F6B2A39A4EA9A0",
+          "comefrom": null,
+          "detailId": "app|C34075__HiAd____45__1__e8396fd642fcd1955cc247fb580a09ba%3BcdrInfo%3A20170518203514aps09187626%5E%7BopType%7D%5E15008%5EC34075%5E45%5E1%5E7f27f4e71b0c11e6bc3800163e0b0f53%5E17403%5E2ebedf0c575dcc3ab1a21c274a1962bc712bfec6e6dd1988e083c804328b7a95%5E%5EU0NFOn5TUkM6NDU%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.002179%5E0%5E1.0%5E1.0%5E0.8%5E900086000000000380%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3B"
+        },
+        {
+          "appVersionName": "8.5",
+          "dependentedApps": [],
+          "memo": "个性化新闻阅读的中文搜索应用",
+          "operaType": null,
+          "score": "3.4",
+          "package": "com.baidu.searchbox",
+          "versionCode": "25494656",
+          "appid": "C31346",
+          "exIcons": {},
+          "downCountDesc": "6.4亿次安装",
+          "btnDisable": 0,
+          "name": "手机百度",
+          "ID": "9f8619fb09a74ac584ab8ff6d7b252c8",
+          "downurl": "http://appdlc.hicloud.com/dl/appdl/application/apk/9f/9f8619fb09a74ac584ab8ff6d7b252c8/com.baidu.searchbox.1705021657.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=HiAd&listId=45&position=2&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=e8396fd642fcd1955cc247fb580a09ba%3BcdrInfo%3A20170518203514aps09187666%5E%7BopType%7D%5E18636%5EC31346%5E45%5E2%5E85611a021b0c11e6bc3800163e0b0f53%5E17403%5E2ebedf0c575dcc3ab1a21c274a1962bc712bfec6e6dd1988e083c804328b7a95%5E%5EU0NFOn5TUkM6NDU%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000847%5E0%5E3.5%5E3.5%5E2.03636%5E890086000102053913%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A806900&encryptType=1",
+          "icon": "http://appimg.hicloud.com/hwmarket/files/application/icon144/9f8619fb09a74ac584ab8ff6d7b252c8.png",
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b",
+          "ctype": 0,
+          "sizeDesc": "43M",
+          "intro": "43M",
+          "size": 45091194,
+          "describeType": "2",
+          "aliasName": "2. 手机百度",
+          "price": "0",
+          "exIcon": null,
+          "listId": "45",
+          "stars": "3.5",
+          "videoFlag": 0,
+          "md5": "94E6BC06F13A83EF195C3AD36A6862C5",
+          "comefrom": null,
+          "detailId": "app|C31346__HiAd____45__2__e8396fd642fcd1955cc247fb580a09ba%3BcdrInfo%3A20170518203514aps09187666%5E%7BopType%7D%5E18636%5EC31346%5E45%5E2%5E85611a021b0c11e6bc3800163e0b0f53%5E17403%5E2ebedf0c575dcc3ab1a21c274a1962bc712bfec6e6dd1988e083c804328b7a95%5E%5EU0NFOn5TUkM6NDU%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000847%5E0%5E3.5%5E3.5%5E2.03636%5E890086000102053913%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3B"
+        },
+        {
+          "appVersionName": "11.5.2.942",
+          "dependentedApps": [],
+          "memo": "全球6亿用户的共同选择！",
+          "operaType": null,
+          "score": "3.3",
+          "package": "com.UCMobile",
+          "versionCode": "694",
+          "appid": "C21976",
+          "exIcons": {},
+          "downCountDesc": "10.0亿次安装",
+          "btnDisable": 0,
+          "name": "UC浏览器",
+          "ID": "0fca69026594406d93c01ccbb8ee35ba",
+          "downurl": "http://appdlc.hicloud.com/dl/appdl/application/apk/0f/0fca69026594406d93c01ccbb8ee35ba/com.UCMobile.1705181517.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=HiAd&listId=45&position=3
+          &
+          hcrId
+          =
+          0D855BF76D854F5ABD8EF2C81BCF46AA
+          &
+          extendStr
+          =
+          e8396fd642fcd1955cc247fb580a09ba
+          %
+          3BcdrInfo
+          %
+          3A20170518203514aps09187675
+          %
+          5E
+          %
+          7BopType
+          %
+          7D
+          %
+          5E13954
+          %
+          5EC21976
+          %
+          5E45
+          %
+          5E3
+          %
+          5E8a7f014c1b0c11e6bc3800163e0b0f53
+          %
+          5E17403
+          %
+          5E2ebedf0c575dcc3ab1a21c274a1962bc712bfec6e6dd1988e083c804328b7a95
+          %
+          5E
+          %
+          5EU0NFOn5TUkM6NDU
+          %
+          5E2017-05-18
+          +
+          20
+          %
+          3A35
+          %
+          3A14
+          %
+          5E5
+          %
+          5E
+          %
+          E8
+          %
+          8D
+          %
+          A3
+          %
+          E8
+          %
+          80
+          %
+          807
+          %
+          5E0.000837
+          %
+          5E0
+          %
+          5E3.9
+          %
+          5E3.9
+          %
+          5E2.60645
+          %
+          5E890086000102011360
+          %
+          5E20358
+          %
+          5E
+          %
+          5E
+          %
+          5E
+          %
+          5E7.2.3
+          %
+          5E1495110901735
+          %
+          5E0
+          %
+          3BisAdTag
+          %
+          3A0
+          %
+          3B
+          %
+          3BserviceType
+          %
+          3A0
+          %
+          3Bisshake
+          %
+          3A0
+          %
+          3Bs
+          %
+          3A1495110914770
+          %
+          3Btrace
+          %
+          3A7a33dd5251e64e80ba4bb2f38ada8f8b
+          %
+          3BlayoutId
+          %
+          3A806900
+          &
+          encryptType
+          =
+          1
+          ","
+          icon
+          ":"
+          http: //appimg.hicloud.com/hwmarket/files/application/icon144/0fca69026594406d93c01ccbb8ee35ba.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"30M","intro":"30M","size":31502879,"describeType":"2","aliasName":"3. UC浏览器","price":"0","exIcon":null,"listId":"45","stars":"3.5","videoFlag":0,"md5":"514DD03B41E94A3D52E8710D302E1001","comefrom":null,"detailId":"app|C21976__HiAd____45__3__e8396fd642fcd1955cc247fb580a09ba%3BcdrInfo%3A20170518203514aps09187675%5E%7BopType%7D%5E13954%5EC21976%5E45%5E3%5E8a7f014c1b0c11e6bc3800163e0b0f53%5E17403%5E2ebedf0c575dcc3ab1a21c274a1962bc712bfec6e6dd1988e083c804328b7a95%5E%5EU0NFOn5TUkM6NDU%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000837%5E0%5E3.9%5E3.9%5E2.60645%5E890086000102011360%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3B"}],"dataList-type":3,"listId":"","isUpdatableFilter":0,"layoutName":"normalcard","layoutId":806900,"isInstalledFilter":0},{"dataList":[{"trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","name":"畅销游戏","detailId":"89385d2e75754bee811d91b0325cb46a"}],"dataList-type":1,"listId":"1","isUpdatableFilter":0,"name":"畅销游戏","layoutName":"titlecard","layoutId":807002,"isInstalledFilter":0,"detailId":"89385d2e75754bee811d91b0325cb46a"},{"dataList":[{"appVersionName":"1.2.0","dependentedApps":[],"memo":"微微一笑倾城","operaType":null,"score":"3.3","package":"com.netease.l10.huawei","versionCode":"20","appid":"C10395198","exIcons":{},"downCountDesc":"1919万次安装","btnDisable":0,"name":"倩女幽魂","ID":"b5dcc0c5c89e428bbc5f6985c2bc8f3b","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/b5/b5dcc0c5c89e428bbc5f6985c2bc8f3b/com.netease.l10.huawei.1705041653.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=autoList&listId=41&position=1&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=a0cfd8053f5a3a8cd16c0925dc2d9ae4%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A807003&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/b5dcc0c5c89e428bbc5f6985c2bc8f3b.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"593.8M","intro":"593.8M","size":622608323,"describeType":"2","aliasName":"1. 倩女幽魂","labelUrl":["http://appimg.hicloud.com/hwmarket/files/appLabel/f52f5e8e6f9b4d708ab6f9fcc49bd5b9_71.png?listId=41"],"price":"0","exIcon":null,"listId":"41","stars":"3.5","videoFlag":0,"md5":"94FA8C58C50874944C087218D752BF09","comefrom":null,"detailId":"app|C10395198__autoList____41__1__a0cfd8053f5a3a8cd16c0925dc2d9ae4%3B"},{"appVersionName":"1.124.0","dependentedApps":[],"memo":"13年经典沉淀 回合制公平手游","operaType":null,"score":"3.3","package":"com.netease.my.huawei","versionCode":"11240","appid":"C10242764","exIcons":{},"downCountDesc":"1982万次安装","btnDisable":0,"name":"梦幻西游","ID":"baa909d16d234d019b53feb117e4bf82","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/ba/baa909d16d234d019b53feb117e4bf82/com.netease.my.huawei.1704061537.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=autoList&listId=41&position=2&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=a0cfd8053f5a3a8cd16c0925dc2d9ae4%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A807003&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/baa909d16d234d019b53feb117e4bf82.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"497.8M","intro":"497.8M","size":522019263,"describeType":"2","aliasName":"2. 梦幻西游","labelUrl":["http://appimg.hicloud.com/hwmarket/files/appLabel/f52f5e8e6f9b4d708ab6f9fcc49bd5b9_71.png?listId=41"],"price":"0","exIcon":null,"listId":"41","stars":"3.5","videoFlag":0,"md5":"B20350E04226B6AF19DF45251173E3BC","comefrom":null,"detailId":"app|C10242764__autoList____41__2__a0cfd8053f5a3a8cd16c0925dc2d9ae4%3B"},{"appVersionName":"1.44","dependentedApps":[],"memo":"星星瓶新障碍来袭","operaType":null,"score":"3.7","package":"com.happyelements.AndroidAnimal","versionCode":"44","appid":"C10134672","exIcons":{},"downCountDesc":"3.3亿次安装","btnDisable":0,"name":"开心消消乐?","ID":"326eb0f003e6442780ac16a61ad79c22","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/32/326eb0f003e6442780ac16a61ad79c22/com.happyelements.AndroidAnimal.1705171807.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=autoList&listId=41&position=3&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=a0cfd8053f5a3a8cd16c0925dc2d9ae4%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A807003&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/326eb0f003e6442780ac16a61ad79c22.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"87.9M","intro":"87.9M","size":92177559,"describeType":"2","aliasName":"3. 开心消消乐?","price":"0","exIcon":null,"listId":"41","stars":"4.0","videoFlag":0,"md5":"155317E71BBA78F184F70D37766F7B2F","comefrom":null,"detailId":"app|C10134672__autoList____41__3__a0cfd8053f5a3a8cd16c0925dc2d9ae4%3B"}],"dataList-type":3,"listId":"","isUpdatableFilter":0,"layoutName":"normalcard","layoutId":807003,"isInstalledFilter":0,"detailId":"41"},{"dataList":[{"trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","name":"口碑最佳","detailId":"1df5ed89398b42cf837dd4e6d793c950"}],"dataList-type":1,"listId":"1","isUpdatableFilter":0,"name":"口碑最佳","layoutName":"titlecard","layoutId":806928,"isInstalledFilter":0,"detailId":"1df5ed89398b42cf837dd4e6d793c950"},{"dataList":[{"appVersionName":"3.2.4.1","dependentedApps":[],"memo":"就想看点好东西","operaType":null,"score":"4.8","package":"com.ruguoapp.jike","versionCode":"307","appid":"C10280402","exIcons":{},"downCountDesc":"107万次安装","btnDisable":0,"name":"即刻","ID":"f63105607dd74362b80b04b62bc29e68","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/f6/f63105607dd74362b80b04b62bc29e68/com.ruguoapp.jike.1705101742.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=HiAd&listId=40&position=1&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=a28f8b52f26ff78840b24bedd884271d%3BcdrInfo%3A20170518203514aps09188416%5E%7BopType%7D%5E18029%5EC10280402%5E40%5E1%5Eab4f036b65f211e6bc3800163e0b0f53%5E17453%5Ec1737895f9ab9f0f2ab194c30e1e76f6d97d4d7a814b70bbe407de74ebc30d70%5E%5EU0NFOn5TUkM6NDA%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000103%5E1%5E2.9%5E2.9%5E2.53026%5E900086000026408612%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A806929&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/f63105607dd74362b80b04b62bc29e68.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"11.8M","intro":"11.8M","size":12360686,"describeType":"2","aliasName":"1. 即刻","price":"0","exIcon":null,"listId":"40","stars":"5.0","videoFlag":0,"md5":"2B68780175ED2C2C7264CFDBF95B7B8C","comefrom":null,"detailId":"app|C10280402__HiAd____40__1__a28f8b52f26ff78840b24bedd884271d%3BcdrInfo%3A20170518203514aps09188416%5E%7BopType%7D%5E18029%5EC10280402%5E40%5E1%5Eab4f036b65f211e6bc3800163e0b0f53%5E17453%5Ec1737895f9ab9f0f2ab194c30e1e76f6d97d4d7a814b70bbe407de74ebc30d70%5E%5EU0NFOn5TUkM6NDA%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000103%5E1%5E2.9%5E2.9%5E2.53026%5E900086000026408612%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3B"},{"appVersionName":"6.7.8","dependentedApps":[],"memo":"车轮考驾照，学车特简单！","operaType":null,"score":"4.9","package":"cn.eclicks.drivingtest","versionCode":"180","appid":"C188770","exIcons":{},"downCountDesc":"2265万次安装","btnDisable":0,"name":"车轮驾考通","ID":"54da7ff6a97f44b3950f8debc8b8b882","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/54/54da7ff6a97f44b3950f8debc8b8b882/cn.eclicks.drivingtest.1705151637.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=HiAd&listId=40&position=2&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=a28f8b52f26ff78840b24bedd884271d%3BcdrInfo%3A20170518203514aps09188440%5E%7BopType%7D%5E7798%5EC188770%5E40%5E2%5E1c578c5865f511e6bc3800163e0b0f53%5E17453%5Ec1737895f9ab9f0f2ab194c30e1e76f6d97d4d7a814b70bbe407de74ebc30d70%5E%5EU0NFOn5TUkM6NDA%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000120%5E1%5E2.17%5E2.17%5E0.8%5E900086000000033869%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A806929&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/54da7ff6a97f44b3950f8debc8b8b882.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"66.5M","intro":"66.5M","size":69728214,"describeType":"2","aliasName":"2. 车轮驾考通","price":"0","exIcon":null,"listId":"40","stars":"5.0","videoFlag":0,"md5":"5B6A01BDF1B48B30DE352A2B06C4A202","comefrom":null,"detailId":"app|C188770__HiAd____40__2__a28f8b52f26ff78840b24bedd884271d%3BcdrInfo%3A20170518203514aps09188440%5E%7BopType%7D%5E7798%5EC188770%5E40%5E2%5E1c578c5865f511e6bc3800163e0b0f53%5E17453%5Ec1737895f9ab9f0f2ab194c30e1e76f6d97d4d7a814b70bbe407de74ebc30d70%5E%5EU0NFOn5TUkM6NDA%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000120%5E1%5E2.17%5E2.17%5E0.8%5E900086000000033869%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3B"},{"appVersionName":"6.3.1","dependentedApps":[],"memo":"直播快手福利，17以下禁入火爆平台","operaType":null,"score":"4.7","package":"com.duowan.mobile","versionCode":"45846","appid":"C37161","exIcons":{},"downCountDesc":"8342万次安装","btnDisable":0,"name":"YY","ID":"e9f8e1ae0f2549ed803c4a98736188c2","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/e9/e9f8e1ae0f2549ed803c4a98736188c2/com.duowan.mobile.1705111549.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=HiAd&listId=40&position=3&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=a28f8b52f26ff78840b24bedd884271d%3BcdrInfo%3A20170518203514aps09188443%5E%7BopType%7D%5E17905%5EC37161%5E40%5E3%5E24fe13fd65f511e6bc3800163e0b0f53%5E17453%5Ec1737895f9ab9f0f2ab194c30e1e76f6d97d4d7a814b70bbe407de74ebc30d70%5E%5EU0NFOn5TUkM6NDA%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000219%5E0%5E5.0%5E5.0%5E0.8%5E900086000000106447%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A806929&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/e9f8e1ae0f2549ed803c4a98736188c2.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"31.9M","intro":"31.9M","size":33489690,"describeType":"2","aliasName":"3. YY","price":"0","exIcon":null,"listId":"40","stars":"5.0","videoFlag":0,"md5":"AD53732441AE8A4FCFD8ECD078DD3573","comefrom":null,"detailId":"app|C37161__HiAd____40__3__a28f8b52f26ff78840b24bedd884271d%3BcdrInfo%3A20170518203514aps09188443%5E%7BopType%7D%5E17905%5EC37161%5E40%5E3%5E24fe13fd65f511e6bc3800163e0b0f53%5E17453%5Ec1737895f9ab9f0f2ab194c30e1e76f6d97d4d7a814b70bbe407de74ebc30d70%5E%5EU0NFOn5TUkM6NDA%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000219%5E0%5E5.0%5E5.0%5E0.8%5E900086000000106447%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3B"}],"dataList-type":3,"listId":"","isUpdatableFilter":0,"layoutName":"normalcard","layoutId":806929,"isInstalledFilter":0,"detailId":"40"},{"dataList":[{"trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","name":"热门流行游戏","detailId":"f90341a923ca4ee8b42adffe7b1a1ab1"}],"dataList-type":1,"listId":"1","isUpdatableFilter":0,"name":"热门流行游戏","layoutName":"titlecard","layoutId":807029,"isInstalledFilter":0,"detailId":"f90341a923ca4ee8b42adffe7b1a1ab1"},{"dataList":[{"appVersionName":"1.44","dependentedApps":[],"memo":"星星瓶新障碍来袭","operaType":null,"score":"3.7","package":"com.happyelements.AndroidAnimal","versionCode":"44","appid":"C10134672","exIcons":{},"downCountDesc":"3.3亿次安装","btnDisable":0,"name":"开心消消乐?","ID":"326eb0f003e6442780ac16a61ad79c22","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/32/326eb0f003e6442780ac16a61ad79c22/com.happyelements.AndroidAnimal.1705171807.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=autoList_null&subsource=71edea8ce74843699aff5fed4f5f11e7&listId=adwaplink&position=1&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=serviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A807030&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/326eb0f003e6442780ac16a61ad79c22.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"87.9M","intro":"87.9M","size":92177559,"describeType":"2","aliasName":"1. 开心消消乐?","price":"0","exIcon":null,"listId":"adwaplink","stars":"4.0","videoFlag":0,"md5":"155317E71BBA78F184F70D37766F7B2F","comefrom":null,"detailId":"app|C10134672__autoList_null__71edea8ce74843699aff5fed4f5f11e7__adwaplink__1__"},{"appVersionName":"4.2.0","dependentedApps":[],"memo":"赵丽颖代言","operaType":null,"score":"4.2","package":"com.mfp.jelly.huawei","versionCode":"81","appid":"C10189589","exIcons":{},"downCountDesc":"4494万次安装","btnDisable":0,"name":"宾果消消消（赵丽颖代言）","ID":"c14310800ad940f2a77f9a484121cec1","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/c1/c14310800ad940f2a77f9a484121cec1/com.mfp.jelly.huawei.1705151122.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=autoList_null&subsource=71edea8ce74843699aff5fed4f5f11e7&listId=adwaplink&position=2&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=serviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A807030&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/c14310800ad940f2a77f9a484121cec1.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"83.1M","intro":"83.1M","size":87134283,"describeType":"2","aliasName":"2. 宾果消消消（赵丽颖代言）","labelUrl":["http://appimg.hicloud.com/hwmarket/files/appLabel/f52f5e8e6f9b4d708ab6f9fcc49bd5b9_71.png?listId=adwaplink"],"price":"0","exIcon":null,"listId":"adwaplink","stars":"4.5","videoFlag":0,"md5":"2BCC98E3740A39A96AEF0AD822F543F9","comefrom":null,"detailId":"app|C10189589__autoList_null__71edea8ce74843699aff5fed4f5f11e7__adwaplink__2__"},{"appVersionName":"7.1.6","dependentedApps":[],"memo":"上亿玩家推荐的斗地主","operaType":null,"score":"3.0","package":"paile.mengle.operator.huawei","versionCode":"7106","appid":"C10447363","exIcons":{},"downCountDesc":"2671万次安装","btnDisable":0,"name":"欢乐斗地主2017","ID":"9389cf17d3ea4cdfb571b927f52f2c8f","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/93/9389cf17d3ea4cdfb571b927f52f2c8f/paile.mengle.operator.huawei.1704262102.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=autoList_null&subsource=71edea8ce74843699aff5fed4f5f11e7&listId=adwaplink&position=3&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=serviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A807030&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/9389cf17d3ea4cdfb571b927f52f2c8f_1.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"29.8M","intro":"29.8M","size":31267852,"describeType":"2","aliasName":"3. 欢乐斗地主2017","price":"0","exIcon":null,"listId":"adwaplink","stars":"3.0","videoFlag":0,"md5":"D78F44A02DD366787FAD4E7C8ACF79F9","comefrom":null,"detailId":"app|C10447363__autoList_null__71edea8ce74843699aff5fed4f5f11e7__adwaplink__3__"}],"dataList-type":3,"listId":"","isUpdatableFilter":0,"layoutName":"normalcard","layoutId":807030,"isInstalledFilter":0},{"dataList":[{"trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","name":"上升最快","detailId":"985e3ad7f0c34829ac727cacf077050e"}],"dataList-type":1,"listId":"1","isUpdatableFilter":0,"name":"上升最快","layoutName":"titlecard","layoutId":806992,"isInstalledFilter":0,"detailId":"985e3ad7f0c34829ac727cacf077050e"},{"dataList":[{"appVersionName":"1.0","dependentedApps":[],"memo":"和莉比公主一起环游世界去吧！","operaType":null,"score":"3.9","package":"com.libii.princessvacation.huawei","versionCode":"1","appid":"C10860198","exIcons":{},"downCountDesc":"13万次安装","btnDisable":0,"name":"莉比小公主之环游世界","ID":"2dde227a7ee3451b96a261311b2905ff","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/2d/2dde227a7ee3451b96a261311b2905ff/com.libii.princessvacation.huawei.1705041357.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=autoList&listId=39&position=1&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=cf704a406cd5c4c135704aae17276d79%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A806993&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/2dde227a7ee3451b96a261311b2905ff.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"69.9M","intro":"69.9M","size":73282301,"describeType":"2","aliasName":"1. 莉比小公主之环游世界","price":"0","exIcon":null,"listId":"39","stars":"4.0","videoFlag":0,"md5":"F448DF616858D3EB8AF171906425CB57","comefrom":null,"detailId":"app|C10860198__autoList____39__1__cf704a406cd5c4c135704aae17276d79%3B"},{"appVersionName":"8.0.8","dependentedApps":[],"memo":"女神主播火辣表演温暖这个冬天！","operaType":null,"score":"3.2","package":"com.showself.ui","versionCode":"116","appid":"C112041","exIcons":{},"downCountDesc":"139万次安装","btnDisable":0,"name":"秀色秀场","ID":"ca5485ce488f418c86cb4fe7a54b7938","downurl":"http://appdlc.hicloud.com/dl/appdl/application/apk/ca/ca5485ce488f418c86cb4fe7a54b7938/com.showself.ui.1704211147.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=HiAd&listId=39&position=2&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=cf704a406cd5c4c135704aae17276d79%3BcdrInfo%3A20170518203514aps31375133%5E%7BopType%7D%5E16465%5EC112041%5E39%5E2%5E484fbdd265f311e6bc3800163e0b0f53%5E17454%5Ef9022a5acdd0d627d60ecdb8412a12b3497861cb99d2c850f624f4acc89eae46%5E%5EU0NFOn5TUkM6Mzk%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000061%5E0%5E9.0%5E9.0%5E0.8%5E10086000020015316%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A806993&encryptType=1","icon":"http://appimg.hicloud.com/hwmarket/files/application/icon144/ca5485ce488f418c86cb4fe7a54b7938.png","trace":"7a33dd5251e64e80ba4bb2f38ada8f8b","ctype":0,"sizeDesc":"20.5M","intro":"20.5M","size":21474314,"describeType":"2","aliasName":"2. 秀色秀场","price":"0",
+          "exIcon"
+          :
+          null,
+          "listId": "39",
+          "stars": "3.5",
+          "videoFlag": 0,
+          "md5": "26CC0CF2F2FCED7F6C05EF97B9E66411",
+          "comefrom": null,
+          "detailId": "app|C112041__HiAd____39__2__cf704a406cd5c4c135704aae17276d79%3BcdrInfo%3A20170518203514aps31375133%5E%7BopType%7D%5E16465%5EC112041%5E39%5E2%5E484fbdd265f311e6bc3800163e0b0f53%5E17454%5Ef9022a5acdd0d627d60ecdb8412a12b3497861cb99d2c850f624f4acc89eae46%5E%5EU0NFOn5TUkM6Mzk%5E2017-05-18+20%3A35%3A14%5E5%5E%E8%8D%A3%E8%80%807%5E0.000061%5E0%5E9.0%5E9.0%5E0.8%5E10086000020015316%5E20358%5E%5E%5E%5E7.2.3%5E1495110901735%5E0%3BisAdTag%3A0%3B%3B"
+        },
+        {
+          "appVersionName": "1.0",
+          "dependentedApps": [],
+          "memo": "小公主需要一个暖心有爱的人来照顾她。",
+          "operaType": null,
+          "score": "3.7",
+          "package": "com.libii.babycare.huawei",
+          "versionCode": "1",
+          "appid": "C10860252",
+          "exIcons": {},
+          "downCountDesc": "8万次安装",
+          "btnDisable": 0,
+          "name": "公主宝宝照顾",
+          "ID": "dce69b654d4b477aa1614e474cb6e508",
+          "downurl": "http://appdlc.hicloud.com/dl/appdl/application/apk/dc/dce69b654d4b477aa1614e474cb6e508/com.libii.babycare.huawei.1705041742.apk?sign=c9d81011e610010520007000@7ED2A239A80FA54D27BEFAACCC1AB7F3&cno=4010001&source=autoList&listId=39&position=3&hcrId=0D855BF76D854F5ABD8EF2C81BCF46AA&extendStr=cf704a406cd5c4c135704aae17276d79%3BserviceType%3A0%3Bisshake%3A0%3Bs%3A1495110914770%3Btrace%3A7a33dd5251e64e80ba4bb2f38ada8f8b%3BlayoutId%3A806993&encryptType=1",
+          "icon": "http://appimg.hicloud.com/hwmarket/files/application/icon144/dce69b654d4b477aa1614e474cb6e508.png",
+          "trace": "7a33dd5251e64e80ba4bb2f38ada8f8b",
+          "ctype": 0,
+          "sizeDesc": "73.1M",
+          "intro": "73.1M",
+          "size": 76695575,
+          "describeType": "2",
+          "aliasName": "3. 公主宝宝照顾",
+          "price": "0",
+          "exIcon": null,
+          "listId": "39",
+          "stars": "4.0",
+          "videoFlag": 0,
+          "md5": "C8DD5CC9FA3D5119E38DA29772D192E8",
+          "comefrom": null,
+          "detailId": "app|C10860252__autoList____39__3__cf704a406cd5c4c135704aae17276d79%3B"
+        }
+      ],
+      "dataList-type": 3,
+      "listId": "",
+      "isUpdatableFilter": 0,
+      "layoutName": "normalcard",
+      "layoutId": 806993,
+      "isInstalledFilter": 0,
+      "detailId": "39"
+    }
+  ],
+  "salt": "-6366537613533701964",
+  "rspKey": "/UDfPDaFctIrTHEHOKwHt9HwdH0="
+}

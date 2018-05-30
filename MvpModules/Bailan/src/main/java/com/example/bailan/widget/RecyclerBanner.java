@@ -15,8 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
 import com.example.bailan.R;
+import com.zhiyangstudio.commonlib.glide.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -250,8 +250,10 @@ public class RecyclerBanner extends FrameLayout {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             ImageView img = (ImageView) holder.itemView.findViewById(R.id.icon);
-            Glide.with(img.getContext()).load(datas.get(position % datas.size()).getUrl()).into
-                    (img);
+            String url = datas.get(position % datas.size()).getUrl();
+            // Glide.with(img.getContext()).load(url).into(img);
+
+            GlideUtils.loadPic(img.getContext(), url, img);
         }
 
         @Override

@@ -17,5 +17,21 @@ public interface NetApi {
      * @return
      */
     @GET(Const.NET_API_CONFIG.RECOMMEND_LIST)
-    Observable<ResponseBody> getRecommendList2();
+    Observable<ResponseBody> getRecommendList();
+
+    /**
+     * 分类数据
+     *
+     * @return
+     */
+    @GET(Const.NET_API_CONFIG.CATEGORY_LIST)
+    Observable<ResponseBody> getCategoryList();
+
+    /**
+     * 排行数据
+     *
+     * @return
+     */
+    @GET(Const.NET_API_CONFIG.Rank_LIST)
+    Observable<ResponseBody> getRankList();
 }

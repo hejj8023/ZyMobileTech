@@ -1,6 +1,7 @@
 package com.example.bailan.ui.fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.bailan.R;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by example on 2018/5/25.
@@ -79,5 +81,13 @@ public class MimeFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment
     @Override
     protected void initArguments(Bundle bundle) {
 
+    }
+
+    @OnClick({R.id.mw_notify_test})
+    public void onViewClick(View view) {
+        switch (view.getId()) {
+            case R.id.mw_notify_test:
+                break;
+        }
     }
 }
