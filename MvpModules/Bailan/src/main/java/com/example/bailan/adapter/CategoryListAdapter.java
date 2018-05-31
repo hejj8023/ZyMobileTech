@@ -24,7 +24,6 @@ import java.util.List;
 
 public class CategoryListAdapter extends BaseMultiItemQuickAdapter<CategoryBean.CategoryLayoutData, BaseViewHolder> {
 
-
     public CategoryListAdapter(List<CategoryBean.CategoryLayoutData> data) {
         super(data);
     }
