@@ -3,3 +3,9 @@
       
 ## 
     服务器数据还是自己解析，靠框架是靠不住的，坑很多
+    
+    
+## 广告栏 效果实现 
+    https://github.com/openXu/LimitScrollerView
+    https://github.com/yy4556028/AdvertDemo
+    垂直滚动广告条实现

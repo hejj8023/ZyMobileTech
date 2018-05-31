@@ -1,196 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/c_ececec"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/c_ececec"
+              android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
             <com.example.bailan.widget.MenuWidget
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_65"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="用户名"
-                app:hideSubTitle="true"
-                app:showLeftIcon="true" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_65"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="用户名"
+                    app:hideSubTitle="true"
+                    app:showLeftIcon="true"/>
 
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
                 <View
-                    android:id="@+id/v_divider1"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:layout_marginLeft="@dimen/dp_35"
-                    android:layout_marginRight="@dimen/dp_10"
-                    android:background="@color/c_ececec" />
+                        android:id="@+id/v_divider1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:layout_marginLeft="@dimen/dp_35"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:background="@color/c_ececec"/>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_45"
-                    android:layout_alignLeft="@id/v_divider1"
-                    android:layout_alignRight="@id/v_divider1"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_45"
+                        android:layout_alignLeft="@id/v_divider1"
+                        android:layout_alignRight="@id/v_divider1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="游戏卷"
-                        android:textColor="@color/c_0091ea"
-                        android:textSize="@dimen/dp_16" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="游戏卷"
+                            android:textColor="@color/c_0091ea"
+                            android:textSize="@dimen/dp_16"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:text="0.00"
-                        android:textSize="@dimen/dp_14" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="0.00"
+                            android:textSize="@dimen/dp_14"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_35"
-                        android:text="花币"
-                        android:textColor="@color/c_0091ea"
-                        android:textSize="@dimen/dp_16" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_35"
+                            android:text="花币"
+                            android:textColor="@color/c_0091ea"
+                            android:textSize="@dimen/dp_16"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:text="0.00"
-                        android:textSize="@dimen/dp_14" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="0.00"
+                            android:textSize="@dimen/dp_14"/>
                 </LinearLayout>
 
             </RelativeLayout>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
 
 
             <com.example.bailan.widget.GridMenuRecyclerView
-                android:id="@+id/rv_menu"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_95"
-                android:background="@color/white"
-                android:fadeScrollbars="false"
-                android:fadingEdge="none"
-                android:overScrollMode="never"
-                android:paddingLeft="@dimen/dp_15"
-                android:paddingRight="@dimen/dp_15" />
+                    android:id="@+id/rv_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_95"
+                    android:background="@color/white"
+                    android:fadeScrollbars="false"
+                    android:fadingEdge="none"
+                    android:overScrollMode="never"
+                    android:paddingLeft="@dimen/dp_15"
+                    android:paddingRight="@dimen/dp_15"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_10" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_10"/>
 
             <com.example.bailan.widget.MenuWidget
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_45"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="预约新游"
-                app:hideSubTitle="true" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="预约新游"
+                    app:hideSubTitle="true"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
 
             <com.example.bailan.widget.MenuWidget
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_45"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="已购项目"
-                app:hideSubTitle="true" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="已购项目"
+                    app:hideSubTitle="true"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
 
             <com.example.bailan.widget.MenuWidget
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_45"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="花伴专区"
-                app:hideSubTitle="true" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="花伴专区"
+                    app:hideSubTitle="true"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_10" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_10"/>
 
             <com.example.bailan.widget.MenuWidget
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_45"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="设置"
-                app:hideSubTitle="true" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="设置"
+                    app:hideSubTitle="true"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
 
             <com.example.bailan.widget.MenuWidget
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_45"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="问题与建议"
-                app:hideSubTitle="true" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="问题与建议"
+                    app:hideSubTitle="true"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
 
             <com.example.bailan.widget.MenuWidget
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_45"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="检查更新"
-                app:hideSubTitle="true" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="检查更新"
+                    app:hideSubTitle="true"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_10" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_10"/>
 
             <com.example.bailan.widget.MenuWidget
-                android:id="@+id/mw_notify_test"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_45"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="通知兼容性测试"
-                app:hideSubTitle="true" />
+                    android:id="@+id/mw_notify_test"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="通知兼容性测试"
+                    app:hideSubTitle="true"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_10"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <com.example.bailan.widget.AdvertView
+                        android:id="@+id/activity_main_advertView"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="8dp"/>
+
+                <com.example.bailan.widget.AutoScrollTextView
+                        android:id="@+id/activity_main_scrollTextView"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50dp"
+                        android:text="hehe"
+                        android:textColor="#000000"
+                        android:textSize="14sp"/>
+
+            </LinearLayout>
+
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_10"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dip"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dip"
+                        android:background="#0099ff"
+                        android:gravity="center"
+                        android:text="其他内容"/>
+
+                <com.example.bailan.widget.LimitScrollerView
+                        android:id="@+id/limitScroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:limit="2"
+                        app:durationTime="1200"
+                        app:periodTime="2000"/>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00ff00"
+                        android:onClick="to"
+                        android:gravity="center"
+                        android:text="其他内容"/>
+            </LinearLayout>
+
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"/>
 
             <com.example.bailan.widget.MenuWidget
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_45"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                app:Title="关于"
-                app:hideSubTitle="true" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_45"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    app:Title="关于"
+                    app:hideSubTitle="true"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>
