@@ -1,6 +1,6 @@
 package com.example.bailan.mvp.presenter;
 
-import com.example.bailan.bean.RecommonFinalBean;
+import com.example.bailan.bean.RecommonBean;
 import com.example.bailan.mvp.contract.RecommendContract;
 import com.example.bailan.mvp.model.RecommendModel;
 import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
@@ -29,14 +29,14 @@ public class RecommendPresenter extends BasePresenter<RecommendContract.IListVie
     @Override
     public void loadListData() {
         mListView = getView();
-        mRecommendModel.loadData2(new AbsBaseObserver<RecommonFinalBean>(this, RecommendModel.class.getName()) {
+        mRecommendModel.loadData2(new AbsBaseObserver<RecommonBean>(this, RecommendModel.class.getName()) {
             @Override
-            public void onNext(RecommonFinalBean recommonFinalBean) {
-                List<RecommonFinalBean.FianlLayoutData> fianlLayoutDataList = new ArrayList<>();
-                if (recommonFinalBean != null) {
-                    fianlLayoutDataList = recommonFinalBean.getLayoutData();
+            public void onNext(RecommonBean recommonBean) {
+                List<RecommonBean.RecommendLayoutData> recommendLayoutDataList = new ArrayList<>();
+                if (recommonBean != null) {
+                    recommendLayoutDataList = recommonBean.getLayoutData();
                 }
-                mListView.setData(fianlLayoutDataList);
+                mListView.setData(recommendLayoutDataList);
             }
         });
     }

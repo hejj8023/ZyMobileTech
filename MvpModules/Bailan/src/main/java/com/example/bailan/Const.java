@@ -46,6 +46,12 @@ public class Const {
             // 正常条目
             public static final int ITEM_TYPE_COMMON = 3;
         }
+
+        public class ITEM_RANK_LIST {
+            public static final int ITEM_RANK_TITLE_DIVIDER = 1;
+            public static final int ITEM_RANK_MENU = 2;
+            public static final int ITEM_RANK_LIST = 3;
+        }
     }
 
 

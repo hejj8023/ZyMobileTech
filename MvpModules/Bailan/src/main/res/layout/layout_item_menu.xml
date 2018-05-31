@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_root_menu"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_95"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/dp_10"
-    android:paddingTop="@dimen/dp_10">
+                android:id="@+id/ll_root_menu"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_95"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_10">
 
     <ImageView
-        android:id="@+id/iv_icon_menu"
-        android:layout_width="@dimen/dp_45"
-        android:layout_height="@dimen/dp_45"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_comments" />
+            android:id="@+id/iv_icon_menu"
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="@dimen/dp_45"
+            android:layout_gravity="center"
+            />
 
     <TextView
-        android:id="@+id/tv_name_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iv_icon_menu"
-        android:layout_alignRight="@+id/iv_icon_menu"
-        android:layout_below="@id/iv_icon_menu"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp_5"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:singleLine="true"
-        android:text="aaaaaaaaaaaaa" />
+            android:id="@+id/tv_name_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/iv_icon_menu"
+            android:layout_alignRight="@+id/iv_icon_menu"
+            android:layout_below="@id/iv_icon_menu"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_5"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="aaaaaaaaaaaaa"/>
 
 </RelativeLayout>

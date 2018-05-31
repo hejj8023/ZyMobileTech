@@ -10,7 +10,7 @@ import java.util.List;
  * Created by example on 2018/5/29.
  */
 
-public class RecommonFinalBean {
+public class RecommonBean {
     private int contentType;
     private int count;
     private int hasNextPage;
@@ -22,8 +22,8 @@ public class RecommonFinalBean {
     private List<?> sortInfo;
     private String statKey;
     private int totalPages;
-    private List<FinalLayoutBean> layout;
-    private List<FianlLayoutData> layoutData;
+    private List<LayoutBean> layout;
+    private List<RecommendLayoutData> layoutData;
 
     public int getContentType() {
         return contentType;
@@ -113,26 +113,26 @@ public class RecommonFinalBean {
         this.totalPages = totalPages;
     }
 
-    public List<FinalLayoutBean> getLayout() {
+    public List<LayoutBean> getLayout() {
         return layout;
     }
 
-    public void setLayout(List<FinalLayoutBean> layout) {
+    public void setLayout(List<LayoutBean> layout) {
         this.layout = layout;
     }
 
-    public List<FianlLayoutData> getLayoutData() {
+    public List<RecommendLayoutData> getLayoutData() {
         return layoutData;
     }
 
-    public void setLayoutData(List<FianlLayoutData> layoutData) {
+    public void setLayoutData(List<RecommendLayoutData> layoutData) {
         this.layoutData = layoutData;
     }
 
-    public static class FinalLayoutBean {
+    public static class LayoutBean {
     }
 
-    public static class FianlLayoutData implements MultiItemEntity {
+    public static class RecommendLayoutData implements MultiItemEntity {
         private int dataList_type;
         private String detailId;
         private int isInstalledFilter;
@@ -141,13 +141,13 @@ public class RecommonFinalBean {
         private String layoutName;
         private String listId;
         private String name;
-        private List<LayoutItemBean> dataList;
+        private List<RecommendLayoutDataItem> dataList;
 
-        public List<LayoutItemBean> getDataList() {
+        public List<RecommendLayoutDataItem> getDataList() {
             return dataList;
         }
 
-        public void setDataList(List<LayoutItemBean> dataList) {
+        public void setDataList(List<RecommendLayoutDataItem> dataList) {
             this.dataList = dataList;
         }
 
@@ -235,7 +235,7 @@ public class RecommonFinalBean {
         }
     }
 
-    public static class LayoutItemBean {
+    public static class RecommendLayoutDataItem {
         private String name;
         private String trace;
         private String detailId;

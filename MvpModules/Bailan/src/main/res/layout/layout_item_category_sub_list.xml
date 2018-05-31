@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:orientation="vertical"
-              android:paddingBottom="@dimen/dp_2"
-              android:paddingTop="@dimen/dp_2"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingTop="@dimen/dp_2"
+                android:descendantFocusability="blocksDescendants"
+                android:layout_height="wrap_content">
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_item_category_menu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/list_bg"
+            android:layout_height="wrap_content"
+            android:background="@color/s_fcfcfc"
             android:fadeScrollbars="false"
             android:fadingEdge="none"
             android:overScrollMode="never"
             android:paddingLeft="@dimen/dp_5"
             android:paddingRight="@dimen/dp_5"/>
 
-</LinearLayout>
+</RelativeLayout>

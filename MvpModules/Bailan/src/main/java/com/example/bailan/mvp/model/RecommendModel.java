@@ -1,7 +1,7 @@
 package com.example.bailan.mvp.model;
 
 import com.example.bailan.base.BaseWLModel;
-import com.example.bailan.bean.RecommonFinalBean;
+import com.example.bailan.bean.RecommonBean;
 import com.example.bailan.mvp.contract.RecommendContract;
 import com.zhiyangstudio.commonlib.utils.EmptyUtils;
 import com.zhiyangstudio.commonlib.utils.JsonUtil;
@@ -24,11 +24,10 @@ import okhttp3.ResponseBody;
 /**
  * Created by zzg on 2018/5/27.
  */
-
+@SuppressWarnings("unchecked")
 public class RecommendModel extends BaseWLModel implements RecommendContract.IListModel {
     @Override
-    public void loadData2(Observer<RecommonFinalBean> observer) {
-
+    public void loadData2(Observer<RecommonBean> observer) {
         mNetApi.getRecommendList()
                 .flatMap(getFunc())
                 .compose(RxUtils.io_main())
@@ -36,77 +35,83 @@ public class RecommendModel extends BaseWLModel implements RecommendContract.ILi
     }
 
     private Function getFunc() {
-        Function<ResponseBody, ObservableSource<RecommonFinalBean>> function = new Function<ResponseBody,
-                ObservableSource<RecommonFinalBean>>() {
+        Function<ResponseBody, ObservableSource<RecommonBean>> function = new Function<ResponseBody,
+                ObservableSource<RecommonBean>>() {
             @Override
-            public ObservableSource<RecommonFinalBean> apply(ResponseBody responseBody) throws Exception {
+            public ObservableSource<RecommonBean> apply(ResponseBody responseBody) throws Exception {
                 LoggerUtils.loge("数据转换处理...");
-                RecommonFinalBean recommonFinalBean = new RecommonFinalBean();
-                processData(responseBody, recommonFinalBean);
-                return RxUtils.createObservableData(recommonFinalBean);
+                RecommonBean recommonBean = new RecommonBean();
+                processData(responseBody, recommonBean);
+                return RxUtils.createObservableData(recommonBean);
             }
         };
         return function;
     }
 
-    private void processData(ResponseBody responseBody, RecommonFinalBean recommonFinalBean) {
-        List<RecommonFinalBean.FianlLayoutData> layoutDataList = new ArrayList<>();
+    private void processData(ResponseBody responseBody, RecommonBean recommonBean) {
+        List<RecommonBean.RecommendLayoutData> layoutDataList = new ArrayList<>();
         try {
             String str = responseBody.string();
             // gsonformat会造成数据丢失，就自己解析
             if (EmptyUtils.isNotEmpty(str)) {
                 try {
                     JSONObject jsonObject = new JSONObject(str);
-                    recommonFinalBean.setContentType(JsonUtil.optInt(jsonObject, "contentType"));
-                    recommonFinalBean.setCount(JsonUtil.optInt(jsonObject, "count"));
-                    recommonFinalBean.setIsSupSearch(JsonUtil.optInt(jsonObject, "isSupSearch"));
-                    recommonFinalBean.setMarginTop(JsonUtil.optInt(jsonObject, "marginTop"));
-                    recommonFinalBean.setTotalPages(JsonUtil.optInt(jsonObject, "totalPages"));
-                    recommonFinalBean.setName(JsonUtil.optStr(jsonObject, "name"));
-                    recommonFinalBean.setRspKey(JsonUtil.optStr(jsonObject, "rspKey"));
-                    recommonFinalBean.setSalt(JsonUtil.optStr(jsonObject, "salt"));
-                    recommonFinalBean.setStatKey(JsonUtil.optStr(jsonObject, "statKey"));
+                    recommonBean.setContentType(JsonUtil.optInt(jsonObject, "contentType"));
+                    recommonBean.setCount(JsonUtil.optInt(jsonObject, "count"));
+                    recommonBean.setIsSupSearch(JsonUtil.optInt(jsonObject, "isSupSearch"));
+                    recommonBean.setMarginTop(JsonUtil.optInt(jsonObject, "marginTop"));
+                    recommonBean.setTotalPages(JsonUtil.optInt(jsonObject, "totalPages"));
+                    recommonBean.setName(JsonUtil.optStr(jsonObject, "name"));
+                    recommonBean.setRspKey(JsonUtil.optStr(jsonObject, "rspKey"));
+                    recommonBean.setSalt(JsonUtil.optStr(jsonObject, "salt"));
+                    recommonBean.setStatKey(JsonUtil.optStr(jsonObject, "statKey"));
 
                     JSONArray jsonArray = JsonUtil.optJsonArr(jsonObject, "layoutData");
-                    RecommonFinalBean.FianlLayoutData fianlLayoutData = null;
-                    RecommonFinalBean.LayoutItemBean layoutItemBean = null;
-                    List<RecommonFinalBean.LayoutItemBean> datList = null;
-                    List<RecommonFinalBean.LayoutItemSubBean> subList = null;
-                    RecommonFinalBean.LayoutItemSubBean layoutItemSubBean = null;
+                    RecommonBean.RecommendLayoutData recommendLayoutData = null;
+                    RecommonBean.RecommendLayoutDataItem recommendLayoutDataItem = null;
+                    List<RecommonBean.RecommendLayoutDataItem> datList = null;
+                    List<RecommonBean.LayoutItemSubBean> subList = null;
+                    RecommonBean.LayoutItemSubBean layoutItemSubBean = null;
+                    JSONObject layoutDataJobj = null;
+                    JSONArray dataListJarr = null;
                     String[] labelUrl = null;
+                    JSONObject dataItemJOBj = null;
+                    JSONArray listArr = null;
+                    JSONObject listItemJson = null;
                     if (jsonArray != null && jsonArray.length() > 0) {
                         for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject layoutDataJobj = jsonArray.optJSONObject(i);
-                            fianlLayoutData = new RecommonFinalBean.FianlLayoutData();
-                            fianlLayoutData.setDataList_type(JsonUtil.optInt(layoutDataJobj, "dataList-type"));
-                            fianlLayoutData.setIsInstalledFilter(JsonUtil.optInt(layoutDataJobj,
+                            layoutDataJobj = jsonArray.optJSONObject(i);
+                            recommendLayoutData = new RecommonBean.RecommendLayoutData();
+                            recommendLayoutData.setDataList_type(JsonUtil.optInt(layoutDataJobj, "dataList-type"));
+                            recommendLayoutData.setIsInstalledFilter(JsonUtil.optInt(layoutDataJobj,
                                     "isInstalledFilter"));
-                            fianlLayoutData.setIsUpdatableFilter(JsonUtil.optInt(layoutDataJobj,
+                            recommendLayoutData.setIsUpdatableFilter(JsonUtil.optInt(layoutDataJobj,
                                     "isUpdatableFilter"));
-                            fianlLayoutData.setLayoutId(JsonUtil.optInt(layoutDataJobj, "layoutId"));
+                            recommendLayoutData.setLayoutId(JsonUtil.optInt(layoutDataJobj, "layoutId"));
 
-                            fianlLayoutData.setDetailId(JsonUtil.optStr(layoutDataJobj, "detailId"));
-                            fianlLayoutData.setLayoutName(JsonUtil.optStr(layoutDataJobj, "layoutName"));
-                            fianlLayoutData.setListId(JsonUtil.optStr(layoutDataJobj, "listId"));
-                            fianlLayoutData.setName(JsonUtil.optStr(layoutDataJobj, "name"));
+                            recommendLayoutData.setDetailId(JsonUtil.optStr(layoutDataJobj, "detailId"));
+                            recommendLayoutData.setLayoutName(JsonUtil.optStr(layoutDataJobj, "layoutName"));
+                            recommendLayoutData.setListId(JsonUtil.optStr(layoutDataJobj, "listId"));
+                            recommendLayoutData.setName(JsonUtil.optStr(layoutDataJobj, "name"));
 
-                            JSONArray dataListJarr = JsonUtil.optJsonArr(layoutDataJobj, "dataList");
+                            dataListJarr = JsonUtil.optJsonArr(layoutDataJobj, "dataList");
                             if (dataListJarr != null && dataListJarr.length() > 0) {
                                 datList = new ArrayList<>();
                                 for (int i1 = 0; i1 < dataListJarr.length(); i1++) {
-                                    JSONObject dataItemJOBj = dataListJarr.optJSONObject(i1);
-                                    layoutItemBean = new RecommonFinalBean.LayoutItemBean();
-                                    layoutItemBean.setName(JsonUtil.optStr(dataItemJOBj, "name"));
-                                    layoutItemBean.setCommendIcon(JsonUtil.optStr(dataItemJOBj, "commendIcon"));
-                                    layoutItemBean.setDetailId(JsonUtil.optStr(dataItemJOBj, "detailId"));
-                                    layoutItemBean.setIcon(JsonUtil.optStr(dataItemJOBj, "icon"));
-                                    layoutItemBean.setTrace(JsonUtil.optStr(dataItemJOBj, "trace"));
-                                    JSONArray listArr = JsonUtil.optJsonArr(dataItemJOBj, "list");
+                                    dataItemJOBj = dataListJarr.optJSONObject(i1);
+                                    recommendLayoutDataItem = new RecommonBean.RecommendLayoutDataItem();
+                                    recommendLayoutDataItem.setName(JsonUtil.optStr(dataItemJOBj, "name"));
+                                    recommendLayoutDataItem.setCommendIcon(JsonUtil.optStr(dataItemJOBj,
+                                            "commendIcon"));
+                                    recommendLayoutDataItem.setDetailId(JsonUtil.optStr(dataItemJOBj, "detailId"));
+                                    recommendLayoutDataItem.setIcon(JsonUtil.optStr(dataItemJOBj, "icon"));
+                                    recommendLayoutDataItem.setTrace(JsonUtil.optStr(dataItemJOBj, "trace"));
+                                    listArr = JsonUtil.optJsonArr(dataItemJOBj, "list");
                                     if (listArr != null && listArr.length() > 0) {
                                         subList = new ArrayList<>();
                                         for (int i2 = 0; i2 < listArr.length(); i2++) {
-                                            layoutItemSubBean = new RecommonFinalBean.LayoutItemSubBean();
-                                            JSONObject listItemJson = listArr.optJSONObject(i2);
+                                            layoutItemSubBean = new RecommonBean.LayoutItemSubBean();
+                                            listItemJson = listArr.optJSONObject(i2);
                                             layoutItemSubBean.setAppid(JsonUtil.optStr(listItemJson, "appid"));
                                             layoutItemSubBean.setAppVersionName(JsonUtil.optStr(listItemJson,
                                                     "appVersionName"));
@@ -166,18 +171,18 @@ public class RecommendModel extends BaseWLModel implements RecommendContract.ILi
                                             }
                                             subList.add(layoutItemSubBean);
                                         }
-                                        layoutItemBean.setList(subList);
+                                        recommendLayoutDataItem.setList(subList);
                                     }
-                                    datList.add(layoutItemBean);
+                                    datList.add(recommendLayoutDataItem);
                                 }
-                                fianlLayoutData.setDataList(datList);
+                                recommendLayoutData.setDataList(datList);
                             }
-                            if (fianlLayoutData.getDataList_type() != 0) {
-                                layoutDataList.add(fianlLayoutData);
+                            if (recommendLayoutData.getDataList_type() != 0) {
+                                layoutDataList.add(recommendLayoutData);
                             }
                         }
                     }
-                    recommonFinalBean.setLayoutData(layoutDataList);
+                    recommonBean.setLayoutData(layoutDataList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

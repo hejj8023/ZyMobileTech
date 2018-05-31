@@ -1,6 +1,6 @@
 package com.example.bailan.mvp.contract;
 
-import com.example.bailan.bean.RecommonFinalBean;
+import com.example.bailan.bean.RecommonBean;
 import com.zhiyangstudio.commonlib.mvp.inter.ISampleRefreshView;
 
 import io.reactivex.Observer;
@@ -10,7 +10,7 @@ import io.reactivex.Observer;
  */
 
 public class RecommendContract {
-    public interface IListView extends ISampleRefreshView<RecommonFinalBean.FianlLayoutData> {
+    public interface IListView extends ISampleRefreshView<RecommonBean.RecommendLayoutData> {
     }
 
     public interface IListPresenter {
@@ -18,6 +18,6 @@ public class RecommendContract {
     }
 
     public interface IListModel {
-        void loadData2(Observer<RecommonFinalBean> observer);
+        void loadData2(Observer<RecommonBean> observer);
     }
 }

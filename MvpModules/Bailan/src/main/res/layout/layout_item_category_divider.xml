@@ -2,19 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:background="@color/c_ececec"
+                android:background="@color/c_efefef"
                 android:paddingLeft="@dimen/dp_5"
                 android:paddingRight="@dimen/dp_5"
-                android:layout_height="@dimen/dp_45">
+                android:layout_height="@dimen/dp_40">
 
     <TextView
+            android:id="@+id/tv_divider_name"
             android:layout_width="match_parent"
             android:text="所有分类"
             android:layout_centerVertical="true"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/dp_10"
             android:layout_toLeftOf="@+id/tv_more"
+            android:textSize="@dimen/dp_16"
             android:layout_height="wrap_content"/>
 
     <TextView
@@ -22,8 +24,9 @@
             android:id="@+id/tv_more"
             android:layout_width="wrap_content"
             android:text="更多"
-            android:layout_marginLeft="@dimen/dp_5"
-            android:layout_marginRight="@dimen/dp_5"
+            android:textSize="@dimen/dp_14"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_8"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"/>
 
@@ -32,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_10"
             android:layout_centerVertical="true"
             android:background="@drawable/ic_right"/>
 </RelativeLayout>

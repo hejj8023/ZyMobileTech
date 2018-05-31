@@ -1,8 +1,8 @@
 # 将aar发布到github并在项目中引用<参见项目MukeApps>
-测试成功，仓库的类型必须是组织类型，非组织类型使用的时候直接发现不了
-https://www.jianshu.com/p/ca53952f4212
+## 测试成功，仓库的类型必须是组织类型，非组织类型使用的时候直接发现不了
+    https://www.jianshu.com/p/ca53952f4212
 
-使用方式:
+## 使用方式:
 
     project->build.gradle:
      allprojects {

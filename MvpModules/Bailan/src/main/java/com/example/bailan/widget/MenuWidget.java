@@ -3,9 +3,11 @@ package com.example.bailan.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -119,7 +121,9 @@ public class MenuWidget extends RelativeLayout {
     }
 
     public void setLeftIconBgColor(Drawable resId) {
-        mLeftIcon.setBackground(resId);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mLeftIcon.setBackground(resId);
+        }
     }
 
     public void setRightIcon(int resId) {
@@ -135,10 +139,31 @@ public class MenuWidget extends RelativeLayout {
     }
 
     public void setRightIconBgColor(Drawable resId) {
-        mRightIcon.setBackground(resId);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mRightIcon.setBackground(resId);
+        }
     }
 
     public void setLeftIcon(String iconUrl) {
         GlideUtils.loadPic(getContext(), iconUrl, mLeftIcon);
+    }
+
+    public void setLeftIconSize(int sW, int sH) {
+        if (sW > 0 && sH > 0) {
+            RelativeLayout.LayoutParams lP = (RelativeLayout.LayoutParams) mLeftIcon.getLayoutParams();
+            lP.width = sW;
+            lP.height = sH;
+            mLeftIcon.setLayoutParams(lP);
+
+            LinearLayout.LayoutParams rLp = (LinearLayout.LayoutParams) vDivider2.getLayoutParams();
+            rLp.leftMargin = sW + UiUtils.dp2px(12);
+            vDivider2.setLayoutParams(rLp);
+        }
+    }
+
+    public void hideDivider2() {
+        if (vDivider2 != null && vDivider2.getVisibility() != View.GONE) {
+            vDivider2.setVisibility(View.GONE);
+        }
     }
 }

@@ -10,7 +10,7 @@
             android:id="@+id/gmrv_item_category_menu"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_95"
-            android:background="@drawable/list_bg"
+            android:background="@color/s_fcfcfc"
             android:fadeScrollbars="false"
             android:fadingEdge="none"
             android:overScrollMode="never"

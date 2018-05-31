@@ -25,6 +25,8 @@ import okhttp3.ResponseBody;
  */
 
 public class CategoryModel extends BaseWLModel implements CategoryContract.ICategoryModel {
+
+    @SuppressWarnings("unchecked")
     @Override
     public void getData(Observer<CategoryBean> observer) {
         mNetApi.getCategoryList()
@@ -32,12 +34,20 @@ public class CategoryModel extends BaseWLModel implements CategoryContract.ICate
                     @Override
                     public ObservableSource<CategoryBean> apply(ResponseBody responseBody) throws Exception {
                         CategoryBean categoryBean = new CategoryBean();
+                        CategoryBean.CategoryLayoutData layoutData = null;
+                        List<CategoryBean.CategoryLayoutData> layoutDataList = null;
+                        List<CategoryBean.CategoryDataItem> dataItemList = null;
+                        CategoryBean.CategoryDataItem dataItem = null;
+                        JSONObject ldItemJsonObj = null;
+                        JSONObject jsonObject = null;
+                        JSONArray dataListJarr = null;
+                        JSONObject itemJsonObj = null;
                         if (responseBody != null) {
                             String responseStr = responseBody.string();
                             if (EmptyUtils.isNotEmpty(responseStr)) {
                                 LoggerUtils.loge("responseStr = \n" + responseStr);
                                 try {
-                                    JSONObject jsonObject = new JSONObject(responseStr);
+                                    jsonObject = new JSONObject(responseStr);
                                     categoryBean.setContentType(JsonUtil.optInt(jsonObject, "contentType"));
                                     categoryBean.setCount(JsonUtil.optInt(jsonObject, "count"));
                                     categoryBean.setHasNextPage(JsonUtil.optInt(jsonObject, "hasNextPage"));
@@ -48,14 +58,12 @@ public class CategoryModel extends BaseWLModel implements CategoryContract.ICate
                                     categoryBean.setSalt(JsonUtil.optStr(jsonObject, "salt"));
                                     categoryBean.setStatKey(JsonUtil.optStr(jsonObject, "statKey"));
                                     categoryBean.setTotalPages(JsonUtil.optInt(jsonObject, "totalPages"));
-
                                     JSONArray ldJarr = JsonUtil.optJsonArr(jsonObject, "layoutData");
                                     if (ldJarr != null && ldJarr.length() > 0) {
-                                        List<CategoryBean.CategoryLayoutData> layoutDataList = new ArrayList<>();
-                                        CategoryBean.CategoryLayoutData layoutData = null;
+                                        layoutDataList = new ArrayList<>();
                                         for (int i = 0, j = ldJarr.length(); i < j; i++) {
                                             layoutData = new CategoryBean.CategoryLayoutData();
-                                            JSONObject ldItemJsonObj = ldJarr.optJSONObject(i);
+                                            ldItemJsonObj = ldJarr.optJSONObject(i);
                                             layoutData.setDataList_type(JsonUtil.optInt(ldItemJsonObj,
                                                     "dataList-type"));
                                             layoutData.setIsInstalledFilter(JsonUtil.optInt(ldItemJsonObj,
@@ -65,12 +73,11 @@ public class CategoryModel extends BaseWLModel implements CategoryContract.ICate
                                             layoutData.setLayoutId(JsonUtil.optInt(ldItemJsonObj, "layoutId"));
                                             layoutData.setLayoutName(JsonUtil.optStr(ldItemJsonObj, "layoutName"));
                                             layoutData.setListId(JsonUtil.optStr(ldItemJsonObj, "listId"));
-                                            JSONArray dataListJarr = JsonUtil.optJsonArr(ldItemJsonObj, "dataList");
+                                            dataListJarr = JsonUtil.optJsonArr(ldItemJsonObj, "dataList");
                                             if (dataListJarr != null && dataListJarr.length() > 0) {
-                                                List<CategoryBean.CategoryDataItem> dataItemList = new ArrayList<>();
-                                                CategoryBean.CategoryDataItem dataItem = null;
+                                                dataItemList = new ArrayList<>();
                                                 for (int i1 = 0, j1 = dataListJarr.length(); i1 < j1; i1++) {
-                                                    JSONObject itemJsonObj = dataListJarr.optJSONObject(i1);
+                                                    itemJsonObj = dataListJarr.optJSONObject(i1);
                                                     dataItem = new CategoryBean.CategoryDataItem();
                                                     dataItem.setCommendIcon(JsonUtil.optStr(itemJsonObj,
                                                             "commendIcon"));

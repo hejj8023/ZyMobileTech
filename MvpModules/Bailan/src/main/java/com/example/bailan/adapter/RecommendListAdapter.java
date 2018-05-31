@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.bailan.Const;
 import com.example.bailan.R;
 import com.example.bailan.bean.MenuItemInfo;
-import com.example.bailan.bean.RecommonFinalBean;
+import com.example.bailan.bean.RecommonBean;
 import com.example.bailan.widget.GridMenuRecyclerView;
 import com.example.bailan.widget.RecyclerBanner;
 import com.zhiyangstudio.commonlib.glide.GlideUtils;
@@ -16,18 +16,16 @@ import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommonFinalBean.FianlLayoutData, BaseViewHolder> {
+public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommonBean.RecommendLayoutData, BaseViewHolder> {
 
-    public RecommendListAdapter(List<RecommonFinalBean.FianlLayoutData> data) {
+    public RecommendListAdapter(List<RecommonBean.RecommendLayoutData> data) {
         super(data);
-        // LoggerUtils.loge("RecommendListAdapter contr");
     }
 
     @Override
     public int getItemViewType(int position) {
-        // LoggerUtils.loge("RecommendListAdapter getItemViewType");
         int itemViewType = super.getItemViewType(position);
-        RecommonFinalBean.FianlLayoutData data = mData.get(position);
+        RecommonBean.RecommendLayoutData data = mData.get(position);
         int layoutId = -1;
 
         switch (itemViewType) {
@@ -51,19 +49,19 @@ public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommonFina
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, RecommonFinalBean.FianlLayoutData item) {
+    protected void convert(BaseViewHolder helper, RecommonBean.RecommendLayoutData item) {
         LoggerUtils.loge("RecommendListAdapter convert");
         int itemViewType = getItemViewType(helper.getPosition());
-        List<RecommonFinalBean.LayoutItemBean> dataList = item.getDataList();
+        List<RecommonBean.RecommendLayoutDataItem> dataList = item.getDataList();
         switch (itemViewType) {
             // 轮播图
             case Const.LIST_ITEM_COLLECTS.ITEM_RECOMMON_LIST.ITEM_TYPE_BANNER:
                 RecyclerBanner recyclerView = helper.getView(R.id.rb_banner);
                 List<RecyclerBanner.BannerEntity> tList = new ArrayList<>();
                 RecyclerBanner.BannerEntity entity = null;
-                for (RecommonFinalBean.LayoutItemBean layoutItemBean : dataList) {
+                for (RecommonBean.RecommendLayoutDataItem recommendLayoutDataItem : dataList) {
                     entity = new RecyclerBanner.BannerEntity();
-                    entity.setUrl(layoutItemBean.getIcon());
+                    entity.setUrl(recommendLayoutDataItem.getIcon());
                     tList.add(entity);
                 }
                 recyclerView.setDatas(tList);
@@ -72,7 +70,7 @@ public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommonFina
             case Const.LIST_ITEM_COLLECTS.ITEM_RECOMMON_LIST.ITEM_TYPE_AD:
                 ImageView imageView1 = helper.getView(R.id.iv1_item_list_recommend);
                 ImageView imageView2 = helper.getView(R.id.iv2_item_list_recommend);
-                List<RecommonFinalBean.LayoutItemBean> list = dataList;
+                List<RecommonBean.RecommendLayoutDataItem> list = dataList;
                 for (int i = 0; i < list.size(); i++) {
                     String icon = list.get(i).getIcon();
                     if (i == 0) {
@@ -88,14 +86,14 @@ public class RecommendListAdapter extends BaseMultiItemQuickAdapter<RecommonFina
                 GridMenuRecyclerView grv = helper.getView(R.id.grv_recomment_item_list);
                 grv.setSpanCount(5);
 
-                RecommonFinalBean.LayoutItemBean layoutItemBean = dataList.get(0);
-                if (layoutItemBean != null) {
-                    List<RecommonFinalBean.LayoutItemSubBean> itemSubBeans = layoutItemBean.getList();
+                RecommonBean.RecommendLayoutDataItem recommendLayoutDataItem = dataList.get(0);
+                if (recommendLayoutDataItem != null) {
+                    List<RecommonBean.LayoutItemSubBean> itemSubBeans = recommendLayoutDataItem.getList();
                     if (itemSubBeans != null && itemSubBeans.size() > 0) {
                         List<MenuItemInfo> menuItemInfos = new ArrayList<>();
                         MenuItemInfo info = null;
                         for (int i = 0; i < itemSubBeans.size(); i++) {
-                            RecommonFinalBean.LayoutItemSubBean layoutItemSubBean = itemSubBeans.get(i);
+                            RecommonBean.LayoutItemSubBean layoutItemSubBean = itemSubBeans.get(i);
                             info = new MenuItemInfo();
                             info.setName(layoutItemSubBean.getName());
                             info.setIconUrl(layoutItemSubBean.getIcon());

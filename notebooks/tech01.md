@@ -1,4 +1,3 @@
-# android tips
 ## home键监听处理(利用广播接收者)
     homeWatcherReceiver = new HomeWatcherReceiver();
     IntentFilter filter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);

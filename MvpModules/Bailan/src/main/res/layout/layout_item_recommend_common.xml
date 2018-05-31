@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/list_bg"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/dp_2"
-    android:paddingTop="@dimen/dp_2">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical"
+              android:layout_marginTop="@dimen/dp_2"
+              android:paddingBottom="@dimen/dp_2"
+              android:paddingTop="@dimen/dp_2">
 
     <TextView
-        android:id="@+id/tv_title_recomment_item_list"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_35"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/dp_10"
-        android:text="标题" />
+            android:id="@+id/tv_title_recomment_item_list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_35"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp_10"
+            android:textSize="@dimen/dp_16"
+            android:text="标题"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/c_ececec"/>
 
     <com.example.bailan.widget.GridMenuRecyclerView
-        android:id="@+id/grv_recomment_item_list"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_95"
-        android:background="@drawable/list_bg"
-        android:fadeScrollbars="false"
-        android:fadingEdge="none"
-        android:overScrollMode="never"
-        android:paddingLeft="@dimen/dp_5"
-        android:paddingRight="@dimen/dp_5" />
+            android:id="@+id/grv_recomment_item_list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_95"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_5"/>
 
 </LinearLayout>

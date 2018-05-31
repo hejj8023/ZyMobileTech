@@ -78,7 +78,8 @@ public class GridMenuRecyclerView extends RecyclerView {
                 if (EmptyUtils.isNotEmpty(iconUrl)) {
                     ImageView view = helper.getView(R.id.iv_icon_menu);
                     // GlideApp.with(getContext()).load(iconUrl).into(view);
-                    GlideUtils.loadPic(getContext(), iconUrl, view);
+                    GlideUtils.loadPic(getContext(), iconUrl, R.drawable.icon_default_bg, R.drawable.icon_default_bg,
+                            view, false);
                 }
 
                 RelativeLayout linearLayout = helper.getView(R.id.ll_root_menu);

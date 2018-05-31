@@ -155,19 +155,18 @@
     });
     
 #   android模拟器与PC的端口映射
-  Android系统为实现通信将PC电脑IP设置为10.0.2.2，自身设置为127.0.0.1，而PC并没有为Android模拟器系统指定IP，所以PC电脑不能通过IP来直接访问Android模拟器，要实现PC机和Android模拟器之间的相互通信必须借助于端口重定向(redir)。
-  telnet localhost 5554
-  
- 　3、在android console下执行命令
- 
- 　　redir add tcp：5000:6000
- 
- 　　然后执行redir list查看执行结果:
- 
- 　　
- 
- 　　这样就把PC端的5000端口号映射到android模拟器的6000端口，如果PC5000端口接收到数据，即转到模拟器的6000端口。
- 
- 　　4、删除端口映射
- 
- 　　使用命令redir del可以删除端口映射
+      Android系统为实现通信将PC电脑IP设置为10.0.2.2，自身设置为127.0.0.1，而PC并没有为Android模拟器系统指定IP，所以PC电脑不能通过IP来直接访问Android模拟器，要实现PC机和Android模拟器之间的相互通信必须借助于端口重定向(redir)。
+      telnet localhost 5554
+      
+     　3、在android console下执行命令
+     
+     　　redir add tcp：5000:6000
+     
+     　　然后执行redir list查看执行结果:
+     　　
+     
+     　　这样就把PC端的5000端口号映射到android模拟器的6000端口，如果PC5000端口接收到数据，即转到模拟器的6000端口。
+     
+     　　4、删除端口映射
+     
+     　　使用命令redir del可以删除端口映射
