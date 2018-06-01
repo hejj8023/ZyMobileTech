@@ -5,15 +5,15 @@ apply plugin: 'org.greenrobot.greendao'
 // 注：需要配置符号表时，使用bugly插件
 apply plugin: 'bugly'
 bugly {
-    appId = 'fd0f6d1eae'
-    appKey = '416fd455-7cc4-4e6b-9d61-3471adcddda4'
+    appId = ''
+    appKey = ''
 }
 
 android {
     compileSdkVersion rootProject.ext._android.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.example.bailan"
+        applicationId "com.example.dailynews"
         minSdkVersion 16
         targetSdkVersion rootProject.ext._android.targetSdkVersion
         versionCode rootProject.ext._android.versionCode

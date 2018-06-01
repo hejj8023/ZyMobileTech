@@ -1,19 +1,16 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'org.greenrobot.greendao'
 // 注：需要配置符号表时，使用bugly插件
 apply plugin: 'bugly'
 bugly {
-    appId = 'fd0f6d1eae'
-    appKey = '416fd455-7cc4-4e6b-9d61-3471adcddda4'
+    appId = '181fd73244'
+    appKey = '0db5ee33-310c-4110-b14a-bbad62e32750'
 }
 
 android {
     compileSdkVersion rootProject.ext._android.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.example.bailan"
+        applicationId "com.example.agorad"
         minSdkVersion 16
         targetSdkVersion rootProject.ext._android.targetSdkVersion
         versionCode rootProject.ext._android.versionCode
@@ -28,8 +25,10 @@ android {
 
         ndk {
             //设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
             //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86', 'x86_64', 'mips', 'mips64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
 
     }
@@ -59,12 +58,11 @@ android {
         javaMaxHeapSize "4g"
     }
 
-}
-
-greendao {
-    schemaVersion 1
-    targetGenDir 'src/main/java'
-    daoPackage 'com.example.bailan.core.dao'
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -79,9 +77,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation rootProject.ext.ext_tools.multidex
-    implementation rootProject.ext.ext_tools.lottie
 
     /*butternife*/
     implementation rootProject.ext.ext_tools.butterknife
@@ -99,39 +95,9 @@ dependencies {
     compile rootProject.ext.ext_tools.logger
     implementation rootProject.ext.ext_tools.fragmentation
     implementation rootProject.ext.ext_tools.BaseRecyclerViewAdapter
-    implementation rootProject.ext.ext_tools.ringprogressbar
-
-    implementation rootProject.ext.ext_tools.MPAndroidChart
-    implementation rootProject.ext.ext_tools.hwc_chart
 
     implementation rootProject.ext.ext_tools.glide
     annotationProcessor rootProject.ext.ext_tools.glide_compiler
-
-    implementation rootProject.ext.ext_tools.rxjava
-    implementation rootProject.ext.ext_tools.rxandroid
-    implementation rootProject.ext.ext_tools.retrofit
-    implementation rootProject.ext.ext_tools.converter_gson
-    implementation rootProject.ext.ext_tools.adapter_rxjava2
-    implementation rootProject.ext.ext_tools.converter_scalars
-    implementation rootProject.ext.ext_tools.okhttp
-    implementation rootProject.ext.ext_tools.logging_interceptor
-
-    implementation rootProject.ext.ext_tools.agentweb
-    implementation rootProject.ext.ext_tools.flowlayout_lib
-    implementation rootProject.ext.ext_tools.VerticalTabLayout
-
-    implementation rootProject.ext.ext_tools.dagger
-    implementation rootProject.ext.ext_tools.dagger_android
-    implementation rootProject.ext.ext_tools.dagger_android_support
-    annotationProcessor rootProject.ext.ext_tools.dagger_compiler
-    annotationProcessor rootProject.ext.ext_tools.dagger_android_processor
-
-    //SmartRefreshLayout
-    implementation rootProject.ext.ext_tools.SmartRefreshLayout
-    implementation rootProject.ext.ext_tools.SmartRefreshHeader
-
-    implementation rootProject.ext.ext_tools.haorefresh
-
 
     compile project(':ZySdkLib')
 
@@ -139,6 +105,8 @@ dependencies {
     // (注：从2.1.5开始要分开Bugly SDK和NDK的配置）
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    compile 'io.agora.rtc:full-sdk:2.2.1'
 }
 
 //解决支持库版本不兼容问题
