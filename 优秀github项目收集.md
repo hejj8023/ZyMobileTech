@@ -96,3 +96,9 @@ https://github.com/luojie1024/HuanTaiSmartHome
 
 ## 环泰智慧社区 智能家居 物联网
 https://github.com/luojie1024/SmartCommunity
+
+##影视天地（Android 客户端） -> 学习中.
+https://github.com/123lxw123/VideoWorld_Android
+
+##小简报 (知乎日报Android客户端) -> 学习中.
+https://github.com/123lxw123/DailyNews
