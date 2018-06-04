@@ -1,20 +1,14 @@
 package com.example.bailan.ui.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.bailan.R;
-import com.example.bailan.bean.DataBean;
 import com.example.bailan.bean.MenuItemInfo;
-import com.example.bailan.widget.AdvertView;
-import com.example.bailan.widget.AutoScrollTextView;
 import com.example.bailan.widget.GridMenuRecyclerView;
-import com.example.bailan.widget.LimitScrollerView;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zhiyangstudio.commonlib.widget.LooperTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +24,9 @@ public class MimeFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment
 
     @BindView(R.id.rv_menu)
     GridMenuRecyclerView mRecyclerView;
-    @BindView(R.id.limitScroll)
-    LimitScrollerView mLimitScrollerView;
-    @BindView(R.id.activity_main_advertView)
-    AdvertView mAdvertView;
-    @BindView(R.id.activity_main_scrollTextView)
-    AutoScrollTextView scrollTextView;
+    @BindView(R.id.looperview)
+    LooperTextView mLooperTextView;
     private List<MenuItemInfo> mItemInfos;
-    private MyLimitScrollAdapter adapter;
 
     @Override
     public int getContentId() {
@@ -81,37 +70,17 @@ public class MimeFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment
         }
         mRecyclerView.setData(mItemInfos);
 
-
-        //API:1、设置数据适配器
-        adapter = new MyLimitScrollAdapter();
-        mLimitScrollerView.setDataAdapter(adapter);
-
-        List<DataBean> datas = new ArrayList<>();
-        datas.add(new DataBean(R.mipmap.ic_launcher, "1.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-        datas.add(new DataBean(R.mipmap.ic_launcher, "2.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-        datas.add(new DataBean(R.mipmap.ic_launcher, "3.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-        datas.add(new DataBean(R.mipmap.ic_launcher, "4.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-        datas.add(new DataBean(R.mipmap.ic_launcher, "5.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-        datas.add(new DataBean(R.mipmap.ic_launcher, "6.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-        datas.add(new DataBean(R.mipmap.ic_launcher, "7.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-        datas.add(new DataBean(R.mipmap.ic_launcher, "8.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-        datas.add(new DataBean(R.mipmap.ic_launcher, "9.劲爆促销中，凡在此商场消费满888的顾客，请拿着小票到前台咨询处免费领取美女一枚"));
-
-        UiUtils.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                adapter.setDatas(datas);
-            }
-        }, 1500);
-
-
-        final List<String> strList = new ArrayList<>();
-        strList.add("如果奇迹有颜色，那么一定是红蓝");
-        strList.add("人面不知何处去 桃花依旧笑春风,人面不知何处去 桃花依旧笑春风人面不知何处去 桃花依旧笑春风人面不知何处去 桃花依旧笑春风");
-        strList.add("道者深方能言之浅");
-        mAdvertView.setData(strList);
-
-//        scrollTextView.startScroll();
+        List<String> adList2 = new ArrayList<>();
+        adList2.add(" android 自定义View开发实战(五) TextView滚动显示");
+        adList2.add("android EditText中的几大坑");
+        adList2.add("ListView详解之二----XListView");
+        adList2.add("Android项目Tab类型主界面大总结 Fragment+TabPageIndicator+ViewPager");
+        adList2.add("本文主要是实现一个自定义的圆环，两种颜色交替进行，非百分之百原创，不喜勿喷。下面直接上干货。先上效果图： 1.   定义View的xml属性 " +
+                "自定义该View的属性，首先在res/values/下建立一个attrs.xml， 在里面定义我们的属性和声明我们的整个样式 ...");
+        adList2.add("ListView之二 XListView");
+        adList2.add("android 自定义View开发实战(二) CustomCircleView");
+        mLooperTextView.setDefaultTextColor(UiUtils.getColor(R.color.white));
+        mLooperTextView.setTipList(adList2);
     }
 
     @Override
@@ -127,8 +96,6 @@ public class MimeFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment
     @Override
     public void onStop() {
         super.onStop();
-        //API:3、停止滚动
-        mLimitScrollerView.cancel();
     }
 
     @Override
@@ -144,34 +111,4 @@ public class MimeFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment
         }
     }
 
-    //TODO 修改适配器绑定数据
-    class MyLimitScrollAdapter implements LimitScrollerView.LimitScrollAdapter {
-
-        private List<DataBean> datas;
-
-        public void setDatas(List<DataBean> datas) {
-            this.datas = datas;
-            //API:2、开始滚动
-            mLimitScrollerView.startScroll();
-        }
-
-        @Override
-        public int getCount() {
-            return datas == null ? 0 : datas.size();
-        }
-
-        @Override
-        public View getView(int index) {
-            View itemView = LayoutInflater.from(mContext).inflate(R.layout.limit_scroller_item, null, false);
-            ImageView iv_icon = (ImageView) itemView.findViewById(R.id.iv_icon);
-            TextView tv_text = (TextView) itemView.findViewById(R.id.tv_text);
-
-            //绑定数据
-            DataBean data = datas.get(index);
-            itemView.setTag(data);
-            iv_icon.setImageResource(data.getIcon());
-            tv_text.setText(data.getText());
-            return itemView;
-        }
-    }
 }
