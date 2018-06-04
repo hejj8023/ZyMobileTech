@@ -34,9 +34,9 @@
 
         <activity android:name=".activity.VideoRecordActivity"/>
 
-        <activity android:name=".activity.Camera2VideoRecordActivity"/>
+        <activity android:name=".activity.SurfaceViewVideoRecordActivity"/>
 
-        <activity android:name=".activity.CameraVideoRecordActivity"
+        <activity android:name=".activity.TextureViewVideoRecordActivity"
                 />
 
     </application>

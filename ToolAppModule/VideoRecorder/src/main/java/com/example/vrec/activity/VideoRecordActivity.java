@@ -32,10 +32,10 @@ public class VideoRecordActivity extends BaseToolbarSupportActivity {
         Class<? extends BaseActivity> targetCls = null;
         switch (view.getId()) {
             case R.id.btn_opt_camera:
-                targetCls = CameraVideoRecordActivity.class;
+                targetCls = TextureViewVideoRecordActivity.class;
                 break;
             case R.id.btn_opt_camera2:
-                targetCls = Camera2VideoRecordActivity.class;
+                targetCls = SurfaceViewVideoRecordActivity.class;
                 break;
             case R.id.btn_opt_camera_intent:
                 //create new Intent
