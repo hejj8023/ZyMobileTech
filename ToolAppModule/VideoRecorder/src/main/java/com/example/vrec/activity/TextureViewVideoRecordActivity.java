@@ -59,11 +59,11 @@ public class TextureViewVideoRecordActivity extends BaseCameraActivity implement
 
     @Override
     public void initView() {
-        RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) textureView.getLayoutParams();
-        cameraResolution = CameraManagerHelper.getCameraResolution();
-        rlp.width = cameraResolution.x;
-        rlp.height = cameraResolution.y;
-        textureView.setLayoutParams(rlp);
+//        RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) textureView.getLayoutParams();
+//        cameraResolution = CameraManagerHelper.getCameraResolution();
+//        rlp.width = cameraResolution.x;
+//        rlp.height = cameraResolution.y;
+//        textureView.setLayoutParams(rlp);
     }
 
 
