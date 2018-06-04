@@ -184,64 +184,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_10"/>
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                <com.example.bailan.widget.AdvertView
-                        android:id="@+id/activity_main_advertView"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:padding="8dp"/>
-
-                <com.example.bailan.widget.AutoScrollTextView
-                        android:id="@+id/activity_main_scrollTextView"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="50dp"
-                        android:text="hehe"
-                        android:textColor="#000000"
-                        android:textSize="14sp"/>
-
-            </LinearLayout>
-
-
             <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_10"/>
 
-            <LinearLayout
+            <com.zhiyangstudio.commonlib.widget.LooperTextView
+                    android:id="@+id/looperview"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="20dip"
-                    android:orientation="vertical">
+                    android:layout_height="@dimen/dp_85"
+                    android:layout_marginTop="10px"
+                    android:background="@color/black"
+                    android:padding="10dp"
+                    />
 
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="100dip"
-                        android:background="#0099ff"
-                        android:gravity="center"
-                        android:text="其他内容"/>
-
-                <com.example.bailan.widget.LimitScrollerView
-                        android:id="@+id/limitScroll"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:limit="2"
-                        app:durationTime="1200"
-                        app:periodTime="2000"/>
-
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#00ff00"
-                        android:onClick="to"
-                        android:gravity="center"
-                        android:text="其他内容"/>
-            </LinearLayout>
-
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_10"/>
 
             <View
                     android:layout_width="match_parent"

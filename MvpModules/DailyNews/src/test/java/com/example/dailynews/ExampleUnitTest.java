@@ -1,4 +1,4 @@
-package com.example.smarthome;
+package com.example.dailynews;
 
 import org.junit.Test;
 
