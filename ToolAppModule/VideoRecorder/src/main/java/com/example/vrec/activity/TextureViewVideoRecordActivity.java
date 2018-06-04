@@ -77,6 +77,7 @@ public class TextureViewVideoRecordActivity extends BaseCameraActivity implement
                 try {
                     mCamera.setPreviewTexture(surface);
                     mCamera.startPreview();
+                    mCamera.cancelAutoFocus();
                 } catch (IOException e) {
                     LoggerUtils.loge("Error setting camera preview: " + e.getMessage());
                 }
@@ -192,7 +193,6 @@ public class TextureViewVideoRecordActivity extends BaseCameraActivity implement
             mCamera.lock();           // lock camera for later use
         }
     }
-
 
 
     @OnClick({R.id.btn_record})

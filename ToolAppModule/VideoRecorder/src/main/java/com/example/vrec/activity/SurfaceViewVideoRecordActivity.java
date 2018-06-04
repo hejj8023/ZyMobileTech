@@ -43,6 +43,8 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
     @Override
     public void initView() {
         surfaceViewHolder = surfaceView.getHolder();
+        // 设置该组件不会让屏幕自动关闭
+        surfaceViewHolder.setKeepScreenOn(true);
         surfaceViewHolder.addCallback(this);
         surfaceViewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
@@ -56,7 +58,9 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
     public void surfaceCreated(SurfaceHolder holder) {
         try {
             mCamera.setPreviewDisplay(surfaceViewHolder);
+            CameraManagerHelper.setCameraParam(mCamera);
             mCamera.startPreview();
+//            mCamera.cancelAutoFocus();
         } catch (IOException e) {
             LoggerUtils.loge("Error setting camera preview: " + e.getMessage());
         }

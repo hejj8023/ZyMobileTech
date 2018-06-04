@@ -28,7 +28,6 @@ public abstract class BaseCameraActivity extends BaseToolbarSupportActivity {
 
     private void initCamera() {
         mCamera = CameraManagerHelper.getCamera();
-        CameraManagerHelper.setCameraParam(mCamera);
     }
 
     @Override

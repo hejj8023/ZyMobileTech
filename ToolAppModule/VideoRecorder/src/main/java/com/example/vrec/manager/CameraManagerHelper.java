@@ -85,7 +85,7 @@ public class CameraManagerHelper {
             LoggerUtils.loge("Screen resolution: " + screenResolution);
             cameraResolution = getCameraResolution(params, screenResolution);
             LoggerUtils.loge("Camera resolution: " + screenResolution);
-            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+
             final Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
             Camera.getCameraInfo(currentCameraId, cameraInfo);
             int cameraRotationOffset = cameraInfo.orientation;
@@ -117,8 +117,17 @@ public class CameraManagerHelper {
             c.setDisplayOrientation(displayRotation);
 
             //设置预览大小
-            params.setPreviewSize(cameraResolution.x, cameraResolution.y);
-            params.setPictureSize(cameraResolution.x, cameraResolution.y);
+//            params.setPreviewSize(cameraResolution.x, cameraResolution.y);
+//            params.setPictureSize(cameraResolution.x, cameraResolution.y);
+
+            //设置聚焦模式
+            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+            //缩短Recording启动时间
+            params.setRecordingHint(true);
+            //影像稳定能力
+            if (params.isVideoStabilizationSupported())
+                params.setVideoStabilization(true);
+
             c.setParameters(params);
         } catch (Exception e) {
             e.printStackTrace();
