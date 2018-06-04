@@ -102,3 +102,12 @@ https://github.com/123lxw123/VideoWorld_Android
 
 ##小简报 (知乎日报Android客户端) -> 学习中.
 https://github.com/123lxw123/DailyNews
+
+
+# camera相关
+ https://github.com/guoxiaoxing/phoenix
+
+## Android (系统+自定义)短视频录制（含暂停继续录制功能）
+ 总结
+ https://blog.csdn.net/android_technology/article/details/69388902
+ https://github.com/Gentleman-jun/VideoRecordDemo

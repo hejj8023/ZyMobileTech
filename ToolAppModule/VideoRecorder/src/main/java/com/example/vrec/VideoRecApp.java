@@ -26,13 +26,13 @@ public class VideoRecApp extends BaseApp {
         super.onCreate();
         CrashReport.initCrashReport(getApplicationContext(), "181fd73244", true);
 
-        CommonConst.NET_CACHE_DIR_NAME = "agora";
-        PreUtils.init("agora_config");
+        CommonConst.NET_CACHE_DIR_NAME = "videorec";
+        PreUtils.init("videorec_config");
         OkHttpUtils.isSupportDataInterceptor(true);
     }
 
     @Override
     protected String getLogTag() {
-        return "agoraapp";
+        return "videorec";
     }
 }

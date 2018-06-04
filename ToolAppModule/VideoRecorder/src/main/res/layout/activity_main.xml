@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/dp_10"
-        tools:context="com.example.vrec.MainActivity">
+        tools:context="com.example.vrec.activity.MainActivity">
 
     <Button
             android:id="@+id/btn_action_capture"
