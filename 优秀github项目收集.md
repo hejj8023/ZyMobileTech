@@ -118,3 +118,6 @@ https://github.com/123lxw123/DailyNews
 
 ## 我的音乐-Musicoco
 https://github.com/DuanJiaNing/Musicoco
+
+## 小秋魔盒（QBox）
+https://github.com/OCNYang/QBox

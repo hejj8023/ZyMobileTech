@@ -153,7 +153,7 @@ private void loadMvpModules() {
 //    include ':MvpModules:WanAndroid'
 //    include ':MvpModules:DaggerWanAndroid'
 //    include ':MvpModules:Bailan'
-    include ':MvpModules:Musicoco'
+//    include ':MvpModules:Musicoco'
     include ':MvpModules:ExpressComicBook'
 //    include ':MvpModules:DailyNews'
 //    include ':MvpModules:VideoWorld'
