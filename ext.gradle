@@ -220,7 +220,13 @@ project.ext {
             //popWindow
             BasePopup               : 'com.github.razerdp:BasePopup:1.8.1',
             //SwitchButton
-            switch_button           : 'com.github.zcweng:switch-button:0.0.3@aar'
+            switch_button           : 'com.github.zcweng:switch-button:0.0.3@aar',
+
+            /*append by 180605*/
+            /*音视频合成*/
+            isoparser               : 'com.googlecode.mp4parser:isoparser:1.1.21'
+
+
     ]
 }
 

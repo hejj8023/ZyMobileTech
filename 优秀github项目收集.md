@@ -97,6 +97,7 @@ https://github.com/luojie1024/HuanTaiSmartHome
 ## 环泰智慧社区 智能家居 物联网
 https://github.com/luojie1024/SmartCommunity
 
+
 ##影视天地（Android 客户端） -> 学习中.
 https://github.com/123lxw123/VideoWorld_Android
 
@@ -111,3 +112,9 @@ https://github.com/123lxw123/DailyNews
  总结
  https://blog.csdn.net/android_technology/article/details/69388902
  https://github.com/Gentleman-jun/VideoRecordDemo
+
+## 高仿腾讯漫画的APP
+  https://github.com/zhhr1122/z_comic_new
+
+## 我的音乐-Musicoco
+https://github.com/DuanJiaNing/Musicoco

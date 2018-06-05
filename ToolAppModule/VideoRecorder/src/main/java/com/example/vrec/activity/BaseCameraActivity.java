@@ -4,9 +4,16 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.vrec.manager.CameraManagerHelper;
 import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
 import com.zhiyangstudio.commonlib.utils.CommonUtils;
+import com.zhiyangstudio.commonlib.utils.EmptyUtils;
+import com.zhiyangstudio.commonlib.utils.FileUtils;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public abstract class BaseCameraActivity extends BaseToolbarSupportActivity {
     protected Camera mCamera;
@@ -23,21 +30,50 @@ public abstract class BaseCameraActivity extends BaseToolbarSupportActivity {
 
     @Override
     public void beforeSubContentInit() {
-        initCamera();
+//        initCamera();
     }
 
-    private void initCamera() {
+    public void initCamera() {
         mCamera = CameraManagerHelper.getCamera();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        releaseCamera();
     }
 
-    private void releaseCamera() {
+    protected void releaseCamera() {
         CameraManagerHelper.releaseCam(mCamera);
+    }
+
+    /**
+     * 视频文件路径
+     */
+    protected String getVideoDir() {
+        if (!FileUtils.isSdCardAvailable()) {
+            ToastUtils.showShort("SD卡无效请检查SD卡");
+            return null;
+        }
+
+        String sdCardPath = FileUtils.getSDCardPath();
+        if (EmptyUtils.isEmpty(sdCardPath)) {
+            ToastUtils.showShort("SD卡无效请检查SD卡-2");
+            return null;
+        }
+
+        File file = new File(sdCardPath, "TestVideoRec");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
+        return file.getAbsolutePath();
+    }
+
+    /**
+     * 视频文件名称
+     */
+    protected String getVideoFileName() {
+        return "VID_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".mp4";
     }
 
 }

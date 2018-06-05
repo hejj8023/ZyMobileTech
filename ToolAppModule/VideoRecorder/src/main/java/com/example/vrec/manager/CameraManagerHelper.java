@@ -1,6 +1,8 @@
 package com.example.vrec.manager;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.ImageFormat;
 import android.graphics.Point;
 import android.hardware.Camera;
 import android.view.Display;
@@ -10,6 +12,8 @@ import android.view.WindowManager;
 import com.zhiyangstudio.commonlib.utils.LoggerUtils;
 import com.zhiyangstudio.commonlib.utils.UiUtils;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class CameraManagerHelper {
@@ -71,6 +75,10 @@ public class CameraManagerHelper {
         return c; // returns null if camera is unavailable
     }
 
+    public static int getCurrentCameraId() {
+        return currentCameraId;
+    }
+
     public static void setCameraParam(Camera c) {
         try {
             // get Camera parameters
@@ -78,8 +86,10 @@ public class CameraManagerHelper {
             previewFormat = params.getPreviewFormat();
 
             previewFormatString = params.get("preview-format");
-            LoggerUtils.loge("Default preview format: " + previewFormat + '/' + previewFormatString);
-            WindowManager manager = (WindowManager) UiUtils.getContext().getSystemService(Context.WINDOW_SERVICE);
+            LoggerUtils.loge("Default preview format: " + previewFormat + '/' +
+                    previewFormatString);
+            WindowManager manager = (WindowManager) UiUtils.getContext().getSystemService(Context
+                    .WINDOW_SERVICE);
             Display display = manager.getDefaultDisplay();
             screenResolution = new Point(display.getWidth(), display.getHeight());
             LoggerUtils.loge("Screen resolution: " + screenResolution);
@@ -164,7 +174,8 @@ public class CameraManagerHelper {
         return cameraResolution;
     }
 
-    private static Point findBestPreviewSizeValue(CharSequence previewSizeValueString, Point screenResolution) {
+    private static Point findBestPreviewSizeValue(CharSequence previewSizeValueString, Point
+            screenResolution) {
         int bestX = 0;
         int bestY = 0;
         int diff = Integer.MAX_VALUE;
@@ -205,10 +216,101 @@ public class CameraManagerHelper {
         return null;
     }
 
+    /**
+     * 不要多次释放，否则会出现java.lang.RuntimeException: Method called after release()
+     */
     public static void releaseCam(Camera camera) {
+        LoggerUtils.loge("releaseCam");
         if (camera != null) {
-            camera.release();        // release the camera for other applications
+            camera.setPreviewCallback(null);
+            camera.cancelAutoFocus();
+            camera.stopPreview();
+            try {
+                camera.setPreviewDisplay(null);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            camera.release();
             camera = null;
         }
+    }
+
+    public static void configCamera(Camera camera) {
+        Camera.Parameters params = camera.getParameters();
+        //设置相机的横竖屏(竖屏需要旋转90°)
+        if (UiUtils.getResources(UiUtils.getContext()).getConfiguration().orientation !=
+                Configuration.ORIENTATION_LANDSCAPE) {
+            params.set("orientation", "portrait");
+            camera.setDisplayOrientation(90);
+        } else {
+            params.set("orientation", "landscape");
+            camera.setDisplayOrientation(0);
+        }
+
+        Camera.Size preViewSize = getOptimalSize(params.getSupportedPreviewSizes(), 1920, 1080);
+        if (null != preViewSize) {
+            params.setPreviewSize(preViewSize.width, preViewSize.height);
+        }
+
+        Camera.Size pictureSize = getOptimalSize(params.getSupportedPictureSizes(), 1920, 1080);
+        if (null != pictureSize) {
+            params.setPictureSize(pictureSize.width, pictureSize.height);
+        }
+        //设置图片格式
+        params.setPictureFormat(ImageFormat.JPEG);
+        params.setJpegQuality(100);
+        params.setJpegThumbnailQuality(100);
+
+        List<String> modes = params.getSupportedFocusModes();
+        if (modes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+            //支持自动聚焦模式
+            params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+        }
+
+        //设置聚焦模式
+        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+        //缩短Recording启动时间
+        params.setRecordingHint(true);
+        //影像稳定能力
+        if (params.isVideoStabilizationSupported())
+            params.setVideoStabilization(true);
+        camera.setParameters(params);
+    }
+
+    /**
+     * 获取最优尺寸
+     */
+    public static Camera.Size getOptimalSize(List<Camera.Size> sizes, int w, int h) {
+        final double ASPECT_TOLERANCE = 0.1;
+        double targetRatio = (double) h / w;
+        if (w > h)
+            targetRatio = (double) w / h;
+        if (sizes == null)
+            return null;
+        Camera.Size optimalSize = null;
+        double minDiff = Double.MAX_VALUE;
+        int targetHeight = h;
+        for (Camera.Size size : sizes) {
+            double ratio = (double) size.width / size.height;
+            if (size.height >= size.width)
+                ratio = (float) size.height / size.width;
+            if (Math.abs(ratio - targetRatio) > ASPECT_TOLERANCE)
+                continue;
+            if (Math.abs(size.height - targetHeight) < minDiff) {
+                optimalSize = size;
+                minDiff = Math.abs(size.height - targetHeight);
+            }
+        }
+        if (optimalSize == null) {
+            minDiff = Double.MAX_VALUE;
+            for (Camera.Size size : sizes) {
+                if (Math.abs(size.height - targetHeight) < minDiff) {
+                    optimalSize = size;
+                    minDiff = Math.abs(size.height - targetHeight);
+                }
+            }
+        }
+
+        return optimalSize;
     }
 }

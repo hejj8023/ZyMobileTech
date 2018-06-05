@@ -98,6 +98,7 @@ dependencies {
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
 
+//    implementation rootProject.ext.ext_tools.isoparser
 }
 
 //解决支持库版本不兼容问题

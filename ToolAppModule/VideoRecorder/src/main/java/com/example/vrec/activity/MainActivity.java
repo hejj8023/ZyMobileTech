@@ -26,7 +26,8 @@ public class MainActivity extends BaseToolbarSupportActivity {
             if (code == CommonConst.PERMISSION.REQ_SDCARD_PERMISSION) {
                 checkCameraPermission(pListener);
             } else if (code == CommonConst.PERMISSION.REQ_CAMERA_PERMISSION) {
-                checkPermission(Manifest.permission.RECORD_AUDIO, "录音权限", pListener, REQ_RECORD_AUDIO);
+                checkPermission(Manifest.permission.RECORD_AUDIO, "录音权限", pListener,
+                        REQ_RECORD_AUDIO);
                 hasCameraPermisson = true;
             } else if (code == REQ_RECORD_AUDIO) {
                 LoggerUtils.loge("录音权限申请成功，可以录音了");
@@ -53,7 +54,7 @@ public class MainActivity extends BaseToolbarSupportActivity {
         return R.layout.activity_main;
     }
 
-    @OnClick({R.id.btn_action_capture, R.id.btn_action_record})
+    @OnClick({R.id.btn_action_capture, R.id.btn_action_record, R.id.btn_action_play})
     public void onViewClick(View view) {
         Class<? extends BaseActivity> targetCls = null;
         switch (view.getId()) {
@@ -62,6 +63,9 @@ public class MainActivity extends BaseToolbarSupportActivity {
                 break;
             case R.id.btn_action_record:
                 targetCls = VideoRecordActivity.class;
+                break;
+            case R.id.btn_action_play:
+                targetCls = VideoPlayerActivity.class;
                 break;
         }
         if (targetCls != null && hasCameraPermisson)

@@ -41,9 +41,11 @@ public class VideoRecordActivity extends BaseToolbarSupportActivity {
                 //create new Intent
                 Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
-                Uri fileUri = CommonUtil.getOutputMediaFileUri(MEDIA_TYPE_VIDEO);  // create a file to save the video
+                Uri fileUri = CommonUtil.getOutputMediaFileUri(MEDIA_TYPE_VIDEO);  // create a
+                // file to save the video
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);  // set the image file name
-                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); // set the video image quality to high
+                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); // set the video image
+                // quality to high
                 // start the Video Capture Intent
                 startActivityForResult(intent, CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
                 break;

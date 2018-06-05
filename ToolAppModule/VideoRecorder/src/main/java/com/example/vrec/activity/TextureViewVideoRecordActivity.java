@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.vrec.CommonUtil;
 import com.example.vrec.R;
 import com.example.vrec.manager.CameraManagerHelper;
@@ -39,18 +40,15 @@ import butterknife.OnClick;
 
 import static com.example.vrec.CommonUtil.MEDIA_TYPE_VIDEO;
 
-public class TextureViewVideoRecordActivity extends BaseCameraActivity implements MediaRecorder.OnErrorListener {
+public class TextureViewVideoRecordActivity extends BaseCameraActivity implements MediaRecorder
+        .OnErrorListener {
 
     @BindView(R.id.texture_view)
     TextureView textureView;
 
-    @BindView(R.id.btn_record)
-    TextView textView;
-
     private MediaRecorder mediaRecorder;
     private Surface mSurface;
-    private File recDir;
-    private Point cameraResolution;
+    private boolean isRecording;
 
     @Override
     protected int getContentLayoutId() {
@@ -59,11 +57,6 @@ public class TextureViewVideoRecordActivity extends BaseCameraActivity implement
 
     @Override
     public void initView() {
-//        RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) textureView.getLayoutParams();
-//        cameraResolution = CameraManagerHelper.getCameraResolution();
-//        rlp.width = cameraResolution.x;
-//        rlp.height = cameraResolution.y;
-//        textureView.setLayoutParams(rlp);
     }
 
 
@@ -74,40 +67,39 @@ public class TextureViewVideoRecordActivity extends BaseCameraActivity implement
             public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
                 mSurface = new Surface(surface);
                 LoggerUtils.loge("onSurfaceTextureAvailable");
+
+                if (mCamera != null) {
+                    releaseCamera();
+                }
+
                 try {
+                    initCamera();
+
+                    if (mCamera == null) {
+                        ToastUtils.showShort("未能获取到相机！");
+                        return;
+                    }
+
                     mCamera.setPreviewTexture(surface);
+                    CameraManagerHelper.setCameraParam(mCamera);
                     mCamera.startPreview();
-                    mCamera.cancelAutoFocus();
                 } catch (IOException e) {
                     LoggerUtils.loge("Error setting camera preview: " + e.getMessage());
                 }
-
             }
 
             @Override
             public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
                 LoggerUtils.loge("onSurfaceTextureSizeChanged");
-                // stop preview before making changes
-                try {
-                    mCamera.stopPreview();
-                } catch (Exception e) {
-                    // ignore: tried to stop a non-existent preview
-                }
-
-                // set preview size and make any resize, rotate or
-                // reformatting changes here
-                // start preview with new settings
-                try {
-                    mCamera.setPreviewTexture(surface);
-                    mCamera.startPreview();
-                } catch (Exception e) {
-                    LoggerUtils.loge("Error starting camera preview: " + e.getMessage());
+                if (textureView.getSurfaceTexture() == null) {
+                    return;
                 }
             }
 
             @Override
             public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
                 LoggerUtils.loge("onSurfaceTextureDestroyed");
+                releaseCamera();
                 return false;
             }
 
@@ -115,68 +107,6 @@ public class TextureViewVideoRecordActivity extends BaseCameraActivity implement
             public void onSurfaceTextureUpdated(SurfaceTexture surface) {
             }
         });
-    }
-
-    private boolean isRecording = false;
-
-    private boolean prepareVideoRecorder() {
-        try {
-            mCamera.unlock();
-            mediaRecorder = new MediaRecorder();
-            mediaRecorder.reset();
-            mediaRecorder.setCamera(mCamera);
-            mediaRecorder.setOnErrorListener(this);
-
-            //使用SurfaceView预览
-            mediaRecorder.setPreviewDisplay(mSurface);
-
-            //1.设置采集声音
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            //设置采集图像
-            mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-            //2.设置视频，音频的输出格式 mp4
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-            //3.设置音频的编码格式
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-            //设置图像的编码格式
-            mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-            //设置立体声
-//        mediaRecorder.setAudioChannels(2);
-            //设置最大录像时间 单位：毫秒
-//        mediaRecorder.setMaxDuration(60 * 1000);
-            //设置最大录制的大小 单位，字节
-//        mediaRecorder.setMaxFileSize(1024 * 1024);
-            //音频一秒钟包含多少数据位
-            CamcorderProfile mProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_480P);
-            mediaRecorder.setAudioEncodingBitRate(44100);
-            if (mProfile.videoBitRate > 2 * 1024 * 1024)
-                mediaRecorder.setVideoEncodingBitRate(2 * 1024 * 1024);
-            else
-                mediaRecorder.setVideoEncodingBitRate(1024 * 1024);
-            mediaRecorder.setVideoFrameRate(mProfile.videoFrameRate);
-
-            //设置选择角度，顺时针方向，因为默认是逆向90度的，这样图像就是正常显示了,这里设置的是观看保存后的视频的角度
-            mediaRecorder.setOrientationHint(90);
-            //设置录像的分辨率
-            mediaRecorder.setVideoSize(cameraResolution.x, cameraResolution.y);
-
-            boolean available = FileUtils.isSdCardAvailable();
-            File recDir = null;
-            if (available) {
-                recDir = new File(Environment.getExternalStorageDirectory(), "testrec");
-                if (!recDir.exists()) {
-                    recDir.mkdirs();
-                }
-
-                File file = new File(recDir, System.currentTimeMillis() + ".mp4");
-                if (!file.exists())
-                    file.createNewFile();
-                mediaRecorder.setOutputFile(file.getAbsolutePath());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return true;
     }
 
     @Override
@@ -195,10 +125,10 @@ public class TextureViewVideoRecordActivity extends BaseCameraActivity implement
     }
 
 
-    @OnClick({R.id.btn_record})
+    @OnClick({R.id.record_control})
     public void onViewClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_record:
+            case R.id.record_control:
                 if (isRecording) {
                     // stop recording and release camera
                     mediaRecorder.stop();  // stop the recording
@@ -206,30 +136,12 @@ public class TextureViewVideoRecordActivity extends BaseCameraActivity implement
                     mCamera.lock();         // take camera access back from MediaRecorder
 
                     // inform the user that recording has stopped
-                    setCaptureButtonText("Capture");
                     isRecording = false;
                 } else {
                     // initialize video camera
-                    if (prepareVideoRecorder()) {
-                        // Camera is available and unlocked, MediaRecorder is prepared,
-                        // now you can start recording
-                        mediaRecorder.start();
-
-                        // inform the user that recording has started
-                        setCaptureButtonText("Stop");
-                        isRecording = true;
-                    } else {
-                        // prepare didn't work, release the camera
-                        releaseMediaRecorder();
-                        // inform user
-                    }
                 }
                 break;
         }
-    }
-
-    private void setCaptureButtonText(String tst) {
-        textView.setText(tst);
     }
 
     @Override

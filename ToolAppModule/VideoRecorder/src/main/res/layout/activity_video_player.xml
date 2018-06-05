@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:id="@+id/fl_root_player"
+        android:background="@color/background_material_dark"
+        android:layout_height="match_parent">
+
+    <com.example.vrec.widget.MyVideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+    </com.example.vrec.widget.MyVideoView>
+</FrameLayout>
