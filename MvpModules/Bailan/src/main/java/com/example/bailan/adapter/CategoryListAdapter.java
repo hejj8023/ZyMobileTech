@@ -12,6 +12,7 @@ import com.example.bailan.bean.CategoryBean;
 import com.example.bailan.bean.MenuItemInfo;
 import com.example.bailan.widget.GridMenuRecyclerView;
 import com.example.bailan.widget.MenuWidget;
+import com.zysdk.vulture.clib.utils.DisplayUtils;
 import com.zysdk.vulture.clib.utils.LoggerUtils;
 import com.zysdk.vulture.clib.utils.UiUtils;
 
@@ -70,7 +71,7 @@ public class CategoryListAdapter extends BaseMultiItemQuickAdapter<CategoryBean.
                             MenuWidget menuWidget = helper.getView(R.id.mw_item_category);
                             menuWidget.setLeftIcon(dataItem.getIcon());
                             menuWidget.setTitle(dataItem.getName());
-                            menuWidget.setLeftIconSize(UiUtils.dp2px(48), UiUtils.dp2px(48));
+                            menuWidget.setLeftIconSize(DisplayUtils.dp2px(48), DisplayUtils.dp2px(48));
 
                             // TODO: 2018/5/31 最后一条去除分割线
                             if (helper.getPosition() == dataList.size() - 1) {
