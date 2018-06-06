@@ -1,7 +1,7 @@
 package com.example.bailan.mvp.presenter;
 
 import com.example.bailan.bean.RankBean;
-import com.zhiyangstudio.commonlib.mvp.inter.ISampleRefreshView;
+import com.zysdk.vulture.clib.mvp.inter.ISampleRefreshView;
 
 import io.reactivex.Observer;
 

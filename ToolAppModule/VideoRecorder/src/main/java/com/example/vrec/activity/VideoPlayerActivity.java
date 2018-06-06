@@ -13,9 +13,9 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.vrec.R;
 import com.example.vrec.widget.MyMediaController;
 import com.example.vrec.widget.MyVideoView;
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.utils.CommonUtils;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
 
 import java.io.File;
 

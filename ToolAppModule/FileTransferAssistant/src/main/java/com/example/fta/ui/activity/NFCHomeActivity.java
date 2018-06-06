@@ -7,7 +7,7 @@ import android.nfc.tech.MifareClassic;
 import android.widget.TextView;
 
 import com.example.fta.R;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseActivity;
 
 import butterknife.BindView;
 

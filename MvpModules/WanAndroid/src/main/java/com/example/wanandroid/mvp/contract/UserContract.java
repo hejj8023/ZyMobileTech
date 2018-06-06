@@ -1,9 +1,9 @@
 package com.example.wanandroid.mvp.contract;
 
 import com.example.wanandroid.bean.ArticleBean;
-import com.zhiyangstudio.commonlib.mvp.inter.IListDataView;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
-import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
+import com.zysdk.vulture.clib.mvp.inter.IListDataView;
+import com.zysdk.vulture.clib.net.callback.RxObserver;
+import com.zysdk.vulture.clib.net.callback.RxPageListObserver;
 
 /**
  * Created by zzg on 2018/4/21.

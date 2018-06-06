@@ -3,8 +3,8 @@ package com.example.daw.mvp.model;
 import com.example.daw.base.BaseDawModel;
 import com.example.daw.bean.UserBean;
 import com.example.daw.mvp.contract.LoginContract;
-import com.zhiyangstudio.commonlib.bean.BaseBean;
-import com.zhiyangstudio.commonlib.utils.RxUtils;
+import com.zysdk.vulture.clib.bean.BaseBean;
+import com.zysdk.vulture.clib.utils.RxUtils;
 
 import io.reactivex.Observer;
 

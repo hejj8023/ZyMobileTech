@@ -1,6 +1,6 @@
 package com.example.testapp;
 
-import com.zhiyangstudio.commonlib.corel.BaseApp;
+import com.zysdk.vulture.clib.corel.BaseApp;
 
 import java.util.ArrayList;
 import java.util.List;

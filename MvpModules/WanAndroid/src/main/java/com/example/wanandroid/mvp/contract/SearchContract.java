@@ -3,7 +3,7 @@ package com.example.wanandroid.mvp.contract;
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.FriendBean;
 import com.example.wanandroid.bean.HotwordBean;
-import com.zhiyangstudio.commonlib.mvp.inter.IListDataView;
+import com.zysdk.vulture.clib.mvp.inter.IListDataView;
 
 import java.util.List;
 

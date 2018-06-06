@@ -5,12 +5,12 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.example.vrec.R;
-import com.zhiyangstudio.commonlib.CommonConst;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.CommonConst;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.utils.CommonUtils;
+import com.zysdk.vulture.clib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import butterknife.OnClick;
 

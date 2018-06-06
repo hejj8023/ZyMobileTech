@@ -3,10 +3,10 @@ package com.example.bailan.mvp.model;
 import com.example.bailan.base.BaseWLModel;
 import com.example.bailan.bean.RankBean;
 import com.example.bailan.mvp.presenter.RankContract;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.JsonUtil;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.RxUtils;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.JsonUtil;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.RxUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -6,12 +6,12 @@ import android.widget.ImageView;
 import com.example.testapp.Const;
 import com.example.testapp.HotBean;
 import com.example.testapp.R;
-import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickAdapter;
-import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickMultiSupport;
-import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
-import com.zhiyangstudio.commonlib.corel.BaseFragment;
-import com.zhiyangstudio.commonlib.glide.GlideApp;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.adapter.lgrcommon.QuickAdapter;
+import com.zysdk.vulture.clib.adapter.lgrcommon.QuickMultiSupport;
+import com.zysdk.vulture.clib.adapter.lgrcommon.QuickViewHolder;
+import com.zysdk.vulture.clib.corel.BaseFragment;
+import com.zysdk.vulture.clib.glide.GlideApp;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 /**
  * Created by example on 2018/4/18.

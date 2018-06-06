@@ -10,10 +10,10 @@ import com.example.daw.di.component.ActivityComponent;
 import com.example.daw.di.component.DaggerActivityComponent;
 import com.example.daw.di.module.ActivityModule;
 import com.gyf.barlibrary.ImmersionBar;
-import com.zhiyangstudio.commonlib.mvp.BaseAbsListActivity;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.mvp.BaseAbsListActivity;
+import com.zysdk.vulture.clib.mvp.inter.IView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import javax.inject.Inject;
 

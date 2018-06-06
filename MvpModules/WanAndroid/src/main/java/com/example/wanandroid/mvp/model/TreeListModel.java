@@ -2,8 +2,8 @@ package com.example.wanandroid.mvp.model;
 
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.mvp.model.inter.ITreeListModel;
-import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
-import com.zhiyangstudio.commonlib.utils.RxUtils;
+import com.zysdk.vulture.clib.net.callback.RxPageListObserver;
+import com.zysdk.vulture.clib.utils.RxUtils;
 
 /**
  * Created by zhiyang on 2018/4/19.

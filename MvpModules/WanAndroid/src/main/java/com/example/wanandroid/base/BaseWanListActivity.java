@@ -11,12 +11,12 @@ import com.example.wanandroid.adapter.ArticleListAdapter;
 import com.example.wanandroid.inter.OnArticleListItemClickListener;
 import com.example.wanandroid.ui.activity.TreeActivity;
 import com.example.wanandroid.utils.CommonInternalUtil;
-import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
-import com.zhiyangstudio.commonlib.mvp.BaseAbsListActivity;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.adapter.BaseListAdapter;
+import com.zysdk.vulture.clib.mvp.BaseAbsListActivity;
+import com.zysdk.vulture.clib.mvp.inter.IView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 /**
  * Created by zzg on 2018/4/21.

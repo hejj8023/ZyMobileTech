@@ -5,8 +5,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
-import com.zhiyangstudio.commonlib.glide.GlideApp;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.glide.GlideApp;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 /**
  * Created by example on 2018/4/11.

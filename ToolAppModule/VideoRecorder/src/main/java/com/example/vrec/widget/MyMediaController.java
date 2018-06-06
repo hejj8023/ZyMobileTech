@@ -21,7 +21,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.vrec.R;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.Formatter;
@@ -60,7 +60,7 @@ public class MyMediaController extends FrameLayout {
         mUseFastForward = true;
         mFromXml = true;
 
-       LoggerUtils.loge( TAG);
+        LoggerUtils.loge(TAG);
     }
 
     public MyMediaController(Context context, boolean useFastForward) {
@@ -68,13 +68,13 @@ public class MyMediaController extends FrameLayout {
         mContext = context;
         mUseFastForward = useFastForward;
 
-       LoggerUtils.loge( TAG);
+        LoggerUtils.loge(TAG);
     }
 
     public MyMediaController(Context context) {
         this(context, true);
 
-       LoggerUtils.loge( TAG);
+        LoggerUtils.loge(TAG);
     }
 
     @Override
@@ -425,7 +425,7 @@ public class MyMediaController extends FrameLayout {
         if (mPlayer == null) {
             return;
         }
-       LoggerUtils.loge( "doToggleFullscreen");
+        LoggerUtils.loge("doToggleFullscreen");
         mPlayer.toggleFullScreen();
     }
 
@@ -629,9 +629,14 @@ public class MyMediaController extends FrameLayout {
             int pos;
             switch (msg.what) {
                 case FADE_OUT:
-                    view.hide();
+                    if (view != null) {
+                        view.hide();
+                    }
                     break;
                 case SHOW_PROGRESS:
+                    if (view == null) {
+                        return;
+                    }
                     pos = view.setProgress();
                     if (!view.mDragging && view.mShowing && view.mPlayer.isPlaying()) {
                         msg = obtainMessage(SHOW_PROGRESS);

@@ -6,9 +6,9 @@ import com.example.daw.DawApp;
 import com.example.daw.di.component.DaggerFragmentComponent;
 import com.example.daw.di.component.FragmentComponent;
 import com.example.daw.di.module.FragmentModule;
-import com.zhiyangstudio.commonlib.mvp.BaseAbsListFragment;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.mvp.BaseAbsListFragment;
+import com.zysdk.vulture.clib.mvp.inter.IView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
 

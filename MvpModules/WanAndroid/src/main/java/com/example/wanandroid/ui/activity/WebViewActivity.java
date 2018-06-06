@@ -11,8 +11,8 @@ import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
 import com.example.wanandroid.base.BaseWanAndroidActivity;
 import com.just.agentweb.AgentWeb;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.utils.CommonUtils;
 
 import butterknife.BindView;
 

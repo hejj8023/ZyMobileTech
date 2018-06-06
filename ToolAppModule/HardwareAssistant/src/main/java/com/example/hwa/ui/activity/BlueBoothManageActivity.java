@@ -1,6 +1,6 @@
 package com.example.hwa.ui.activity;
 
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseActivity;
 
 /**
  * Created by example on 2018/4/8.

@@ -6,9 +6,9 @@ import com.example.bailan.BLApp;
 import com.example.bailan.di.component.DaggerFragmentComponent;
 import com.example.bailan.di.component.FragmentComponent;
 import com.example.bailan.di.module.FragmentModule;
-import com.zhiyangstudio.commonlib.mvp.inter.ISampleRefreshView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.refreshsupport.smartrefresh.BaseMVPSRRListFragment;
+import com.zysdk.vulture.clib.mvp.inter.ISampleRefreshView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.refreshsupport.smartrefresh.BaseMVPSRRListFragment;
 
 import javax.inject.Inject;
 

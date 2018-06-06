@@ -2,7 +2,7 @@ package com.example.bailan.base;
 
 import com.example.bailan.Const;
 import com.example.bailan.net.api.NetApi;
-import com.zhiyangstudio.commonlib.mvp.model.BaseModel;
+import com.zysdk.vulture.clib.mvp.model.BaseModel;
 
 /**
  * Created by zzg on 2018/5/27.

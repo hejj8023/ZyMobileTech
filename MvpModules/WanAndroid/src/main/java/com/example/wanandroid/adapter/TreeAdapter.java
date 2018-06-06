@@ -3,9 +3,9 @@ package com.example.wanandroid.adapter;
 import com.example.wanandroid.R;
 import com.example.wanandroid.bean.TreeBean;
 import com.example.wanandroid.inter.OnTreeItemClickListener;
-import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
-import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.adapter.BaseListAdapter;
+import com.zysdk.vulture.clib.adapter.lgrcommon.QuickViewHolder;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 /**
  * Created by zhiyang on 2018/4/19.

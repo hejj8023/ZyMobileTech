@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

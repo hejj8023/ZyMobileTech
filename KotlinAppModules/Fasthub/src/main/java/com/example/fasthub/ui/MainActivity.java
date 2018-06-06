@@ -1,6 +1,6 @@
 package com.example.fasthub.ui;
 
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
 
 /**
  * Created by zzg on 2018/5/21.

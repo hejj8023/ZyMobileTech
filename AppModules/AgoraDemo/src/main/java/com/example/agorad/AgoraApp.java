@@ -5,10 +5,10 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.tencent.bugly.crashreport.CrashReport;
-import com.zhiyangstudio.commonlib.CommonConst;
-import com.zhiyangstudio.commonlib.corel.BaseApp;
-import com.zhiyangstudio.commonlib.utils.OkHttpUtils;
-import com.zhiyangstudio.commonlib.utils.PreUtils;
+import com.zysdk.vulture.clib.CommonConst;
+import com.zysdk.vulture.clib.corel.BaseApp;
+import com.zysdk.vulture.clib.utils.OkHttpUtils;
+import com.zysdk.vulture.clib.utils.PreUtils;
 
 /**
  * Created by example on 2018/6/1.

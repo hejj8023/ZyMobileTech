@@ -3,8 +3,8 @@ package com.example.wanandroid.mvp.presenter;
 import com.example.wanandroid.bean.TreeBean;
 import com.example.wanandroid.mvp.contract.TreeContract;
 import com.example.wanandroid.mvp.model.TreeModel;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.net.callback.RxObserver;
 
 import java.util.List;
 

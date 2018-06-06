@@ -13,10 +13,10 @@ import com.example.wanandroid.Const;
 import com.example.wanandroid.R;
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.inter.OnArticleListItemClickListener;
-import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
-import com.zhiyangstudio.commonlib.adapter.lgrcommon.QuickViewHolder;
-import com.zhiyangstudio.commonlib.utils.DateUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.adapter.BaseListAdapter;
+import com.zysdk.vulture.clib.adapter.lgrcommon.QuickViewHolder;
+import com.zysdk.vulture.clib.utils.DateUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 /**
  * Created by example on 2018/4/11.

@@ -4,10 +4,10 @@ import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.FriendBean;
 import com.example.wanandroid.bean.HotwordBean;
 import com.example.wanandroid.mvp.model.inter.ISearchModel;
-import com.zhiyangstudio.commonlib.mvp.model.BaseModel;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
-import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
-import com.zhiyangstudio.commonlib.utils.RxUtils;
+import com.zysdk.vulture.clib.mvp.model.BaseModel;
+import com.zysdk.vulture.clib.net.callback.RxObserver;
+import com.zysdk.vulture.clib.net.callback.RxPageListObserver;
+import com.zysdk.vulture.clib.utils.RxUtils;
 
 import java.util.List;
 

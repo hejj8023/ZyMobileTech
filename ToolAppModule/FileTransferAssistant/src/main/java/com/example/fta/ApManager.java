@@ -1,6 +1,6 @@
 package com.example.fta;
 
-import com.zhiyangstudio.commonlib.utils.WifiUtils;
+import com.zysdk.vulture.clib.utils.WifiUtils;
 
 /**
  * Created by zzg on 2018/4/6.

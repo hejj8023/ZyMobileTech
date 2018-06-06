@@ -5,10 +5,10 @@ import com.example.daw.bean.UserBean;
 import com.example.daw.manager.DataManager;
 import com.example.daw.mvp.contract.LoginContract;
 import com.example.daw.mvp.model.LoginModel;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.net.callback.RxObserver;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import javax.inject.Inject;
 

@@ -2,7 +2,7 @@ package com.example.wanandroid.mvp.model;
 
 import com.example.wanandroid.Const;
 import com.example.wanandroid.api.ApiServer;
-import com.zhiyangstudio.commonlib.mvp.model.BaseModel;
+import com.zysdk.vulture.clib.mvp.model.BaseModel;
 
 /**
  * Created by example on 2018/4/11.

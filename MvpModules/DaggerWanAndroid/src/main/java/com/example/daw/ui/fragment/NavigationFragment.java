@@ -8,7 +8,7 @@ import com.example.daw.R;
  * Created by example on 2018/5/4.
  */
 
-public class NavigationFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment {
+public class NavigationFragment extends com.zysdk.vulture.clib.corel.BaseFragment {
     @Override
     public int getContentId() {
         return R.layout.fragment_navigation;

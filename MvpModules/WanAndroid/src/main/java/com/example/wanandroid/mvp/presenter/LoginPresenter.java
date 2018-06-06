@@ -6,12 +6,12 @@ import com.example.wanandroid.bean.UserBean;
 import com.example.wanandroid.manager.UserInfoManager;
 import com.example.wanandroid.mvp.contract.LoginContract;
 import com.example.wanandroid.mvp.model.LoginModel;
-import com.zhiyangstudio.commonlib.CommonConst;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.PreUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.CommonConst;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.net.callback.RxObserver;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.PreUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import io.reactivex.disposables.Disposable;
 

@@ -3,7 +3,7 @@ package com.example.daw.api;
 
 import com.example.daw.Const;
 import com.example.daw.bean.UserBean;
-import com.zhiyangstudio.commonlib.bean.BaseBean;
+import com.zysdk.vulture.clib.bean.BaseBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;

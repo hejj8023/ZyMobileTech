@@ -1,7 +1,7 @@
 package com.example.bailan.mvp.presenter;
 
 import com.example.bailan.mvp.contract.MainContract;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
 

@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.example.hwa.ui.activity.BlueBoothManageActivity;
 import com.example.hwa.ui.activity.WifiManageActivity;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseActivity;
 
 import butterknife.OnClick;
 

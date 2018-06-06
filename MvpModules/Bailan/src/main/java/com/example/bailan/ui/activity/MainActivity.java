@@ -15,8 +15,8 @@ import com.example.bailan.ui.fragment.ManagerFragment;
 import com.example.bailan.ui.fragment.MimeFragment;
 import com.example.bailan.ui.fragment.RankFragment;
 import com.example.bailan.ui.fragment.RecommendFragment;
-import com.zhiyangstudio.commonlib.corel.BaseFragment;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.corel.BaseFragment;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;

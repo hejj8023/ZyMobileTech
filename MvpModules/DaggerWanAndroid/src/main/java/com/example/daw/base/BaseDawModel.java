@@ -2,7 +2,7 @@ package com.example.daw.base;
 
 import com.example.daw.Const;
 import com.example.daw.api.ApiServer;
-import com.zhiyangstudio.commonlib.mvp.model.BaseModel;
+import com.zysdk.vulture.clib.mvp.model.BaseModel;
 
 /**
  * Created by zhiyang on 2018/4/26.

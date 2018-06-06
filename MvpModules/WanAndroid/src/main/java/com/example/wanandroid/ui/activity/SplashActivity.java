@@ -7,8 +7,8 @@ import com.example.wanandroid.bean.UserBean;
 import com.example.wanandroid.manager.UserInfoManager;
 import com.example.wanandroid.mvp.contract.LoginContract;
 import com.example.wanandroid.mvp.presenter.LoginPresenter;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.CommonUtils;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 
 /**
  * Created by example on 2018/4/9.

@@ -4,9 +4,9 @@ import com.example.bailan.BLApp;
 import com.example.bailan.di.component.ActivityComponent;
 import com.example.bailan.di.component.DaggerActivityComponent;
 import com.example.bailan.di.module.ActivityModule;
-import com.zhiyangstudio.commonlib.mvp.BaseMVPSupportActivivty;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.mvp.BaseMVPSupportActivivty;
+import com.zysdk.vulture.clib.mvp.inter.IView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
 

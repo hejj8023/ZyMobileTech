@@ -9,7 +9,7 @@ import com.example.wanandroid.R;
 import com.example.wanandroid.base.BaseWanAndroidActivity;
 import com.example.wanandroid.mvp.contract.LoginContract;
 import com.example.wanandroid.mvp.presenter.LoginPresenter;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

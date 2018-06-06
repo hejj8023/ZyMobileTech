@@ -1,7 +1,7 @@
 package com.example.fta;
 
 import com.example.fta.bean.FileInfo;
-import com.zhiyangstudio.commonlib.corel.BaseApp;
+import com.zysdk.vulture.clib.corel.BaseApp;
 
 import java.util.ArrayList;
 import java.util.HashMap;

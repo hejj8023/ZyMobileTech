@@ -2,8 +2,8 @@ package com.example.bailan.mvp.presenter;
 
 import com.example.bailan.bean.RankBean;
 import com.example.bailan.mvp.model.RankModel;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.net.callback.AbsBaseObserver;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.net.callback.AbsBaseObserver;
 
 import javax.inject.Inject;
 

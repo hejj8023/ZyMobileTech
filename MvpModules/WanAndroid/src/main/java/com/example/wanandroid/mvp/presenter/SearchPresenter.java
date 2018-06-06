@@ -5,10 +5,10 @@ import com.example.wanandroid.bean.FriendBean;
 import com.example.wanandroid.bean.HotwordBean;
 import com.example.wanandroid.mvp.contract.SearchContract;
 import com.example.wanandroid.mvp.model.SearchModel;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
-import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.net.callback.RxObserver;
+import com.zysdk.vulture.clib.net.callback.RxPageListObserver;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.util.List;
 

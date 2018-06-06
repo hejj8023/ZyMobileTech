@@ -3,7 +3,7 @@ package com.example.fta.ui.activity;
 import android.view.View;
 
 import com.example.fta.R;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseActivity;
 
 import butterknife.OnClick;
 

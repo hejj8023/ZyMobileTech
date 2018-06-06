@@ -8,7 +8,7 @@ import com.example.bailan.R;
  * Created by example on 2018/5/25.
  */
 
-public class ManagerFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment {
+public class ManagerFragment extends com.zysdk.vulture.clib.corel.BaseFragment {
     @Override
     public int getContentId() {
         return R.layout.fragment_manages;

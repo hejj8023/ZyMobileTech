@@ -2,7 +2,7 @@ package com.example.bmpa;
 
 import android.view.View;
 
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseActivity;
 
 import butterknife.OnClick;
 

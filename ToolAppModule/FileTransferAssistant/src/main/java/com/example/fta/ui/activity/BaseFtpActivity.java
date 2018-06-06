@@ -2,7 +2,7 @@ package com.example.fta.ui.activity;
 
 import com.example.fta.manager.FtpClientManager;
 import com.example.fta.manager.FtpServerManager;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

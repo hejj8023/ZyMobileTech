@@ -5,8 +5,8 @@ import android.content.Intent;
 
 import com.example.wanandroid.Const;
 import com.example.wanandroid.ui.activity.WebViewActivity;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.utils.CommonUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 /**
  * Created by zhiyang on 2018/4/19.

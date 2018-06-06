@@ -1,6 +1,6 @@
 package com.example.bailan;
 
-import com.zhiyangstudio.commonlib.utils.PreUtils;
+import com.zysdk.vulture.clib.utils.PreUtils;
 
 /**
  * Created by example on 2018/5/25.

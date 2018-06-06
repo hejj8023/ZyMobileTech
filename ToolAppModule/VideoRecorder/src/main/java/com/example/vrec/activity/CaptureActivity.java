@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.example.vrec.CommonUtil;
 import com.example.vrec.R;
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
 
 import butterknife.OnClick;
 

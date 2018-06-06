@@ -1,7 +1,7 @@
 package com.example.daw.mvp.presenter;
 
 import com.example.daw.mvp.contract.RegisterContract;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
 

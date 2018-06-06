@@ -6,9 +6,9 @@ import com.example.bailan.BLApp;
 import com.example.bailan.di.component.DaggerFragmentComponent;
 import com.example.bailan.di.component.FragmentComponent;
 import com.example.bailan.di.module.FragmentModule;
-import com.zhiyangstudio.commonlib.mvp.BaseMVPSupportFragment;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.mvp.BaseMVPSupportFragment;
+import com.zysdk.vulture.clib.mvp.inter.IView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
 

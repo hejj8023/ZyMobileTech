@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.wanandroid.R;
-import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
-import com.zhiyangstudio.commonlib.mvp.BaseMVPSupportActivivty;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.corel.BaseInternalHandler;
+import com.zysdk.vulture.clib.mvp.BaseMVPSupportActivivty;
+import com.zysdk.vulture.clib.mvp.inter.IView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import butterknife.ButterKnife;
 

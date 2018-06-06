@@ -4,11 +4,11 @@ import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.mvp.contract.HomeListContract;
 import com.example.wanandroid.mvp.model.HomeListModel;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.net.callback.RxConsumer;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
-import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.net.callback.RxConsumer;
+import com.zysdk.vulture.clib.net.callback.RxObserver;
+import com.zysdk.vulture.clib.net.callback.RxPageListObserver;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.util.List;
 

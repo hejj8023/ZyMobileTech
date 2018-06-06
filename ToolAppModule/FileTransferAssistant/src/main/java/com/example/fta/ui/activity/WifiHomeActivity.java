@@ -1,7 +1,7 @@
 package com.example.fta.ui.activity;
 
 import com.example.fta.R;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseActivity;
 
 /**
  * Created by zzg on 2018/4/5.

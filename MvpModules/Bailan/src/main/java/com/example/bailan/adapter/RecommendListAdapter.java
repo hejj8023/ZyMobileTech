@@ -10,8 +10,8 @@ import com.example.bailan.bean.MenuItemInfo;
 import com.example.bailan.bean.RecommonBean;
 import com.example.bailan.widget.GridMenuRecyclerView;
 import com.example.bailan.widget.RecyclerBanner;
-import com.zhiyangstudio.commonlib.glide.GlideUtils;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.glide.GlideUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.util.ArrayList;
 import java.util.List;

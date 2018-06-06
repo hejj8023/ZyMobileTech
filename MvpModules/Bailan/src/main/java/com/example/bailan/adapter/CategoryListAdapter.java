@@ -12,8 +12,8 @@ import com.example.bailan.bean.CategoryBean;
 import com.example.bailan.bean.MenuItemInfo;
 import com.example.bailan.widget.GridMenuRecyclerView;
 import com.example.bailan.widget.MenuWidget;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import java.util.ArrayList;
 import java.util.List;

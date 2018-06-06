@@ -6,10 +6,10 @@ import android.support.annotation.Nullable;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.vrec.manager.CameraManagerHelper;
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.FileUtils;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.utils.CommonUtils;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.FileUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -17,6 +17,7 @@ import java.util.Date;
 
 public abstract class BaseCameraActivity extends BaseToolbarSupportActivity {
     protected Camera mCamera;
+    protected boolean hasReleaseCam;
 
     @Override
     protected boolean initToolBar() {
@@ -43,7 +44,9 @@ public abstract class BaseCameraActivity extends BaseToolbarSupportActivity {
     }
 
     protected void releaseCamera() {
+
         CameraManagerHelper.releaseCam(mCamera);
+        hasReleaseCam = true;
     }
 
     /**

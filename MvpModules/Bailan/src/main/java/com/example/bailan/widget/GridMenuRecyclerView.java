@@ -14,9 +14,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.bailan.R;
 import com.example.bailan.bean.MenuItemInfo;
-import com.zhiyangstudio.commonlib.glide.GlideUtils;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.glide.GlideUtils;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.util.List;
 

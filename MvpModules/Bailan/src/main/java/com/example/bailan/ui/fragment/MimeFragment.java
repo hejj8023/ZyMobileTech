@@ -7,8 +7,8 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.bailan.R;
 import com.example.bailan.bean.MenuItemInfo;
 import com.example.bailan.widget.GridMenuRecyclerView;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
-import com.zhiyangstudio.commonlib.widget.LooperTextView;
+import com.zysdk.vulture.clib.utils.UiUtils;
+import com.zysdk.vulture.clib.widget.LooperTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import butterknife.OnClick;
  * Created by example on 2018/5/25.
  */
 
-public class MimeFragment extends com.zhiyangstudio.commonlib.corel.BaseFragment {
+public class MimeFragment extends com.zysdk.vulture.clib.corel.BaseFragment {
 
     @BindView(R.id.rv_menu)
     GridMenuRecyclerView mRecyclerView;

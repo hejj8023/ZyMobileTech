@@ -1,8 +1,8 @@
 package com.example.fta;
 
 import com.example.fta.bean.FileInfo;
-import com.zhiyangstudio.commonlib.utils.LogListener;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.LogListener;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

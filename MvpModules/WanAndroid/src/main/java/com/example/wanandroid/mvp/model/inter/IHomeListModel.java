@@ -2,8 +2,8 @@ package com.example.wanandroid.mvp.model.inter;
 
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.BannerBean;
-import com.zhiyangstudio.commonlib.net.callback.RxConsumer;
-import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
+import com.zysdk.vulture.clib.net.callback.RxConsumer;
+import com.zysdk.vulture.clib.net.callback.RxPageListObserver;
 
 import java.util.List;
 

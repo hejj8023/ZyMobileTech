@@ -4,9 +4,9 @@ import com.example.daw.DawApp;
 import com.example.daw.di.component.ActivityComponent;
 import com.example.daw.di.component.DaggerActivityComponent;
 import com.example.daw.di.module.ActivityModule;
-import com.zhiyangstudio.commonlib.mvp.BaseMVPSupportActivivty;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.mvp.BaseMVPSupportActivivty;
+import com.zysdk.vulture.clib.mvp.inter.IView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import javax.inject.Inject;
 

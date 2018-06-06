@@ -2,7 +2,7 @@ package com.example.fta;
 
 import com.example.fta.bean.FileInfo;
 import com.example.fta.utils.FileUtils;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

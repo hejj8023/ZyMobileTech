@@ -7,7 +7,7 @@ import com.example.daw.R;
 import com.example.daw.base.BaseAdvActivity;
 import com.example.daw.mvp.contract.LoginContract;
 import com.example.daw.mvp.presenter.LoginPresenter;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

@@ -5,7 +5,7 @@ import android.view.View;
 import com.example.bailan.R;
 import com.example.bailan.UserInfoManager;
 import com.example.bailan.base.BaseBLActivity;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 
 import butterknife.OnClick;
 

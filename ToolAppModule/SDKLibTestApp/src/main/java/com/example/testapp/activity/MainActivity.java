@@ -3,8 +3,8 @@ package com.example.testapp.activity;
 import android.view.View;
 
 import com.example.testapp.R;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 
 import butterknife.OnClick;
 

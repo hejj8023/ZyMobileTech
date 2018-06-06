@@ -8,7 +8,7 @@ import com.example.bailan.base.BaseDaggerSupportListFragment;
 import com.example.bailan.bean.RecommonBean;
 import com.example.bailan.mvp.contract.RecommendContract;
 import com.example.bailan.mvp.presenter.RecommendPresenter;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 /**
  * Created by example on 2018/5/25.

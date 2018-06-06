@@ -12,7 +12,7 @@ import com.example.wanandroid.R;
 import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.manager.GlideLoaderManager;
 import com.example.wanandroid.utils.CommonInternalUtil;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import java.util.List;
 

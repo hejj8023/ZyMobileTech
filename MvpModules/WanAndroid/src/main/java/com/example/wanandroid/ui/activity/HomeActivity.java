@@ -26,12 +26,12 @@ import com.example.wanandroid.mvp.contract.HomeContract;
 import com.example.wanandroid.mvp.presenter.HomePresenter;
 import com.example.wanandroid.ui.fragment.HomeFragment;
 import com.example.wanandroid.ui.fragment.TreeFragment;
-import com.zhiyangstudio.commonlib.components.receiver.AppInstallReceiver;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
-import com.zhiyangstudio.commonlib.utils.PreUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.components.receiver.AppInstallReceiver;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.PreUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

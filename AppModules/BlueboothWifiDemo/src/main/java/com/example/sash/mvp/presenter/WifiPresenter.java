@@ -1,7 +1,7 @@
 package com.example.sash.mvp.presenter;
 
 import com.example.sash.mvp.WifiContract;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 /**
  * Created by example on 2018/5/24.

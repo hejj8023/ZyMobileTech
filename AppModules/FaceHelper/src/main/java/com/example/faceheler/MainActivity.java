@@ -8,8 +8,8 @@ import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
 
 public class MainActivity extends BaseActivity {
 

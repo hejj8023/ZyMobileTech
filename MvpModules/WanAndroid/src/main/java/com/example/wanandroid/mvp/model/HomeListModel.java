@@ -3,11 +3,11 @@ package com.example.wanandroid.mvp.model;
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.BannerBean;
 import com.example.wanandroid.mvp.model.inter.IHomeListModel;
-import com.zhiyangstudio.commonlib.net.callback.RxConsumer;
-import com.zhiyangstudio.commonlib.net.callback.RxFunction;
-import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.RxUtils;
+import com.zysdk.vulture.clib.net.callback.RxConsumer;
+import com.zysdk.vulture.clib.net.callback.RxFunction;
+import com.zysdk.vulture.clib.net.callback.RxPageListObserver;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.RxUtils;
 
 import java.util.List;
 

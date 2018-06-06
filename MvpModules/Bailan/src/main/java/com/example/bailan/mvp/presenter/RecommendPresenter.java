@@ -3,8 +3,8 @@ package com.example.bailan.mvp.presenter;
 import com.example.bailan.bean.RecommonBean;
 import com.example.bailan.mvp.contract.RecommendContract;
 import com.example.bailan.mvp.model.RecommendModel;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
-import com.zhiyangstudio.commonlib.net.callback.AbsBaseObserver;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.net.callback.AbsBaseObserver;
 
 import java.util.ArrayList;
 import java.util.List;

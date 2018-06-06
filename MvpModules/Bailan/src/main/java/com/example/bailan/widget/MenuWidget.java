@@ -12,9 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.bailan.R;
-import com.zhiyangstudio.commonlib.glide.GlideUtils;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.glide.GlideUtils;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 /**
  * Created by zzg on 2018/5/26.

@@ -14,10 +14,10 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.sash.Const;
 import com.example.sash.R;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
-import com.zhiyangstudio.commonlib.utils.WifiUtils;
-import com.zhiyangstudio.commonlib.widget.dialog.LoadingDialog;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
+import com.zysdk.vulture.clib.utils.WifiUtils;
+import com.zysdk.vulture.clib.widget.dialog.LoadingDialog;
 
 /**
  * Created by example on 2018/5/24.

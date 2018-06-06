@@ -1,6 +1,6 @@
 package com.example.sash.bean;
 
-import com.zhiyangstudio.commonlib.utils.WifiUtils;
+import com.zysdk.vulture.clib.utils.WifiUtils;
 
 /**
  * Created by example on 2018/5/25.

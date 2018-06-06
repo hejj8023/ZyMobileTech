@@ -9,8 +9,8 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,7 +40,6 @@ public class CameraManagerHelper {
      * A safe way to get an instance of the Camera object.
      */
     public static Camera getCameraInstance() {
-
         //有多少个摄像头
         numberOfCameras = Camera.getNumberOfCameras();
         Camera c = null;
@@ -94,7 +93,7 @@ public class CameraManagerHelper {
             screenResolution = new Point(display.getWidth(), display.getHeight());
             LoggerUtils.loge("Screen resolution: " + screenResolution);
             cameraResolution = getCameraResolution(params, screenResolution);
-            LoggerUtils.loge("Camera resolution: " + screenResolution);
+            LoggerUtils.loge("Camera resolution: " + cameraResolution);
 
             final Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
             Camera.getCameraInfo(currentCameraId, cameraInfo);
@@ -126,12 +125,45 @@ public class CameraManagerHelper {
             }
             c.setDisplayOrientation(displayRotation);
 
-            //设置预览大小
-//            params.setPreviewSize(cameraResolution.x, cameraResolution.y);
-//            params.setPictureSize(cameraResolution.x, cameraResolution.y);
+            Camera.Size preViewSize = getOptimalSize(params.getSupportedPreviewSizes(),
+                    screenResolution.x, screenResolution.y);
+            int px = preViewSize.width;
+            int py = preViewSize.height;
+            LoggerUtils.loge("preViewSize w = : " + px + " , h = " + py);
+            if (null != preViewSize) {
+                // TODO: 2018/6/6 设置预览大小
+                params.setPreviewSize(px, py);
+            }
 
-            //设置聚焦模式
-            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+            Camera.Size pictureSize = getOptimalSize(params.getSupportedPictureSizes(),
+                    screenResolution.x, screenResolution.y);
+            LoggerUtils.loge("pictureSize w = : " + pictureSize.width + " , h = " + pictureSize
+                    .height);
+
+            screenResolution = new Point(px, py);
+            cameraResolution = screenResolution;
+            if (null != pictureSize) {
+                // TODO: 2018/6/6 设置图片大小
+                params.setPictureSize(px, py);
+            }
+
+            List<String> modes = params.getSupportedFocusModes();
+            LoggerUtils.loge("modes = " + modes);
+
+            if (modes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {
+                //设置聚焦模式
+                LoggerUtils.loge("FocusMode FOCUS_MODE_CONTINUOUS_VIDEO");
+                params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+            } else if (modes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+                //设置聚焦模式
+                LoggerUtils.loge("FocusMode FOCUS_MODE_CONTINUOUS_PICTURE");
+                params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+            } else if (modes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+                //支持自动聚焦模式
+                LoggerUtils.loge("FocusMode FOCUS_MODE_AUTO");
+                params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+            }
+
             //缩短Recording启动时间
             params.setRecordingHint(true);
             //影像稳定能力
@@ -165,10 +197,8 @@ public class CameraManagerHelper {
                     (screenResolution.x >> 3) << 3,
                     (screenResolution.y >> 3) << 3);
         }
-
         return cameraResolution;
     }
-
 
     public static Point getCameraResolution() {
         return cameraResolution;
@@ -180,7 +210,6 @@ public class CameraManagerHelper {
         int bestY = 0;
         int diff = Integer.MAX_VALUE;
         for (String previewSize : COMMA_PATTERN.split(previewSizeValueString)) {
-
             previewSize = previewSize.trim();
             int dimPosition = previewSize.indexOf('x');
             if (dimPosition < 0) {
@@ -254,7 +283,7 @@ public class CameraManagerHelper {
 
         Camera.Size pictureSize = getOptimalSize(params.getSupportedPictureSizes(), 1920, 1080);
         if (null != pictureSize) {
-            params.setPictureSize(pictureSize.width, pictureSize.height);
+            params.setPictureSize(preViewSize.width, preViewSize.height);
         }
         //设置图片格式
         params.setPictureFormat(ImageFormat.JPEG);
@@ -262,19 +291,32 @@ public class CameraManagerHelper {
         params.setJpegThumbnailQuality(100);
 
         List<String> modes = params.getSupportedFocusModes();
-        if (modes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
+        if (modes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {
+            //设置聚焦模式
+            LoggerUtils.loge("FocusMode FOCUS_MODE_CONTINUOUS_VIDEO");
+            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+        } else if (modes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+            //设置聚焦模式
+            LoggerUtils.loge("FocusMode FOCUS_MODE_CONTINUOUS_PICTURE");
+            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+        } else if (modes.contains(Camera.Parameters.FOCUS_MODE_AUTO)) {
             //支持自动聚焦模式
+            LoggerUtils.loge("FocusMode FOCUS_MODE_AUTO");
             params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         }
 
-        //设置聚焦模式
-        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
         //缩短Recording启动时间
         params.setRecordingHint(true);
         //影像稳定能力
-        if (params.isVideoStabilizationSupported())
+        if (params.isVideoStabilizationSupported()) {
             params.setVideoStabilization(true);
-        camera.setParameters(params);
+        }
+        try {
+            camera.setParameters(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LoggerUtils.loge("error = " + e.getMessage());
+        }
     }
 
     /**

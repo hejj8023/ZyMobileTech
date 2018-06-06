@@ -8,6 +8,7 @@ import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -22,12 +23,13 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.vrec.R;
 import com.example.vrec.VideoUtils;
 import com.example.vrec.manager.CameraManagerHelper;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.ThreadUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.utils.CommonUtils;
+import com.zysdk.vulture.clib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.ThreadUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,6 +62,8 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
     private long mPauseTime = 0;
     private String saveVideoPath = "";
     private boolean hasFromBtn;
+    private boolean hasReleaseCam;
+    private int mMaxDuration = 30 * 1000;
 
     @Override
     protected int getContentLayoutId() {
@@ -84,8 +88,46 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
 
     @Override
     public void addListener() {
-    }
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                //SystemClock.elapsedRealtime()系统当前时间
+                //chronometer.getBase()记录计时器开始时的时间
+                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) > mMaxDuration) {
+                    // 停止视频，停止记时
+                    LoggerUtils.loge("停止视频，停止记时");
+                    UiUtils.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // 正在录制的视频，点击后暂停
+                            // 取消自动对焦
+                            mCamera.autoFocus(new Camera.AutoFocusCallback() {
+                                @Override
+                                public void onAutoFocus(boolean success, Camera camera) {
+                                    if (success) {
+                                        mCamera.cancelAutoFocus();
+                                    }
 
+                                }
+                            });
+
+                            //停止视频录制
+                            stopRecord();
+                            //先给Camera加锁后再释放相机
+//                            mCamera.lock();
+//                            releaseCamera();
+                            hasFromBtn = true;
+
+                            refreshControlUI();
+
+                            mRecordState = STATE_IDEL;
+                        }
+                    }, 1000);
+                }
+
+            }
+        });
+    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -104,7 +146,7 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
             }
 
             mCamera.setPreviewDisplay(surfaceViewHolder);
-            CameraManagerHelper.configCamera(mCamera);
+            CameraManagerHelper.setCameraParam(mCamera);
             mCamera.startPreview();
         } catch (IOException e) {
             LoggerUtils.loge("Error setting camera preview: " + e.getMessage());
@@ -311,9 +353,12 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
     }
 
     private boolean startRecord() {
-        initCamera();
-        CameraManagerHelper.configCamera(mCamera);
+        if (hasReleaseCam) {
+            initCamera();
+            CameraManagerHelper.setCameraParam(mCamera);
+        }
 
+        hasReleaseCam = false;
         // 录制前必须先解锁camera
         // 解锁camera便于MediaRecorder使用相机
         mCamera.unlock();
@@ -380,10 +425,15 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
          mediaRecorder.setVideoFrameRate(60); // 设置帧率
          */
         //设置视频的分辨率
-        mediaRecorder.setVideoFrameRate(profile.videoFrameRate);
+//        mediaRecorder.setVideoFrameRate(profile.videoFrameRate);
+
+        // TODO: 2018/6/6 配置尽量都写死，有的设备会取不到profile
+        mediaRecorder.setVideoFrameRate(60);
 
         // 设置录像的分辨率
-        mediaRecorder.setVideoSize(profile.videoFrameWidth, profile.videoFrameHeight);
+//        mediaRecorder.setVideoSize(profile.videoFrameWidth, profile.videoFrameHeight);
+        Point cameraResolution = CameraManagerHelper.getCameraResolution();
+        mediaRecorder.setVideoSize(cameraResolution.x, cameraResolution.y);
 
         // 设置选择角度，顺时针方向，因为默认为逆向90度的，这样图像就可以正常显示了
         int currentCameraId = CameraManagerHelper.getCurrentCameraId();
@@ -392,7 +442,7 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
         } else if (currentCameraId == Camera.CameraInfo.CAMERA_FACING_FRONT) {
             mediaRecorder.setOrientationHint(270);
         }
-        // mediaRecorder.setMaxDuration(1000 * 10);  //设置最大的录制时间
+        mediaRecorder.setMaxDuration(mMaxDuration);  //设置最大的录制时间
 
         // 设置录像视频输出地址
         mediaRecorder.setOutputFile(mCurrentVideoFilePath);

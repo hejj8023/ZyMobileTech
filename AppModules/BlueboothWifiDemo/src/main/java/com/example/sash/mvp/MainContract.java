@@ -3,7 +3,7 @@ package com.example.sash.mvp;
 import android.bluetooth.BluetoothAdapter;
 
 import com.example.sash.bean.BluetoothBean;
-import com.zhiyangstudio.commonlib.mvp.inter.ISampleRefreshView;
+import com.zysdk.vulture.clib.mvp.inter.ISampleRefreshView;
 
 import java.util.List;
 

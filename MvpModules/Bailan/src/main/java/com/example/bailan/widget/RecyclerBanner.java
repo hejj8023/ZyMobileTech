@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.bailan.R;
-import com.zhiyangstudio.commonlib.glide.GlideUtils;
+import com.zysdk.vulture.clib.glide.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;

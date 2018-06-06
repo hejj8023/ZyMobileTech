@@ -1,6 +1,6 @@
 package com.example.sash;
 
-import com.zhiyangstudio.commonlib.corel.BaseApp;
+import com.zysdk.vulture.clib.corel.BaseApp;
 
 /**
  * Created by example on 2018/5/22.

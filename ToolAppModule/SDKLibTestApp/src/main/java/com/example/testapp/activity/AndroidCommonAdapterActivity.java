@@ -14,7 +14,7 @@ import com.example.testapp.fragment.MultiTypeItemRecyclerFragment;
 import com.example.testapp.fragment.SingleTypeItemGridFragmentSingle;
 import com.example.testapp.fragment.SingleTypeItemRecyclerFragmentSingle;
 import com.example.testapp.fragment.SingleTypeItemSingleListFragment;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

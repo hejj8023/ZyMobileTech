@@ -6,10 +6,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hwa.R;
-import com.zhiyangstudio.commonlib.components.receiver.WifiBroadcastReceiver;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.WifiUtils;
+import com.zysdk.vulture.clib.components.receiver.WifiBroadcastReceiver;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.WifiUtils;
 
 import java.util.List;
 

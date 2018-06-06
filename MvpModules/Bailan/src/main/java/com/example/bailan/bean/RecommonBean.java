@@ -2,7 +2,7 @@ package com.example.bailan.bean;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.bailan.Const;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.util.List;
 

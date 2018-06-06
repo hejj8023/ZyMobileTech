@@ -1,7 +1,7 @@
 package com.example.fta.utils;
 
 import com.example.fta.Const;
-import com.zhiyangstudio.commonlib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.EmptyUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

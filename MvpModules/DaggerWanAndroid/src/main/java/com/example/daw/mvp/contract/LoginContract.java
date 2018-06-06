@@ -1,8 +1,8 @@
 package com.example.daw.mvp.contract;
 
 import com.example.daw.bean.UserBean;
-import com.zhiyangstudio.commonlib.bean.BaseBean;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
+import com.zysdk.vulture.clib.bean.BaseBean;
+import com.zysdk.vulture.clib.mvp.inter.IView;
 
 import io.reactivex.Observer;
 

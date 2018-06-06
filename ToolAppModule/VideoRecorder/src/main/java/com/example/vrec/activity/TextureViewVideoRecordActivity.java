@@ -23,12 +23,12 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.vrec.CommonUtil;
 import com.example.vrec.R;
 import com.example.vrec.manager.CameraManagerHelper;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
-import com.zhiyangstudio.commonlib.utils.FileUtils;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.utils.CommonUtils;
+import com.zysdk.vulture.clib.utils.FileUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import java.io.File;
 import java.io.IOException;

@@ -4,11 +4,11 @@ import android.support.design.widget.NavigationView;
 import android.view.View;
 
 import com.example.sash.R;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
-import com.zhiyangstudio.commonlib.utils.CommonUtils;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.utils.CommonUtils;
+import com.zysdk.vulture.clib.utils.IntentUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

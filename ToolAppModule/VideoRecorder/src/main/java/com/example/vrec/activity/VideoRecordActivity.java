@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.example.vrec.CommonUtil;
 import com.example.vrec.R;
-import com.zhiyangstudio.commonlib.corel.BaseActivity;
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zysdk.vulture.clib.corel.BaseActivity;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 
 import butterknife.OnClick;
 

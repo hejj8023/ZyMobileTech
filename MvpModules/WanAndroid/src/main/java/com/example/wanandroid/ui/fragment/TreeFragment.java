@@ -11,9 +11,9 @@ import com.example.wanandroid.inter.OnTreeItemClickListener;
 import com.example.wanandroid.mvp.contract.TreeContract;
 import com.example.wanandroid.mvp.presenter.TreePresenter;
 import com.example.wanandroid.ui.activity.TreeActivity;
-import com.zhiyangstudio.commonlib.adapter.BaseListAdapter;
-import com.zhiyangstudio.commonlib.mvp.BaseAbsListFragment;
-import com.zhiyangstudio.commonlib.utils.IntentUtils;
+import com.zysdk.vulture.clib.adapter.BaseListAdapter;
+import com.zysdk.vulture.clib.mvp.BaseAbsListFragment;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 
 import java.util.List;
 

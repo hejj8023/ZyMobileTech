@@ -9,7 +9,7 @@ import com.example.wanandroid.R;
 import com.example.wanandroid.adapter.TreeFragmentPagerAdapter;
 import com.example.wanandroid.base.BaseWanAndroidActivity;
 import com.example.wanandroid.bean.TreeBean;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import java.io.Serializable;
 import java.util.List;

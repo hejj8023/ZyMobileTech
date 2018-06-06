@@ -4,9 +4,9 @@ import android.Manifest;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.zhiyangstudio.commonlib.corel.BaseToolbarSupportActivity;
-import com.zhiyangstudio.commonlib.utils.LoggerUtils;
-import com.zhiyangstudio.commonlib.utils.UiUtils;
+import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
+import com.zysdk.vulture.clib.utils.UiUtils;
 
 import butterknife.BindView;
 import io.agora.rtc.IRtcEngineEventHandler;

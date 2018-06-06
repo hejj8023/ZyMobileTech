@@ -1,7 +1,7 @@
 package com.example.fta;
 
 
-import com.zhiyangstudio.commonlib.utils.LogListener;
+import com.zysdk.vulture.clib.utils.LogListener;
 
 /**
  * Created by zzg on 2018/4/7.

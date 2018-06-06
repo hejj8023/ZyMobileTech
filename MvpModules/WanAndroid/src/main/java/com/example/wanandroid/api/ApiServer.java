@@ -7,8 +7,8 @@ import com.example.wanandroid.bean.FriendBean;
 import com.example.wanandroid.bean.HotwordBean;
 import com.example.wanandroid.bean.TreeBean;
 import com.example.wanandroid.bean.UserBean;
-import com.zhiyangstudio.commonlib.bean.BaseBean;
-import com.zhiyangstudio.commonlib.bean.PageListDataBean;
+import com.zysdk.vulture.clib.bean.BaseBean;
+import com.zysdk.vulture.clib.bean.PageListDataBean;
 
 import java.util.List;
 

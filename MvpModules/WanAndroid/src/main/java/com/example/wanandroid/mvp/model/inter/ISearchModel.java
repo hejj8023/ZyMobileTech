@@ -3,8 +3,8 @@ package com.example.wanandroid.mvp.model.inter;
 import com.example.wanandroid.bean.ArticleBean;
 import com.example.wanandroid.bean.FriendBean;
 import com.example.wanandroid.bean.HotwordBean;
-import com.zhiyangstudio.commonlib.net.callback.RxObserver;
-import com.zhiyangstudio.commonlib.net.callback.RxPageListObserver;
+import com.zysdk.vulture.clib.net.callback.RxObserver;
+import com.zysdk.vulture.clib.net.callback.RxPageListObserver;
 
 import java.util.List;
 

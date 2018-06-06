@@ -8,9 +8,9 @@ import android.widget.LinearLayout;
 
 import com.example.bailan.R;
 import com.gyf.barlibrary.ImmersionBar;
-import com.zhiyangstudio.commonlib.corel.BaseInternalHandler;
-import com.zhiyangstudio.commonlib.mvp.inter.IView;
-import com.zhiyangstudio.commonlib.mvp.presenter.BasePresenter;
+import com.zysdk.vulture.clib.corel.BaseInternalHandler;
+import com.zysdk.vulture.clib.mvp.inter.IView;
+import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
 
 import butterknife.ButterKnife;
 
