@@ -79,7 +79,7 @@ public class VideoPlayerActivity extends BaseToolbarSupportActivity implements M
         vWidth = mp.getVideoWidth();
         vHeight = mp.getVideoHeight();
 
-        if (vWidth > screenWidth || vHeight > screenHeigth) {
+        if (vWidth > screenWidth || vHeight > realScreenHeight) {
             //如果video的宽或者高超出了当前屏幕的大小，则要进行缩放
             float wRatio = (float) vWidth / (float) screenWidth;
             float hRatio = (float) vHeight / (float) screenWidth;
@@ -129,12 +129,13 @@ public class VideoPlayerActivity extends BaseToolbarSupportActivity implements M
 
     @Override
     public int getCurrentPosition() {
-        return videoView.getCurrentPosition();
+        return videoView != null ? videoView.getCurrentPosition() : 0;
     }
 
     @Override
     public void seekTo(int pos) {
-        videoView.seekTo(pos);
+        if (videoView != null)
+            videoView.seekTo(pos);
     }
 
     @Override
