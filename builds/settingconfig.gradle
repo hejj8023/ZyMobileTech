@@ -143,6 +143,16 @@ private void loadGithubLibs() {
     include ':GithubLibs:FtpserverLib'
 }
 
+private void loadImoocModules() {
+    println "loadImoocModules"
+
+    def file = new File("ImoocModules/")
+    include ':ImoocModules'
+    project(":ImoocModules").projectDir = file
+//    include ':ImoocModules:UIAutomatorTest'
+    include ':ImoocModules:ImoocDataBinding'
+}
+
 private void loadMvpModules() {
     println "loadMvpModules"
 
@@ -173,4 +183,5 @@ ext {
     loadGithubLib = this.&loadGithubLibs
     loadToolAppModule = this.&loadToolAppModule
     loadMvpModule = this.&loadMvpModules
+    loadImoocModule = this.&loadImoocModules
 }

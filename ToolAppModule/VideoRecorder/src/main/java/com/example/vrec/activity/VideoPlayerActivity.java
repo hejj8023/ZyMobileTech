@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -16,10 +17,12 @@ import com.example.vrec.widget.MyVideoView;
 import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
 import com.zysdk.vulture.clib.utils.CommonUtils;
 import com.zysdk.vulture.clib.utils.EmptyUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.io.File;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 视频播放器
@@ -33,6 +36,9 @@ public class VideoPlayerActivity extends BaseToolbarSupportActivity implements M
     private File file;
     private int vWidth;
     private int vHeight;
+    private MediaPlayer mPlayer;
+    // 默认为4:3
+    private float ratio = 3 / 4;
 
     @Override
     protected boolean initToolBar() {
@@ -74,6 +80,7 @@ public class VideoPlayerActivity extends BaseToolbarSupportActivity implements M
 
     @Override
     public void onPrepared(MediaPlayer mp) {
+        this.mPlayer = mp;
         // TODO: 2018/6/5 修正视频拉伸的问题
         //首先取得video的宽和高
         vWidth = mp.getVideoWidth();
@@ -171,5 +178,38 @@ public class VideoPlayerActivity extends BaseToolbarSupportActivity implements M
     @Override
     public void toggleFullScreen() {
 
+    }
+
+    @OnClick({R.id.tv_opt_s2n, R.id.tv_opt_f2t, R.id.tv_opt_ascale})
+    public void onViewClick(View view) {
+        int vH = 0;
+        switch (view.getId()) {
+            case R.id.tv_opt_s2n:
+                //设置surfaceView的布局参数
+                vH = (int) (vWidth / ratio);
+                break;
+            case R.id.tv_opt_f2t:
+                ratio = 9 / 16;
+                vH = (int) (vWidth / ratio);
+                break;
+            case R.id.tv_opt_ascale:
+                if (vWidth > screenWidth || vHeight > realScreenHeight) {
+                    //如果video的宽或者高超出了当前屏幕的大小，则要进行缩放
+                    float wRatio = (float) vWidth / (float) screenWidth;
+                    float hRatio = (float) vHeight / (float) screenWidth;
+
+                    //选择大的一个进行缩放
+                    ratio = Math.max(wRatio, hRatio);
+
+                    vWidth = (int) Math.ceil((float) vWidth / ratio);
+                    vHeight = (int) Math.ceil((float) vHeight / ratio);
+                    vH = vHeight;
+                }
+                break;
+        }
+        LoggerUtils.loge("vH = " +vH);
+        //设置surfaceView的布局参数
+        videoView.setLayoutParams(new FrameLayout.LayoutParams(vWidth, vH, Gravity
+                .CENTER));
     }
 }
