@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="mainpresnter"
+                type="com.example.idb.MainActivity.MainPresenter"
+                />
+    </data>
+
+    <LinearLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_15"
+            tools:context=".MainActivity"
+            >
+
+        <Button
+                android:id="@+id/btn_sample"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{mainpresnter.onSampleMenuClick}"
+                android:text="sample"
+                />
+
+        <Button
+                android:id="@+id/btn_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{mainpresnter.onListMenuClick}"
+                android:text="list"
+                />
+
+        <Button
+                android:id="@+id/btn_expression"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{mainpresnter.onExpressionClick}"
+                android:text="expression"
+                />
+
+    </LinearLayout>
+</layout>

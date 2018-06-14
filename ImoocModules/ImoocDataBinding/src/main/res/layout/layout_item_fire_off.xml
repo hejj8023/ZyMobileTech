@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="useritem"
+                type="com.example.idb.User"
+                />
+
+        <variable
+                name="clickpresenter"
+                type="com.example.idb.adapter.ListSampleAdapter.ListItemClickPresenter"
+                />
+    </data>
+
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/c_e9e9e9"
+            android:padding="@dimen/dp_10"
+            android:layout_height="@dimen/dp_85"
+            android:onClick="@{() -> clickpresenter.onMenuItemClick(useritem)}"
+            >
+
+        <TextView
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="离职:"
+                />
+
+        <TextView
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_10"
+                android:textColor="@color/black"
+                android:text="姓名:"
+                />
+
+        <TextView
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="wrap_content"
+                android:text="@{useritem.firstName}"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/dp_10"
+                />
+
+    </LinearLayout>
+</layout>

@@ -11,7 +11,7 @@
 
         <variable
                 name="dPresenter"
-                type="com.example.idb.MainActivity.MethodCiteBindPresenter"/>
+                type="com.example.idb.SampleActivity.MethodCiteBindPresenter"/>
     </data>
 
     <LinearLayout

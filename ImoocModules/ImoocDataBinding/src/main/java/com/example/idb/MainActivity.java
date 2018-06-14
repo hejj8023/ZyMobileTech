@@ -1,61 +1,65 @@
 package com.example.idb;
 
+import android.app.Activity;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.android.databinding.library.baseAdapters.BR;
-import com.blankj.utilcode.util.ToastUtils;
-import com.example.idb.databinding.ActivityDemoBinding;
-
+import com.example.idb.databinding.ActivityMainBinding;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 
 public class MainActivity extends AppCompatActivity {
-    ActivityDemoBinding demoBinding = null;
-    private User user;
+
+    ActivityMainBinding activityMainBinding = null;
+
+
+    public class MainPresenter {
+
+        Class<? extends Activity> tCls = null;
+
+        public void onSampleMenuClick(View view) {
+            tCls = SampleActivity.class;
+            IntentUtils.forward(tCls);
+        }
+
+        public void onListMenuClick(View view) {
+            tCls = ListSampleActivity.class;
+            IntentUtils.forward(tCls);
+        }
+
+        public void onExpressionClick(View view) {
+            tCls = ExpressionSampleActivity.class;
+            IntentUtils.forward(tCls);
+        }
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        demoBinding = DataBindingUtil.setContentView(this, R.layout.activity_demo);
+        activityMainBinding.setMainpresnter(new MainPresenter());
 
-        user = new User("baby", "tiaopi");
-        // 第一种方式
-        // TODO: 2018/6/13 data binding -> executeBindings 方法中有做空指针避免，即使是传递null也不会造成
-        // TODO: 2018/6/13 应用的crash
-        demoBinding.setUserData(user);
-        //第二种方式
-        // demoBinding.setVariable(BR.userData, user);
-
-        MethodCiteBindPresenter methodCiteBindPresenter = new MethodCiteBindPresenter();
-//        demoBinding.setVariable(BR.dPresenter, methodCiteBindPresenter);
-
-        demoBinding.setDPresenter(methodCiteBindPresenter);
-
-        // 只有手动调用viewstub的inflate方法之后，才能获取到view的内容
-        demoBinding.vsDemo.getViewStub().inflate();
     }
 
-    //方法引用绑定
-    public class MethodCiteBindPresenter {
 
-        /**
-         * 方法必须和原view的签名相同，方法必须是公开方法，否则会报错
-         */
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            // TODO: 2018/6/13 更新textview数据
-            user.setFirstName(s.toString());
-            demoBinding.setUserData(user);
-        }
-
-        public void onClick(View v) {
-            ToastUtils.showShort("小样,你点了我...");
-        }
-
-        // 监听器绑定
-        public void onClickListenerBinding(User user) {
-            ToastUtils.showShort("小样,你点了 " + user.getLastName() + " ...");
-        }
-    }
+    //    @OnClick({R.id.btn_sample, R.id.btn_list})
+//    public void onViewClick(View view) {
+//        Class<? extends Activity> tCls = null;
+//
+//        switch (view.getId()) {
+//            case R.id.btn_sample:
+//                tCls = SampleActivity.class;
+//                break;
+//            case R.id.btn_list:
+//                tCls = ListSampleActivity.class;
+//                break;
+//        }
+//
+//        if (tCls != null) {
+//            IntentUtils.forward(tCls);
+//        }
+//    }
 }
