@@ -1,4 +1,4 @@
-package com.example.idb;
+package com.example.idb.bean;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -14,7 +14,7 @@ public class User extends BaseObservable {
     /**
      * 是否被注销了
      */
-    private boolean isFire;
+    public boolean isFire;
 
     public ObservableBoolean bIsFired = new ObservableBoolean();
 

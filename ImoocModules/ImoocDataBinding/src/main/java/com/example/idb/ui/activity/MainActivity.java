@@ -1,4 +1,4 @@
-package com.example.idb;
+package com.example.idb.ui.activity;
 
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.idb.R;
 import com.example.idb.databinding.ActivityMainBinding;
 import com.zysdk.vulture.clib.utils.IntentUtils;
 
@@ -33,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
             tCls = ExpressionSampleActivity.class;
             IntentUtils.forward(tCls);
         }
+
+        public void onTwowayClick(View view) {
+            tCls = TwowayActivity.class;
+            IntentUtils.forward(tCls);
+        }
+
+        public void onLabmdaClick(View view) {
+            tCls = LambdaActivity.class;
+            IntentUtils.forward(tCls);
+        }
     }
 
     @Override
@@ -44,22 +55,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    //    @OnClick({R.id.btn_sample, R.id.btn_list})
-//    public void onViewClick(View view) {
-//        Class<? extends Activity> tCls = null;
-//
-//        switch (view.getId()) {
-//            case R.id.btn_sample:
-//                tCls = SampleActivity.class;
-//                break;
-//            case R.id.btn_list:
-//                tCls = ListSampleActivity.class;
-//                break;
-//        }
-//
-//        if (tCls != null) {
-//            IntentUtils.forward(tCls);
-//        }
-//    }
 }

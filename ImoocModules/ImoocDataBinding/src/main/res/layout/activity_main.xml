@@ -6,7 +6,7 @@
 
         <variable
                 name="mainpresnter"
-                type="com.example.idb.MainActivity.MainPresenter"
+                type="com.example.idb.ui.activity.MainActivity.MainPresenter"
                 />
     </data>
 
@@ -16,11 +16,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="@dimen/dp_15"
-            tools:context=".MainActivity"
+            tools:context=".ui.activity.MainActivity"
             >
 
         <Button
-                android:id="@+id/btn_sample"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{mainpresnter.onSampleMenuClick}"
@@ -28,19 +27,31 @@
                 />
 
         <Button
-                android:id="@+id/btn_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{mainpresnter.onListMenuClick}"
-                android:text="list"
+                android:text="列表绑定"
                 />
 
         <Button
-                android:id="@+id/btn_expression"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{mainpresnter.onExpressionClick}"
-                android:text="expression"
+                android:text="表达式"
+                />
+
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{mainpresnter.onTwowayClick}"
+                android:text="双向绑定"
+                />
+
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{mainpresnter.onLabmdaClick}"
+                android:text="Lambda"
                 />
 
     </LinearLayout>

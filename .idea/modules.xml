@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ImoocModules/ImoocDataBinding/ImoocDataBinding.iml" filepath="$PROJECT_DIR$/ImoocModules/ImoocDataBinding/ImoocDataBinding.iml" />
       <module fileurl="file://$PROJECT_DIR$/ImoocModules/ImoocModules.iml" filepath="$PROJECT_DIR$/ImoocModules/ImoocModules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ToolAppModule/ToolAppModule.iml" filepath="$PROJECT_DIR$/ToolAppModule/ToolAppModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ToolAppModule/VideoRecorder/VideoRecorder.iml" filepath="$PROJECT_DIR$/ToolAppModule/VideoRecorder/VideoRecorder.iml" />
       <module fileurl="file://$PROJECT_DIR$/ZyMobileTech.iml" filepath="$PROJECT_DIR$/ZyMobileTech.iml" />
       <module fileurl="file://$PROJECT_DIR$/../ZYSdk/SDKLibrary/ZySdkLib.iml" filepath="$PROJECT_DIR$/../ZYSdk/SDKLibrary/ZySdkLib.iml" />
     </modules>

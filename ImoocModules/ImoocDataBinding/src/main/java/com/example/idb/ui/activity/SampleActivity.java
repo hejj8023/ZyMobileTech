@@ -1,4 +1,4 @@
-package com.example.idb;
+package com.example.idb.ui.activity;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.example.idb.R;
+import com.example.idb.bean.User;
 import com.example.idb.databinding.ActivitySampleBinding;
 
 public class SampleActivity extends AppCompatActivity {

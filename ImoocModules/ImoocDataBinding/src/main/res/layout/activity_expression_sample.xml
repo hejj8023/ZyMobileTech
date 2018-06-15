@@ -4,11 +4,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         >
 
+
     <data>
+
+        <import type="android.view.View"/>
 
         <variable
                 name="userdata"
-                type="com.example.idb.User"
+                type="com.example.idb.bean.User"
                 />
     </data>
 
@@ -18,14 +21,34 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            tools:context=".ExpressionSampleActivity"
+            android:gravity="center"
+            tools:context=".ui.activity.ExpressionSampleActivity"
             >
 
         <ImageView
+                android:id="@+id/avator"
                 android:layout_width="@dimen/dp_200"
                 android:layout_height="@dimen/dp_200"
                 app:imgUrl="@{userdata.avatorUri}"
+                android:visibility="@{userdata.isFire?View.INVISIBLE:View.VISIBLE}"
                 app:placeHolder="@{@drawable/ic_shop_default}"
+                />
+
+        <!--验证表达式链-->
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_45"
+                android:text="@{userdata.firstName}"
+                android:gravity="center"
+                android:visibility="@{avator.visibility}"
+                />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_45"
+                android:visibility="@{avator.visibility}"
+                android:gravity="center"
+                android:text="@{userdata.lastName}"
                 />
     </LinearLayout>
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="userdata"
+                type="com.example.idb.bean.User"
+                />
+
+        <variable
+                name="clickpresenter"
+                type="com.example.idb.ui.activity.LambdaActivity.ClickPresenter"
+                />
+    </data>
+
+    <LinearLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_15"
+            tools:context=".ui.activity.LambdaActivity"
+            >
+
+
+        <EditText
+                android:layout_width="match_parent"
+                android:text="点击事件"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> clickpresenter.onClick(userdata)}"
+                />
+
+        <EditText
+                android:layout_width="match_parent"
+                android:text="长按+焦点变化事件"
+                android:onClick="@{()-> clickpresenter.onLongClick(userdata)}"
+                android:onFousChange="@{(v,fcs) -> clickpresenter.onFourcChange()}"
+                android:layout_height="wrap_content"
+                />
+    </LinearLayout>
+
+</layout>

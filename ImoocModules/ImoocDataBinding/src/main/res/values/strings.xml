@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ImoocDataBinding</string>
+    <string name="welcome">欢迎使用%s</string>
 </resources>

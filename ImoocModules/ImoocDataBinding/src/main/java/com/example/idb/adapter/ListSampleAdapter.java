@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.idb.BR;
 import com.example.idb.R;
-import com.example.idb.User;
+import com.example.idb.bean.User;
 import com.example.idb.viewholder.ListSampleViewHolder;
 
 import java.util.ArrayList;

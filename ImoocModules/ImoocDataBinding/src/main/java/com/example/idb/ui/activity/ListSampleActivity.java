@@ -1,4 +1,4 @@
-package com.example.idb;
+package com.example.idb.ui.activity;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.example.idb.R;
+import com.example.idb.bean.User;
 import com.example.idb.adapter.ListSampleAdapter;
 import com.example.idb.databinding.ActivityListSampleBinding;
 import com.zysdk.vulture.clib.utils.UiUtils;

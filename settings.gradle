@@ -15,7 +15,7 @@ project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 //loadGoogleSampleModule()
 //loadKotlinModule()
 //loadGithubLib()
-//loadToolAppModule()
+loadToolAppModule()
 //loadMvpModule()
 
 loadImoocModule()

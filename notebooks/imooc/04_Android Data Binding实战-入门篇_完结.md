@@ -32,11 +32,11 @@
     
         <data>
     
-            <!--<import type="com.example.idb.User"/>-->
+            <!--<import type="com.example.idb.bean.User"/>-->
     
             <variable
                     name="userData"
-                    type="com.example.idb.User"/>
+                    type="com.example.idb.bean.User"/>
         </data>
     
         <LinearLayout
@@ -88,15 +88,15 @@
     
         <data>
     
-            <import type="com.example.idb.User"/>
+            <import type="com.example.idb.bean.User"/>
     
             <variable
                     name="userData"
-                    type="com.example.idb.User"/>
+                    type="com.example.idb.bean.User"/>
     
             <variable
                     name="dPresenter"
-                    type="com.example.idb.SampleActivity.MethodCiteBindPresenter"/>
+                    type="com.example.idb.ui.activity.SampleActivity.MethodCiteBindPresenter"/>
         </data>
         
         <LinearLayout
