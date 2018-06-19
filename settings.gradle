@@ -2,8 +2,8 @@ apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
 include ':ZySdkLib'
 project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 
-//loadLibs()
-//loadAppModule()
+loadLibs()
+loadAppModule()
 //loadComponentLenarnModule()
 //loadDatasturectureModule()
 //loadDesignpatternModule()
@@ -15,7 +15,8 @@ project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 //loadGoogleSampleModule()
 //loadKotlinModule()
 //loadGithubLib()
-loadToolAppModule()
+//loadToolAppModule()
 //loadMvpModule()
+//loadNdkAppModule()
 
-loadImoocModule()
+//loadImoocModule()

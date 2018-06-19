@@ -7,7 +7,8 @@ private void loadLibModules() {
 //    include ':LibModules:CommonAlgorithmLib'
 //    include ':LibModules:CammeraViewLib'
 //    include ':LibModules:JCameraViewLib'
-    include ':LibModules:CommonAlertPop'
+//    include ':LibModules:CommonAlertPop'
+    include ':LibModules:SmallVideoLib'
 }
 
 private void loadAppModules() {
@@ -29,7 +30,9 @@ private void loadAppModules() {
 //    include ':AppModules:FaceApp'
 //    include ':AppModules:FaceHelper'
 //    include ':AppModules:Mobike'
-    include ':AppModules:AgoraDemo'
+//    include ':AppModules:AgoraDemo'
+//    include ':AppModules:WxRecordSample'
+    include ':AppModules:SmartRecordSample'
 }
 
 private void loadComponentLenarnModules() {
@@ -168,6 +171,14 @@ private void loadMvpModules() {
 //    include ':MvpModules:VideoWorld'
 }
 
+private void loadNdkAppModules() {
+    println "loadNdkAppModules"
+
+    def file = new File("NdkAppModules/")
+    include ':NdkAppModules'
+    project(":NdkAppModules").projectDir = file
+}
+
 ext {
     loadLibs = this.&loadLibModules
     loadAppModule = this.&loadAppModules
@@ -184,4 +195,5 @@ ext {
     loadToolAppModule = this.&loadToolAppModule
     loadMvpModule = this.&loadMvpModules
     loadImoocModule = this.&loadImoocModules
+    loadNdkAppModule = this.&loadNdkAppModules
 }
