@@ -1,8 +1,6 @@
 package com.example.vrec.activity;
 
 import android.hardware.Camera;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.vrec.manager.CameraManagerHelper;
@@ -10,12 +8,13 @@ import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
 import com.zysdk.vulture.clib.utils.CommonUtils;
 import com.zysdk.vulture.clib.utils.EmptyUtils;
 import com.zysdk.vulture.clib.utils.FileUtils;
+import com.zysdk.vulture.clib.utils.LoggerUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class BaseCameraActivity extends BaseToolbarSupportActivity {
+public abstract class BaseCameraActivity extends BaseToolbarSupportActivity implements Camera.PreviewCallback {
     protected Camera mCamera;
     protected boolean hasReleaseCam;
 
@@ -36,6 +35,8 @@ public abstract class BaseCameraActivity extends BaseToolbarSupportActivity {
 
     public void initCamera() {
         mCamera = CameraManagerHelper.getCamera();
+
+        mCamera.setPreviewCallback(this);
     }
 
     @Override
@@ -79,4 +80,8 @@ public abstract class BaseCameraActivity extends BaseToolbarSupportActivity {
         return "VID_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".mp4";
     }
 
+    @Override
+    public void onPreviewFrame(byte[] data, Camera camera) {
+        LoggerUtils.loge(" onPreviewFrame ->  " + System.currentTimeMillis());
+    }
 }
