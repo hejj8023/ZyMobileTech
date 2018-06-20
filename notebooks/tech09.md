@@ -77,4 +77,7 @@
     });
     
 ### 垂直滚动广告栏
-     
+
+
+### jinkins
+https://www.jianshu.com/p/dceaa1c7bb49

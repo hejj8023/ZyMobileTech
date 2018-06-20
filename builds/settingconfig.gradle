@@ -31,9 +31,11 @@ private void loadAppModules() {
 //    include ':AppModules:FaceHelper'
 //    include ':AppModules:Mobike'
 //    include ':AppModules:AgoraDemo'
-//    include ':AppModules:WxRecordSample'
-    include ':AppModules:SmartRecordSample'
+    include ':AppModules:WxRecordSample'
+//    include ':AppModules:SmartRecordSample'
+    include ':AppModules:JavacvRec'
 }
+
 
 private void loadComponentLenarnModules() {
     println "loadComponentLenarnModules"
@@ -177,6 +179,9 @@ private void loadNdkAppModules() {
     def file = new File("NdkAppModules/")
     include ':NdkAppModules'
     project(":NdkAppModules").projectDir = file
+    include ':NdkAppModules:NDKSample'
+    include ':NdkAppModules:JavacvSample'
+    include ':NdkAppModules:FfmpegSample'
 }
 
 ext {

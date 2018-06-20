@@ -1,31 +1,21 @@
 package com.example.vrec.activity;
 
-import android.content.Context;
 import android.graphics.Point;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
-import android.view.Display;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Chronometer;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.vrec.R;
 import com.example.vrec.VideoUtils;
 import com.example.vrec.manager.CameraManagerHelper;
-import com.zysdk.vulture.clib.corel.BaseActivity;
-import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
-import com.zysdk.vulture.clib.utils.CommonUtils;
 import com.zysdk.vulture.clib.utils.IntentUtils;
 import com.zysdk.vulture.clib.utils.LoggerUtils;
 import com.zysdk.vulture.clib.utils.ThreadUtils;
@@ -197,16 +187,16 @@ public class SurfaceViewVideoRecordActivity extends BaseCameraActivity implement
                     mRecordState = STATE_IDEL;
 
                     // TODO: 2018/6/5 延迟1秒转到播放器（确保视频合并完成后跳转)
-                    UiUtils.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            forwardPlayer();
-                        }
-
-                    }, 1000);
+//                    UiUtils.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            forwardPlayer();
+//                        }
+//
+//                    }, 1000);
 
                 } else if (mRecordState == STATE_PAUSE) {
-                    forwardPlayer();
+//                    forwardPlayer();
                 }
                 break;
             case R.id.record_pause:
