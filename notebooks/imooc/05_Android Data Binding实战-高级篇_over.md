@@ -177,17 +177,108 @@
 
 
 ## 1-7 动画##
+### Transition ###
+
+	binding.addOnRebindCallback(new OnRebindCallback(){
+		@Override
+		public boolean onPreBind(ViewDataBinding binding){
+			ViewGroup sceneRoot = (ViewGroup)binding.getRoot();
+			TransitionManager.beginDelayedTransition(sceneRoot);
+			return true;
+		}
+	
+	})
 
 ## 1-8 测试##
+通过DataBinding帮我们做ui测试
+### if/else ###
 
+	public class MyBindingAdapters{
+		@BindingAdapter("android:text")
+		public static void setText(TextView view,String value){
+			if(isTesting){
+				doTesting(view,value);
+			}else{
+				TextViewBindingAdapter.setText(view,value);
+			}
+		}
+	}
+
+### implement ###
+
+	public class TestBindingAdapter extends MyBindingAdapters{
+		@Override
+		public void setText(TextView view,String value){
+			doTesting(view,value);
+		}
+	}
+
+### DataBindingComponent 使用依赖注入 ###
+
+	public interface DataBindingComponent{
+		MyBindingAdapter getMyBindingAdatper();
+	}
+
+#### 实现Component ####
+
+	public class TestComponent implements DataBindingComponent{
+		private MyBindingAdapter mAdapter = new MyBindingAdapter();
+	
+		public MyBindingAdapter getMyBindingAdatper(){
+			return mAdapter;
+		}
+	}
+
+#### 注入Component ####
+
+	DataBindingUtil.setDefaultComponent(new TestComponent());
+
+### Static BindingAdapter ###
+
+	@BindingAdapter("android:src)
+	public static void loadImage(AppComponent component,ImageView view,String uri){
+	
+	}
 
 # 第2章 DataBinding使用建议 #
 
 ### 2-1 Data Binding使用建议... ###
 
+- 在项目中尝试
+- 摸索xml和java界限
+- Lambda表达式/测试注入等Data Binding功能
+
+> Level1
+> 
+- 逐步替换findViewById
+- 使用binding.name,binding.age直接访问view
+
+> Level2
+> 
+- 引入Variable
+- 手动set替换为xml直接引用variable
+- binding.setUser(user);
+
+> Level3
+> 
+- Callback
+- android:onClick="@{handler::onNewPost} 函数替换"
+
+> Level4 -Observable
+> 
+- extends BaseObservable
+- @Bindable
+- nofityPropertyChanged(BR.name)
 
 
+> Level5 - 双向绑定
+> 
+- Form
+- 将所有form data变成ObservableField
 
 
-# 第3章 课程总结 #
-## 3-1 Android Data Binding实... ##
+### 最佳实践 ###
+### 注意边界 ###
+	click函数只做事件传递，不做业务逻辑
+### 保持表达式简单 ###
+	不要做过于复杂的字符串、函数调用操作

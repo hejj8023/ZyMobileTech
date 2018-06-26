@@ -11,14 +11,13 @@
                 />
 
         <variable
-                name="clickpresenter"
+                name="presenter"
                 type="com.example.idb.ui.activity.LambdaActivity.ClickPresenter"
                 />
     </data>
 
     <LinearLayout
             xmlns:tools="http://schemas.android.com/tools"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -26,19 +25,19 @@
             tools:context=".ui.activity.LambdaActivity"
             >
 
-
         <EditText
                 android:layout_width="match_parent"
                 android:text="点击事件"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> clickpresenter.onClick(userdata)}"
+                android:onClick="@{() -> presenter.onClick(userdata)}"
                 />
 
+        <!--android:onFousChange="@{(v,fcs) -> presenter.onFousChange(userdata)}"-->
         <EditText
                 android:layout_width="match_parent"
                 android:text="长按+焦点变化事件"
-                android:onClick="@{()-> clickpresenter.onLongClick(userdata)}"
-                android:onFousChange="@{(v,fcs) -> clickpresenter.onFourcChange()}"
+                android:onClick="@{(v)-> presenter.onLongClick(context,userdata)}"
+                android:onFocusChange="@{(v,fcs) -> presenter.onFocusChange(userdata)}"
                 android:layout_height="wrap_content"
                 />
     </LinearLayout>

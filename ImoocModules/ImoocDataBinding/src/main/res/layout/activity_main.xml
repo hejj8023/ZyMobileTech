@@ -53,6 +53,12 @@
                 android:onClick="@{mainpresnter.onLabmdaClick}"
                 android:text="Lambda"
                 />
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{mainpresnter.onAnimClick}"
+                android:text="动画"
+                />
 
     </LinearLayout>
 </layout>

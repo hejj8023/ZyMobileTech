@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="aPresenter"
+                type="com.example.idb.ui.activity.AnimationTestActivity.Presenter"
+                />
+
+        <variable
+                name="showIamge"
+                type="boolean"
+                />
+
+    </data>
+
+    <LinearLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            tools:context=".ui.activity.AnimationTestActivity"
+            >
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:background="@mipmap/bookshelf_empty_icon"
+                android:visibility="@{showIamge?View.VISIBLE:View.GONE}"
+                />
+
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择"
+                android:layout_marginTop="@dimen/dp_10"
+                android:onCheckedChanged="@{aPresenter.onCheckedChanged}"
+                />
+    </LinearLayout>
+</layout>
