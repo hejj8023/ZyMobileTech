@@ -23,7 +23,7 @@ public class LambdaActivity extends AppCompatActivity {
             ToastUtils.showShort(user.getLastName());
         }
 
-        public void onFourcChange() {
+        public void onFocusChange(User user) {
             ToastUtils.showShort("焦点发生变化...");
         }
     }
@@ -33,5 +33,6 @@ public class LambdaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         lambdaBinding = DataBindingUtil.setContentView(this, R.layout.activity_lambda);
         lambdaBinding.setUserdata(new User("test", "hello-lambda"));
+        lambdaBinding.setPresenter(new ClickPresenter());
     }
 }
