@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 // 注：需要配置符号表时，使用bugly插件
 apply plugin: 'bugly'
 bugly {
-    appId = ''
-    appKey = ''
+    appId = 'bfbdfa9a27'
+    appKey = 'b132dcd2-dfc7-41fe-95c3-0b17016a8354'
 }
 
 android {
@@ -68,6 +68,7 @@ dependencies {
     implementation rootProject.ext.support.constraint_layout
     implementation rootProject.ext.support.design
     implementation rootProject.ext.support.cardview
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation rootProject.ext.support.junit
     androidTestImplementation rootProject.ext.support.test_runner
     androidTestImplementation(rootProject.ext.support.espresso_core, {
@@ -75,6 +76,14 @@ dependencies {
     })
 
     implementation rootProject.ext.ext_tools.multidex
+
+    implementation rootProject.ext.ext_tools.rxjava
+    implementation rootProject.ext.ext_tools.rxandroid
+    implementation rootProject.ext.ext_tools.retrofit
+    implementation rootProject.ext.ext_tools.converter_gson
+    implementation rootProject.ext.ext_tools.adapter_rxjava2
+    implementation rootProject.ext.ext_tools.okhttp
+    implementation rootProject.ext.ext_tools.logging_interceptor
 
     /*butternife*/
     implementation rootProject.ext.ext_tools.butterknife
