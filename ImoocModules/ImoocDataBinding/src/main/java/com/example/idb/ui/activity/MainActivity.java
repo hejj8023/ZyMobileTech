@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
             tCls = LambdaActivity.class;
             IntentUtils.forward(tCls);
         }
+
+        public void onAnimClick(View view) {
+            tCls = AnimationTestActivity.class;
+            IntentUtils.forward(tCls);
+        }
     }
 
     @Override
