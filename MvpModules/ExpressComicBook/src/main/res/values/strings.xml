@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">ExpressComicBook</string>
     <string name="home">首页</string>
+    <string name="collect">收藏</string>
+    <string name="history">历史</string>
+    <string name="download">下载</string>
+    <string name="no_collect_list_data">你还没有收藏任何漫画呐~</string>
+    <string name="no_history_list_data">你还没有看过任何漫画呐~</string>
+    <string name="no_download_list_data">你还没有下载任何漫画呐~</string>
+    <string name="check_auto_update">检查自动更新</string>
+    <string name="about_user">关于作者</string>
+    <string name="feed_back">问题反馈</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="mode_manage">夜间模式</string>
 </resources>
