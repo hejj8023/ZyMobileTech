@@ -53,180 +53,204 @@ project.ext {
     /*扩展工具*/
     ext_tools = [
             /*rx*/
-            rxjava                  : 'io.reactivex.rxjava2:rxjava:2.1.3',
-            rxandroid               : 'io.reactivex.rxjava2:rxandroid:2.0.1',
+            rxjava                              : 'io.reactivex.rxjava2:rxjava:2.1.3',
+            rxandroid                           : 'io.reactivex.rxjava2:rxandroid:2.0.1',
+
+            /* RxLifecycle : -> https://github.com/trello/RxLifecycle */
+            rxlifecycle                         : 'com.trello.rxlifecycle2:rxlifecycle:2.2.1',
+
+            // If you want to bind to Android-specific lifecycles
+            rxlifecycle_android                 : 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.1',
+
+            // If you want pre-written Activities and Fragments you can subclass as providers
+            rxlifecycle_components              : 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1',
+
+            // If you want pre-written support preference Fragments you can subclass as providers
+            rxlifecycle_components_preference   : 'com.trello.rxlifecycle2:rxlifecycle-components-preference:2.2.1',
+
+            // If you want to use Navi for providers
+            rxlifecycle_navi                    : 'com.trello.rxlifecycle2:rxlifecycle-navi:2.2.1',
+
+            // If you want to use Android Lifecycle for providers
+            rxlifecycle_android_lifecycle       : 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.1',
+
+            // If you want to use Kotlin syntax
+            rxlifecycle_kotlin                  : 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.2.1',
+
+            // If you want to use Kotlin syntax with Android Lifecycle
+            rxlifecycle_android_lifecycle_kotlin: 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.2.1',
 
             /*retrofit*/
-            retrofit                : "com.squareup.retrofit2:retrofit:$retrofitLiVersion",
-            converter_gson          : "com.squareup.retrofit2:converter-gson:$retrofitLiVersion",
-            adapter_rxjava2         : "com.squareup.retrofit2:adapter-rxjava2:$retrofitLiVersion",
-            converter_scalars       : 'com.squareup.retrofit2:converter-scalars:2.3.0',
+            retrofit                            : "com.squareup.retrofit2:retrofit:$retrofitLiVersion",
+            converter_gson                      : "com.squareup.retrofit2:converter-gson:$retrofitLiVersion",
+            adapter_rxjava2                     : "com.squareup.retrofit2:adapter-rxjava2:$retrofitLiVersion",
+            converter_scalars                   : 'com.squareup.retrofit2:converter-scalars:2.3.0',
 
             /*okhttp*/
-            okhttp                  : "com.squareup.okhttp3:okhttp:$okhttpLibVersion",
-            okhttp_urlconnection    : "com.squareup.okhttp3:okhttp-urlconnection:$okhttpLibVersion",
-            logging_interceptor     : "com.squareup.okhttp3:logging-interceptor:$okhttpLibVersion",
-            okhttp_mockwebserver    : "com.squareup.okhttp3:mockwebserver:$okhttpLibVersion",
+            okhttp                              : "com.squareup.okhttp3:okhttp:$okhttpLibVersion",
+            okhttp_urlconnection                : "com.squareup.okhttp3:okhttp-urlconnection:$okhttpLibVersion",
+            logging_interceptor                 : "com.squareup.okhttp3:logging-interceptor:$okhttpLibVersion",
+            okhttp_mockwebserver                : "com.squareup.okhttp3:mockwebserver:$okhttpLibVersion",
 
-            android_async_http      : 'com.loopj.android:android-async-http:1.4.5',
+            android_async_http                  : 'com.loopj.android:android-async-http:1.4.5',
 
             /*dagger*/
-            dagger                  : "com.google.dagger:dagger:$daggerLibVersion",
-            dagger_android          : "com.google.dagger:dagger-android:$daggerLibVersion",
-            dagger_android_support  : "com.google.dagger:dagger-android-support:$daggerLibVersion",
+            dagger                              : "com.google.dagger:dagger:$daggerLibVersion",
+            dagger_android                      : "com.google.dagger:dagger-android:$daggerLibVersion",
+            dagger_android_support              : "com.google.dagger:dagger-android-support:$daggerLibVersion",
             //指定注解处理器
-            dagger_compiler         : "com.google.dagger:dagger-compiler:$daggerLibVersion",
-            dagger_android_processor: "com.google.dagger:dagger-android-processor:$daggerLibVersion",
+            dagger_compiler                     : "com.google.dagger:dagger-compiler:$daggerLibVersion",
+            dagger_android_processor            : "com.google.dagger:dagger-android-processor:$daggerLibVersion",
 
             /*apply plugin: 'com.google.gms.google-services'*/
-            firebase_core           : "com.google.firebase:firebase-core:${gms}",
-            firebase_messaging      : "com.google.firebase:firebase-messaging:${gms}",
-            firebase_database       : "com.google.firebase:firebase-database:${gms}",
-            play_services_base      : "com.google.android.gms:play-services-base:${gms}",
+            firebase_core                       : "com.google.firebase:firebase-core:${gms}",
+            firebase_messaging                  : "com.google.firebase:firebase-messaging:${gms}",
+            firebase_database                   : "com.google.firebase:firebase-database:${gms}",
+            play_services_base                  : "com.google.android.gms:play-services-base:${gms}",
 
             // Google Play services split client libs.
-            play_services_analytics : "com.google.android.gms:play-services-analytics:${google_play_services_client_library_version}",
-            play_services_drive     : "com.google.android.gms:play-services-drive:${google_play_services_client_library_version}",
-            play_services_maps      : "com.google.android.gms:play-services-maps:${google_play_services_client_library_version}",
-            play_services_plus      : "com.google.android.gms:play-services-plus:${google_play_services_client_library_version}",
-            play_services_wearable  : "com.google.android.gms:play-services-wearable:${google_play_services_client_library_version}",
+            play_services_analytics             : "com.google.android.gms:play-services-analytics:${google_play_services_client_library_version}",
+            play_services_drive                 : "com.google.android.gms:play-services-drive:${google_play_services_client_library_version}",
+            play_services_maps                  : "com.google.android.gms:play-services-maps:${google_play_services_client_library_version}",
+            play_services_plus                  : "com.google.android.gms:play-services-plus:${google_play_services_client_library_version}",
+            play_services_wearable              : "com.google.android.gms:play-services-wearable:${google_play_services_client_library_version}",
 
             /*buttern-knife*/
-            butterknife             : 'com.jakewharton:butterknife:8.8.1',
-            butterknife_compiler    : 'com.jakewharton:butterknife-compiler:8.8.1',
+            butterknife                         : 'com.jakewharton:butterknife:8.8.1',
+            butterknife_compiler                : 'com.jakewharton:butterknife-compiler:8.8.1',
 
             /*glide*/
-            glide                   : 'com.github.bumptech.glide:glide:4.3.1',
-            glide_compiler          : 'com.github.bumptech.glide:compiler:4.3.1',
+            glide                               : 'com.github.bumptech.glide:glide:4.3.1',
+            glide_compiler                      : 'com.github.bumptech.glide:compiler:4.3.1',
 
-            fresco                  : 'com.facebook.fresco:fresco:0.8.+',
+            fresco                              : 'com.facebook.fresco:fresco:0.8.+',
 
-            picasso                 : 'com.squareup.picasso:picasso:2.71828',
+            picasso                             : 'com.squareup.picasso:picasso:2.71828',
 
             /*PhotoView*/
-            PhotoView               : 'com.github.chrisbanes:PhotoView:1.3.0',
+            PhotoView                           : 'com.github.chrisbanes:PhotoView:1.3.0',
 
             /*图表控件*/
-            MPAndroidChart          : 'com.github.PhilJay:MPAndroidChart:v3.0.3',
-            hwc_chart               : 'me.hwc:chart:1.0.2',
+            MPAndroidChart                      : 'com.github.PhilJay:MPAndroidChart:v3.0.3',
+            hwc_chart                           : 'me.hwc:chart:1.0.2',
 
-            fragmentation           : 'me.yokeyword:fragmentation:0.7.10',
+            /*Fragmenttation -> https://github.com/YoKeyword/Fragmentation*/
+            fragmentation                       : 'me.yokeyword:fragmentation:1.3.5',
+            fragmentation_swipeback             : 'me.yokeyword:fragmentation-swipeback:1.3.5',
 
             /*json解析*/
-            gson                    : 'com.google.code.gson:gson:2.8.2',
+            gson                                : 'com.google.code.gson:gson:2.8.2',
 
-            fastjson                : 'com.alibaba:fastjson:1.2.44',
-            fastjson_android        : 'com.alibaba:fastjson:1.1.67.android',
+            fastjson                            : 'com.alibaba:fastjson:1.2.44',
+            fastjson_android                    : 'com.alibaba:fastjson:1.1.67.android',
 
-            logger                  : 'com.orhanobut:logger:2.1.1',
+            logger                              : 'com.orhanobut:logger:2.1.1',
 
-            eventbus                : 'org.greenrobot:eventbus:3.1.1',
-            nineoldandroids_lib     : 'com.nineoldandroids:library:2.4.0',
+            eventbus                            : 'org.greenrobot:eventbus:3.1.1',
+            nineoldandroids_lib                 : 'com.nineoldandroids:library:2.4.0',
 
-            utilcode                : 'com.blankj:utilcode:1.12.5',
-            sak                     : 'com.wanjian:sak:0.3.1',
-            zxing                   : 'com.google.zxing:core:3.3.0',
-            jsoup                   : 'org.jsoup:jsoup:1.10.3',
+            utilcode                            : 'com.blankj:utilcode:1.12.5',
+            sak                                 : 'com.wanjian:sak:0.3.1',
+            zxing                               : 'com.google.zxing:core:3.3.0',
+            jsoup                               : 'org.jsoup:jsoup:1.10.3',
 
-            BaseRecyclerViewAdapter : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.12',
-            indicatorseekbar        : 'com.github.warkiz.widget:indicatorseekbar:1.2.5',
+            BaseRecyclerViewAdapter             : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.12',
+            indicatorseekbar                    : 'com.github.warkiz.widget:indicatorseekbar:1.2.5',
 
-            RecyclerViewPager       : 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar',
+            RecyclerViewPager                   : 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar',
             //SmartRefreshLayout
-            SmartRefreshLayout      : "com.scwang.smartrefresh:SmartRefreshLayout:$smartrefreshVersion",
-            SmartRefreshHeader      : "com.scwang.smartrefresh:SmartRefreshHeader:$smartrefreshVersion",
+            SmartRefreshLayout                  : "com.scwang.smartrefresh:SmartRefreshLayout:$smartrefreshVersion",
+            SmartRefreshHeader                  : "com.scwang.smartrefresh:SmartRefreshHeader:$smartrefreshVersion",
 
-            haorefresh              : 'com.github.fangx:haorefresh:1.0',
-            loadinglayout           : 'com.github.czy1121:loadinglayout:1.0.1',
+            haorefresh                          : 'com.github.fangx:haorefresh:1.0',
+            loadinglayout                       : 'com.github.czy1121:loadinglayout:1.0.1',
 
-            banner                  : "com.youth.banner:banner:1.4.10",
-            FlycoTabLayout_Lib      : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
-            VerticalTabLayout       : "q.rorbin:VerticalTabLayout:1.2.5",
+            banner                              : "com.youth.banner:banner:1.4.10",
+            FlycoTabLayout_Lib                  : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
+            VerticalTabLayout                   : "q.rorbin:VerticalTabLayout:1.2.5",
 
             // https://github.com/hongyangAndroid/FlowLayout
-            flowlayout_lib          : 'com.hyman:flowlayout-lib:1.1.2',
+            flowlayout_lib                      : 'com.hyman:flowlayout-lib:1.1.2',
 
-            tablayoutsupport        : 'com.github.lsjwzh.RecyclerViewPager:tablayoutsupport:v1.1.2@aar',
-            FJMtSortButton          : 'com.github.FJ917:FJMtSortButton:v1.1',
-            aviLib                  : 'com.wang.avi:library:1.0.1',
+            tablayoutsupport                    : 'com.github.lsjwzh.RecyclerViewPager:tablayoutsupport:v1.1.2@aar',
+            FJMtSortButton                      : 'com.github.FJ917:FJMtSortButton:v1.1',
+            aviLib                              : 'com.wang.avi:library:1.0.1',
 
             /*1.0.3无法 使用*/
-            systembartint           : 'com.readystatesoftware.systembartint:systembartint:1.0.4',
-            barlibrary              : 'com.gyf.barlibrary:barlibrary:2.3.0',
+            systembartint                       : 'com.readystatesoftware.systembartint:systembartint:1.0.4',
+            barlibrary                          : 'com.gyf.barlibrary:barlibrary:2.3.0',
 
             //otto
-            otto                    : 'com.squareup:otto:1.3.8',
+            otto                                : 'com.squareup:otto:1.3.8',
 
             //greendao
-            greendao                : 'de.greenrobot:greendao:2.1.0',
+            greendao                            : 'de.greenrobot:greendao:2.1.0',
 
-            jsbridge                : 'com.github.lzyzsd:jsbridge:1.0.4',
-            expandabletextview      : 'cn.carbs.android:ExpandableTextView:1.0.3',
-            ringprogressbar         : 'com.github.HotBitmapGG:RingProgressBar:V1.2.3',
-            stepview                : 'com.github.baoyachi:StepView:1.9',
+            jsbridge                            : 'com.github.lzyzsd:jsbridge:1.0.4',
+            expandabletextview                  : 'cn.carbs.android:ExpandableTextView:1.0.3',
+            ringprogressbar                     : 'com.github.HotBitmapGG:RingProgressBar:V1.2.3',
+            stepview                            : 'com.github.baoyachi:StepView:1.9',
 
             /*视频播放器*/
-            jiecaovideoplayer       : 'fm.jiecao:jiecaovideoplayer:5.8.1',
-            vitamio                 : 'com.charonchui.vitamio:vitamio:4.2.2',
+            jiecaovideoplayer                   : 'fm.jiecao:jiecaovideoplayer:5.8.1',
+            vitamio                             : 'com.charonchui.vitamio:vitamio:4.2.2',
 
             /*exoplayer*/
-            exoplayer_core          : 'com.google.android.exoplayer:exoplayer-core:2.7.3',
-            exoplayer_dash          : 'com.google.android.exoplayer:exoplayer-dash:2.7.3',
-            exoplayer_ui            : 'com.google.android.exoplayer:exoplayer-ui:2.2.7.3',
+            exoplayer_core                      : 'com.google.android.exoplayer:exoplayer-core:2.7.3',
+            exoplayer_dash                      : 'com.google.android.exoplayer:exoplayer-dash:2.7.3',
+            exoplayer_ui                        : 'com.google.android.exoplayer:exoplayer-ui:2.2.7.3',
 
-            exoplayer               : 'com.google.android.exoplayer:exoplayer:2.7.3',
+            exoplayer                           : 'com.google.android.exoplayer:exoplayer:2.7.3',
 
             /*GSYVideoPlayer*/
             /*完整版引入*/
-            GSYVideoPlayer          : 'com.shuyu:GSYVideoPlayer:4.1.2',
+            GSYVideoPlayer                      : 'com.shuyu:GSYVideoPlayer:4.1.2',
 
             /*添加java和你想要的so支持：*/
-            gsyVideoPlayer_java     : 'com.shuyu:gsyVideoPlayer-java:4.1.2',
+            gsyVideoPlayer_java                 : 'com.shuyu:gsyVideoPlayer-java:4.1.2',
 
-            gsyVideoPlayer_armv5    : 'com.shuyu:gsyVideoPlayer-armv5:4.1.2',
-            gsyVideoPlayer_armv7a   : 'com.shuyu:gsyVideoPlayer-armv7a:4.1.2',
-            gsyVideoPlayer_arm64    : 'com.shuyu:gsyVideoPlayer-arm64:4.1.2',
-            gsyVideoPlayer_x64      : 'com.shuyu:gsyVideoPlayer-x64:4.1.2',
-            gsyVideoPlayer_x86      : 'com.shuyu:gsyVideoPlayer-x86:4.1.2',
+            gsyVideoPlayer_armv5                : 'com.shuyu:gsyVideoPlayer-armv5:4.1.2',
+            gsyVideoPlayer_armv7a               : 'com.shuyu:gsyVideoPlayer-armv7a:4.1.2',
+            gsyVideoPlayer_arm64                : 'com.shuyu:gsyVideoPlayer-arm64:4.1.2',
+            gsyVideoPlayer_x64                  : 'com.shuyu:gsyVideoPlayer-x64:4.1.2',
+            gsyVideoPlayer_x86                  : 'com.shuyu:gsyVideoPlayer-x86:4.1.2',
 
             /*支持其他格式协议的（mpeg，rtsp, concat、crypto协议）*/
             /*A、B普通版本支持263/264/265等，对于mpeg编码会有声音无画面情况。 C 引入的so支持mpeg编码和其他补充协议，但是so包相对变大。*/
-            gsyVideoPlayer_java     : 'com.shuyu:gsyVideoPlayer-java:4.1.2',
-            gsyVideoPlayer_ex_so    : 'com.shuyu:gsyVideoPlayer-ex_so:4.1.2',
+            gsyVideoPlayer_java                 : 'com.shuyu:gsyVideoPlayer-java:4.1.2',
+            gsyVideoPlayer_ex_so                : 'com.shuyu:gsyVideoPlayer-ex_so:4.1.2',
 
-            material_dialogs        : 'com.afollestad.material-dialogs:commons:0.9.0.2',
-            NiceDialog              : 'com.github.Othershe:NiceDialog:1.1.4',
+            material_dialogs                    : 'com.afollestad.material-dialogs:commons:0.9.0.2',
+            NiceDialog                          : 'com.github.Othershe:NiceDialog:1.1.4',
 
             /*agentweb https://github.com/Justson/AbutterknifegentWeb */
-            agentweb                : 'com.just.agentweb:agentweb:4.0.1',
-            agentweb_download       : 'com.just.agentweb:download:4.0.2',
-            agentweb_filechooser    : 'com.just.agentweb:filechooser:4.0.2',
+            agentweb                            : 'com.just.agentweb:agentweb:4.0.1',
+            agentweb_download                   : 'com.just.agentweb:download:4.0.2',
+            agentweb_filechooser                : 'com.just.agentweb:filechooser:4.0.2',
 
-            multidex                : 'com.android.support:multidex:1.0.3',
+            multidex                            : 'com.android.support:multidex:1.0.3',
 
             /*有兼容性的问题需要使用如下:
              //解决支持库版本不兼容问题
              configurations.all {resolutionStrategy.eachDependency { DependencyResolveDetails details ->
              def requested = details.requested
              if (requested.group == 'com.android.support') {if (!requested.name.startsWith("multidex")) {details.useVersion '25.3.0'}}}}*/
-            lottie                  : "com.airbnb.android:lottie:2.5.4",
+            lottie                              : "com.airbnb.android:lottie:2.5.4",
 
             /*Android屏幕适配方案*/
-            autolayout              : 'com.zhy:autolayout:1.4.5',
-            screenadaptation        : 'me.yatoooon:screenadaptation:1.0.9',
+            autolayout                          : 'com.zhy:autolayout:1.4.5',
+            screenadaptation                    : 'me.yatoooon:screenadaptation:1.0.9',
 
             //sugerORM框架
-            sugerORM                : 'com.github.satyan:sugar:1.5',
+            sugerORM                            : 'com.github.satyan:sugar:1.5',
             //popWindow
-            BasePopup               : 'com.github.razerdp:BasePopup:1.8.1',
+            BasePopup                           : 'com.github.razerdp:BasePopup:1.8.1',
             //SwitchButton
-            switch_button           : 'com.github.zcweng:switch-button:0.0.3@aar',
+            switch_button                       : 'com.github.zcweng:switch-button:0.0.3@aar',
 
             /*append by 180605*/
             /*音视频合成*/
-            isoparser               : 'com.googlecode.mp4parser:isoparser:1.1.21'
-
-
+            isoparser                           : 'com.googlecode.mp4parser:isoparser:1.1.21'
     ]
 }
 

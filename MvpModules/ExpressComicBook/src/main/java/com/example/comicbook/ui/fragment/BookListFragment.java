@@ -11,7 +11,7 @@ import com.example.comicbook.ui.fragment.books.CollectListFragment;
 import com.example.comicbook.ui.fragment.books.DownloadListFragment;
 import com.example.comicbook.ui.fragment.books.HistoryListFragment;
 import com.zysdk.vulture.clib.sample.adapter.SampleFragmentPagerAdapter;
-import com.zysdk.vulture.clib.sample.fragment.BaseSampleFragment;
+import com.zysdk.vulture.clib.sample.rx.RxBaseSampleFragment;
 import com.zysdk.vulture.clib.utils.CommonUtils;
 import com.zysdk.vulture.clib.utils.UiUtils;
 
@@ -20,7 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class BookListFragment extends BaseSampleFragment<BookListPresenter, BookListContract
+public class BookListFragment extends RxBaseSampleFragment<BookListPresenter, BookListContract
         .IBookView> implements BookListContract.IBookView {
 
     @BindView(R.id.tablayout_books)

@@ -12,7 +12,7 @@ import com.example.comicbook.ui.fragment.BookListFragment;
 import com.example.comicbook.ui.fragment.HomeFragment;
 import com.example.comicbook.ui.fragment.MimeFragment;
 import com.example.comicbook.ui.weiget.TabIndicator;
-import com.zysdk.vulture.clib.corel.BaseToolbarSupportActivity;
+import com.zysdk.vulture.clib.corel.rx.RxBaseToolbarSupportActivity;
 import com.zysdk.vulture.clib.sample.adapter.SampleFragmentPagerAdapter;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class HomeActivity extends BaseToolbarSupportActivity {
+public class HomeActivity extends RxBaseToolbarSupportActivity {
 
     private List<Fragment> fragmentList = new ArrayList<>();
     private FragmentTabHost tabHost;
@@ -94,4 +94,6 @@ public class HomeActivity extends BaseToolbarSupportActivity {
     protected int getStatusbarColor() {
         return R.color.white;
     }
+
+
 }

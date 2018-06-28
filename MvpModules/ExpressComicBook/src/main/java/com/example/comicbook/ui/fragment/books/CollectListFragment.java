@@ -3,9 +3,9 @@ package com.example.comicbook.ui.fragment.books;
 import com.example.comicbook.R;
 import com.example.comicbook.mvp.contract.CollectListContract;
 import com.example.comicbook.mvp.presenter.CollectListPresenter;
-import com.zysdk.vulture.clib.sample.fragment.BaseSampleFragment;
+import com.zysdk.vulture.clib.sample.rx.RxBaseSampleFragment;
 
-public class CollectListFragment extends BaseSampleFragment<CollectListPresenter,
+public class CollectListFragment extends RxBaseSampleFragment<CollectListPresenter,
         CollectListContract.ICollectListView> implements CollectListContract.ICollectListView {
 
     @Override

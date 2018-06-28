@@ -1,20 +1,38 @@
 package com.example.comicbook.ui.fragment;
 
-import com.example.comicbook.R;
+import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.example.comicbook.bean.HomeBean;
 import com.example.comicbook.mvp.contract.HomeListContract;
 import com.example.comicbook.mvp.presenter.HomeListPresenter;
-import com.zysdk.vulture.clib.sample.fragment.BaseSampleFragment;
+import com.zysdk.vulture.clib.refreshsupport.rx.smartrefresh.RxBaseMVPSRRListFragment;
 
-public class HomeFragment extends BaseSampleFragment<HomeListPresenter, HomeListContract
-        .IHomeView> implements HomeListContract.IHomeView {
+public class HomeFragment extends RxBaseMVPSRRListFragment<HomeListPresenter, HomeListContract
+        .IHomeView, HomeBean> implements HomeListContract.IHomeView {
 
     @Override
     protected HomeListPresenter createPresenter() {
-        return new HomeListPresenter();
+        return new HomeListPresenter(getActivity());
     }
 
     @Override
-    public int getContentId() {
-        return R.layout.fragment_home_list;
+    protected void loadRemoteData() {
+        mPresenter.getHomeList();
+    }
+
+    @Override
+    protected void initPageNumb() {
+
+    }
+
+    @Override
+    protected BaseQuickAdapter<HomeBean, BaseViewHolder> getListAdapter() {
+        return new BaseMultiItemQuickAdapter(mList) {
+            @Override
+            protected void convert(BaseViewHolder helper, Object item) {
+
+            }
+        };
     }
 }

@@ -3,12 +3,12 @@ package com.example.comicbook.ui.fragment;
 import com.example.comicbook.R;
 import com.example.comicbook.mvp.contract.MimeContract;
 import com.example.comicbook.mvp.presenter.MimePresenter;
+import com.zysdk.vulture.clib.sample.rx.RxBaseSampleFragment;
 import com.zysdk.vulture.clib.widget.MenuWidget;
-import com.zysdk.vulture.clib.sample.fragment.BaseSampleFragment;
 
 import butterknife.BindView;
 
-public class MimeFragment extends BaseSampleFragment<MimePresenter, MimeContract
+public class MimeFragment extends RxBaseSampleFragment<MimePresenter, MimeContract
         .IBookView> implements MimeContract.IBookView {
 
     @BindView(R.id.menu_dnmode_manage)
