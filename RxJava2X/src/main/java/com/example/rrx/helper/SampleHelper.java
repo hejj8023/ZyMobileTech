@@ -3,8 +3,6 @@ package com.example.rrx.helper;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.zysdk.vulture.clib.utils.LoggerUtils;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -14,7 +12,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class SampleHelper {
+public class SampleHelper extends BaseHelper {
     private Context mContext;
 
     public SampleHelper(Context context) {
@@ -31,10 +29,6 @@ public class SampleHelper {
 
         // TODO: 2018/7/9 建立连接
         observable.subscribe(observer);
-    }
-
-    private void log(String str) {
-        LoggerUtils.loge(str);
     }
 
     public void create2() {
@@ -153,9 +147,6 @@ public class SampleHelper {
         };
     }
 
-    private void logThreadName(String str) {
-        log(str + " , Thread id = " + Thread.currentThread().getName());
-    }
 
     /**
      * 线程调度
