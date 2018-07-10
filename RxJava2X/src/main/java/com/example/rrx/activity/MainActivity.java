@@ -1,8 +1,9 @@
-package com.example.rrx;
+package com.example.rrx.activity;
 
 import android.app.Activity;
 import android.view.View;
 
+import com.example.rrx.R;
 import com.zysdk.vulture.clib.sample.activity.BaseSampleToolbarSupportActivity;
 import com.zysdk.vulture.clib.utils.IntentUtils;
 
@@ -17,7 +18,7 @@ public class MainActivity extends BaseSampleToolbarSupportActivity {
 
     @Override
     public void initView() {
-
+        setTitle("RxJava2.0知识点巩固");
     }
 
     @Override
