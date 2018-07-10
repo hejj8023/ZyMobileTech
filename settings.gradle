@@ -1,7 +1,7 @@
 apply from: getRootDir().getAbsolutePath() + "/builds/settingconfig.gradle"
-include ':ZySdkLib'
+//include ':ZySdkLib', ':ImoocProguard', ':SampleSvg'
+include ':ZySdkLib', ':RxJava2X'
 project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
-
 
 //loadLibs()
 //loadAppModule()
@@ -17,6 +17,6 @@ project(':ZySdkLib').projectDir = new File('../ZYSdk/SDKLibrary')
 //loadKotlinModule()
 //loadGithubLib()
 //loadToolAppModule()
-loadMvpModule()
+//loadMvpModule()
 //loadNdkAppModule()
 //loadImoocModule()

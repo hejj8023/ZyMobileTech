@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SampleRx2X</string>
+    <string name="title_activity_sample01">Sample01Activity</string>
+    <string name="str_desc_schedule">上游发送事件的线程, 让它去子线程中发送事件, 然后再改变下游的线程, 让它去主线程接收事件</string>
+</resources>

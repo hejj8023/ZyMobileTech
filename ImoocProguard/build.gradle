@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext._android.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.example.imoocproguard"
+        minSdkVersion 16
+        targetSdkVersion rootProject.ext._android.targetSdkVersion
+        versionCode rootProject.ext._android.versionCode
+        versionName rootProject.ext._android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    /*.9图不标准的坑*/
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.support.appcompat
+    implementation rootProject.ext.support.constraint_layout
+    implementation rootProject.ext.support.design
+    implementation rootProject.ext.support.cardview
+    testImplementation rootProject.ext.support.junit
+    androidTestImplementation rootProject.ext.support.test_runner
+    androidTestImplementation(rootProject.ext.support.espresso_core, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}

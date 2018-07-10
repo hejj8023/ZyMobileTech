@@ -27,6 +27,11 @@ https://www.imooc.com/learn/879
 2. 直接删除打印log代码
 
 
+注意事项:
+打开优化开关
+
+默认使用proguard-android-optimize.txt
+
 # 3章 对抗反编译工具 #
 最常用的反编译工具是apktool，有效的防止被apktool反编译可以达到保护代码的目的
 ##  3-1 对抗反编译工具 (04:18) ##
