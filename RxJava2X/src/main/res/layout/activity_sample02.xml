@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/dp_15"
-        tools:context=".Sample01Activity"
+        tools:context=".activity.Sample01Activity"
         >
 
     <android.support.v4.widget.NestedScrollView
@@ -31,42 +31,37 @@
             <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="示例B-简单事件发送与接收"
+                    android:text="示例B-Consumer应用"
                     android:id="@+id/btn_crate_observer2"
                     />
 
             <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="示例C-Disposable分析"
-                    android:id="@+id/btn_crate_observer3"
-                    />
-
-            <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="示例D-Consumer应用"
-                    android:id="@+id/btn_crate_observer4"
-                    />
-
-            <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="示例E-线程调度"
+                    android:text="示例C-线程调度"
                     android:id="@+id/btn_schedule"
                     />
 
-            <TextView
+            <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_desc_schedule"
+                    android:text="示例D-Flowable示例"
+                    android:id="@+id/btn_flowable_used"
                     />
 
             <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="示例E-线程调度(重复调用分析)"
-                    android:id="@+id/btn_reschedule"
+                    android:text="示例E-Flowable操作符--interva"
+                    android:id="@+id/btn_con_fi"
+                    />
+
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="示例E-requestId问题分析"
+                    android:id="@+id/btn_test_requestId"
                     />
 
             <Button
