@@ -1,6 +1,9 @@
-package com.example.rrx;
+package com.example.rrx.activity;
 
 import android.view.View;
+
+import com.example.rrx.R;
+import com.example.rrx.helper.SampleHelper;
 
 import butterknife.OnClick;
 
@@ -9,11 +12,17 @@ import butterknife.OnClick;
  */
 public class Sample01Activity extends SampleRxActivity {
 
+    private SampleHelper baseHelper;
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_sample01;
     }
 
+    @Override
+    public void initData() {
+        baseHelper = new SampleHelper(mContext);
+    }
 
     @OnClick({R.id.btn_crate_observer, R.id.btn_crate_observer2,
             R.id.btn_crate_observer3, R.id.btn_crate_observer4,
@@ -21,22 +30,22 @@ public class Sample01Activity extends SampleRxActivity {
     public void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.btn_crate_observer:
-                sampleHelper.create();
+                baseHelper.create();
                 break;
             case R.id.btn_crate_observer2:
-                sampleHelper.create2();
+                baseHelper.create2();
                 break;
             case R.id.btn_crate_observer3:
-                sampleHelper.create3();
+                baseHelper.create3();
                 break;
             case R.id.btn_crate_observer4:
-                sampleHelper.create4();
+                baseHelper.create4();
                 break;
             case R.id.btn_schedule:
-                sampleHelper.schedule(false);
+                baseHelper.schedule(false);
                 break;
             case R.id.btn_reschedule:
-                sampleHelper.schedule(true);
+                baseHelper.schedule(true);
                 break;
         }
     }
