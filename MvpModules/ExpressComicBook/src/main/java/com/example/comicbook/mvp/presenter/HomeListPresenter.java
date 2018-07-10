@@ -2,7 +2,7 @@ package com.example.comicbook.mvp.presenter;
 
 import android.app.Activity;
 
-import com.example.comicbook.bean.HomeBean;
+import com.example.comicbook.bean.Comic;
 import com.example.comicbook.mvp.contract.HomeListContract;
 import com.example.comicbook.mvp.model.HomeListModel;
 import com.zysdk.vulture.clib.mvp.presenter.BasePresenter;
@@ -23,10 +23,12 @@ public class HomeListPresenter extends BasePresenter<HomeListContract.IHomeView>
 
     @Override
     public void getHomeList() {
-        model.getListData(new DisposableObserver<List<HomeBean>>() {
+        model.getListData(new DisposableObserver<List<Comic>>() {
             @Override
-            public void onNext(List<HomeBean> homeBeans) {
+            public void onNext(List<Comic> homeBeans) {
+                if (homeBeans != null) {
 
+                }
             }
 
             @Override

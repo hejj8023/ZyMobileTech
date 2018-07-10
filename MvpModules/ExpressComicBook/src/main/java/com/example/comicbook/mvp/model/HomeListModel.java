@@ -4,8 +4,10 @@ import android.app.Activity;
 
 import com.example.comicbook.Const;
 import com.example.comicbook.base.BaseWSModel;
-import com.example.comicbook.bean.HomeBean;
+import com.example.comicbook.bean.Comic;
+import com.example.comicbook.bean.HomeTitle;
 import com.example.comicbook.mvp.contract.HomeListContract;
+import com.example.comicbook.util.DataConvertEngine;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -32,16 +34,16 @@ public class HomeListModel extends BaseWSModel implements HomeListContract.IHome
     }
 
     @Override
-    public void getListData(Observer<List<HomeBean>> observer) {
-        Observable<List<HomeBean>> listObservable = Observable.create(new ObservableOnSubscribe<List<HomeBean>>() {
+    public void getListData(Observer<List<Comic>> observer) {
+        Observable<List<Comic>> listObservable = Observable.create(new ObservableOnSubscribe<List<Comic>>() {
             @Override
-            public void subscribe(ObservableEmitter<List<HomeBean>> e) throws Exception {
+            public void subscribe(ObservableEmitter<List<Comic>> e) throws Exception {
                 e.onNext(getRemoteData());
             }
         });
-        Observable<List<HomeBean>> bannerObsever = Observable.create(new ObservableOnSubscribe<List<HomeBean>>() {
+        Observable<List<Comic>> bannerObsever = Observable.create(new ObservableOnSubscribe<List<Comic>>() {
             @Override
-            public void subscribe(ObservableEmitter<List<HomeBean>> e) throws Exception {
+            public void subscribe(ObservableEmitter<List<Comic>> e) throws Exception {
 
             }
         });
@@ -53,38 +55,71 @@ public class HomeListModel extends BaseWSModel implements HomeListContract.IHome
                 .subscribe(observer);
     }
 
-    private List<HomeBean> getRemoteData() {
-        List<HomeBean> beanList = new ArrayList<>();
+    private List<Comic> getRemoteData() {
+        List<Comic> beanList = new ArrayList<>();
         try {
             Document recomment = Jsoup.connect(Const.API_URL_CONFIG.TENCENT_HOME_PAGE).get();
             Document japan = Jsoup.connect(Const.API_URL_CONFIG.TENCENT_JPAN_HOT).get();
             Document doc = Jsoup.connect(Const.API_URL_CONFIG.TENCENT_TOP_URL).get();
 
-            addHomeBean(recomment, beanList, Const.TYPE_HOT_SERIAL);
-            addHomeBean(recomment, beanList, Const.TYPE_BOY_RANK);
-            addHomeBean(recomment, beanList, Const.TYPE_GIRL_RANK);
-            addHomeBean(recomment, beanList, Const.TYPE_HOT_JAPAN);
-            addHomeBean(recomment, beanList, Const.TYPE_RANK_LIST);
+            addComic(recomment, beanList, Const.TYPE_HOT_SERIAL);
+            addComic(recomment, beanList, Const.TYPE_BOY_RANK);
+            addComic(recomment, beanList, Const.TYPE_GIRL_RANK);
+            addComic(recomment, beanList, Const.TYPE_HOT_JAPAN);
+            addComic(recomment, beanList, Const.TYPE_RANK_LIST);
 
+            HomeTitle homeTitle = new HomeTitle();
+            homeTitle.setItemTitle("");
         } catch (IOException e) {
             e.printStackTrace();
         }
         return beanList;
     }
 
-    private void addHomeBean(Document document, List<HomeBean> list, int type) {
-        HomeBean homeBean;
+    private void addComic(Document document, List<Comic> list, int type) {
+        HomeTitle homeTitle = null;
         switch (type) {
+            case Const.TYPE_RECOMMEND:
+                homeTitle = new HomeTitle();
+                homeTitle.setItemTitle("强推作品");
+                homeTitle.setTitleType(Const.TYPE_RECOMMEND);
+                list.add(homeTitle);
+                list.addAll(DataConvertEngine.convertRecommendData(document));
+                break;
             case Const.TYPE_HOT_SERIAL:
+                homeTitle = new HomeTitle();
+                homeTitle.setItemTitle("热门连载");
+                homeTitle.setTitleType(Const.TYPE_HOT_SERIAL);
+                list.add(homeTitle);
+                list.addAll(DataConvertEngine.convertSerialData(document));
                 break;
             case Const.TYPE_BOY_RANK:
-                homeBean = new HomeBean();
+                homeTitle = new HomeTitle();
+                homeTitle.setItemTitle("少年漫画");
+                homeTitle.setTitleType(Const.TYPE_BOY_RANK);
+                list.add(homeTitle);
+                list.addAll(DataConvertEngine.convertBRankData(document));
                 break;
             case Const.TYPE_GIRL_RANK:
+                homeTitle = new HomeTitle();
+                homeTitle.setItemTitle("少女漫画");
+                homeTitle.setTitleType(Const.TYPE_GIRL_RANK);
+                list.add(homeTitle);
+                list.addAll(DataConvertEngine.convertGRankData(document));
                 break;
             case Const.TYPE_HOT_JAPAN:
+                homeTitle = new HomeTitle();
+                homeTitle.setItemTitle("日漫馆");
+                homeTitle.setTitleType(Const.TYPE_HOT_JAPAN);
+                list.add(homeTitle);
+                list.addAll(DataConvertEngine.convertJapanData(document));
                 break;
             case Const.TYPE_RANK_LIST:
+                homeTitle = new HomeTitle();
+                homeTitle.setItemTitle("排行榜");
+                homeTitle.setTitleType(Const.TYPE_RANK_LIST);
+                list.add(homeTitle);
+                list.addAll(DataConvertEngine.convertRankListData(document));
                 break;
         }
     }
