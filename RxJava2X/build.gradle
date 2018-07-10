@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext._android.compileSdkVersion
-
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.rrx"
         minSdkVersion 16
@@ -16,36 +15,31 @@ android {
         renderscriptTargetApi 21
         renderscriptSupportModeEnabled true    // Enable RS support
     }
-
     buildTypes {
         release {
             minifyEnabled false // 是否混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
-
     flavorDimensions "code"
     productFlavors {
     }
-
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
-
     dexOptions {
         jumboMode true
         javaMaxHeapSize "4g"
     }
-
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation rootProject.ext.support.appcompat
     implementation rootProject.ext.support.constraint_layout
     implementation rootProject.ext.support.design
@@ -56,22 +50,16 @@ dependencies {
     androidTestImplementation(rootProject.ext.support.espresso_core, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     implementation rootProject.ext.ext_tools.rxjava
     implementation rootProject.ext.ext_tools.rxandroid
-
     /*butternife*/
     implementation rootProject.ext.ext_tools.butterknife
     annotationProcessor rootProject.ext.ext_tools.butterknife_compiler
-
     implementation rootProject.ext.ext_tools.utilcode
-
     implementation rootProject.ext.ext_tools.systembartint
     implementation rootProject.ext.ext_tools.barlibrary
-
     implementation rootProject.ext.ext_tools.logger
     implementation rootProject.ext.ext_tools.fragmentation
-
     implementation project(':ZySdkLib')
 }
 

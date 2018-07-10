@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 // 注：需要配置符号表时，使用bugly插件
 apply plugin: 'bugly'
+
+apply plugin: 'org.greenrobot.greendao'
+
+
 bugly {
     appId = 'bfbdfa9a27'
     appKey = 'b132dcd2-dfc7-41fe-95c3-0b17016a8354'
@@ -62,6 +66,12 @@ android {
     }
 }
 
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'
+    daoPackage 'com.example.comicbook.dao'
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.support.appcompat
@@ -93,6 +103,10 @@ dependencies {
 
     implementation rootProject.ext.ext_tools.utilcode
     implementation rootProject.ext.ext_tools.jsoup
+
+    /*greendao*/
+    implementation rootProject.ext.ext_tools.greendao
+    implementation rootProject.ext.ext_tools.greendao_generator
 
     implementation rootProject.ext.ext_tools.systembartint
     implementation rootProject.ext.ext_tools.barlibrary

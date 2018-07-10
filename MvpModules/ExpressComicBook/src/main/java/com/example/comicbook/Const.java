@@ -5,11 +5,12 @@ public class Const {
      * 表示主页标题的种类
      * 0  热门推荐 1 排行榜
      */
-    public static final int TYPE_HOT_SERIAL = 0;
-    public static final int TYPE_BOY_RANK = 1;
-    public static final int TYPE_GIRL_RANK = 2;
-    public static final int TYPE_RANK_LIST = 3;
-    public static final int TYPE_HOT_JAPAN = 4;
+    public static final int TYPE_RECOMMEND = 0;
+    public static final int TYPE_RANK_LIST = 1;
+    public static final int TYPE_HOT_SERIAL = 2;
+    public static final int TYPE_HOT_JAPAN = 3;
+    public static final int TYPE_BOY_RANK = 4;
+    public static final int TYPE_GIRL_RANK = 5;
 
     public class API_URL_CONFIG {
         public static final String BASEURL = "";
