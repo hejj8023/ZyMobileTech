@@ -1,12 +1,17 @@
 package com.example.comicbook.ui.fragment;
 
+import android.view.View;
+
 import com.example.comicbook.R;
 import com.example.comicbook.mvp.contract.MimeContract;
 import com.example.comicbook.mvp.presenter.MimePresenter;
+import com.example.comicbook.ui.activity.SampleListActivity;
 import com.zysdk.vulture.clib.sample.rx.RxBaseSampleFragment;
+import com.zysdk.vulture.clib.utils.IntentUtils;
 import com.zysdk.vulture.clib.widget.MenuWidget;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MimeFragment extends RxBaseSampleFragment<MimePresenter, MimeContract
         .IBookView> implements MimeContract.IBookView {
@@ -34,5 +39,10 @@ public class MimeFragment extends RxBaseSampleFragment<MimePresenter, MimeContra
 
     @Override
     public void initView() {
+    }
+
+    @OnClick(R.id.menu_update_manage)
+    public void onViewClick(View view) {
+        IntentUtils.forward(SampleListActivity.class);
     }
 }

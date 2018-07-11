@@ -123,7 +123,7 @@ public class MainActivity extends BaseToolbarSupportActivity {
 
     private void initializeAgoraEngine() {
         try {
-            RtcEngine.create(mContext.getApplicationContext(), UiUtils.getStr(R.string.agora_app_id), mRtcEventHandler);
+            RtcEngine.create(mContext.getApplicationContext(), ResourceUtils.getStr(R.string.agora_app_id), mRtcEventHandler);
         } catch (Exception e) {
             e.printStackTrace();
         }

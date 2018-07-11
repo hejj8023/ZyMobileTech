@@ -44,13 +44,13 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
                 UserInfoManager.saveUserInfo(data);
                 UserInfoManager.saveIsLogin(true);
                 mILoginView.hideLoading();
-                mILoginView.showResult(UiUtils.getStr(R.string.login_sucessed));
+                mILoginView.showResult(ResourceUtils.getStr(R.string.login_sucessed));
                 mILoginView.onLoginStatusChange(Const.LOGIN_REG_STATUS.LOGIN_SUCESS);
             }
 
             @Override
             public void onSubscribe(Disposable d) {
-                mILoginView.showLoading(UiUtils.getStr(R.string.loginging));
+                mILoginView.showLoading(ResourceUtils.getStr(R.string.loginging));
             }
 
             @Override
@@ -106,7 +106,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
 
             @Override
             public void onSubscribe(Disposable d) {
-                mILoginView.showLoading(UiUtils.getStr(R.string.reging));
+                mILoginView.showLoading(ResourceUtils.getStr(R.string.reging));
             }
         });
     }

@@ -56,7 +56,7 @@ public class HomeActivity extends BaseWanAndroidActivity<HomePresenter, HomeCont
     private TextView menuLoginStatus;
     private Fragment[] fragments;
     private String[] appTitles = new String[]{
-            UiUtils.getStr(R.string.app_name), "知识体系"
+            ResourceUtils.getStr(R.string.app_name), "知识体系"
     };
 
     private long mExitTime;

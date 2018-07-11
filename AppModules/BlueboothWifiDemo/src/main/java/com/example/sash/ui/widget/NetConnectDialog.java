@@ -52,7 +52,7 @@ public class NetConnectDialog extends Dialog {
             String pwdStr = etPwd.getText().toString
                     ().trim();
             if (EmptyUtils.isEmpty(pwdStr)) {
-                ToastUtils.showShort(UiUtils.getStr(R.string.tip_wifi_pwd_error));
+                ToastUtils.showShort(ResourceUtils.getStr(R.string.tip_wifi_pwd_error));
             } else {
                 Const.TMP_CONNECT_SSID = title;
                 LoadingDialog.show(context);
@@ -117,9 +117,9 @@ public class NetConnectDialog extends Dialog {
                 public void run() {
                     LoadingDialog.hideDialog();
                     if (hotspot) {
-                        ToastUtils.showShort(UiUtils.getStr(R.string.tip_ap_create_sucess));
+                        ToastUtils.showShort(ResourceUtils.getStr(R.string.tip_ap_create_sucess));
                     } else {
-                        ToastUtils.showShort(UiUtils.getStr(R.string.tip_ap_create_fail));
+                        ToastUtils.showShort(ResourceUtils.getStr(R.string.tip_ap_create_fail));
                     }
                     loadingDialog.dismiss();
                 }

@@ -3,6 +3,7 @@ package com.example.comicbook.mvp.model;
 import android.app.Activity;
 
 import com.example.comicbook.Const;
+import com.example.comicbook.R;
 import com.example.comicbook.base.BaseWSModel;
 import com.example.comicbook.bean.Comic;
 import com.example.comicbook.bean.HomeTitle;
@@ -10,6 +11,7 @@ import com.example.comicbook.mvp.contract.HomeListContract;
 import com.example.comicbook.util.DataConvertEngine;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.zysdk.vulture.clib.utils.ResourceUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -81,7 +83,7 @@ public class HomeListModel extends BaseWSModel implements HomeListContract.IHome
         switch (type) {
             case Const.TYPE_RECOMMEND:
                 homeTitle = new HomeTitle();
-                homeTitle.setItemTitle("强推作品");
+                homeTitle.setItemTitle(ResourceUtils.getStr(R.string.hc));
                 homeTitle.setTitleType(Const.TYPE_RECOMMEND);
                 list.add(homeTitle);
                 list.addAll(DataConvertEngine.convertRecommendData(document));

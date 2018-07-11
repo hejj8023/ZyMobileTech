@@ -99,7 +99,7 @@ public class SearchActivity extends BaseWanListActivity<SearchPresenter, SearchC
         View actionView = menuItem.getActionView();
         if (actionView != null && actionView instanceof SearchView) {
             mSearchView = (SearchView) actionView;
-            mSearchView.setQueryHint(UiUtils.getStr(R.string.search_keyword));
+            mSearchView.setQueryHint(ResourceUtils.getStr(R.string.search_keyword));
             mSearchView.onActionViewExpanded();
 
             // 去除搜索框背景
@@ -189,7 +189,7 @@ public class SearchActivity extends BaseWanListActivity<SearchPresenter, SearchC
 
     @Override
     protected String getCurrentTitle() {
-        return UiUtils.getStr(R.string.search);
+        return ResourceUtils.getStr(R.string.search);
     }
 
     @Override

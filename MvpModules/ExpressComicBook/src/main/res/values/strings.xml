@@ -12,4 +12,5 @@
     <string name="feed_back">问题反馈</string>
     <string name="clear_cache">清除缓存</string>
     <string name="mode_manage">夜间模式</string>
+    <string name="hc">强推作品</string>
 </resources>

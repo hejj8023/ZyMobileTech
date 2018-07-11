@@ -502,7 +502,7 @@ public class SampleBluetoothActivity extends BaseMVPToolbarSupportSRListActivity
                                     InputStreamReader(inputStream));
                             String line = "";
                             while ((line = br.readLine()) != null) {
-                                String text = UiUtils.getStr(R.string.tip_rec_from_client_msg) +
+                                String text = ResourceUtils.getStr(R.string.tip_rec_from_client_msg) +
                                         line;
                                 LoggerUtils.loge(text);
                                 ToastUtils.showShort(text);

@@ -58,9 +58,9 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
         View vd03 = helper.getView(R.id.v_d_03);
 
         String itemName = item.getName();
-        helper.setText(R.id.tv_devname, UiUtils.getStr(R.string.tip_dev_name) + itemName);
+        helper.setText(R.id.tv_devname, ResourceUtils.getStr(R.string.tip_dev_name) + itemName);
         String itemAddress = item.getAddress();
-        helper.setText(R.id.tv_devmac, UiUtils.getStr(R.string.tip_mac_addr) +
+        helper.setText(R.id.tv_devmac, ResourceUtils.getStr(R.string.tip_mac_addr) +
                 itemAddress);
 
         BluetoothDevice remoteDev = btAdapter.getRemoteDevice(itemAddress);
@@ -69,13 +69,13 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
             switch (bondState) {
                 case BluetoothDevice.BOND_NONE:
                     // 未配对,设备配对
-                    helper.setText(R.id.tv_devtype, UiUtils.getStr(R.string.tip_un_pair));
+                    helper.setText(R.id.tv_devtype, ResourceUtils.getStr(R.string.tip_un_pair));
                     if (pairView.getVisibility() != View.VISIBLE)
                         pairView.setVisibility(View.VISIBLE);
                     break;
                 case BluetoothDevice.BOND_BONDED:
                     // 已配对,进行连接
-                    helper.setText(R.id.tv_devtype, UiUtils.getStr(R.string.tip_paired));
+                    helper.setText(R.id.tv_devtype, ResourceUtils.getStr(R.string.tip_paired));
                     if (pairView.getVisibility() != View.GONE)
                         pairView.setVisibility(View.GONE);
                     if (vd01.getVisibility() != View.GONE)
@@ -194,7 +194,7 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
                     socket.connect();
                     mOutputStream = socket.getOutputStream();
                     if (mOutputStream != null) {
-                        UiUtils.showToastSafe(UiUtils.getStr(R.string.tip_connect_sucess));
+                        UiUtils.showToastSafe(ResourceUtils.getStr(R.string.tip_connect_sucess));
                     }
 
                     InputStream inputStream = socket.getInputStream();
@@ -204,7 +204,7 @@ public class BtAdapter extends BaseQuickAdapter<BluetoothBean, BaseViewHolder> {
                         String line = "";
                         // TODO: 2018/5/24 连接未断开是收不到服务器发送过来的数据的。
                         while ((line = br.readLine()) != null) {
-                            String text = UiUtils.getStr(R.string.tip_rec_from_server_msg) + line;
+                            String text = ResourceUtils.getStr(R.string.tip_rec_from_server_msg) + line;
                             LoggerUtils.loge(text);
                             ToastUtils.showShort(text);
                         }

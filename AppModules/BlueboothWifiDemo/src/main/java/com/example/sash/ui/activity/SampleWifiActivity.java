@@ -267,7 +267,7 @@ public class SampleWifiActivity extends BaseMVPToolbarSupportSRListActivity<Wifi
                     }
                     helper.setOnClickListener(R.id.rl_root_item, v -> {
                         if (item.isChecked()) {
-                            ToastUtils.showShort(UiUtils.getStr(R.string
+                            ToastUtils.showShort(ResourceUtils.getStr(R.string
                                     .tip_no_repeit_connect_wifi));
                             return;
                         }

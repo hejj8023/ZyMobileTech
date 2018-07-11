@@ -13,7 +13,7 @@ import com.example.comicbook.ui.fragment.books.HistoryListFragment;
 import com.zysdk.vulture.clib.sample.adapter.SampleFragmentPagerAdapter;
 import com.zysdk.vulture.clib.sample.rx.RxBaseSampleFragment;
 import com.zysdk.vulture.clib.utils.CommonUtils;
-import com.zysdk.vulture.clib.utils.UiUtils;
+import com.zysdk.vulture.clib.utils.ResourceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +30,9 @@ public class BookListFragment extends RxBaseSampleFragment<BookListPresenter, Bo
     ViewPager viewPager;
 
     private String[] titles = {
-            UiUtils.getStr(R.string.collect),
-            UiUtils.getStr(R.string.history),
-            UiUtils.getStr(R.string.download)
+            ResourceUtils.getStr(R.string.collect),
+            ResourceUtils.getStr(R.string.history),
+            ResourceUtils.getStr(R.string.download)
     };
 
     private List<Fragment> fragmentList = new ArrayList<>();

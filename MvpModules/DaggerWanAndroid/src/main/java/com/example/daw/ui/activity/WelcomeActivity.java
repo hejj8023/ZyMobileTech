@@ -124,7 +124,7 @@ public class WelcomeActivity extends BaseActivity {
         if (Const.ISENABLE_AUTO_LOGIN &&
                 DataManager.getUserBean() != null &&
                 DataManager.isLogin()) {
-            ToastUtils.showShort(UiUtils.getStr(R.string.tip_auto_login));
+            ToastUtils.showShort(ResourceUtils.getStr(R.string.tip_auto_login));
             IntentUtils.forward(MainActivity.class);
         } else {
             IntentUtils.forward(LoginActivity.class);

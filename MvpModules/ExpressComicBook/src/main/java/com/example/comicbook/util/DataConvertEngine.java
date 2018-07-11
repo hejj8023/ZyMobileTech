@@ -19,22 +19,22 @@ public class DataConvertEngine {
      */
     public static List<Comic> convertRecommendData(Document document) {
         List<Comic> list = new ArrayList<>();
-        List<Element> elements = getaElementsByAttr(document, "class", "in-anishe-text");
+        List<Element> elements = getElementsByAttr(document, "class", "in-anishe-text");
         Random random = new Random();
         int result = random.nextInt(5);
         Comic comic = null;
         for (int i = (result * 6); i < (result + 1); i++) {
             comic = new Comic();
             Element element1 = elements.get(i);
-            comic.setTile(getAttr(element1, "a", "title"));
-            comic.setCover(getAttr(element1, "img", "data-original"));
+            comic.setTile(getTitle(element1));
+            comic.setCover(getCover(element1));
 
-            Elements elementDescribes = getaElementsByAttr(document, "class",
+            Elements elementDescribes = getElementsByAttr(document, "class",
                     "mod-cover-list-intro");
             if (elementDescribes != null && elementDescribes.size() > 0) {
                 Element element = elementDescribes.get(0);
-                comic.setDescribe(element.select("p").text());
-                comic.setId(Long.parseLong(getID(getAttr(element, "a", "href"))));
+                comic.setDescribe(getDescribe(element));
+                comic.setId(getId(element));
                 list.add(comic);
             }
         }
@@ -52,7 +52,7 @@ public class DataConvertEngine {
     /**
      * 从属性中获取元素
      */
-    private static Elements getaElementsByAttr(Document document, String key, String value) {
+    private static Elements getElementsByAttr(Document document, String key, String value) {
         return document.getElementsByAttributeValue(key, value);
     }
 
@@ -74,7 +74,7 @@ public class DataConvertEngine {
      */
     public static List<Comic> convertSerialData(Document document) {
         List<Comic> list = new ArrayList<>();
-        List<Element> elements = getaElementsByAttr(document, "class", "in-anishe-list clearfix " +
+        List<Element> elements = getElementsByAttr(document, "class", "in-anishe-list clearfix " +
                 "in-anishe-ul");
         Random random = new Random();
         int result = random.nextInt(7);
@@ -86,14 +86,14 @@ public class DataConvertEngine {
             comic = new Comic();
             Element element1 = hots.get(i);
             comic.setTile(getAttr(element1, "img", "alt"));
-            comic.setCover(getAttr(element1, "img", "data-original"));
+            comic.setCover(getCover(element1));
 
-            Elements elementDescribes = getaElementsByAttr(document, "class",
+            Elements elementDescribes = getElementsByAttr(document, "class",
                     "mod-cover-list-intro");
             if (elementDescribes != null && elementDescribes.size() > 0) {
                 Element subEle = elementDescribes.get(0);
-                comic.setDescribe(subEle.select("p").text());
-                comic.setId(Long.parseLong(getID(getAttr(element1, "a", "href"))));
+                comic.setDescribe(getDescribe(subEle));
+                comic.setId(getId(element1));
                 list.add(comic);
             }
         }
@@ -105,7 +105,7 @@ public class DataConvertEngine {
      */
     public static List<Comic> convertBRankData(Document document) {
         List<Comic> list = new ArrayList<>();
-        List<Element> elements = getaElementsByAttr(document, "class", "in-teen-list " +
+        List<Element> elements = getElementsByAttr(document, "class", "in-teen-list " +
                 "mod-cover-list clearfix");
 
         Element element = elements.get(0);
@@ -118,14 +118,14 @@ public class DataConvertEngine {
             girlEle = boys.get(i);
             comic = new Comic();
             comic.setTile(getAttr(girlEle, "img", "alt"));
-            comic.setCover(getAttr(girlEle, "img", "data-original"));
+            comic.setCover(getCover(girlEle));
 
-            Elements elementDescribes = getaElementsByAttr(document, "class",
+            Elements elementDescribes = getElementsByAttr(document, "class",
                     "mod-cover-list-intro");
             if (elementDescribes != null && elementDescribes.size() > 0) {
                 Element describesElement = elementDescribes.get(0);
-                comic.setDescribe(describesElement.select("p").text());
-                comic.setId(Long.parseLong(getID(getAttr(girlEle, "a", "href"))));
+                comic.setDescribe(getDescribe(describesElement));
+                comic.setId(getId(girlEle));
                 list.add(comic);
             }
         }
@@ -137,7 +137,7 @@ public class DataConvertEngine {
      */
     public static List<Comic> convertGRankData(Document document) {
         List<Comic> list = new ArrayList<>();
-        List<Element> elements = getaElementsByAttr(document, "class", "in-girl-list " +
+        List<Element> elements = getElementsByAttr(document, "class", "in-girl-list " +
                 "mod-cover-list clearfix");
 
         Element element = elements.get(0);
@@ -148,29 +148,84 @@ public class DataConvertEngine {
             girlEle = girls.get(i);
             comic = new Comic();
             comic.setTile(getAttr(girlEle, "img", "alt"));
-            comic.setCover(getAttr(girlEle, "img", "data-original"));
+            comic.setCover(getCover(girlEle));
 
-            Elements elementDescribes = getaElementsByAttr(document, "class",
+            Elements elementDescribes = getElementsByAttr(document, "class",
                     "mod-cover-list-intro");
             if (elementDescribes != null && elementDescribes.size() > 0) {
                 Element describesElement = elementDescribes.get(0);
-                comic.setDescribe(describesElement.select("p").text());
-                comic.setId(Long.parseLong(getID(getAttr(girlEle, "a", "href"))));
+                comic.setDescribe(getDescribe(describesElement));
+                comic.setId(getId(girlEle));
                 list.add(comic);
             }
         }
         return list;
     }
 
+    /**
+     * 处理漫画列表
+     */
     public static List<Comic> convertJapanData(Document document) {
         List<Comic> list = new ArrayList<>();
-
+        List<Element> details = getElementsByAttr(document, "class", "ret-works-cover");
+        List<Element> infos = getElementsByAttr(document, "class", "ret-works-info");
+        Comic comic;
+        for (int i = 0; i < 3; i++) {
+            comic = new Comic();
+            if (details != null && details.size() > 0) {
+                Element detailEle = details.get(i);
+                comic.setTile(getTitle(detailEle));
+                comic.setCover(getCover(detailEle));
+            }
+            if (infos != null && infos.size() > 0) {
+                Element infoEle = infos.get(i);
+                comic.setAuthor(getAttr(infoEle, "p", "title"));
+                comic.setDescribe(getDescribe(infoEle));
+                comic.setId(getId(infoEle));
+            }
+            list.add(comic);
+        }
         return list;
+    }
+
+    private static String getTitle(Element detailEle) {
+        return getAttr(detailEle, "a", "title");
+    }
+
+    private static String getCover(Element detailEle) {
+        return getAttr(detailEle, "img", "data-original");
+    }
+
+    private static String getDescribe(Element infoEle) {
+        return infoEle.select("p").text();
+    }
+
+    private static long getId(Element infoEle) {
+        return Long.parseLong(getID(getAttr(infoEle, "a", "href")));
     }
 
     public static List<Comic> convertRankListData(Document document) {
         List<Comic> list = new ArrayList<>();
-
+        List<Element> details = getElementsByAttr(document, "class", "ret-works-cover");
+        List<Element> infos = getElementsByAttr(document, "class", "ret-works-info");
+        Comic comic;
+        for (int i = 0; i < details.size(); i++) {
+            comic = new Comic();
+            if (details != null && details.size() > 0) {
+                Element detailEle = details.get(i);
+                if (detailEle != null) {
+                    comic.setTile(getTitle(detailEle));
+                    comic.setCover(getCover(detailEle));
+                }
+            }
+            if (infos != null && infos.size() > 0) {
+                Element infoEle = infos.get(i);
+                if (infoEle != null) {
+                    comic.setId(getId(infoEle));
+                }
+            }
+            list.add(comic);
+        }
         return list;
     }
 }

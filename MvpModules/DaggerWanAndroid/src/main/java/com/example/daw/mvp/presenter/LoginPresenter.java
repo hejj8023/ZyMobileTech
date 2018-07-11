@@ -34,7 +34,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> impl
         mLoginView = getView();
         if (!verifyAccount())
             return;
-        mLoginView.showLoading(UiUtils.getStr(R.string.tip_login));
+        mLoginView.showLoading(ResourceUtils.getStr(R.string.tip_login));
 
         // {"data":null,"errorCode":-1,"errorMsg":"账号密码不匹配！"}
         // {"data":{"collectIds":[2835],"email":"","icon":"","id":4642,"password":"12345678",
